@@ -1,0 +1,873 @@
+Chapter,Question,Question: description,Individual Indicator Score,Source Legislation,Impact,Timeframe for Indicator,References,"References, 2","References, 3","References, 4",Overall Pillar Score
+1,1.1,Weighted average of effective tariff rates applied on ICT goods imported from other Asia-Pacific economies (%),0.018,Effectively applied tariffs on ICT goods (in weighted average) imported from other economies within the considered United Nations region (%),0.18,"Since 2022
+",http://wits.worldbank.org/WITS/,,,,7.0000000000000001E-3
+1,1.2,Percentage of none duty-free tariff lines on ICT goods imported from other Asia-Pacific economies (%),0,No duty-free tariff lines on ICT goods from other economies within the considered United Nations region (%),86.84,"Since 2022
+",http://wits.worldbank.org/WITS/,,,,
+1,1.3,Not a signatory to the WTO ITA I and ITA II,0,Information Technology Agreement (ITA) and in ITA Expansion Agreement (ITA II),The Philippines is a signatory of the 1996 WTO Information Technology Agreement (ITA) and its expansion. The ITA provides for participants to completely eliminate duties on IT products covered by the Agreement.    ,"Since 1997;
+
+Since 2015",https://www.wto.org/english/tratop_e/inftec_e/itscheds_e.htm,https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?Query=@Symbol=%20(wt/let/303)&Language=ENGLISH&Context=FomerScriptedSearch&languageUIChanged=true#,https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?Query=@Symbol=%20(wt/let/1101)&Language=ENGLISH&Context=FomerScriptedSearch&languageUIChanged=true#,,
+1,1.4,"Imposing trade defence measures (anti-dumping, countervailing duties and safeguards) on ICT-related products imported by other Asia-Pacific economies",0,"The Republic Act 8752 - The Anti-Dumping Act of 1999;
+
+The Republic Act 8800 - Safeguard Measures Act of 2000;
+
+The Republic Act 8751 - Countervailing Duty Act of 1999;
+
+The Republic Act No. 10863 -
+Customs Modernization and Tariff Act of 2016","The Customs Modernization and Tariff Act (Republic Act No. 10863) incorporated trade remedy provisions but primarily focused on modernizing customs and tariff administration, streamlining trade procedures, and improving compliance.
+
+Trade remedies for anti-dumping, countervailing duties, and safeguards are available under Philippine laws—Republic Acts 8752, 8751, and 8800, respectively:
+- The Anti-Dumping Act (RA 8752) allows for the imposition of duties on products sold below their normal value, addressing situations where dumping causes material injury to local producers (Section 3).
+- The Countervailing Duty Act (RA 8751) enables the government to impose duties on subsidized imports that harm local industries, ensuring fair competition by neutralizing the benefits of foreign subsidies (Section 4).
+- The Safeguard Measures Act (RA 8800) offers immediate relief to industries threatened by a sudden surge in imports, regardless of whether the imports are fairly traded (Section 5), allowing the government to act swiftly to protect jobs and industries.
+
+Since the implementation of the Philippine trade remedy laws in 1999 and 2000, the Department of Trade and Industry (DTI) has not ordered any anti-dumping, countervailing, or safeguard measures on digital goods. The Philippines maintains a non-restrictive policy environment for tariffs and trade defense measures applied on intraregional imports of ICT-related goods.
+
+As of May 2025, based on information from the WTO and the DTI Philippines portal, the Philippines has implemented both anti-dumping and safeguard measures on other kinds of products:
+- Anti-dumping duties have been applied to products such as cement from Vietnam, gypsum board from Thailand, and wheat flour from Türkiye.
+- For safeguard measures, the Philippines has:
+- Imposed a definitive safeguard duty on high-density polyethylene (HDPE),
+- Imposed a provisional safeguard duty on cement, and
+- Initiated an investigation on corrugating medium imports from various countries.
+- The safeguard investigation on LPG cylinders was terminated in 2024, and no definitive safeguard duty was imposed.","Since August 1999;
+
+Since July 2000;
+
+Since August 1999;
+
+Since May 2016, last amended in 2021",https://www.chanrobles.com/republicactno8752.htm,"https://boi.gov.ph/sdm_downloads/ra-8800-safeguard-measures-act/
+
+",https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/4764,"https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/68014 ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/TCCP-vol2.pdf ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/CMTA-RA-10863-2.pdf",
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,1,"The Republic Act 12009 - New Government Procurement Act (NGPA);
+
+The Implementing Rules and Regulations of Republic Act 12009 or the New Government Procurement Act (IRR) ","Republic Act (RA) No. 12009 is an Act Revising Republic Act No.9184, otherwise known as the New Government Procurement Act (NGPA), together with its Implementing Rules and Regulations (IRR), is the latest enabling legal framework for government procurement in the Philippines. While foreign bids/bidders are allowed, this is subject to undergoing registration with the Philippine Government Electronic Procurement System (PhilGEPS) and submission of eligibility requirements/documents/statements that are applicable for all bids/bidders regardless of nationality (as specified under Rule III, Section 20.2.9.2 of the IRR).
+
+However, specific to foreign bids/bidders, the latter have to also satisfy certain circumstances/criteria (as specified under Rule VIII, Sections 52.4.1.2 and 52.4.2.2 of the IRR concerning Eligibility Requirements for the Procurement of Goods, Infrastructure Projects, and Consulting Services). The procurement of goods and infrastructure projects are open to foreign bids/bidders though with conditions. Specifically, the procurement of goods are open: 
+a) When provided for under any treaty or international or executive agreement as provided in Section 4 of the Act and this IRR;
+b) When the foreign supplier is a citizen, corporation, or association of a country, the laws, or regulations of which grant reciprocal rights or privileges to citizens, corporations, or associations of the Philippines;
+c) When the goods sought to be procured are not available from local suppliers; or
+d) When there is a need to prevent situations that defeat competition or restrain trade.
+For iinvestment projects, they are open when provided for under any treaty or international or executive agreement as provided in Section 4 of the Act and this IRR.
+
+Moreover, for consulting services, foreign consultants may only be hired in the event Filipino consultants do not have the sufficient expertise and capability to render the services required (as specified under Rule VII, Section 52.4.3.3).
+
+","Since July 2024;
+
+Since February 2025",https://www.gppb.gov.ph/new-government-procurement-act-republic-act-no-12009/,https://www.gppb.gov.ph/wp-content/uploads/2025/02/Implementing-Rules-and-Regulations-of-RA-12009.pdf,,,0.680
+2,2.2,"Specific requirements on source codes, encryption and trade secrets ",0,"The Republic Act 12009 - New Government Procurement Act (NGPA);
+
+The Implementing Rules and Regulations of Republic Act 12009 or the New Government Procurement Act (IRR) ","Under the NGPA and its IRR, there are no explicit requirements or provisions specifying technology or knowledge transfers, or to surrende source code, encryption, and other trade secrets, such as patents. However, while the law provides no requirements, procuring entities are not precluded from specifying or including in the tender/bid documents (e.g., contract, Terms of Reference, etc.) such technology or knowledge transfers as part of the domestic/foreign bidder’s deliverables.","Since July 2024;
+
+Since February 2025",https://www.gppb.gov.ph/new-government-procurement-act-republic-act-no-12009/,https://www.gppb.gov.ph/wp-content/uploads/2025/02/Implementing-Rules-and-Regulations-of-RA-12009.pdf,,,
+2,2.3,Limitations in procurement bidding,1,"The Republic Act 12009 - New Government Procurement Act (NGPA);
+
+The Implementing Rules and Regulations of Republic Act 12009 or the New Government Procurement Act (IRR) ","Under Rule XIII of the IRR of RA No. 12009, procurement of goods may be sourced from either domestic or foreign suppliers, with participation open to all eligible suppliers, manufacturers, and distributors (Section 78). However, Section 79 establishes a framework for domestic preference. Specifically, the Procuring Entity is required to give priority and preference to Philippine products and services throughout the procurement process, including raw materials, ingredients, supplies, and fixtures (Section 79.1). For a period of ten (10) years from the effectivity of RA No. 11981 or the Tatak Pinoy (Proudly Filipino) Act, and for sectors covered by the prevailing Tatak Pinoy Strategy, the Procuring Entity must award the contract to a domestic bidder (Section 79.2). A domestic bidder is defined as any person or entity offering goods that are either unmanufactured products of Philippine origin or manufactured products substantially made from Philippine-grown, produced, or manufactured components.
+
+After this ten-year period, domestic preference will continue through a margin of preference to be determined by the Tatak Pinoy Council, which shall not be lower than fifteen percent (15%) (Section 79.3). For goods and services under the Tatak Pinoy Strategy (TPS), the applicable domestic preference rules will be based on the IRR or guidelines issued under the Tatak Pinoy Act (Section 79.4). Additionally, the Procuring Entity may still award the contract to a domestic bidder if their bid is not more than twenty-five percent (25%) higher than the lowest foreign bid, subject to periodic review by the Government Procurement Policy Board (GPPB) (Section 79.5). To claim such preference, domestic bidders must obtain a certification from the appropriate agency confirming that the goods in their bid are substantially composed of Philippine-made components (Section 79.6).
+
+The domestic preference requirements may be waived under specific conditions, such as if domestic production is insufficient or unavailable in commercial quantities, if the required quality cannot be met, if applying domestic preference would conflict with international obligations, or under other analogous circumstances (Section 79.7).","Since July 2024;
+
+Since February 2025",https://www.gppb.gov.ph/new-government-procurement-act-republic-act-no-12009/,https://www.gppb.gov.ph/wp-content/uploads/2025/02/Implementing-Rules-and-Regulations-of-RA-12009.pdf,,,
+2,2.3,Limitations in procurement bidding,1,"Commonwealth Act No. 138 - An Act to Give Native Products and Domestic Entities the Preference in the Purchase of Articles for the Government; 
+
+The Constitution of the Republic of the Philippines 1987","Domestic preference in the Philippines is rooted in the 1987 Constitution, particularly in Article XII, Section 12, which emphasizes the promotion of local goods and the protection of domestic industries. Commonwealth Act No. 138 operationalizes this preference by mandating a 15% price advantage for local bidders over foreign competitors in government procurement of materials and supplies. This legal framework encourages the government to prioritize sourcing from local suppliers.","Since November 1936;
+
+Since February 1987","https://www.officialgazette.gov.ph/1935/12/31/commonwealth-act-no-3/;
+
+https://www.gppb.gov.ph/wp-content/uploads/2023/06/Commonwealth-Act-No.-138.pdf",https://www.officialgazette.gov.ph/constitutions/1987-constitution/,,,
+2,2.3,Limitations in procurement bidding,1,"Publication of Resolution, Circular and Government Procurement Policy Board (GPPB) Issuances, 2024","The latest updates in the Philippine Bidding Documents for the Procurement of Goods (BAC-GDS-2024-005R) reaffirm these principles while outlining procurement guidelines under the 2024 General Appropriations Act (GAA). It emphasizes the publication of Government Procurement Policy Board (GPPB) issuances, including resolutions and circulars, under a single-year Framework Agreement. The bidding process retains the domestic preference provision, allowing a margin of preference of up to 15% for Filipino entities. Additionally, eligibility requirements restrict foreign bidders to those from countries with reciprocal rights for Filipinos, as specified in RA No. 5183. The project’s timeline and specifications, such as pre-bid conferences and technical details, are detailed to ensure transparency and compliance with the 2016 IRR.",Since June 2024,https://www.gppb.gov.ph/wp-content/uploads/2024/06/BAC-GDS-2024-005R.pdf,,,,
+2,2.4,"Not in the WTO Government Procurement Agreement (GPA) and not fully covered the three most relevant services sectors (CPC752, 754, 84)",1,WTO Agreement on Government Procurement,"The Philippines is not a signatory to the WTO GPA. However, it has already been granted an observer status as of 26 June 2019.",Last reviewed in October 2024,https://www.wto.org/english/tratop_e/gproc_e/memobs_e.htm,,,,
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",1,"The Constitution of the Republic of the Philippines 1987;
+
+The Republic Act No.7042 - Foreign Investment Act of 1991;
+
+The Executive Order No. 175 - 12th Foreign Investment Negative List ","The 1987 Philippine Constitution establishes foundational restrictions on foreign ownership across several critical sectors, reflecting the nation's policy of protecting industries considered vital to its sovereignty. Under Article XII, Section 2, foreign equity in the exploitation of natural resources is limited to 40%, ensuring Filipino citizens or corporations with at least 60% Filipino ownership maintain control. Article XII, Section 10 further restricts foreign ownership in enterprises related to national defense, security, and public utilities, where only 40% foreign equity is allowed. This is reinforced by Article XIV, Section 4(2), which caps foreign ownership of educational institutions at 40%, and Article XVI, Section 11, which prohibits foreign ownership of mass media, ensuring only Filipinos can own or manage these entities. 
+
+The Foreign Investments Act of 1991 (Republic Act No. 7042, last amended by the Republc Act No.11647) provides a legal framework for foreign investments in the Philippines while also codifying the restrictions mandated by the Constitution. This act allows 100% foreign ownership in enterprises not restricted by law or the Constitution. However, Section 8 of the law requires the creation and periodic update of the Foreign Investment Negative List (FINL), which specifies the sectors where foreign ownership is either limited or prohibited. 
+
+List A of the FINL enumerates industries where foreign ownership is limited due to constitutional or legislative mandates. For instance,
+- No foreign equity: mass media, except recording and Internet business (Section 11, Article XVI of the 1987 Constitution).
+- No foreign equity: practice of professions (Section 14, Article XII of the Constitution) except in cases specifically allowed by law following the prescribed conditions. Electrical engineering, electronics engineering, and electronics technician are not allowed foreigners to practice except if subject to reciprocity as provided in the pertinent laws.
+- Up to 30% foreign equity: Advertising (Section 11, Article XVI of the 1987 Constitution).
+- Up to 40% foreign equity: Private radio communication network (Section 11 of the 1987 Constitution, Natoinal Telecommunications Commission Memorandum Circular No.10-8-91).
+Moreover, private security agencies and small-scale mining are under List A. No foreign equity is allowed in Private Security Agencies (Section 4 of RA 5487; Rule IV, Section 1 of the implementing rules and regulations of RA 5487), and no foreign equity is allowed in Small-scale mining (Section 3, RA No. 7076).
+
+List B restricts foreign ownership in industries related to national security and public safety, including private security agencies and small-scale mining operations up to 40 %, in line with the Philippine Constitution. In this sense: 
+- Micro and small domestic market enterprises with paid in equity capital of less than the equivalent of US$200,000 (RA No.7042 as amended by RA No.9487)
+- Micro and small domestic market enterprises: (i) that involve advance technology as determined by the Department of Science and Technology (DOST); or (ii) are endorsed as startup or startup enablers by the lead host agecies, namely the Department of Trade and Industry, Department of Information and Communications Technology or DOST pursuant to RA No.11337 otherwise known as the Innovative Startup Act; or (iii) with a majority of direct employees as Filipinos but in no case shall the number of Filipino employees be less than 15 with paid-in equity capital of less than the equivalent of US$100,000 (RA No.7042 as amended by RA No.11647).
+","Since February 1987;
+
+Since 1991 last amended in June 2022; 
+
+Since June 2022",https://www.officialgazette.gov.ph/constitutions/1987-constitution/,https://investmentpolicy.unctad.org/investment-laws/laws/95/philippines-foreign-investment-act,https://www.officialgazette.gov.ph/downloads/2022/06jun/20220627-EO-175-RRD.pdf,,0.915
+3,3.2,Joint venture requirements,1,"The Republic Act No.7042 - Foreign Investment Act of 1991;
+
+The Executive Order No. 175 - 12th Foreign Investment Negative List; 
+
+The Revised Guidelines and Procedures for Entering into Joint Venture (JV) Agreements between Government and Private Entities 2023","The Foreign Investments Act of 1991 (Republic Act No. 7042) last amended in June 2022 by the Republic Act No.11647 serves as the primary legal framework for foreign investment in the Philippines. Section 8 mandates the creation of the Foreign Investment Negative List (FINL), which delineates the sectors where foreign ownership is restricted or prohibited. In these restricted areas, foreign investors typically engage in joint ventures with local firms to comply with the established 40% foreign equity limit. 
+
+","Since 1991, last amended in June 2022;
+
+Since June 2022;
+
+Since April 2023","https://doe.gov.ph/sites/default/files/pdf/ocsp/foreign_investments_act_of_1991.pdf 
+
+",https://www.officialgazette.gov.ph/downloads/2022/06jun/20220627-EO-175-RRD.pdf,https://ppp.gov.ph/wp-content/uploads/2023/04/2023-NEDA-JV-Guidelines-published.pdf,,
+3,3.3,Nationality or residency requirements for board of directors or managers,1,The Republic Act No. 1123 - Revised Corporation Code of the Philippines of 2019,"Section 4 of the Revised Corporation Code of the Philippines (RA 11232) mandates a residency requirement for select corporate officers, namely: the treasurer and the secretary. The treasurer is required to be a resident of the Philippines, while the secretary must be a Filipino citizen and a resident of the Philippines (section 24). This section provides for rules on the nationality and residency of corporate officers.
+
+Filipino companies must have at least five directors, but no more than fifteen. If business activity is partly nationalized, the number of seats for foreigners on the board of directors is measured by a proportion of their present foreign equity to the number of directors as stated in the articles of incorporation. Additionally, the number of their seats should not exceed the proportion of the allowable foreign equity to the number of directors. The officers of entities engaged in nationalized activities are also required to be Filipinos. 
+
+Additionally, under the Revised Corporation Code of the Philippines, Foreign Corporations are also required to designate a resident agent.",Since February 2019,"https://www.officialgazette.gov.ph/2019/02/20/republic-act-no-11232/ ;
+
+https://www.officialgazette.gov.ph/downloads/2019/02feb/20190220-RA-11232-RRD.pdf",,,,
+3,3.3,Nationality or residency requirements for board of directors or managers,0,Presidential Decree No. 715 - Amending Commonwealth Act No.108 of 1975,"According to the Commonwealth Act No. 108 or the “Anti-Dummy Law”, as amended by Presidential Decree No. 715, Section 2-A provides that the election of aliens/foreigners as members of the board of directors or governing body of corporations or associations engaging in partially nationalized activities shall be allowed in proportion to their allowable participation or share in the capital of such entities.",Since May 1975,https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/26%20%20/19862,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,The Republic Act No. 7925 - Public Telecommunications Policy Act of the Philippines of 1995,"A screening of FDI exists in the telecommunications sector, primarily through the necessity of acquiring licenses and even a legislative franchise from Congress. For instance, telecommunications service providers need to secure a Certificate of Public Convenience and Necessity from the National Telecommunications Commission (NTC) as well as a legislative franchise from Congress. 
+
+According to the Republic Act No. 11659, telecommunications are classified under Section 2 as critical infrastructure. Investment screening in the interest of national security for telecommunications is based on Rule IX of the Implementing Rules and Regulations (IRR) of RA 11659, authorizing the review of investments in public service, public utility, and critical infrastructures.
+
+According to the Republic Act No. 7925 or the Public Telecommunications Policy Act of the Philippines, the NTC has the authority to monitor telecommunications providers under Section 24. Moreover, under Section 16, no person shall commence or conduct business of being a public telecommunication entity without first obtaining a license. It further provides that the National Telecommunications Commission may grant Certificate of Public Convenience and Necessity and impose such conditions as to duration and termination of the privilege, concession, or standard or technical aspects of the equipment, rates, or service, not contrary to the terms of the franchise.
+",Since March 1995,https://boi.gov.ph/sdm_downloads/ra-7925-public-telecommunications-policy-act-of-the-philippines/ ,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,"The Republic Act No. 8762 - Retail Trade Liberalization Act of 2000;
+
+The Republic Act No. 11595 - Amendment to the Retail Trade Liberalization Act of 2000
+
+","The Retail Trade Liberalization Act of 2000 (Republic Act No. 8762) and its amendment (Republic Act No. 11595) include investment screening mechanisms for foreign retailers, which extend to online retailers:
+
+Section 5 of Republic Act No. 11595 mandates that foreign retailers must meet minimum paid-up capital requirements (originally PHP 25 million, lowered to PHP 10 million for enterprises after the 2021 amendment) before they can operate in the Philippines. This requirement applies to both brick-and-mortar and online retailers. The Department of Trade and Industry (DTI) is empowered to pre-qualify foreign retailers (Section 5), essentially acting as an investment screening body to ensure that foreign retailers meet financial and other regulatory standards before operating. This serves as a mechanism to safeguard local markets and ensure that foreign entrants have adequate financial backing.","Since March 2000 as amended in January 2022;
+
+Since January 2022",https://appointment.sec.gov.ph/wp-content/uploads/2020/01/RA-8762.pdf,https://www.officialgazette.gov.ph/2021/12/10/republic-act-no-11595/,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,,"According to the Republic Act No. 7042 or the Foreign Investments Act of 1991, as amended by Republic Act No. 11647, Section 16 provides that upon the order of the President, the Inter-Agency Promotion Coordination Committee, in coordination with the National Security Council and the Department of Economy, Planning, and Development (previously National Economic and Development Authority), shall review foreign investments involving military-related industries, cyber infrastructure, pipeline transportation, or such other activities which may threaten territorial integrity and the safety, security, and well-being of Filipino citizens, when:
+(a) made by foreign government-controlled entities or state-owned enterprises, except independent pension funds, sovereign wealth funds, and multi-national banks; or
+(b) located in geographical areas critical to national security.",,,,,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,The Republic Act No. 11232 - Revised Corporation Code of the Philippines of 2019,"Section 141 of the Corporation Act requires any foreign corporation doing business in the Philippines to obtain a license to do business from the Philippine Securities and Exchange Commission (SEC). Section 142 of the Corporation Act establishes that a foreign corporation applying for a license to transact business in the Philippines shall submit to the Commission the address, including the street number, of the principal office of the corporation in the country or State of incorporation; the name and address of its resident agent authorized to accept summons and process in all legal proceedings and all notices affecting the corporation, pending the establishment of a local office; and the place in the Philippines where the corporation intends to operate.",Since February 2019,"https://www.officialgazette.gov.ph/2019/02/20/republic-act-no-11232/ ;
+
+https://www.officialgazette.gov.ph/downloads/2019/02feb/20190220-RA-11232-RRD.pdf",,,,
+4,4.1,Patent application issues,1,"The Republic Act No. 8293 - Intellectual Property Code of the Philippines of 1997;
+
+The Republic Act No. 10372 - An Act Amending Certain Provisions Of Republic Act No. 8293, Otherwise Known As The ""Intellectual Property Code Of The Philippines,"" And For Other Purposes of 2013;
+
+Intellectual Property Office of the Philippines (IPOPHL) Memorandum Circular No.2022-016 The Revised Implementing Rules and Regulations for Patents, Utility Models, and Industrial Designs of 2012, amended by the IPOPHL Memorandum Circular No. 2022-016 ","Section 33 of Republic Act No. 8293 does require foreign applicants who do not reside or have a principal place of business in the Philippines to appoint a local agent or representative: ""An applicant who is not a resident of the Philippines must appoint and maintain a resident agent or representative in the Philippines upon whom notice or process for judicial or administrative procedure relating to the application for patent or the patent may be served.""
+
+This is confirmed by the Rule 422 of the Revised Implementing Rules and Regulations for Patents, Utility Models, and Industrial Designs of 2022 sets  the requirement for non-resident applicants to appoint and maintain a Philippine resident agent or representative in the Philippines. Failure to appoint a Philippine resident agent within one month from the issuance of an action directing the appointment will result in the application being deemed withdrawn. 
+
+The law does not provide any provision that allows for the rejection of patent applications based on the nationality of the applicant. Section 7 of the IP Code provides that any person, whether natural or juridical, including foreign entities, may apply for a patent, and their application will be processed according to the same standards applied to local applicants. The criteria for patentability (novelty, inventive step, and industrial applicability) are applied universally without regard to the applicant's nationality.","Since June 1997, last amended in February 2013; 
+
+Since February 2013;
+
+Since 2012, last amended in 2022","https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/;
+
+https://www.wipo.int/wipolex/en/legislation/details/18399","https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html;
+
+https://ecommerce.dti.gov.ph/wp-content/uploads/2020/11/The-Revised-Implementing-Rules-and-Regulations-IRR-for-Patents-Utility-Models-and-Industrial-Designs.pdf",https://www.jetro.go.jp/ext_images/world/asia/ph/ip/pdf/philippines-tizai_kisoku_en.pdf,,0.292
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0,"The Republic Act No. 8293 - Intellectual Property Code of the Philippines of 1997;
+
+The Republic Act No. 10372 - An Act Amending Certain Provisions Of Republic Act No. 8293, Otherwise Known As The ""Intellectual Property Code Of The Philippines,"" And For Other Purposes of 2013;","The legal process for addressing patent infringement begins with the filing of a complaint. According to Section 76 of the Intellectual Property Code, any person who uses, makes, sells, or imports a patented invention without the authorization of the patent holder during the term of the patent commits patent infringement. 
+
+Remedies for patent infringement include civil and criminal options. Under Section 76.2, the patent holder can file a civil action to recover damages, attorney’s fees, and secure an injunction against further infringement. If actual damages are difficult to ascertain, the court may award reasonable royalties as per Section 76.3. In certain cases, damages may be tripled under Section 76.4, depending on the severity of the infringement. The court also has the authority to order the destruction or removal of infringing goods from the market (Section 76.5). Moreover, individuals who contribute to the infringement, such as by supplying components specifically intended for infringement, are also liable as contributory infringers under Section 76.6. For repeat offenders, Section 84 provides for criminal sanctions, including imprisonment of six months to three years, and fines between PHP 100,000 and PHP 300,000. 
+
+Section 216 outlines the remedies for infringement and includes measures that can be deemed provisional such as injunctions [ 216.(a) ] that allow the court to issue injunctions in order to restrain the infringer from continuing their infringing activities. This means that even before the final resolution of the case, the court can order the infringer to cease their actions that violate copyright.
+
+Foreign nationals or entities are also allowed to file infringement suits in the Philippines, even if they are not licensed to do business in the country, provided they hold valid patents, as per Section 77. In the case of process patents, Section 78 establishes that an identical product is presumed to have been produced using the patented process unless proven otherwise, shifting the burden of proof to the alleged infringer.
+
+","Since June 1997, last amended in February 2013; 
+
+Since February 2013;","https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/;
+
+https://www.wipo.int/wipolex/en/legislation/details/18399","https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html;
+
+https://ecommerce.dti.gov.ph/wp-content/uploads/2020/11/The-Revised-Implementing-Rules-and-Regulations-IRR-for-Patents-Utility-Models-and-Industrial-Designs.pdf",,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",1,"The Republic Act No. 8293 - Intellectual Property Code of the Philippines of 1997;
+
+The Republic Act No. 10372 - An Act Amending Certain Provisions Of Republic Act No. 8293, Otherwise Known As The ""Intellectual Property Code Of The Philippines,"" And For Other Purposes of 2013;","The enforcement of patent rights in the Philippines is governed by specific limitations outlined in the Intellectual Property Code, particularly Sections 72 through 75. These provisions aim to balance the rights of patent holders with public interests, especially in healthcare and innovation. Key exceptions include the exhaustion of rights, which allows third parties to use patented products already sold in the market, particularly for drugs and medicines, thereby enhancing accessibility. Other exceptions permit private and non-commercial use, experimental use for scientific purposes, and regulatory testing, facilitating research and development while protecting the interests of patent owners.
+
+Additionally, prior user rights allow individuals who used an invention in good faith before the patent application to continue its use, safeguarding established businesses. The government can exploit patented inventions without the owner's consent under certain conditions, such as national emergencies, ensuring public health needs are met. Additionally, the law does not state that the owner of the patent must be remunerated.","Since June 1997, last amended in February 2013; 
+
+Since February 2013;","https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/;
+
+https://www.wipo.int/wipolex/en/legislation/details/18399","https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html;
+
+https://ecommerce.dti.gov.ph/wp-content/uploads/2020/11/The-Revised-Implementing-Rules-and-Regulations-IRR-for-Patents-Utility-Models-and-Industrial-Designs.pdf","https://www.wipo.int/edocs/mdocs/aspac/en/wipo_ip_mnl_3_18/wipo_ip_mnl_3_18_p_1.pdf;
+
+https://www.wipo.int/edocs/pubdocs/en/wipo_pub_946.pdf",,
+4,4.3,Not in the WIPO Copyright Treaty (WCT),0,Participation to the WIPO Patent Cooperation Treaty,The Philippines has signed the WIPO Patent Cooperation Treaty. ,Since August 2001,https://www.wipo.int/pct/en/pct_contracting_states.html#note2,,,,
+4,4.4,Lack of copyright framework and exceptions,0,"The Republic Act No. 8293 - Intellectual Property Code of the Philippines of 1997;
+
+The Republic Act No. 10372 - An Act Amending Certain Provisions Of Republic Act No. 8293, Otherwise Known As The ""Intellectual Property Code Of The Philippines,"" And For Other Purposes of 2013;","The Philippines' Intellectual Property Code provides several copyright exceptions aimed at balancing the rights of creators with public access to information and culture. One key exception is fair use (Section 185), which allows copyrighted works to be used without permission for purposes like criticism, commentary, news reporting, teaching, or research. The determination of fair use depends on factors such as the purpose, nature, and effect of the use on the market value of the copyrighted work. For instance, excerpts for academic purposes or quotations for reviews may qualify as fair use.
+
+Other exceptions include private performances or displays not intended for profit (Section 184.1) and the reproduction of works for personal use (Section 184.2). Educational institutions can use copyrighted materials for instructional purposes, and libraries may reproduce works for preservation or research (Section 184.3). Broadcasting organizations can make ephemeral recordings for scheduling purposes (Section 184.1(c)), and certain public performances in government or public spaces are permitted if there is no charge (Section 184.1(e)). Additionally, copyrighted works can be used in judicial proceedings or for public security (Section 184.1(f)). ","Since June 1997, last amended in February 2013; 
+
+Since February 2013;","https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/;
+
+https://www.wipo.int/wipolex/en/legislation/details/18399","https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html;
+
+https://ecommerce.dti.gov.ph/wp-content/uploads/2020/11/The-Revised-Implementing-Rules-and-Regulations-IRR-for-Patents-Utility-Models-and-Industrial-Designs.pdf",,,
+4,4.5,Online copyright enforcement issues: civil and administrative procedures and remedies; and provisional measures,0,"Intellectual Property Office of the Philippines (IPOPHL) Memorandum Circular 2020-049 - Revised Rules of Procedure on Administrative Enforcement Intellectual (IP) Rights of 2021
+
+The Republic Act No. 11904 -  Philippine Creative Industries Development Act of 2022","The Philippines’ legal framework for copyright explicitly includes administrative and civil remedies for online infringement under Republic Act No. 8293 (Intellectual Property Code) and its amendments via Republic Act No. 10372. Digital works such as software, multimedia, and databases are protected as published works under Section 171, ensuring coverage of online content. Section 6 of Republic Act No. 10372, which amends the Intellectual Property Code of the Philippines (Republic Act No. 8293), introduces two critical subsections to Section 171: Section 171.12 defines ""technological measures"" as technologies, devices, or components that restrict unauthorized actions concerning a work, performance, or sound recording, while Section 171.13 introduces the concept of ""rights management information"", which refers to identifying details about the work, sound recording, or performance, as well as information on the author, producer, performer, or rights owner. It also includes terms and conditions of use and any associated codes or identifiers. 
+
+Administrative procedures, such as the takedown mechanism (Section 216), would allow copyright holders to issue notices to Internet Service Providers (ISPs) hosting infringing material. Civil remedies include injunctions, damages, and destruction of infringing goods (Section 216), while administrative penalties may involve fines or cease-and-desist orders issued by the Intellectual Property Office of the Philippines (IPOPHL). The notice-and-takedown system exemplifies a provisional measure, allowing expedited removal of infringing content to mitigate damages during ongoing investigations.","Since March 2021;
+
+Since July 2022","https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/;
+
+https://www.wipo.int/wipolex/en/legislation/details/18399","https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html;
+
+https://ecommerce.dti.gov.ph/wp-content/uploads/2020/11/The-Revised-Implementing-Rules-and-Regulations-IRR-for-Patents-Utility-Models-and-Industrial-Designs.pdf",,,
+4,4.6,Not in the WIPO Copyright Treaty (WCT),0,Signature of the WIPO Copyright Treaty,Accession to the WIPO Copyright Treaty since October 2002.,Since October 2002,https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=16,,,,
+4,4.7,Not in the WIPO Performances and Phonographs Treaty (WPPT),0,Signature of the WIPO Performances and Phonograms Treaty,Accession to the WIPO Performances and Phonograms Treaty since 2002,Since October 2002,https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=20,,,,
+4,4.8,"Mandatory disclosure of trade secrets, such as source code and algorithms",0,The Republic Act No. 10175 - Cybercrime Prevention Act of 2012,"Section 14 of the Republic Act No.10175 sets the Disclosure of Computer Data : ""Law enforcement authorities, upon securing a court warrant, shall issue an order requiring any person or service provider to disclose or submit subscriber’s information, traffic data or relevant data in his/its possession or control within seventy-two (72) hours from receipt of the order in relation to a valid complaint officially docketed and assigned for investigation and the disclosure is necessary and relevant for the purpose of investigation"". This is the only situation of mandatory disclosure of business trade secrets.",Since September 2012,https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/,,,,
+4,4.9,Lack of effective trade secrets legal framework,0.50,"Act Act Revising the Penal Code of the Philippines Act NO.3815 of 1930;
+
+The Republic Act No. 8293 - Intellectual Property Code of the Philippines of 1997;
+
+The Republic Act No. 10372 - An Act Amending Certain Provisions Of Republic Act No. 8293, Otherwise Known As The ""Intellectual Property Code Of The Philippines,"" And For Other Purposes of 2013;
+
+Supreme Court GR No. 172835 - Air Philippines Corporation v. Pennswell, Inc. (2007)","The Revised Penal Code prohibits the unauthorised revelation of secrets or confidential information by either private individuals or public officers. The revelation of secrets with abuse of office is penalized under Article 291 and revelation of industrial secrets under Article 292 of the Revised Penal Code.
+
+The Intellectual Property Code recognizes the protection of undisclosed information as an independent IP right (Section 4. g). Section 168 addresses unfair competition, which includes misappropriation of confidential business information and trade secrets by third parties. Unauthorized use or disclosure of trade secrets by competitors or former employees can be pursued through civil actions under this law. 
+
+The Supreme Court (ruling Air Philippines Corporation v. Pennswell, Inc.) also ruled that trade secrets may not be the subject of compulsory disclosure. In this ruling the Supreme Court has given parameters and standards to determine what may constitute a trade secret. A trade secret is defined as ""any formula, pattern, device, or compilation of information that is used in one’s business and gives the employer an opportunity to obtain an advantage over competitors who do not possess the information"". ","Since December 1930;
+
+Since June 1997, last amended in February 2013; 
+
+Since February 2013;
+
+Since December 2007",https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/PHL_revised_penal_code.pdf ,https://www.officialgazette.gov.ph/1997/06/06/republic-act-no-8293/,https://lawphil.net/statutes/repacts/ra2013/ra_10372_2013.html,https://lawphil.net/judjuris/juri2007/dec2007/gr_172835_2007.html,
+5,5.1,Absence of passive infrastructure sharing,0,"The Republic Act No. 7925 - Public Telecommunications Policy Act of the Philippines of 1995;
+
+Department Circular No. 008 Policy Guidelines on the Co-Location and Sharing of Passive Telecommunications Tower Infrastructure for Macro Cell Sites 2020","Section 4(g) of RA 7925 mandates a fair and reasonable interconnection of facilities among authorized public network operators, which supports the rationale for sharing infrastructure to ensure universal access to services. 
+
+Section 11 of the Circular outlines the guidelines for passive telecommunications tower infrastructure (PTTI) sharing, mandating that all PTTIs built, improved, or updated after the effectivity of this Circular must provide ample access slots for mobile network operators (MNOs) and the DICT. The infrastructure should allow co-location and shared use of antennas, transmitters, receivers, and other similar equipment. Agreements for co-locating in shared PTTIs must provide fair, cost-based, reasonable, non-exclusive, and non-discriminatory terms (Section 11(b)). The DICT also monitors the charges and fees imposed by PTTI owners (Section 11(c)), and mandates that all installations after the effectivity of this Circular must be co-located unless there are meritorious grounds (Section 11(d)).
+
+","Since March 1995;
+
+Since June 2020",https://boi.gov.ph/sdm_downloads/ra-7925-public-telecommunications-policy-act-of-the-philippines/,https://pnl-law.com/blog/policy-guidelines-on-the-co-location-and-sharing-of-passive-telecommunications-tower-infrastructure-for-macro-cell-sites-dict-circular-no-008/,,,0.279
+5,5.2,Foreign equity limits in telecom sector,0,"The Constitution of the Republic of the Philippines 1987;
+
+Republic Act No.11659 - An Act Amending Commonwealth Act No.146 Otherwise Known as the Public Service Act, as Amended 2022","Under the Philippine Constitution public utilities are restricted to 60% Filipino ownership. This means that foreign ownership in telecommunications companies has traditionally been capped at 40% (Article XII, Section 11).
+
+However, RA 11659, passed in 2022, liberalizes foreign ownership in certain industries, including telecommunications. The law distinguishes between public services and public utilities, with only public utilities subject to the 60-40 ownership restriction.Telecommunications is now classified as a public service, not a public utility, under this amendment. This change effectively allows up to 100% foreign ownership of telecommunications companies, provided national security concerns are addressed.
+
+RA 11659 includes provisions to safeguard national security. It empowers the President of the Philippines to suspend or prohibit any investment in a public service (such as telecommunications) that poses a risk to national security. The law also mandates that foreign investors in critical public services are subject to national security reviews.
+
+With the enactment of RA 11659, the previous 40% cap on foreign ownership in the telecommunications sector has been lifted, allowing for up to 100% foreign equity, subject to national security reviews and other regulatory requirements.","Since February 1987;
+
+Since April 2022",https://www.officialgazette.gov.ph/constitutions/1987-constitution/,https://www.officialgazette.gov.ph/2022/03/21/republic-act-no-11659/,,,
+5,5.3,Shares owned by the Government in telecom companies,0,"The Common Wealth Act No.146 - Public Service Act of 1936
+
+","The Common Wealth Act No.146 - Public Service Act of 1936 amended by the Republic Act No.11659 of 2022 The leading public service telecom operators in the Philippines, such as PLDT, Globe, and Dito Telecommunity, are currently open to foreign ownership. Sction 14 states that the terms ""public service"" or ""public utility"" used in this Act include every individual, copartnership, association, corporation, or joint-stock company, whether domestic or foreign, their lessees, trustees, or receivers appointed by any court whatsoever, or any municipality, province, or other department of the Government of the Philippines, that now or hereafter may own, operate, manage, or control in the Philippines,...telephone, wire or wireless, telegraph system, plant or equipment, and broadcasting stations, when owned, operated, managed, or controlled for public use or service within the Philippines.
+
+The leading public service telecom operators in the Philippines, such as PLDT, Globe, and Dito Telecommunity, are currently open to foreign ownership. According to the last report of Globe Telecom, there's no significant government share in this company. 
+Dito Telecommunity is a telecommunications company in the Philippines that was established as a consortium primarily owned by Udenna Corporation, led by Davao businessman Dennis Uy, and China Telecommunications Corporation, a state-owned enterprise. The ownership structure is divided as follows:
+- Udenna Group (DITO Holdings Corporation): 60%
+- China Telecom: 40%
+
+As a result, the government does not have a direct ownership stake in Dito Telecommunity, but it could have a stake through China Telecom, which is state-owned. ","Since November 1936 as amended on April 2022;
+
+Last reviewed in October 2024",https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/29/16534,https://www.globe.com.ph/about-us/corporate-governance/shareholding-structure.html,"https://www.pldt.com/investor-relations/shareholder-information/shareholding-structure
+
+",,
+5,5.4,Lack of functional/accounting separation,0.50,The Republic Act No. 7925 - Public Telecommunications Policy Act of the Philippines of 1995,"In accordance with Section 19 (Uniform System of Accounts), telecommunications entities are required to establish a uniform system of accounts to serve as a basis for rate-setting. If a single entity operates across multiple telecommunications categories, separate accounting records must be maintained for each service classification, ensuring transparency and accountability in financial reporting​. However, there is no specific mention of functional separation being mandated in the Philippines regulations.",Since March 1995,https://boi.gov.ph/sdm_downloads/ra-7925-public-telecommunications-policy-act-of-the-philippines/,,,,
+5,5.5,Licensing requirements in telecom sector for operators,1,The Republic Act No. 7925 - Public Telecommunications Policy Act of the Philippines of 1995,"Section 7 of the Republic Act No.7925 states that ""a telecommunications entity shall be authorized to operate in one or more of the telecommunications categories mentioned in this Act.""
+
+Futhermore, Telecommunications service providers need to secure a Certificate of Public Convenience and Necessity from the National Telecommunications Commission Public Telecommunications Entities are also required to secure a legislative franchise from Congress.
+
+Therefore, the procedures and authorizations necessary for telecommunications services in the Philippines could pose obstacles and lead to increased operational expenses for businesses. The process of obtaining a franchise through legislative action in the Philippine Congress might extend from nine months to over a year. Similarly, the assessment period for applications seeking basic service authorization, like the Certificate of Public Convenience and Necessity, could span from six months to a year. Moreover, the duration for processing business permits and licenses from other government bodies varies, taking anywhere from three days to a few weeks, particularly if site inspections are involved. The National Telecommunications Commission (NTC) mandates payment of permit fees and supervision fees for all types of issued authorizations, with the specific amount contingent on the type of permit. The supervision fees generally correlate with the company's capital stock or equipment value. Additionally, radio frequency (RF) license holders are obligated to cover spectrum user fees calculated based on factors such as bandwidth, service area coverage, or the number of radio stations.
+
+There are also mandatory performance requirements that telecommunications providers must adhere to, regardless of whether they are local or foreign. These include commitments to provide universal service, maintain quality standards, and ensure network coverage in underserved areas. For example, Section 8 mandates local exchange operators to offer universal basic telephone services and prohibits them from denying service based on competitive pressures​. Furthermore, under Section 10, international carriers must demonstrate their capacity to provide local exchange services in underserved areas within three years of being granted authority​.",Since March 1995,https://boi.gov.ph/sdm_downloads/ra-7925-public-telecommunications-policy-act-of-the-philippines/ ,,,,
+5,5.5,Licensing requirements in telecom sector for operators,1,Department Circular No. 002 Implementing Rules and Regulations on National Policy for Expanding the Provision of Internet Services through Inclusive Access to Satellite Services,"DICT Circular No. 02 s 2021 provides for the licensing and regulation of satellite systems providers and operators (SSPOs) for internet services. Specifically, Section 9 (“DICT Accreditation Certificate; Renewal”) requires that all Satellite Systems Providers or Operators (SSPOs) obtain and maintain a valid accreditation certificate from the DICT. This certificate is valid for five (5) years and must be renewed by submitting an application within the third month before expiry. 
+
+Under Sections 7 (Requirements for satellite systems providers or operators (SSPOs) and 8 (Reciprocity requirement for foreign or international SSPOs), SSPOs desiring to provide satellite services by directly engaging with ISPs, value-added service providers, enfranchised telecommunications entities or public telecommunications entities, and broadcast service providers (authorised entities) shall have an adequate digital presence in the Philippines, such as having a readily accessing website with sufficient content and information; have an adequate local presence by setting up a branch or representative office, having an institutional agent or official distributor, or a combination of such modes; have the capacity, coverage and satellite footprint in the Philippines for the purposes of providing adequate satellite services to covered areas; be accredited by the Department of Information and Communications Technology; and be a national of a country that does not prohibit Philippine satellites to operate within its territories and does not prohibit its citizens or subjects to access Philippine satellite systems.",Since September 2021,https://cms-cdn.e.gov.ph/DICT/pdf/DC_UP-ONAR.pdf,,,,
+5,5.6,Not in the WTO Telecom Reference Paper,0,Partial commitment to the WTO Telecom Reference Paper,The Philippines has partially attached the WTO Telecom Reference Paper to their schedule of commitments. ,Since 1994,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_highlights_commit_exempt_e.htm#country,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_commit_exempt_list_e.htm,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_highlights_commit_exempt_e.htm#country,,
+5,5.7,Lack of independent telecom authority,1,Executive Order No. 546 Creating a Ministry of Public Works and a Ministry of Transportation and Communications of 1979,"The National Telecommunications Commission of the Philippines (NTC) was created under Executive Order No. 546 promulgated on July 23, 1979 (Section 14). The National Telecommunications Commission (NTC) is the regulatory body responsible for regulating the telecommunications industry in the Philippine. The NTC is tasked with promoting fair competition, ensuring efficient allocation and use of radio frequencies, and protecting the interests of consumers. The NTC is also responsible for issuing licenses to telecommunications companies and enforcing compliance with regulations",Since July 1979,https://ntc.gov.ph/wp-content/uploads/2015/10/LawsRulesRegulations/RAs_PDs_EOs/EO_546.pdf,,,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",0,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+Implementing Rules and Regulations (IRR) of the Data Privacy Act of 2012 of 2016","There is no ban on the cross-border transfer of data in the Philippines. The Data Privacy Act (DPA) allows for cross-border data transfers, but certain conditions must be met to ensure that personal data is adequately protected:
+
+Section 21 of the DPA specifies that cross-border transfers of personal data are permitted provided that the recipient country or organization ensures an adequate level of data protection. Adequacy is determined by the National Privacy Commission (NPC), taking into account factors such as the rule of law, human rights, and enforcement mechanisms in the receiving country.
+
+Specifically, personal information refers to any information whether recorded in a material form or not, from which the identity of an individual is apparent or can be reasonably and directly ascertained by the entity holding the information, or when put together with other information would directly and certainly identify an individual (Section 3 definitions of terms). ","Since August 2012, last amended in 2016;
+
+Since 2016",https://www.privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/#21,,,0.115
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+Implementing Rules and Regulations (IRR) of the Data Privacy Act of 2012 of 2016","The Philippine does not implement local storage requirement for data. The Data Privacy Act of 2012 (Republic Act No. 10173) does not explicitly mandate local data storage requirements in the Philippines. There is no general obligation for businesses to store data locally, meaning that data may be transferred and processed internationally as long as it complies with the conditions set forth by the National Privacy Commission (NPC).
+
+","Since August 2012, last amended in 2016;
+
+Since 2016",https://www.privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/#21,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",0,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+Implementing Rules and Regulations (IRR) of the Data Privacy Act of 2012 of 2016",The Philippines does not implement infrastructure requirement.,"Since August 2012, last amended in 2016;
+
+Since 2016",https://www.privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/#21,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,Department of Information and Communications Technology (DICT) Department Circular No. 2017-10 -  Prescribing the Philippine Government's Cloud First Policy of 2017,"The Department of Information and Communications Technology (DICT) Department Circular No. 2017-002, later amended by Department Circular No.10, establishes critical requirements regarding data protection levels for cross-border data transfers, particularly in the context of the Philippine government's cloud-first policy. This circular mandates that government agencies ensure the data protection measures of their cloud service providers (CSPs) align with those of the partner country. It also regulates security for government-contracted cloud services, focusing on international security assurance controls and industry-standard encryption methods to protect government data during migration.
+
+A key provision of the circular is the emphasis on data classification, which requires that government data be managed according to its sensitivity and criticality. This classification plays a vital role in determining the conditions under which data can be stored, processed, and transferred, particularly imposing stricter security measures on sensitive data and placing restrictions on cross-border transfers to ensure the protection of personal and sensitive information.
+
+Additionally, the circular reinforces the principle of data sovereignty, asserting that Philippine laws govern any government-owned or processed data, regardless of where it is stored. This principle necessitates compliance with local regulations, influencing cross-border data transfer conditions even when data is handled by foreign entities. Agencies are required to conduct thorough assessments of CSPs to verify that they meet established security and compliance standards, ensuring the reliability of external cloud services and directly impacting conditions for data flows.
+
+Moreover, the circular provides detailed guidelines for managing data within cloud environments, emphasizing the need for protective measures and ensuring that data transfers comply with existing laws, which is crucial for maintaining the confidentiality, integrity, and availability of government data.","Since 2017, last amended in June 2020;
+
+",https://www.jetro.go.jp/ext_images/jetro/activities/support/aseanjapan/report/3-6.pdf,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+Implementing Rules and Regulations (IRR) of the Data Privacy Act of 2012 of 2016","In the Philippines, the transfer of personal data is governed by specific criteria outlined in the Data Privacy Act (DPA) and its implementing rules. Under Section 12, personal information can only be processed when at least one lawful basis is satisfied, such as obtaining consent from the data subject, fulfilling a contractual obligation, complying with legal requirements, or protecting the vital interests of the data subject. For sensitive personal information, Section 13 imposes stricter conditions, allowing processing only under specific circumstances, including consent, compliance with laws that safeguard such information, or in cases of medical treatment.
+
+Moreover, Sections 14 and 15 address subcontracting and privileged communication, emphasizing the responsibility of personal information controllers to ensure that safeguards are in place when subcontracting data processing tasks. The controller must also adhere to the DPA's requirements and ensure confidentiality. Overall, the conditions for lawful processing and the emphasis on consent and protection of sensitive data illustrate the careful approach taken by the Philippine regulatory framework regarding data transfer and processing.","Since August 2012, last amended in 2016;
+
+Since 2016",https://www.privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/#21,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,Bangko Sentral ng Pilipinas (BSP) Circular No. 899 - Amendments to the Guidelines on Outsourcing of 2016,"BSP Circular No. 899 outlines essential provisions for banks in the Philippines regarding data management in outsourcing arrangements. The circular emphasizes that while banks may outsource services, they must implement appropriate processes and information systems to monitor and mitigate operational risks associated with outsourced activities. This includes safeguarding customer and bank data, ensuring its confidentiality, integrity, and availability throughout the outsourcing process (BSP Circular No. 899, Section X162).
+
+Risk assessments are crucial, as highlighted in Subsection X162.4, which requires banks to evaluate the implications of outsourcing on data management, considering operational, compliance, and reputational risks. The documentation mandated in Subsection X162.5 ensures that banks have a clear record of their due diligence in selecting service providers, further solidifying their commitment to data protection and regulatory compliance. Additionally, when outsourcing within a business group, confidentiality must be preserved, as specified in Subsection X162.6, thereby ensuring sensitive information remains protected.
+
+The circular also addresses offshore outsourcing in Subsection X162.7, stipulating that banks can only engage service providers located in jurisdictions that maintain adequate data confidentiality. This necessitates ongoing monitoring of external conditions to ensure compliance with Philippine laws regarding data protection. Finally, the BSP reserves the right to take enforcement actions in cases of non-compliance, as noted in Subsection X162.9, reinforcing the importance of effectively managing outsourcing arrangements to protect customer data and maintain operational integrity.",Since January 2016,http://rbap.org/wp-content/uploads/2016/01/c899-Amendments-to-the-Guidelines-on-Outsourcing.pdf ,,,,
+6,6.5,Not in an agreement with binding commitments on data transfer.,0,"Department of Trade and Industry Republic of the Philippines;
+
+Regional Comprehensive Economic Partnership","Philippines has not joined any agreement with binding commitments to open transfers of data across borders.
+
+Philippines is part of the Regional Comprehensive Economic Partnership (RCEP), which was signed on November 15, 2020, and came into effect on January 1, 2022. The agreement aims to deepen economic integration among its member countries and encompasses trade in goods and services, investment, and other areas of economic cooperation. The RCEP involves 15 countries: the 10 ASEAN member states (Brunei Darussalam, Cambodia, Indonesia, Lao PDR, Malaysia, Myanmar, the Philippines, Singapore, Thailand, and Veit Nam) and five of ASEAN's free trade partners (Australia, China, Japan, New Zealand, and the Republic of Korea). Articles 12.14(2) and 12.15(2) of RCEP explicitly prohibit data localization as a form of protectionism, and encourage cross-border data flow. ","Last reviewed in October 2024;
+
+Since January 2022",https://www.dti.gov.ph/rcep/,https://legacy.senate.gov.ph/publications/SEPO/Policy%20Brief%20on%20RCEP_Final.pdf,,,
+7,7.1,Lack of comprehensive legal framework for data protection,0,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+Implementing Rules and Regulations (IRR) of the Data Privacy Act of 2012 of 2016","The Data Privacy Act of 2012 (Republic Act No. 10173), which covers all sectors, both public and private, and applies to the processing of personal data in a broad sense, including collection, use, storage, and transfer. Specifically, criteria for lawful processing of personal information is prescribed under section 12 that processing personal information is permitted when at least one of the following conditions exists, for example, the data subject has given his or her consent. The law is enforced by the National Privacy Commission (NPC) and offers rights and protections to individuals (data subjects) along with obligations for organizations that handle personal data. ","Since August 2012, last amended in 2016;
+
+Since 2016",https://www.privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/#21,,,0.219
+7,7.1,Lack of comprehensive legal framework for data protection,0,The Republic Act No. 10175 - Cybercrime Prevention Act of 2012,"This law complements the Data Privacy Act by addressing cybercrimes related to data misuse. Section 4 criminalizes acts like data interference, illegal access, and identity theft, emphasizing the protection of data integrity. Section 12 allows for the real-time collection of traffic data by law enforcement, provided it does not include content data, which still requires judicial authorization. Penalties for cybercrime offenses involving personal data misuse are outlined in Section 8​.",Since September 2012,https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/ ,,,,
+7,7.1,Lack of comprehensive legal framework for data protection,0.50,The Republic Act No. 8792 - Electronic Commerce Act of 2000,"Several provisions from the Electronic Commerce Act of 2000 (RA 8792) outline critical safeguards for the handling of electronic data and information systems:
+
+Section 31 (30): Lawful Access emphasizes that access to electronic files, signatures, or data messages is restricted to individuals or entities with a legal right to them. The provision requires that access is granted solely for authorized purposes, ensuring data integrity and protecting electronic keys from unauthorized use without the explicit consent of the rightful owner.
+Section 32 (31): Obligation of Confidentiality reinforces the duty of individuals who gain access to sensitive electronic data under this Act to maintain strict confidentiality. It prohibits the sharing or dissemination of such data unless expressly authorized, safeguarding the privacy and security of electronic transactions and communications.",Since June 2000,https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Republic Act No. 10175 - Cybercrime Prevention Act of 2012,"RA 10175 mandates that “traffic data and subscriber information shall be kept, retained, and preserved by a service provider for a minimum period of six months from the date of the transaction”. This minimum data retention requierement can be extended for another six months when ordered by the Office of the Prosecutor (Section 13). ",Since September 2012,https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/ ,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",0,The Republic Act No. 10173 - Data Privacy Act of 2012 ,The Data Privacy Act of 2012 (Republic Act No. 10173) mandates that personal data should be retained only for as long as necessary for the fulfillment of the purpose for which it was collected or as required by law (Section 11.e).,"Since August 2012, last amended in 2016",https://www.privacy.gov.ph/data-privacy-act/ ,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,Department of Labor and Employment Order No. 183 - Revised Rules on the Administration and Enforcement of Labord Laws Pursuant to Article 128 of the Labor Code Series of 2017,"In terms of record retention obligations, the Labour Code and its implementing rules and regulations require all employment records to be kept by employers must be preserved for at least three years from the date of the last entry in the record:
+
+""Al establishments shall keep and maintain employment records in and about the premises of all workplaces for at least three (3) years; except fi a centralized recording system is implemented."" (Rule IV, Section 2)",Since October 2017,https://blr.dole.gov.ph/wp-content/uploads/2018/02/DO-183-17-Changes-in-Section-2-Rule-XI-Revised-Rules-on-the-Administration-And-Enforcement-of-Labor-Laws-Pursuant-To-Article-128-of-the-Labor-Code-as-Renumbered.pdf,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,National Telecommunications Commission (NTC) Memorandum Circular No. 04-06-2007 - Data Log Retention of Telecommunication Traffic of 2007,"The National Telecommunications Commission (NTC) Memorandum Circular No. 04-06-2007 establishes data retention requirements for telecommunications entities in the Philippines. According to Section 2, titled “Retention Period,” telecommunications providers are mandated to retain call traffic data, which includes the origin, destination, date, time, and duration of communications. Specifically, non-metered services with fixed monthly charges must retain data for two months (Section 2.a), while all other telecommunications services are required to retain records for four months (Section 2.b). Additionally, Section 3, “Retention of Records,” stipulates that records related to pending complaints must be retained until the NTC grants permission for their destruction, ensuring the availability of crucial information for regulatory compliance and consumer protection.",Since 2007,https://region7.ntc.gov.ph/wp-content/uploads/2024/01/MC_04_06_2007.pdf,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,"The Republic Act No. 9160 - Anti-Money Laundering Act (AMLA) of 2001;
+
+Bangko Sentral ng Pilipinas (BSP) Circular No. 950 Amendments to Part Eight or the Anti-Money Laundering Regulations of the Manual of Regulations for Banks and Manual of Regulations for Non-Bank Financial Institutions Series of 2017","The Anti-Money Laundering Act (AMLA) of 2001 (Republic Act No. 9160) requires covered institutions (including banks) to maintain and safely store customer identification records and transaction documents for a minimum of five years from the date of the transaction or account closure. In cases of ongoing investigations or legal proceedings, the records must be retained until the case is resolved. (Section 9.b).
+
+Similarly, BSP Circular No. 950, Series of 2017 establishes, under Section x808/48ogQ that  ""All customer identification records of covered persons shall be maintained and safely stored as long as the account exists. All transaction records and documents of covered persons shall be maintained and safely stored for five (5) years from the date of transaction.""","Since July 2001, last amended in January 2021;
+
+Since March 2017",http://www.amlc.gov.ph/laws/money-laundering/2015-10-16-02-50-56/republic-act-9160,https://rbap.org/wp-content/uploads/2017/03/c950.pdf,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+National Privacy Commission (NPC) Circular No.16-03 - Security of Personal Data in Government Agencies of 2016","Appointing a Data Protection Officer (DPO) is a legal requirement for personal information controllers (PICs) and personal information processors (PIPs) in the Philippines set by the RA 10173. This requirement applies to any natural or juridical person or any other body in the government or private sector engaged in the processing of personal data of individuals living within and outside the Philippines. The Data Privacy Act of 2012 mandates the appointment of a DPO to ensure compliance with data protection rules:
+
+""The personal information controller and personal information processor shall designate an individual or individuals who shall function as data protection officers... to ensure compliance with applicable laws and regulations for the protection of data privacy and security"" (Data Privacy Act, Section 26). It is also regulated under Section 4.a) of the National Privacy Commission (NPC) Circular No. 16-03.
+
+The DPO is responsible for monitoring the PIC's or PIP's compliance with the Data Privacy Act, its implementing rules and regulations, issuances by the National Privacy Commission (NPC), and other applicable laws. The DPO must be a full-time or organic employee of the government agency or private entity.
+
+Furthermore, under National Privacy Commission (NPC) Circular No.16-03, a Data Protection Impact Assessment (DPIA) is required: ""A privacy impact assessment shall be conducted prior to the implementation of any program, project, or activity involving the processing of personal data, especially those likely to result in a high risk to the rights and freedoms of data subjects."" (Section 5).
+","Since August 2012, last amended in 2016;
+
+Since October 2016","https://www.privacy.gov.ph/data-privacy-act/;
+
+https://privacy.gov.ph/appointing-a-data-protection-officer/",https://privacy.gov.ph/npc-circular-16-01-security-of-personal-data-in-government-agencies/,,,
+7,7.4,Requirements to allow government access to personal data,0,"The Constitution of the Republic of the Philippines 1987;
+
+National Privacy Commission (NPC) Privacy Policy Office Advisory Opinion No. 2017-65 - Child Online Protection (COP) and Government Access to Suspect's Media Accounts and E-mail of 2017","In the Philippines, the National Privacy Commission issued Advisory Opinion No. 2017-65 clarifying that the government cannot compel access to personal data because the Bill of Rights (Art. III), Sec. 3(1) of the 1987 Philippine Constitution upholds that “the privacy of communication and correspondence shall be inviolable, except under lawful order of the court or when public safety or order requires otherwise.”
+
+The Philippine Constitution guarantees the right against unreasonable searches and seizure, as well as the right to privacy of communication and correspondence. The Constitution also mandates the judiciary to determine issues of grave abuse of discretion and to settle actual controversies involving rights that are legally demandable and enforceable. These principles sets a comprehensive legalframe work, that effectively protects the right to privacy.
+","Since 1987;
+
+Since October 2017","https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/
+
+ ",https://privacy.gov.ph/wp-content/uploads/2022/01/NPCAONo.2017-065.pdf,,,
+7,7.4,Requirements to allow government access to personal data,0,The Republic Act No. 10175 - Cybercrime Prevention Act of 2012,"Section 14 of the Republic Act No. 10175 sets the Disclosure of Computer Data : ""Law enforcement authorities, upon securing a court warrant, shall issue an order requiring any person or service provider to disclose or submit subscriber’s information, traffic data or relevant data in his/its possession or control within seventy-two (72) hours from receipt of the order in relation to a valid complaint officially docketed and assigned for investigation and the disclosure is necessary and relevant for the purpose of investigation"". This is the only situation that allows access to private data. Furthermore, the Philippines doesn't have any measure that allows government to access data without court orders.",Since September 2012,https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/,,,,
+8,8.1,Lack of safe harbour for copyright infringements,0.50,"The Republic Act No. 8792 - Electronic Commerce Act of 2000;
+
+The Republic Act No. 10175 - Cybercrime Prevention Act of 2012;
+
+Intellectual Property Office of the Philippines (IPOPHL) No.2023-025 - Supplemental Rules to Memorandum Circular No. 2020-049 known as
+the ""Revised Rules of Procedure on Administrative Enforcement of Intellectual Property Rights (IPR), otherwise known as the Rules on Voluntary Administrative Site Blocking"" of 2024","A basic legal framework on intermediary liability is absent in Philippine law and jurisprudence. Arguably, safe harbor clauses are present in the Electronic Commerce Act of 2000 (RA 8792) and the Cybercrime Prevention Act of 2012 (RA 10175), but these laws’ definition of an intermediary limits its capacity to provide a safe harbor. Particularly, RA 8792’s scope is limited to electronic documents, while RA 10175 is limited to cybercrimes defined under the law. This makes safe harbors in Philippine law sectoral or content-specific.
+
+Under the Cybercrime Prevention Act of 2012 (Republic Act No. 10175), Section 9 establishes that intermediaries must comply with takedown orders when the Department of Justice (DOJ) issues a directive to restrict or block access to illegal computer data. Failure to do so can result in liability. Additionally, Section 5 states that intermediaries can be held liable if they ""willfully aid or abet"" in the commission of cybercrimes. However, liability is not automatic for all content transmitted through their platforms, indicating a limit to their responsibility.
+
+Similarly, the Electronic Commerce Act of 2000 (Republic Act No. 8792), in Section 30, provides that intermediaries are not liable ""merely for providing access to or for operating facilities for the transmission, routing, or storage of an electronic data message or electronic document."" However, this immunity is conditional: intermediaries must not have knowledge of the illegal activity or content and must act to remove or block access when notified by authorities.
+
+In conclusion, RA 8792 and RA 10175 contain some safe harbor provisions for intermediaries, these are limited in scope and effectiveness. The narrow definition of intermediaries and the specific content areas (electronic documents and cybercrimes) reduce the broader applicability of these laws in today’s internet landscape, leaving gaps in protection and practical enforcement, especially regarding intellectual property and other non-cybercrime issues. 
+
+The Rules on Voluntary Administrative Site Blocking issued by the Intellectual Property Office of the Philippines (IPOPHL) also directly relate to safe harbor provisions for copyright infringements. The safe harbor provision is outlined in Section 11 of the IPOPHL Rules on Voluntary Administrative Site Blocking provides protection for Internet Service Providers (ISPs) regarding copyright infringement. This provision states that no administrative, criminal, or civil proceedings can be brought against ISPs for actions taken in good faith while performing their duties, provided that they do not have actual knowledge of the unlawful nature of the content they are hosting or transmitting. Furthermore, ISPs must not receive any financial benefit directly attributable to the unlawful activity. This framework effectively allows ISPs to operate without fear of liability for copyright infringement as long as they act responsibly and do not facilitate or knowingly engage in infringing activities​","Since June 2000;
+
+Since September 2012;
+
+Since September 2024","https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/
+
+",https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/ ,https://drive.google.com/file/d/1COAL99yWT6g6FHO_1rUrgdWx5kWtqGg4/view?pli=1,,0.750
+8,8.2,Export restrictions on ICTgoods and online services,0.50,"The Republic Act No. 8792 - Electronic Commerce Act of 2000;
+
+The Republic Act No. 10175 - Cybercrime Prevention Act of 2012","In the Electronic Commerce Act of 2000 (RA 8792), Section 30 provides a limited safe harbor for intermediaries who act as mere conduits for the transmission or storage of electronic data messages or electronic documents. This protection applies as long as the intermediary does not have ""actual knowledge"" of the unlawfulness of the content being transmitted. However, the scope of this provision is narrowly confined to cases involving electronic documents, making it inapplicable to other types of online illegal activities, such as defamation, fraud, or trafficking. Therefore, while intermediaries are shielded from liability in these specific instances, they remain exposed in cases involving other forms of illicit activity that do not directly pertain to electronic document handling or e-commerce transactions.
+
+The Cybercrime Prevention Act of 2012 (RA 10175) similarly offers safe harbor, but only in the context of cybercrimes, which are clearly defined in the law as offenses such as hacking, cybersex, identity theft, and online child pornography. Under Section 9, intermediaries are required to comply with takedown orders issued by law enforcement following the acquisition of a court order. Failure to comply may result in liability, but intermediaries are protected if they act according to the legal process. Nonetheless, this safe harbor is also sector-specific, applying only to cybercrime offenses, leaving intermediaries without explicit protections for involvement in other illegal activities—such as online fraud or terrorism—that fall outside the scope of cybercrimes defined in the law.","Since June 2000;
+
+
+Since September 2012","https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/
+
+",https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/ ,,,
+8,8.2,Export restrictions on ICTgoods and online services,0.50,The Joint Administrative Order No. 22-01 - Guidelines for Online Businesses Reinterating the Law and Regulations Applicable to Online Businesses and Consumers Series of 2022,"Order 22-01 issued by the Philippine Department of Trade and Industry (DTI) provides guidelines for online businesses and emphasizes the legal framework under which they operate. Section 13 stipulates liability of e-commerce platforms and e-marketplaces. E-commerce platforms, e-marketplaces and the like shall be treated and shall be held liable in the same manner as online sellers, merchants, and e-retailers when the latter commits any violation of the laws implemented by these rules. Morever, the platforms shall verify if the goods sold by online sellers, or merchants, and e-retailers in their respective platforms are regulated, prohibited, original, genuine, licensed or unexpired (Section 13.1). 
+
+In case of a prima facie violation commited in an online post by the online seller, merchant, e-retailer, e-commerce platform, e-marketplace, and the link, the concerned authorized agency shall issue a notice giving the violator a maximum period of 3 calendar days to take down such post. E-commerce platforms, e-marketplaces and the like may appeal the take down notice in their reasonble determination, there is no violation of any law. 
+
+Additionally, delivery platforms shall be liable in the same manner as online sellers, merchants, and e-retailers only upon notice that they are carrying or deliverying restricted, prohibited or infringing items (Section 13.5).",Since January 2022,https://ecommerce.dti.gov.ph/wp-content/uploads/2023/05/JointAdministrativeOrderNo.22-01-1.pdf,,,,
+8,8.3,User identify requirements,0.50,"The Republic Act No. 11934 - Subscriber Identity Module (SIM) Registration Act of 2022
+
+","The user identity requirement for SIM registration in the Philippines is governed by Republic Act No. 11934, known as the SIM Card Registration Act. Enacted to enhance security measures and combat crimes involving mobile communications—such as text scams, cyberbullying, and other illegal activities—the law mandates that all public telecommunications entities (PTEs) register all SIM card users. Specifically, Section 4 of the Act states, ""All subscribers of mobile phone services must register their SIM cards with their respective public telecommunications entities."" This requirement applies to both prepaid and postpaid subscribers, ensuring that all users are accounted for within the telecommunications network.
+
+To facilitate this registration, Section 5 requires subscribers to provide valid identification when registering their SIM cards. The law specifies that the registration process shall necessitate the presentation of a government-issued identification card, which must include a photo of the subscriber and other relevant information. This step is crucial in ensuring that the identity of SIM card users can be verified effectively. Furthermore, the Act emphasizes the importance of data privacy in Section 9, stating that the information collected during the registration must be treated confidentially. It explicitly mentions, ""The information gathered in the registration shall be kept confidential and shall not be disclosed to third parties without the consent of the subscriber, unless authorized by law."" This provision aims to protect the privacy of individuals while still allowing authorities to access necessary information in cases of crime or security threats.
+
+Finally, Section 12 of the Act outlines penalties for non-compliance with the registration requirements, indicating that telecommunications companies that fail to adhere to the mandate may face fines and other sanctions.",Since October 2022,https://www.officialgazette.gov.ph/downloads/2022/10oct/20221010-RA-11934-FRM.pdf,,,,
+8,8.3,User identify requirements,1,The Revised Regulatory Framework for The Remote Gaming Platform Clause 3.B.1 of 2022,"According to the Revised Regulatory Framework for the Remote Gaming Platform of the Philippine Amusement and Gaming Corporation (PAGCOR) , the gaming platform must be able to collect and keep the following mandatory information of all its players: full name, date of birth, nationality, nature of work, source of income, and other relevant information (Section 9). ",Since November 2022,https://www.pagcor.ph/regulatory/pdf/GSRM/Gaming%20Site%20Templates/regulatory-framework-for-the-remote-gaming-platform-of-traditional-bingo.pdf,,,,
+8,8.4,Monitoring requirements,1,The Joint Administrative Order No. 22-01 - Guidelines for Online Businesses Reinterating the Law and Regulations Applicable to Online Businesses and Consumers Series of 2022,"Order 22-01 issued by the Philippine Department of Trade and Industry (DTI) provides guidelines for online businesses and emphasizes the legal framework under which they operate. Section 13 stipulates liability of e-commerce platforms and e-marketplaces. E-commerce platforms, e-marketplaces and the like shall be treated and shall be held liable in the same manner as online sellers, merchants, and e-retailers when the latter commits any violation of the laws implemented by these rules. Morever, the platforms shall verify if the goods sold by online sellers, or merchants, and e-retailers in their respective platforms are regulated, prohibited, original, genuine, licensed or unexpired (Section 13.1). ",Since January 2022,https://ecommerce.dti.gov.ph/wp-content/uploads/2023/05/JointAdministrativeOrderNo.22-01-1.pdf,,,,
+8,8.4,Monitoring requirements,1,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+The Republic Act No. 10175 - Cybercrime Prevention Act of 2012；
+
+Disini v. Secretary of Justice G.R. No. 203335","There is no specific mention in the Data Privacy Act of 2012 (Republic Act No. 10173) that requires digital service providers to actively monitor or take down illegal content. 
+
+Under the Cybercrime Prevention Act of 2012 (Republic Act No. 10175), whose Section 12 establishes ""Real-Time Collection of Traffic Data"". It allows law enforcement to monitor traffic data in real-time for the purpose of investigating cybercrimes. The section grants authorities the ability to collect or record traffic data, provided they secure a court warrant, highlighting the legal framework under which monitoring is permitted for cybercrime investigations​.
+
+However, according to the case Disini v. Secretary of Justice (G.R. No. 203335) by the Supreme Court of the Philippines, which addresses the constitutionality of Republic Act No. 10175, also known as the Cybercrime Prevention Act of 2012, Section 12 lacked sufficient safeguards and was ""too sweeping,"" as the phrase ""with due cause"" too vague. the Supreme Court ultimately declared Section 12 unconstitutional.
+As a result of this ruling, Philippine law enforcement cannot collect real-time traffic data under this specific provision without a court-issued warrant, as it violates the right to privacy and the protection against unreasonable searches and seizures.
+
+It is important to note that the Internet Transactions Act (ITA) empowers the Department of Trade and Industry to issue subpoenas, compliance orders, and takedown orders but in relation to the sale/transaction of goods and services, not particularly on content itself.
+","Since August 2012, last amended in 2016;
+
+Since September 2012;
+
+Since February 2014",https://www.privacy.gov.ph/data-privacy-act/ ,https://www.officialgazette.gov.ph/2012/09/12/republic-act-no-10175/ ,https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/56650,,
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",0,"The Republic Act No. 9775 - Anti-Child Pornography Act 
+of 2009;
+
+The Republic Act No.11479 or the Anti-Terrorism Act of 2020 ","Philippine regulations block or filter illegal content, such as child pornography in accordance to the Anti-Child Pornography Act of 2009 (RA 9775).
+
+The Philippine National Telecommunications Commission (NTC) ordered access to the independent news websites Bulatlat and Pinoy Weekly to be blocked on accusations they publish “misinformation” and support local terrorist organizations.
+
+The NTC’s order was based on the Anti-Terrorism Act of 2020, officially designated as Republic Act No. 114794. This law is intended to prevent, prohibit, and penalize terrorism in the Philippines. Section 9 of the Act criminalizes incitement to commit terrorism ""by means of speeches, proclamations, writings, emblems, banners or other representations tending to the same end"". However, Bulatlat and other organizations affected by this order have condemned it as a form of internet censorship and a violation of press freedom. They argue that the accusations are false and that authorities have failed to provide any evidence to justify the blockages.","Since November 2009;
+
+Sine July 2020",https://www.officialgazette.gov.ph/2009/11/17/republic-act-no-9775-s-2009/ ,https://www.officialgazette.gov.ph/2020/07/03/republic-act-no-11479/,,,0.208
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",0,"Intellectual Property Office of the Philippines (IPOPHL) No.2023-025 - Supplemental Rules to Memorandum Circular No. 2020-049 known as
+the ""Revised Rules of Procedure on Administrative Enforcement of Intellectual Property Rights (IPR), otherwise known as the Rules on Voluntary Administrative Site Blocking"" of 2024","The Philippine framework includes specific provisions for blocking websites that infringe on intellectual property rights. Under the Rules on Voluntary Administrative Site Blocking by the Intellectual Property Office of the Philippines (IPOPHL), ISPs are required to block access to identified piracy websites upon receiving a request from IPOPHL.
+
+The rules established by IPOPHL explicitly provide for the blocking of websites that infringe on intellectual property rights, particularly those hosting pirated content. Section 6 of the Rules states: ""Upon the denial of the protest or after the lapse of the period to file the protest, the Supervising Director or the Deputy Director General shall, within twenty-four (24) hours, issue a request to the ISP/s and/or NTC to block or disable access to the pirate website."" 
+
+According to Section 7, once an ISP receives a blocking request, they are required to implement the blocking within forty-eight (48) hours. ",Since September 2024,"https://drive.google.com/file/d/1COAL99yWT6g6FHO_1rUrgdWx5kWtqGg4/view?pli=1 ;
+
+https://intellectual-property-helpdesk.ec.europa.eu/news-events/news/ipophls-voluntary-site-blocking-rules-take-effect-14-january-2024-2024-02-01_en",,,,
+9,9.2,Internet shutdowns,0.25,Internet shutdown,"The indicator ""6.2.4 - Government Internet shut down in practice"" of the V-Dem Dataset, which measures whether the government has the technical capacity to actively make internet service cease, thus interrupting domestic access to the internet or whether the government has decided to do so, has a score of 3.23 in Philippines. This corresponds to ""Rarely but there have been a few occasions throughout the year when the government shut down domestic access to Internet"".",Reported in October 2024,https://www.v-dem.net/vdemds.html,https://v-dem.net/data_analysis/VariableGraph/,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",1,"The Republic Act No. 7394 - Consumer Act of 1992
+
+Advertising Code of Ethics of the Advertising Standards Council of 2019","The Consumer Act requires all advertising materials to conform to the Advertising Code of Ethics which sets standards for advertising in the Philippines. In terms of specific industry restrictions, the advertising of alcohol and tobacco products is tightly regulated under the Consumer Act of the Philippines (Republic Act No. 7394), particularly to protect minors and public health. Article 112 prohibits the false advertising of products harmful to public health, including tobacco and alcohol, and imposes stringent guidelines on how these products can be promoted. For example, advertisements must not target minors or portray the use of alcohol and tobacco in a way that encourages irresponsible consumption. 
+
+It is prohibited for e-commerce platforms, e-marketplaces to advertise any food, drug, cosmetic, device, or hazardous substance unless the product is duly registered and approved by the relevant government agency for use in any advertisement.
+
+The following ads if placed on website, must be pre-screened with the Advertising Standards Council (Article X of the Advertising Code of Ethics)
+- OTC drugs and HR products
+- Food and dietary supplements
+- Alcohol beverages
+- Products under the Milk Code
+- Airline and shipping lines promo fares
+
+","Since July 1992;
+
+Since March, 2008, last amended in March 2019",https://www.officialgazette.gov.ph/1992/04/13/republic-act-no-7394-s-1992/,"https://asc.com.ph/wp-content/uploads/2016/06/ASC_Guidebook.pdf;
+
+https://asc.com.ph/our-standards/code-of-ethics/",,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0,"The Republic Act No. 8792 - Electronic Commerce Act of 2000;
+
+Bureau of Internal Revenue (BIR) Revenue Memorandum Circular No. 60-2020 of 2020","It appears that there are no specific regulations adopted by the Philippines on licensing requirements for online service providers. There are regulations on licensing requirements only for professional services, such as law and medical devices.
+
+According to the  Revenue Memorandum Circular No. 60-2020, online businesses in the Philippines are required to register with the Bureau of Internal Revenue (BIR). The registration process involves obtaining a Barangay business clearance, Certificate of registration from DTI, and two valid IDs.
+
+However, there is no specific measure concerning licensing requirements for specific online service providers such as social media platforms, news providers, VPN, and cloud services.","Since June 2000;
+
+Since June 2020",https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,https://www.dof.gov.ph/bir-reminds-online-businesses-to-register-ensure-tax-compliance/,,,
+10,10.1,"Import ban applied to ICT goods and online services (e.g. network equipment, servers, handsets, applications, and data processing)",0,"The Republic Act No. 10863 -
+Customs Modernization and Tariff Act of 2016",Import and export bans are regulated under Section 118 of the Customs Modernization and Tariff Act. The Philippines does not impose any import ban on digital goods.,"Since May 2016, last amended in 2021","https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/68014 ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/TCCP-vol2.pdf ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/CMTA-RA-10863-2.pdf",,,,0.375
+10,10.2,Other import restrictions on ICT goods and online services,0.50,"The Republic Act No. 10697 - An Act Preventing the Proliference of Weapons of Mass Destruction by Managing the Trade in Strategic Goods, the Provision of Related Services and for Other Purposes of 2015;
+
+National Strategic Goods List Annex 2: List of Dual Use Strategic Goods of 2018;
+
+National Strategic Goods List Annex 3 : List of Nationally Controlled Goods of 2020;
+
+Memorandum Circular No. 21-40 from theStrategic Trade Management Office (STMO) Guidelines on STMO Registration for Export of Strategic Goods and Covered Persons under Memorandum Circular 21-06 and 21-37 of 2021","Under An Act Preventing the Proliference of Weapons of Mass Destruction by Managing the Trade in Strategic Goods 2015, the Provision of Related Services and for Other Purposes (known as the Strategic Trade Management Act (STMA)), any person who engages or intends to engage in the export, import, and re-export of strategic goods or provide related services shall register directly with the Strategic Trade Management Office (Section 13). The NSGL shall comprise three (3) annexes: Military Goods (Annex 1), Dual Use Goods (Annex 2), and Nationally Controlled Goods (Annex 3) (Section 4 The National Strategic Goods List).
+
+In 2017, the Philippines' government has promulgated a list of dual use strategic goods that are highly regulated, both for exports and for imports, due to national security concerns. Some examples of these dual use goods are electronics and computers that reach a specified technical standard that qualify it to be fit for military use.
+
+In 2020, the Philippines added a third Annex to the Republic Act No. 10697 providing a list of a strategic goods list placed under unilateral controls for reasons of national security, foreign policy, anti-terrorism, crime control, and public safety. This implements sanctioned items for export, import, transit and transshipment to and from specific countries. This list contains a full category about Electronics (Category 3), but also one about Telecommunication (Category 5)
+
+Most recently, the Strategic Trade Management Office (STMO) issued guidelines in November 2021 pursuant to Section 8 of Republic Act No.10697 concerning the registration process for individuals and entities involved in the export and import of strategic goods. It mandates the registration of entities engaged in strategic goods trade within 30 days of starting their activities. As per Section 4, applicants must submit corporate documents and descriptions of goods, while Section 6 outlines the STMO’s authority to review and request further information.","Since November 2015;
+
+Since July 2018;
+
+Since August 2020;
+
+Since November 2021",https://www.officialgazette.gov.ph/2015/11/13/republic-act-no-10697/,https://www.officialgazette.gov.ph/downloads/2017/08aug/20170831-RA-IRR-10697-RRD-Annex-2-List-of-Dual-Use-Goods.pdf,https://www.officialgazette.gov.ph/downloads/2021/01jan/20120824-RA-IRR-10697-RRD-Annex-3-List-of-Nationally-Controlled-Goods.pdf,https://dtiwebfiles.s3.ap-southeast-1.amazonaws.com/STMO/Issuances/Memorandum+Circular+No.+21-40.pdf,
+10,10.2,Other import restrictions on ICT goods and online services,0.50,"The Memorandum Circular No. 09-08-91 from the National Telecommunications Commission (NTC) Guidelines Governing the Sale, Purchase
+and Importation of Various Radio Communications Equipment of 1991","The Memorandum Circular No. 09-08-91 from the National Telecommunications Commission (NTC) governs the importation, sale, and purchase of radio communications equipment in the Philippines. It mandates that importers must secure a Permit to Import for radio transceivers and other equipment, valid for 90 days, under Section I. The circular also prohibits the sale or purchase of such equipment without proper permits, including a Permit to Purchase or Permit to Sell, as outlined in Section II and III.",Since August 1991,https://www.pntr.gov.ph/wp-content/uploads/2021/04/MC-0991.pdf,,,,
+10,10.3,Local content requirements ,0,"The Republic Act No. 10863 -
+Customs Modernization and Tariff Act of 2016",The Philippine government does not impose local content requirements for digital goods.,"Since May 2016, last amended in 2021","https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/68014 ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/TCCP-vol2.pdf ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/CMTA-RA-10863-2.pdf",,,,
+10,10.4,Export restrictions on ICTgoods and online services,1,"The Republic Act No. 10697 - An Act Preventing the Proliference of Weapons of Mass Destruction by Managing the Trade in Strategic Goods, the Provision of Related Services and for Other Purposes 2015;
+
+National Strategic Goods List Annex 2: List of Dual Use Strategic Goods of 2018;
+
+National Strategic Goods List Annex 3 : List of Nationally Controlled Goods of 2020;
+
+Memorandum Circular No. 21-40 from theStrategic Trade Management Office (STMO) Guidelines on STMO Registration for Export of Strategic Goods and Covered Persons under Memorandum Circular 21-06 and 21-37 of 2021
+","Under An Act Preventing the Proliference of Weapons of Mass Destruction by Managing the Trade in Strategic Goods 2015, the Provision of Related Services and for Other Purposes (known as the Strategic Trade Management Act (STMA)), any person who engages or intends to engage in the export, import, and re-export of strategic goods or provide related services shall register directly with the Strategic Trade Management Office (Section 13). The NSGL shall comprise three (3) annexes: Military Goods (Annex 1), Dual Use Goods (Annex 2), and Nationally Controlled Goods (Annex 3) (Section 4 The National Strategic Goods List).
+
+In 2017, the Philippines' government has promulgated a list of dual use strategic goods that are highly regulated, both for exports and for imports, due to national security concerns. Some examples of these dual use goods are electronics and computers that reach a specified technical standard that qualify it to be fit for military use.
+
+In 2020, the Philippines added a third Annex to the Republic Act No. 10697 providing a list of a strategic goods list placed under unilateral controls for reasons of national security, foreign policy, anti-terrorism, crime control, and public safety. This implements sanctioned items for export, import, transit and transshipment to and from specific countries. This list contains a full category about Electronics (Category 3), but also one about Telecommunication (Category 5)
+
+Most recently, the Strategic Trade Management Office (STMO) issued guidelines in November 2021 pursuant to Section 8 of Republic Act No.10697 concerning the registration process for individuals and entities involved in the export and import of strategic goods. It mandates the registration of entities engaged in strategic goods trade within 30 days of starting their activities. As per Section 4, applicants must submit corporate documents and descriptions of goods, while Section 6 outlines the STMO’s authority to review and request further information.","Since November 2015;
+
+Since July 2018;
+
+Since August 2020;
+
+Since November 2021",https://www.officialgazette.gov.ph/2015/11/13/republic-act-no-10697/,https://www.officialgazette.gov.ph/downloads/2017/08aug/20170831-RA-IRR-10697-RRD-Annex-2-List-of-Dual-Use-Goods.pdf,https://www.officialgazette.gov.ph/downloads/2021/01jan/20120824-RA-IRR-10697-RRD-Annex-3-List-of-Nationally-Controlled-Goods.pdf,https://dtiwebfiles.s3.ap-southeast-1.amazonaws.com/STMO/Issuances/Memorandum+Circular+No.+21-40.pdf,
+11,11.1,Lack of transparent technical standards,0,"The Republic Act No. 4109 - Standards Law of 1964;
+
+Department of Trade and Industry (DTI), Bureau of Philippine Standards - Standards Development","The Philippines does not implment a measure that doesn't allow foreign businesses to participate in the standard setting process. There were no reports of any lack of transparency in the stardards requirements either.
+
+Under Republic Act No. 4109 (Standards Law), which governs the Bureau of Philippine Standards (BPS), technical committees are formed to create national standards, including for ICT goods. The law emphasizes the importance of technical expertise in these committees but does not specify citizenship or residency requirements for committee members (Section 2). The law allows for the participation of industry experts, which can include foreigners, regardless of whether they are residents of the Philippines. This is further supported by the fact that the BPS collaborates with international bodies such as the ISO, and in doing so, regularly works with foreign experts who may not be residents of the country. Thus, no provision restricts foreigners or non-residents from being involved in the standard-setting process.
+
+Moreover, the DTI-BPS serves as the Philippines’ National Enquiry Point (NEP) and National Notification Authority (NNA), ensuring transparency in compliance with the WTO-TBT Agreement. As NEP, it disseminates draft technical regulations and collects stakeholder feedback, while as NNA, it acts as the sole notifier to the WTO on these regulations. The DTI-BPS also reports to the Technical Committee on WTO Matters, aligning the country’s positions with its WTO commitments.","Since June 1964;
+
+Last reviewed in October 2024","https://www.pntr.gov.ph/wp-content/uploads/2021/04/RA-4109.pdf;
+
+https://lawphil.net/statutes/repacts/ra1964/ra_4109_1964.html","https://bps.dti.gov.ph/standards/standards-development ;
+
+Standards, Technical Regulations and Conformity Assessment Procedures (STRACAP) Commitments",,,0.250
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",0.50,"The Republic Act 7394 - The Consumer Act of the Philippines 1993;
+
+Department of Trade and Industry (DTI), Bureau of Philippine Standards - List of Products under Mandatory Certification;
+
+Department of Trade and Industry (DTI), Bureau of Philippine Standards - List of BPS Recognized Testing Laboratories
+","The Bureau of Philippine Standards (BPS) establishes as series of products that, whether locally manufactured or imported, must be certified and are not allowed to be distributed in the Philippine market without the necessary PS or ICC marks. Some of the products included on this list are TVs, CD/VCD/DVD/Blu-ray disc players, or Electric Vehicle Charging Equipment.
+
+Articles 7 and 8 of the Consumer Act of the Philippines (RA 7394) provide the legislative foundation for these requirements:
+
+Article 7: Directs the establishment of quality and safety standards for consumer products. These standards cover various aspects, such as performance, construction, packaging, and safety labeling. It also calls for collaboration among stakeholders (government, business, and consumer sectors) in developing these standards and aligning them with international benchmarks when applicable. This article justifies the BPS mandate to standardize and certify products to ensure public safety and market consistency.
+
+Article 8: Requires the dissemination of these standards through publication and information campaigns. This ensures that all stakeholders, including manufacturers, importers, and consumers, are aware of the applicable regulations and standards for consumer products.
+
+There are two Mandatory Product Certification Schemes: 1) the Philippine Standard (PS) Quality and/or Safety Certification Mark Licensing Scheme and 2) the Import Commodity Clearance (ICC) Certification Scheme. The PS License is granted to either local or foreign manufacturer whose factory and product/s have successfully complied with the requirements of the PNS ISO 9001 and the relevant product standard/s.
+
+The ICC Certificate is issued to an importer whose imported products have shown conformance to relevant standards through inspection, verification, and product testing by the BPS and its recognized testing laboratories for electrical, electronic, chemical, mechanical, and consumer products. 
+
+Among the recognized testing laboratories, companies from all over the world can be found, such as Spanish, Chinese or Vietnamese organizations, so it can be concluded that third party-certification is allowed in the Philippines. ","Since April 1993, last amended in April 2019;
+
+Last reviewed in October 2024;
+
+Last reviewed in October 2024;
+",https://www.officialgazette.gov.ph/1992/04/13/republic-act-no-7394-s-1992/,https://bps.dti.gov.ph/index.php/product-certification/list-of-products-under-mandatory-certification,https://bps.dti.gov.ph/product-certification/list-of-bps-recognized-testing-laboratories,,
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",0.50,ASEAN Sectoral Mutual Recognition Arrangement for Electrical and Electronic Equipment of 2002,"Self-certification is not allowed for telecommunications, wireless and radio equipment. Certification of some equipment types requires testing at the incumbent telecom carrier laboratories, while for other categories approval is based on review of foreign standard test reports. The Philippines' National Telecommunication Commission also issues certification of telecom equipment to be connected to public network services.
+
+However, based on the ASEAN Sectoral Mutual Recognition Arrangement for Electrical and Electronic Equipment, Article 3, a member state shall accept or recognize the test reports and certifications issued by the testing laboratories and certification bodies of other parties, which implies that there should be no exceptions in the domestic law of the Philippines.",Since April 2002,"https://asean.org/asean-sectoral-mutual-recognition-arrangement-for-electrical-and-electronic-equipment/;
+
+https://cil.nus.edu.sg/wp-content/uploads/2019/02/2002-EE-MRA-1.pdf",,,,
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",0.50,"ASEAN Sectoral Mutual Recognition Arrangement (MRA) of 1998;
+
+Asia-Pacific Laboratory Accreditation Cooperation (APLAC) of 2019","The ASEAN Sectoral Mutual Recognition Arrangements (MRA) allows the Philippines to recognize test reports and certifications from Conformity Assessment Bodies (CABs) in other ASEAN countries. Certifications must meet standards like ISO/IEC 17025 for testing labs and ISO/IEC Guide 65 for certification bodies. While focused on ASEAN, the Philippines also accepts certifications from non-ASEAN countries if they adhere to international standards or are recognized through agreements like APLAC.","Since December 1998
+
+Since January 2019",https://asean.org/asean-framework-agreement-on-mutual-recognition-arrangements/,https://www.apac-accreditation.org/membership/full-member/,,,
+11,11.3,Product screening and testing requirements,0.50,"The Republic Act No. 4109 - Standards Law of 1964;
+
+The Republic Act 7394 - The Consumer Act of the Philippines 1993","The Consumer Act of the Philippines (Republic Act No. 7394) establishes stringent requirements for the certification and screening of consumer products, particularly imports. Article 14 mandates that consumer products must be certified for compliance with quality and safety standards by the Bureau of Philippine Standards, which grants the Philippine Standard Certification Mark (PS Mark) following inspection. Article 15 outlines that imported products can be refused admission if they do not meet safety standards, allowing for a hearing and an opportunity for modification if necessary, and prohibits the importation of banned products. Furthermore, non-admitted products must be exported or destroyed at the owner's expense. Article 16 exempts products intended solely for export from these safety provisions, provided they are properly labeled, thus facilitating trade without imposing local regulatory burdens.
+
+Article 17 makes provisions for third-party certification. Specifically:
+Article 17(f): It allows the Department of Trade and Industry (DTI) and other concerned departments to accredit independent, competent non-government bodies to assist in monitoring the market for the presence of hazardous or uncertified products. These bodies can also aid in the enforcement of product standards, particularly where government resources are limited.
+Article 17(g): The law also provides for the accreditation of independent competent testing laboratories to expand the capacity for testing and certification of consumer products​
+
+As mentioned in Pillar 11, section 2, among the recognized testing laboratories, companies from all over the world can be found, such as Spanish, Chinese or Vietnamese organizations, so it can be concluded that third party-certification is allowed in the Philippines. ","Since June 1964
+
+Since April 1993, last amended in April 2019",https://www.pntr.gov.ph/wp-content/uploads/2021/04/RA-4109.pdf,https://www.officialgazette.gov.ph/1992/04/13/republic-act-no-7394-s-1992/,,,
+11,11.4,"Deviation from international encryption standards (ISO, IEC, ITU, FIPS, AES, TDES, and ECC)",0,"The Republic Act No. 10173 - Data Privacy Act of 2012; 
+
+National Privacy Commission (NPC) Website - Data Security","The Data Privacy Act states that ""Any technology used to store, transport or access sensitive personal information for purposes of off-site access approved under this subsection shall be secured by the use of the most secure encryption standard recognized by the Commission."" (Section 23.b.3).
+","Since August 2012, last amended in 2016;
+
+Last reviewed in October 2024",https://privacy.gov.ph/data-privacy-act/,https://privacy.gov.ph/data-security/#c8,,,
+11,11.4,"Deviation from international encryption standards (ISO, IEC, ITU, FIPS, AES, TDES, and ECC)",0,National Privacy Commission (NPC) Circular 16-01 Secrutiy of Personal Data in Government Agencies of 2016,"There are no mandatory encryption standards in the Philippines that deviate from international standards. The National Privacy Commission recommends the 256-bit encryption standard (AES-256) (NPC Circular 16-01, Section 8 Encryption of personal data).There are no known legislation or policies in the Philippines that impose mandatory minimum or maximum encryption strength, licensing/registration requirements, or import/export controls on encryption-related technologies.",Since October 2016,https://privacy.gov.ph/npc-circular-16-01-security-of-personal-data-in-government-agencies/#8,,,,
+12,12.01,Foreign equity limits in e-commerce sector,0,"The Republic Act No.7042 - Foreign Investment Act of 1991;
+
+The Executive Order No. 175 - 12th Foreign Investment Negative List; 
+
+Republic Act No.11659 - An Act Amending Commonwealth Act No.146 Otherwise Known as the Public Service Act, as Amended 2022;
+
+The Constitution of the Republic of the Philippines 1987","Foreign equity participation in e-commerce businesses operating in the Philippines is primarily governed by Republic Act No. 7042, or the Foreign Investments Act (FIA) of 1991, as amended by Republic Act No. 11647. Under Section 7 of the FIA, foreign nationals may own up to 100% of a domestic market enterprise, including those engaged in e-commerce, provided that the enterprise does not engage in activities listed in the Foreign Investment Negative List (FINL), which is updated periodically through Executive Orders, such as EO No. 175 (12th FINL).
+
+Pursuant to Section 8 of the same law, List A of the FINL enumerates areas of investment reserved for Philippine nationals either by constitutional mandate or existing statutes, such as: Mass media, Small-scale retail trade, Enterprises with paid-in capital below the statutory threshold of US$200,000, subject to specific exemptions.
+
+In accordance with Republic Act No. 11659, which amended the Public Service Act, telecommunications services are no longer classified as public utilities. This legislative change permits up to 100% foreign ownership in businesses providing internet and related services. This is particularly significant for e-commerce operators that rely on robust telecommunications infrastructure, as it eliminates prior ownership restrictions in this supporting sector.
+
+Nevertheless, e-commerce platforms must ensure that their operations do not fall within the scope of constitutionally restricted sectors, such as mass media, which is limited to ownership by Filipino citizens under Article XVI, Section 11 of the 1987 Constitution.
+
+Moreover, enterprises classified as micro or small, with paid-in capital below US$200,000, remain subject to foreign ownership limitations of up to 40%, unless they meet exemption criteria under the FIA, such as:
+	•	Exporting at least 60% of their output, or
+	•	Employing advanced technology.
+
+Retail enterprises with a minimum paid-in capital below Php 25 million are also subject to full foreign equity restrictions pursuant to the Retail Trade Liberalization Act, and these restrictions are reinforced under the FINL.
+
+Overall, while the legal framework allows large e-commerce platforms to be fully foreign-owned, foreign investment in smaller-scale or retail-focused digital ventures remains regulated and conditional.
+","Since 1991, last amended in June 2022;
+
+Since June 2022;
+
+Since April 2022;
+
+Since February 1987","https://doe.gov.ph/sites/default/files/pdf/ocsp/foreign_investments_act_of_1991.pdf 
+
+",https://www.officialgazette.gov.ph/downloads/2022/06jun/20220627-EO-175-RRD.pdf,https://www.officialgazette.gov.ph/2022/03/21/republic-act-no-11659/,https://www.officialgazette.gov.ph/constitutions/1987-constitution/,0.265
+12,12.01,Foreign equity limits in e-commerce sector,0,"The Republic Act No. 8762 - Retail Trade Liberalization Act of 2000;
+
+The Republic Act No. 11595 - Amendment to the Retail Trade Liberalization Act of 2000
+
+","Foreign participation in the retail sector, including e-commerce businesses engaged in the direct sale of goods to consumers, is governed by Republic Act No. 8762, or the Retail Trade Liberalization Act of 2000, as amended by Republic Act No. 11595. Under this legal framework, foreign investors may own 100% of a retail enterprise in the Philippines provided that the business has a minimum paid-up capital of at least Twenty-Five Million Pesos (Php 25,000,000). For foreign retailers intending to operate more than one physical store, each additional store must involve a minimum investment of at least Ten Million Pesos (Php 10,000,000), unless the investor was already engaged in retail trade prior to the enactment of the amendment. This minimum capitalization must be maintained at all times unless the investor formally notifies the Department of Trade and Industry (DTI) or the Securities and Exchange Commission (SEC) of its intention to cease operations and repatriate its investment.
+
+Additionally, only foreign retailers whose home countries allow Filipino retailers to operate under reciprocal terms may be granted entry. Retail enterprises with capital below the Php 25 million threshold remain reserved exclusively for Filipino citizens or corporations with at least 60% Filipino ownership. In the context of digital commerce, e-commerce platforms engaged in direct B2C retail sales are considered within the scope of the Retail Trade Liberalization Act (RTLA), whereas pure marketplace platforms may be classified differently depending on the nature of their business model. This structure, in coordination with Republic Act No. 11967 or the Internet Transactions Act of 2023, provides a balanced environment that encourages foreign investment in large-scale online and offline retail while ensuring continued protection for Filipino-owned small and micro retail enterprises.","Since March 2000 as amended in January 2022;
+
+Since January 2022",https://appointment.sec.gov.ph/wp-content/uploads/2020/01/RA-8762.pdf,https://www.officialgazette.gov.ph/2021/12/10/republic-act-no-11595/,,,
+12,12.2,"Online purchases and delivery limitations
+Exception: Not score limitations on online purchases and delivery applied specifically to products related to consumer protection, notably restrictions on alcoholic beverages, tobacco, and pharmaceuticals.",0,The Republic Act No. 8792 - Electronic Commerce Act of 2000,"There are no limitations on e-commerce purchases. Republic Act No. 8792, or the Electronic Commerce Act of 2000 (ECA), affirms the legal recognition, validity, and enforceability of electronic documents, messages, and contracts, including those entered into through online platforms. Section 6 of the law provides that electronic data messages and electronic documents shall have the legal effect and enforceability equivalent to written documents. The law does not impose any quantitative limit on the volume of goods or number of items that can be purchased through electronic transactions. However, while RA 8792 itself does not restrict the scale of online purchases, all such transactions remain subject to applicable laws such as those governing: consumer protection, taxation, customs regulations, and delivery standards.
+
+Furthermore, with the passage of Republic Act No. 11967, or the Internet Transactions Act of 2023, additional obligations now apply to digital platforms and online merchants, including those related to: consumer redress, transparency, and seller accountability. The ITA also provides for the obligations of e-retailers and online merchants, particularly concerning the quality and packaging of products offered, purchased, and delivered.
+
+Therefore, while e-commerce transactions are fully recognized under Philippine law, they must still comply with other relevant regulatory frameworks beyond RA 8792 but also by the Republic Act No. 11967 (Internet Transactions Act of 2023), tax regulations, consumer protection standards, and customs procedures..
+",Since June 2000,https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,,,,
+12,12.3,"Licensing scheme for e-commerce providers (B2B and B2C)
+Exception: Licenses pertiaining to other aspects of e-commerce businesses, such as license to operate online payment services and delivery are not captured. ",1,"The Republic Act No. 8792 - Electronic Commerce Act of 2000 (ECA);
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","Under the Electronic Commerce Act (ECA), the legal recognition and enforceability of electronic documents and transactions are established, and the Department of Trade and Industry (DTI) is designated under Section 29 as the primary agency responsible for promoting and developing e-commerce in the Philippines. While the law does not impose a standalone licensing scheme for e-commerce providers, businesses operating online are required to register with the appropriate agencies based on their legal structure: sole proprietorships with the DTI; corporations, partnerships, and one-person corporations with the Securities and Exchange Commission (SEC); and cooperatives with the Cooperative Development Authority (CDA). They must also secure necessary permits from local government units (LGUs), including barangay clearance, mayor’s permit, fire and sanitary permits, and register with the Bureau of Internal Revenue (BIR) for tax compliance. Businesses employing workers must comply with labor and social security laws, including registration with the Social Security System (SSS), PhilHealth, Pag-IBIG, and the Department of Labor and Employment (DOLE) for businesses with 50 or more employees.
+
+Furthermore, under the Internet Transactions Act (ITA), e-marketplaces and digital platforms are subject to additional regulatory obligations. Specifically, Sections 21 and 22 of the law impose duties on e-marketplaces to ensure seller verification, consumer protection mechanisms, and compliance reporting. These platforms must establish redress mechanisms and cooperate with government investigations, reinforcing consumer safety and accountability in online transactions. Moreover, online merchants offering regulated goods and services must comply with the respective laws regulating such, e.g., tobacco products, professional services, etc.","Since June 2000;
+
+Since December 2023","https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/;
+
+https://ecommerce.dti.gov.ph/faqs/",https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,,
+12,12.4,"Restrictions on online payment 
+",0,"The Republic Act No. 8792 - Electronic Commerce Act of 2000 (ECA);
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","There is no explicit legal requirement mandating individuals to possess a local bank account solely for the purpose of making online payments. The Electronic Commerce Act of 2000 (RA 8792) affirms the validity of electronic transactions and contracts, promoting the use of e-commerce without imposing quantitative restrictions on online purchases. The The Internet Transactions Act of 2023 (RA 11967) aims to protect online consumers and merchants engaged in internet transactions. While it outlines the rights and obligations of parties involved in e-commerce, it does not specify limitations on the number of goods that can be purchased or delivered through online platforms. These laws emphasize the importance of adhering to consumer protection standards, data privacy laws, and contractual commitments to maintain trust and security in the digital marketplace.","Since June 2000;
+
+Since December 2023",https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,,
+12,12.4,"Restrictions on online payment 
+",0,"The Republic Act No. 8792 - Electronic Commerce Act of 2000 (ECA);
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","For domestic transactions, the Philippine Peso (PHP) is the standard currency, particularly for settlements within the country. However, there is no legal prohibition against using foreign currencies for online or cross-border transactions, provided that parties ad-here to existing foreign exchange regulations and re-porting requirements set forth by the Bangko Sentral ng Pilipinas (BSP).
+
+International payment gateways and services, such as PayPal or Stripe, facilitate payments in multiple currencies, as long as these transactions comply with BSP's foreign exchange and reporting guidelines. Cross-border payments in foreign currencies are permissible but must be within the BSP’s monitoring framework.
+
+National payment platforms like InstaPay and PESONet operate in Philippine Peso. InstaPay allows real-time fund transfers up to PHP50,000 per transaction, while PESONet
+has no maximum amount limit, with transactions posted after the business day.
+","Since June 2000;
+
+Since December 2023",https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,,
+12,12.4,"Restrictions on online payment 
+",0,Bangko Sentral ng Pilipinas (BSP) Circular No. 982 Enhanced Guidelines on lnformation Security Management of 2017,"The Bangko Sentral ng Pilipinas (BSP) Circular No. 982, Series of 2017 – Information Security Standards for BSFIs mandates that all Bangko Sentral Supervised Financial Institutions (BSFIs) establish and maintain robust information security frameworks to safeguard the confidentiality, integrity, and availability of information assets. These guidelines, detailed in Annex A of the circular, emphasize the implementation of Minimum Baseline Security Standards (MBSS) across various components, including operating systems, databases, and networks.
+
+Specifically, Section 3.3.1.1.1 of Annex A outlines the necessity for Secure configurations, Timely application of patches and updates, Deactivation of unnecessary services. These measures aim to mitigate potential vulnerabilities.Furthermore, Section 3.3.3.5.1 addresses the protection of data at rest and in transit, advocating for the use of encryption and other pertinent security controls. In scenarios involving cloud services, Section 3.3.3.5.1.1 stipulates that BSFIs retain accountability for ensuring that third-party service providers adhere to established security and performance standards. These practices are in line with international norms, such as those outlined by ISO/IEC 27001 for information security management. However, there are localized requirements, such as logging capabilities for systems and applications that must ensure local operational integrity, which may not be as strictly defined in global standards​.
+
+These provisions collectively aim to fortify the information security posture of financial institutions, aligning with international best practices while addressing the unique challenges of the Philippine financial landscape.
+",Since November 2017,https://www.bsp.gov.ph/Regulations/Issuances/2017/c982.pdf,,,,
+12,12.4,"Restrictions on online payment 
+",0,"The Republic Act No. 11127 - National Payment Systems Act (NPSA) of 2018;
+
+Bangko Sentral ng Pilipinas (BSP) Circular No. 1049, Rules and Regulations on the Registration of Operators of Payment Systems of 2019
+","Republic Act No. 11127, known as the National Payment Systems Act (NPSA), mandates that all Operators of Payment Systems (OPS) register with the Bangko Sentral ng Pilipinas (BSP) within six (6) months from the effectivity of the Act, as stipulated in Section 10. This requirement is further detailed in BSP Circular No. 1049, Series of 2019, which provides the implementing rules and regulations for the registration process.
+
+Under Section 101 of the Manual of Regulations for Payment Systems (MORPS), as introduced by BSP Circular No. 1049, an OPS is defined as any person or entity that performs any of the following functions:
+1. Maintains the platform that enables payments or fund transfers, regardless of whether the source and destination accounts are maintained with the same or different institutions;
+2. Operates the system or network that enables payments or fund transfers to be made through the use of a payment instrument;
+3. Provides a system that processes payments on behalf of any person or the government; and
+4. Engages in other activities similar to the foregoing, as may be determined by the Monetary Board.
+
+Entities classified as OPS are required to submit an application for registration to the BSP, which includes:
+- A business plan detailing their existing business, business model, and target markets;
+- A copy of their business registration or permit indicating their line of business, issued by the city or municipality with territorial jurisdiction over their principal place of business.
+
+Banks and Electronic Money Issuers (EMIs) that perform OPS functions are also required to notify the BSP of their OPS activities. Failure to comply with the registration process may result in penalties, including fines and other enforcement actions, as provided under the NPSA and BSP regulations.","Since October 2018;
+
+Since September 2019",https://www.bsp.gov.ph/PaymentAndSettlement/RA11127.pdf,https://www.bsp.gov.ph/Regulations/Issuances/2019/c1049.pdf,,,
+12,12.4,"Restrictions on online payment 
+",0,"Bangko Sentral ng Pilipinas (BSP) Circular No. 649 (Electronic Money Issuers EMI Guidelines) of 2009;
+
+Bangko Sentral ng Pilipinas (BSP) Circular No.1166 Amendments to the Registrations on Electronic Money (E-money) and the Operations of Electronic Money Issuers (EMI) in the Philippines of 2023","Under the original framework of BSP Circular No. 649, Series of 2009, Electronic Money Issuers (EMIs) were subject to an aggregate monthly load limit of One Hundred Thousand Pesos (₱100,000.00) per e-money user. The regulation provided that if an EMI issued multiple e-money instruments to the same individual, the total amount loaded across all instruments had to be consolidated to assess compliance with the monthly ceiling (Section 4.A).
+	•	However, with the issuance of BSP Circular No. 1166, Series of 2023, entitled “Amendments to the Regulations on Electronic Money (E-money) and the Operations of Electronic Money Issuers (EMIs) in the Philippines”, the ₱100,000 monthly aggregate load limit has been removed.
+	•	Under the updated regulatory framework:
+	•	EMI-Bank Supervised Financial Institutions (EMI-BSFIs) are now required to implement a client categorization process to set customer-specific load and transaction limits based on institutional risk assessment and Know-Your-Customer (KYC) protocols.
+	•	For EMI-Non-Bank Financial Institutions (EMI-NBFIs), any single payout exceeding ₱500,000 or its foreign currency equivalent must be subjected to Enhanced Due Diligence (EDD), and the disbursement must be executed through banks using either check payments or electronic fund transfers.
+
+These changes reflect a shift towards a more risk-based and flexible regulatory approach that emphasizes financial inclusion while maintaining financial integrity and security in e-money operations.","Since February 2009;
+
+Since January 2023",https://www.bsp.gov.ph/regulations/issuances/2009/c649.pdf,https://www.bsp.gov.ph/Regulations/Published%20Issuances/Images/Circular_1166.pdf,,,
+12,12.4,"Restrictions on online payment 
+",1,BSP Manual of Regulations on Foreign Exchange Transactions of 1993,"Pursuant to Section 4.1 of the BSP Manual of Regulations on Foreign Exchange Transactions (FX Manual), as amended by BSP Circular No. 1146, Series of 2022:
+	•	Individuals may freely bring into or take out of the Philippines, or electronically transfer, legal tender Philippine currency and other peso-denominated monetary instruments in amounts not exceeding Fifty Thousand Pesos (₱50,000.00) without prior BSP authorization.
+	•	Amounts exceeding this threshold require prior written authorization from the BSP.
+	•	In cases involving physical cross-border transfer of Philippine currency exceeding ₱50,000.00, the entire amount must be declared using the prescribed Currencies Declaration Form (Annex K of the FX Manual).
+	•	The BSP typically grants authorization for amounts exceeding the limit only for specific purposes, such as testing or calibration of money counting/sorting machines, numismatic activities, and currency awareness programs.
+
+Regarding foreign currencies:
+	•	Individuals may freely bring into or take out of the Philippines foreign currency and other bearer monetary instruments (e.g., traveler’s checks, money orders, deposit certificates) in amounts up to Ten Thousand United States Dollars (USD 10,000.00) or its equivalent in other foreign currencies.
+	•	For amounts exceeding this threshold, the entire amount must be declared using the Currencies Declaration Form, which is available at the Bureau of Customs desks in arrival and departure areas of international ports in the Philippines or can be downloaded from the BSP website.
+
+These regulations are designed to monitor and manage the cross-border movement of currencies, ensuring compliance with anti-money laundering laws and maintaining the integrity of the Philippine financial system.","Since April 1993, last amended in August 2024","https://www.bsp.gov.ph/Regulations/MORFXT/MORFXT.pdf ;
+
+https://www.bsp.gov.ph/Regulations/MORFXT/MORFXT.pdf",,,,
+12,12.4,"Restrictions on online payment 
+",0,The Republic Act No. 8792 - Electronic Commerce Act of 2000,"The RA 8792 does not impose specific intermediary licensing or registration requirements on payment service providers, and businesses and consumers are not limited by the law in terms of which payment provider to use. The ECA provides the legal framework for electronic transactions in the Philippines, promoting the use of electronic documents and signatures, and recognizing their validity and enforceability. It supports technological neutrality and does not prescribe specific intermediary or payment system requirements for businesses or consumers engaging in online transactions. As such, it allows parties the freedom to choose their preferred electronic payment solutions.
+
+However, depending on the nature of the services offered (e.g., fund transfers, digital wallets), online payment intermediaries may be subject to other applicable laws and regulations, such as: the NPSA (RA 11127), and relevant BSP circulars (e.g., on Operators of Payment Systems or Electronic Money Issuers), which govern the financial, operational, and risk management obligations of such entities.",Since June 2000,https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,,,,
+12,12.4,"Restrictions on online payment 
+",0,The Republic Act No. 8792 - Electronic Commerce Act of 2000,"Republic Act No. 8792 provides the legal foundation for recognizing the validity and enforceability of electronic documents, electronic signatures, and electronic contracts in the Philippines. It adopts principles from the UNCITRAL Model Law on Electronic Commerce and applies to both commercial and non-commercial transactions.
+
+The law does not prescribe specific restrictions or licensing requirements for entities facilitating online payments; however, it does not preclude the application of other regulatory laws and frameworks. Online payment operators, depending on the nature of their services (such as digital wallets or remittance systems), may still be subject to oversight and regulation under the following:
+- National Payment Systems Act (RA 11127)
+- Anti-Money Laundering Act (RA 9160, as amended)
+- Relevant rules issued by the Bangko Sentral ng Pilipinas (BSP), such as Circulars 1049 and 1166
+
+As such, while RA 8792 supports the development of electronic commerce, the regulatory treatment of online payment providers is guided by complementary financial regulations.
+","Since June 2000;
+
+Last reviewed in October 2024",https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/ ,,,,
+12,12.5,Low De Minimis,0.50,"The Republic Act No. 10863 -
+Customs Modernization and Tariff Act of 2016","Under Section 423 of Republic Act No. 10863, otherwise known as the Customs Modernization and Tariff Act (CMTA), the Philippines adopted a de minimis value system, which sets a threshold below which imported goods may enter the country free from duties and taxes.
+
+Pursuant to this provision, the de minimis threshold was raised from PHP 10.00 to PHP 10,000.00. Goods with a declared value not exceeding this amount are exempt from duties and taxes, provided they are not part of a series of shipments intended to circumvent the law, and are not subject to other import restrictions or prohibitions.
+
+This reform aims to facilitate low-value cross-border e-commerce transactions and aligns with international trade facilitation standards under the Revised Kyoto Convention, to which the Philippines is a contracting party.
+
+Moreover, see the Bureau of Customs (BOC) through CMTA IRR and various Customs Memorandum Orders (e.g., CMO No. 04-2017)
+","Since May 2016, last amended in 2021","https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/68014 ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/TCCP-vol2.pdf ;
+
+https://customs.gov.ph/wp-content/uploads/2023/01/CMTA-RA-10863-2.pdf",,,,
+12,12.6,Domain name requirements,0,Domain Name Service Agreement,"In the Philippines, the use and registration of domain names, including those under the country code top-level domain (ccTLD) .ph, are administered by the PH Domain Foundation, Inc. (dotPH), which operates as the official registry. While there is no legal requirement mandating businesses to register a .ph domain in order to operate in the Philippine online market, businesses may voluntarily register such domains for localization and brand presence.
+
+Domain name registration in the Philippines is governed by the terms and conditions set by dotPH, which generally follow international best practices, including the Uniform Domain Name Dispute Resolution Policy (UDRP) for resolving domain- related disputes. There are currently no national laws or government-imposed restrictions specifically regulating domain name ownership or mandating local domain use for electronic retail. Businesses are free to use generic top-level domains (gTLDs) such as .com or .net as long as they comply with applicable e-commerce, consumer protection, and data privacy laws in the Philippines.
+
+There are no Philippine laws requiring businesses to own a .ph domain to engage in e-commerce. Businesses may use generic top- level domains (gTLDs) such as .com, .net, etc.
+While there is no law strictly regulating domain names, the PH domain system is governed by a registry and subject to terms and dispute policies, especially under the Uniform Dispute Resolution Policy (UDRP) and ICANN norms as implemented by PH Domain Foundation, Inc., the official .ph domain registry. 
+",Last reviewed in October 2024,https://www.dot.ph/corporate/policies/domain-name-service-agreement,,,,
+12,12.7,Local presence requirements for online service providers,1,"The Republic Act No. 8792 - Electronic Commerce Act of 2000 (ECA);
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","Under the Internet Transactions Act (ITA), the Philippines asserts regulatory jurisdiction over foreign entities engaging in e-commerce activities targeting the Philippine market. Section 5 of the Act stipulates that any person who engages in e-commerce and avails of the Philippine market to the extent of establishing ""minimum contacts"" shall be subject to applicable Philippine laws and regulations, notwithstanding the absence of a legal presence in the country.
+
+Although not directly or explicitly stated, under Section 26(c) of the Internet Transactions Act (ITA), an e-marketplace or digital platform that facilitated an internet transaction subject to a complaint shall have subsidiary liability if the online merchant it facilitated is found to have no legal presence in the Philippines.
+
+In conjunction with this, Section 10 of the ITA implies registration for e-commerce businesses through existing business registration channels, thereby implying a local presence requirement. However, Section 21 only requires the indication of the geographic address of the online merchant without specifying whether this address is in the Philippines or abroad.
+
+The new proposed language ensures legal accuracy by correctly referencing the Implementing Rules and Regulations (IRR) of the Internet Transactions Act of 2023, which provide the authoritative definition of ""minimum contacts."" It removes the incorrect citation of a non-existent Joint Administrative Order and presents the information in a clear, concise paragraph format suitable for legal and policy documents.
+
+This revision aligns with the current legal framework governing e-commerce activities in the Philippines, ensuring that foreign entities are aware of their obligations and the extent of Philippine jurisdiction over their online operations targeting the Philippine market.
+
+References: Republic Act No. 11967 – Internet Transactions Act of 2023 Section 5 – Extraterritorial Application; Implementing Rules and Regulations of RA 11967; and Definition of ""Minimum Contacts""
+","Since June 2000;
+
+Since December 2023",https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/,https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,,
+12,12.8,Lack of legal framework for online consumer protection,0,The Joint Administrative Order No. 01 - Rules and Regulations for Consumer Protection in a Transaction Covered by the Consumer Act of the Philippines (RA 7394) through electronic means under the E-Commerce Act (RA 8792) Series of 2008 ,"In accordance with Joint DTI-DOH-DA Administrative Order No. 01, Series of 2008, which implements the Consumer Act of the Philippines (Republic Act No. 7394) and the Electronic Commerce Act of 2000 (Republic Act No. 8792), all entities engaged in electronic commerce—including retailers, sellers, distributors, suppliers, and manufacturers—are mandated to uphold consumer protection standards in online transactions.
+
+This includes the clear and conspicuous disclosure of product or service information, pricing, and comprehensive terms regarding termination, return, exchange, cancellation, refunds, and the right of withdrawal. Furthermore, these entities are required to establish and maintain an internal complaint-handling mechanism to address consumer complaints effectively. These measures ensure that consumer rights are safeguarded in the digital marketplace, aligning with the overarching policies of the aforementioned laws. Furthermore retailers, sellers, distributors, suppliers, or manufacturers shall set up and make operational an internal complaint-handling mechanism for consumer complaints within a maximum period of three (3) montchs. ","Since October 2008
+
+","https://www.wipo.int/edocs/lexdocs/laws/en/ph/ph157en.pdf;
+
+https://www.wipo.int/wipolex/en/legislation/details/14004;
+
+http://www.wipo.int/wipolex/en/text.jsp?file_id=317683
+
+
+",,,,
+12,12.8,Lack of legal framework for online consumer protection,0,The Joint Administrative Order No. 22-01 - Guidelines for Online Businesses Reinterating the Law and Regulations Applicable to Online Businesses and Consumers Series of 2022,"The Department of Trade and Industry (DTI), through Joint Administrative Order (JAO) No. 22-01, provides comprehensive guidelines governing online businesses and consumer transactions. This Order affirms that laws and regulations applicable to physical or offline businesses shall, as far as practicable, equally apply to online businesses. Violations of such laws are subject to the same penalties as prescribed under existing legislation, ensuring consistent enforcement across all commercial platforms (Section 3, Applicability of Laws and Regulations).
+
+The guidelines consolidate and reinforce the legal framework for online consumers against deceptive, unfair, and unconscionable sales and business practices, consistent with the Consumer Act of the Philippines (Republic Act No. 7394), Electronic Commerce Act (ECA), and Internet Transactions Act (ITA).
+
+Furthermore, JAO No. 22-01 prescribes the provision of adequate rights and accessible means of redress for consumers (Section 16, Provision of Adequate Rights and Means of Redress). Online consumers may file complaints with the DTI through various channels, including: walk-in visits to national or provincial offices, consumer care hotlines, SMS, written complaints, and electronic submissions via designated platforms
+
+These mechanisms complement the consumer protection provisions under the Internet Transactions Act of 2023, which mandates the establishment of efficient dispute resolution processes, and safeguards against online fraud and unfair practices. This integrated regulatory approach ensures that consumer rights are safeguarded in the evolving digital marketplace and that online businesses operate under a clear and enforceable legal framework, consistent with Philippine laws.",Since January 2022,https://ecommerce.dti.gov.ph/wp-content/uploads/2023/05/JointAdministrativeOrderNo.22-01-1.pdf,,,,
+12,12.8,Lack of legal framework for online consumer protection,0,"The Republic Act No. 10173 - Data Privacy Act of 2012;
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","The Republic Act No. 10173, or the Data Privacy Act of 2012 (DPA), establishes the legal framework for the protection of personal data in both offline and online environments. It requires all personal information controllers, including e-commerce entities, to implement appropriate organizational, physical, and technical security measures to safeguard personal data against unauthorized access, use, or disclosure (Section 11).
+
+Under Section 16, data subjects are granted rights such as, access to their personal data, correction or erasure of inaccurate or outdated information, and the right to object to certain forms of data processing
+
+In cases of personal data breaches, Section 20 mandates prompt notification to both the National Privacy Commission (NPC) and the affected data subjects, in accordance with NPC Circular No. 16-03, which sets a 72-hour reporting window from discovery. Section 21 further underscores the principle of accountability by requiring entities to ensure compliance with data privacy standards and to take responsibility for their data processing activities.
+
+Strengthening consumer protection in the digital economy, the Internet Transactions Act (ITA) institutionalizes a regulatory framework specific to online commercial transactions. It establishes the E-Commerce Bureau under the Department of Trade and Industry (DTI), tasked with promoting fair, transparent, and secure digital marketplaces (Section 7).
+
+The Act imposes responsibilities not only on online merchants but also on e-commerce platforms and digital marketplaces, requiring them to:
+	•	Verify the identity of sellers
+	•	Monitor compliance with consumer protection standards
+	•	Take appropriate action against non-compliant sellers (Sections 21 to 23)
+
+Consumers transacting online are guaranteed rights equivalent to those in traditional commerce, including:
+	•	The right to return defective goods
+	•	Obtain refunds
+	•	Access redress mechanisms for complaints (Section 20)
+
+These rights are enforced in conjunction with the Consumer Act of the Philippines (RA 7394) and the Data Privacy Act, thereby ensuring that digital transactions uphold consumer welfare, trust, and accountability.","Since August 2012, last amended in 2016;
+
+Since December 2023",https://www.privacy.gov.ph/data-privacy-act/,https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,,
+12,12.9,Not in the United Nations Convention of Electronic Communications,0,"United Nations Convention on Electronic Communications;
+
+The Republic Act No. 8792 - Electronic Commerce Act of 2000 (ECA);
+
+The Republic Act No. 11967 - Internet Transactions Act of 2023 (ITA)","The Philippines signed the United Nations Convention on the Use of Electronic Communications in International Contracts in 2007 and ratified it on July 6, 2022. The Convention entered into force in the country on February 1, 2023, and is now legally binding. As an international treaty, it aims to facilitate international trade by removing legal obstacles to the use of electronic communications in cross-border contracts, ensuring their functional equivalence with traditional paper-based methods. The Convention reinforces existing domestic legislation such as the Electronic Commerce Act (ECA) and complements the provisions of Internet Transactions Act (ITA) by supporting the recognition and enforceability of electronic messages and signatures in international commercial dealings. Its adoption strengthens the legal framework for electronic transactions, promotes interoperability of systems, and enhances legal certainty for businesses engaged in global e-commerce.
+
+The revision ensures that the provision reflects the full legal status and scope of the UN Convention within the Philippine legal system. It clarifies that the Convention is not only in force but also harmonized with local e-commerce laws, making it relevant to both domestic and international online business practices. By providing context on the Convention’s objective, removing legal barriers in cross-border electronic contracts, the revised language enhances legal clarity, technical accuracy, and usefulness in compliance documentation.","Since February 2023;
+
+Since June 2000;
+
+Since December 2023","https://uncitral.un.org/en/texts/ecommerce/conventions/electronic_communications/status;
+
+https://uncitral.un.org/en/news/philippines-ratifies-un-electronic-communications-convention","https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/;
+
+https://ecommerce.dti.gov.ph/faqs/",https://lawphil.net/statutes/repacts/ra2023/ra_11967_2023.html,,
+12,12.10,Not in the UNCITRAL Model Law on Electronic Commerce,0,Adoption of the UNCITRAL Model Law on Electronic Commerce,"The Philippines adopted the UNCITRAL Model Law on Electronic Commerce in 2000 with the Electronic Commerce Act of 2000, also known as Republic Act No. 8792.",Since 2000,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_commerce/status,,,,
+12,12.11,Not in the UNCITRAL Model Law on Electronic Signatures,0.50,"Lack of adoption of the UNCITRAL Model Law on Electronic Signature;
+
+The Republic Act No. 8792 - Electronic Commerce Act of 2000","The Philippines has not notified its adoption of the UNCITRAL Model Law on Electronic Signatures to the UNCITRAL Secretariat.
+
+The Electronic Commerce Act of 2000 provides the domestic enabling law recognizing electronic signatures.","Last review in October 2024;
+
+Since June 2000",https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_signatures/status,https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792-s-2000/ ,,,
+,,,,,,,,,,Overall RDTII score,0.363
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,

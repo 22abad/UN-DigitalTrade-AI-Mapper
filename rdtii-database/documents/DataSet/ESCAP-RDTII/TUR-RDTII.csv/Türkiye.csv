@@ -1,0 +1,1544 @@
+Chapter,Question,Question: description,Individual Indicator Score,Source Legislation,Impact,Timeframe for Indicator,References,"References, 2","References, 3","References, 4",Overall Pillar Score
+1,1.1,Weighted average of effective tariff rates applied on ICT goods imported from other Asia-Pacific economies (%),0.318,Effectively applied tariffs on ICT goods (in weighted average) imported from other economies within the considered United Nations region (%),3.18,Since 2022,http://wits.worldbank.org/WITS/,,,,0.473
+1,1.2,Percentage of none duty-free tariff lines on ICT goods imported from other Asia-Pacific economies (%),0.4872,No duty-free tariff lines on ICT goods from other economies within the considered United Nations region (%),50.512,Since 2022,http://wits.worldbank.org/WITS/,,,,
+1,1.3,Not a signatory to the WTO ITA I and ITA II,0.50,Lack of participation in ITA Expansion Agreement (ITA II),"Türkiye is a signatory of the 1996 WTO Information Technology Agreement (ITA) but not of the expansion. The ITA provides for participants to completely eliminate duties on IT products covered by the Agreement. The ITA Expansion (ITA 2) Agreement, endorsed in 2015, further expanded the ITA's product coverage to medical equipment and other IT-enabled products.",Last reviewed January 2025,https://www.wto.org/english/tratop_e/inftec_e/itscheds_e.htm ,,,,
+1,1.4,"Imposing trade defence measures (anti-dumping, countervailing duties and safeguards) on ICT-related products imported by other Asia-Pacific economies",0.75,Anti dumping measure and Anti-circumvention duty,"There are no explicit trade defense measures (anti-dumping, countervailing duties, or safeguards) specifically targeting ICT-related products (e.g., telecommunications equipment, semiconductors, or electronic devices) in Türkiye.
+
+The measures identified primarily focus on:
+- Textiles (e.g., woven fabrics, polyester staple fiber, blankets),
+- Construction materials (e.g., glass fiber reinforcement materials),
+- Industrial products (e.g., stainless steel tubes and pipes).
+
+While some of these products (e.g., stainless steel tubes or glass fiber materials) may have indirect applications in ICT infrastructure (e.g., telecom towers or fiber optics), there are no direct measures targeting core ICT products like electronics, semiconductors, or telecommunications equipment.
+
+By including products with indirect applications in ICT infrastructure, the updated list of active measures in Türkiye highlights the importance of stainless steel tubes and glass fiber materials in supporting telecom and ICT-related industries. However, there are still no direct measures targeting core ICT products like semiconductors, telecommunications equipment, or electronic devices.
+
+1. Welded Stainless Steel Tubes, Pipes, and Profiles
+Product: Welded stainless steel tubes, pipes, and profiles.
+Countries: Viet Nam, China, Taiwan Province of China, Malaysia.
+Measure: Definitive anti-dumping duties.
+Duty Rates: Ranging from 19.64% to 25% for Vietnam and varying rates for other countries.
+Sector: Industrial and telecom infrastructure (e.g., telecom towers, structural components).
+Status: Active since July 10, 2021.
+
+2. Glass Fiber Reinforcement Materials
+Product: Glass fiber reinforcement materials.
+Country: China.
+Measure: Anti-dumping duty.
+HS Codes: 7019.11, 7019.12, 7019.19, 7019.31, 7019.90.
+Duty Rates: Specific rates applied to imports.
+Sector: Construction and industrial applications, with potential use in fiber optic cables and telecom infrastructure.
+Status: Active since December 31, 2010.
+
+3. Anti-Circumvention Measures on Glass Fiber Reinforcement Materials
+Product: Glass fiber reinforcement materials.
+Country: Thailand.
+Measure: Anti-circumvention duty.
+HS Codes: 7019.11, 7019.12, 7019.19, 7019.31, 7019.90.
+Duty Rates: 24.5% to 35.75%.
+Sector: Construction and industrial applications, with potential use in fiber optic cables and telecom infrastructure.
+Status: Active since March 24, 2021.","Since December 2010
+
+Last reviewed January 2025",https://i-tip.wto.org/goods/Default.aspx,https://www.trade.gov.tr/legislation/import/trade-defence-policy,https://www.trade.gov.tr/data/5c35f44913b8761de0954305/Y%C3%BCr%C3%BCrl%C3%BCkteki%20%C3%96nlemler_07.01.2025.xlsx,,
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,1,"The Public Procurement Law (PPL) No. 4734, Amended by Law No. 7257 of December 2020","The Public Procurement Law, specifically Article 63, allows contracting authorities to exclude foreign firms from public procurement under certain circumstances. These circumstances are tied to the estimated cost of the procurement. If the estimated cost falls below specific thresholds (detailed in Article 8), the contracting authority may exclude foreign bidders. This is not an absolute exclusion under all circumstances, but it does allow for exclusion based on a specific criterion (cost).
+
+If the estimated cost of a tender is below the thresholds, the contracting authority may close the tender to foreign companies. For example:
+- Goods and services procurement by central government units: 1,073,525 TL (approximately 300,000 USD).
+- Goods and services procurement by other government units: 1,789,213 TL (approximately 500,000 USD).
+- Works procurement: 39,362,920 TL (approximately 11 million USD).
+
+If the estimated cost of a tender is equal to or above the thresholds, the contracting authority must open the tender to foreign companies. However, even in such cases, a price advantage of up to 15% may be applied in favor of domestic suppliers. Additionally, If a foreign company is part of a joint venture, the entire joint venture is considered foreign unless all partners are domestic.","Since January 2003, last amended in December 2020",http://www2.ihale.gov.tr/english/4734_English.pdf,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4734.pdf,https://dosyalar.kik.gov.tr/genel/IhaleGovTr/4734_public_procurement_law_Consolidated_2022.pdf,,0.680
+2,2.2,"Specific requirements on source codes, encryption and trade secrets ",0,"The Public Procurement Law (PPL) No. 4734, Amended by Law No. 7257 of December 2020;
+
+Public Procurement Contracts Law No. 4735 2002","There are no explicit requirements in Turkish public procurement law for tenderers to surrender patents, source codes, or trade secrets, there are provisions that protect the confidentiality of such information. The laws emphasize the importance of not disclosing proprietary information and ensuring that technical specifications do not unfairly restrict competition. Therefore, tenderers can generally expect that their proprietary information will be protected during the procurement process.
+
+Public Procurement Law No. 4734:
+- Article 29 of the Public Procurement Law No. 4734: ""Persons in charge of implementing this Law and those who offer consulting services shall not disclose any confidential information or documents pertaining to contractor’s business or transactions or their technical or financial structures and shall not use them for their own or any third parties’ benefit.""
+- Article 12 of the Public Procurement Law No. 4734 requires that technical specifications must not include elements that impede competition. While this does not explicitly mention patents or trade secrets, it suggests that specifications should be designed to allow for fair competition without requiring proprietary information.
+- Article 24 outlines the contents of procurement notices, which must include the criteria for participation and the required documents. While it does not specify the surrender of patents or trade secrets, it does require transparency in the procurement process.
+
+Public Procurement Contracts Law No. 4735
+- Article 29 of the Public Procurement Contracts Law No. 4735 states that persons in charge of implementing the law and those who offer consulting services must not disclose any confidential information or documents pertaining to a contractor’s business or transactions, including technical or financial structures. This implies a level of protection for proprietary information, including patents and trade secrets.","Since January 2003, last amended in December 2020
+;
+
+Since January 2002",http://www2.ihale.gov.tr/english/4734_English.pdf,https://dosyalar.kik.gov.tr/genel/IhaleGovTr/Kanunlar/ing/4735-Public-Procurement-Contracts-Law.docx,https://dosyalar.kik.gov.tr/genel/IhaleGovTr/4734_public_procurement_law_Consolidated_2022.pdf,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4734.pdf,
+2,2.3,Limitations in procurement bidding,1,"The Public Procurement Law (PPL) No. 4734, Amended by Law No. 7257 of December 2020
+;
+Public Procurement Contracts Law No. 4735 2002","Public Procurement Law No. 4734 and the relevant amendments, there are no explicit legal measures that ban participation in public procurement based on nationality. However, measures that can effectively ban participation in public procurement unless certain local content requirements are met. 
+
+- Article 63 explicitly allows for the exclusion of foreign suppliers from public procurement procedures under specific conditions, particularly when the estimated cost is below certain thresholds. It also provides for a price advantage for domestic tenderers. Contracting authorities can stipulate that only domestic tenderers may participate in procurement procedures when the estimated cost is below the threshold. A price advantage of up to 15% may be provided in favor of domestic tenderers in the procurement of services and works. This effectively creates a preference for local suppliers.
+- Article 9 allows for procurement to be limited to suppliers offering domestically produced goods or goods produced in specific regions as part of regional development programs. Procurement may be conducted as being open only to participation of tenderers offering domestically produced goods or goods produced in the cities where regional development programs are implemented.
+A price advantage may be applied in favor of tenderers offering goods produced in provinces where regional development programs are implemented.
+- Article 12 requires that technical specifications must not consist of elements that impede competition. However, it allows for local content requirements to be included in the specifications if they are justified.
+- Article 11 outlines the conditions under which individuals or entities may be prohibited from participating in tenders. While it does not explicitly mention local content, it establishes a framework for disqualification based on non-compliance with procurement regulations.","Since January 2003, last amended in December 2020
+;
+Since January 2002",http://www2.ihale.gov.tr/english/4734_English.pdf,https://dosyalar.kik.gov.tr/genel/IhaleGovTr/Kanunlar/ing/4735-Public-Procurement-Contracts-Law.docx,https://dosyalar.kik.gov.tr/genel/IhaleGovTr/4734_public_procurement_law_Consolidated_2022.pdf,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4734.pdf,
+2,2.4,"Not in the WTO Government Procurement Agreement (GPA) and not fully covered the three most relevant services sectors (CPC752, 754, 84)",1,WTO Government Procurement Agreement (GPA),Türkiye is currently only an observer to the WTO Agreement on Government Procurement.,"Since June 1996
+
+",https://www.wto.org/english/tratop_e/gproc_e/memobs_e.htm  ,,,,
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",0,The Foreign Direct Investment Law of Türkiye No.4875 (2003),"According to Art. 3 (a) of the Foreign Direct Investment Law, 100% foreign equity share is allowed. Additionally, unless stipulated by international agreements or other special laws, foreign investors are free to make investments and shall be subject to equal treatment as domestic investors.
+
+Foreign Direct Investment Law No. 4875 (2003): The FDI Law itself doesn't impose equity limits, there might be sector-specific restrictions in other special laws. Foreign investors can:
+- Establish new companies (Article 2(b)(i)) 
+- Acquire shares in existing companies (Article 2(b)(ii))
+- Transfer profits and capital freely (Article 3(c))
+- Access dispute settlement mechanisms (Article 3(e))
+- The law operates on a notification-based system rather than screening and approval (Article 1)
+- Foreign investors are defined broadly to include both individuals and legal entities (Article 2(a))
+- The law protects against expropriation and nationalization (Article 3(b))
+
+
+Banking Law No. 5411
+Contains provisions for foreign bank operations
+
+",Since June 2003 amended 2016,https://www.eryurekli.com/legislations/foreign-direct-investment-law-law-no-4875,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,,,0.763
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",0.80,Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011),"Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112
+Article 19: The proportion of total direct foreign capital in a media service provider cannot exceed 50% of the paid-in capital. Foreign shareholders must not hold more than 50% of the voting rights in the general assembly.",Since March 2011,https://www.rtuk.gov.tr/audiovisual-media-law-/4046/en,,,,
+3,3.2,Joint venture requirements,0,The Foreign Direct Investment Law of Türkiye No.4875 (2003),"According to Art. 3(a) of the Foreign Direct Investment Law, unless stipulated by international agreements or other special laws, foreign investors are free to make investments and shall be subject to equal treatment as domestic investors. Therefore, foreign investors are not required to engage in joint ventures to invest or operate in any kind of markets in Türkiye.
+
+There are no explicit joint venture requirements mentioned in the FDI law. In fact, the law emphasizes freedom of investment and equal treatment principles:
+
+Article 3(a) explicitly states: 
+- ""Unless stipulated by international agreements and other special laws""
+- ""Foreign investors are free to make foreign direct investments in Türkiye""
+- ""Foreign investors shall be subject to equal treatment with domestic investors""
+Article 2(b) defines foreign direct investment methods, which include (include joint ventures as a form of investment.):
+- ""Establishing a new company"" 
+- ""Share acquisitions of a company established in Türkiye""",Since June 2003 amended 2016,https://www.eryurekli.com/legislations/foreign-direct-investment-law-law-no-4875,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,https://www.invest.gov.tr/en/Documents/turkiye-foreign-direct-investment-strategy-2024-2028.pdf,,
+3,3.2,Joint venture requirements,1,Electronic Communications Law Law No. 5809 (2008),"Electronic Communications Law Law No. 5809 (2008)
+- Article 8: Operators may need to form joint ventures or partnerships to meet the requirements for providing electronic communications services, especially if they require access to limited resources like frequencies.",Since November 2008,https://www.lawsTürkiye.com/law/5809-electronic-communications-law,,,,
+3,3.3,Nationality or residency requirements for board of directors or managers,0,The Foreign Direct Investment Law of Türkiye No.4875 (2003),"There are no nationality or residency requirements for board members or managers in Türkiye under the The Foreign Direct Investment Law.  Any person of any nationality or residence can be a director or shareholder in a Turkish company.
+
+No explicit nationality or residency requirements for directors/managers
+Article 3(g) addresses employment of expatriates:
+- Work permits are issued by Ministry of Labour and Social Security
+- Special provisions for ""key personnel"" (to be defined in separate regulation)
+- Simplified procedures for key foreign personnel",Since June 2003,https://www.eryurekli.com/legislations/foreign-direct-investment-law-law-no-4875,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,,,
+3,3.3,Nationality or residency requirements for board of directors or managers,1,Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011),"Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011)
+Article 19 of Board Composition: The chairman, vice-chairman, and majority of the board of directors of media service providers must be Turkish citizens",Since February 2011,https://www.lawsTürkiye.com/law/law-on-the-establishment-of-radio-and-television-enterprises-and-their-media-services-6112,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0,The Foreign Direct Investment Law of Türkiye No.4875 (2003),"Türkiye does not have any blocking or discouraging mechanisms for foreign investments or mergers and acquisitions in sectors related to digital trade under the Foreign Direct Investment Law. The law establishes a notification-based system for foreign direct investment (FDI) in Türkiye, and foreign investors are free to make FDI in Türkiye on an equal footing with Turkish investors, except in certain limited sectors. The Turkish FDI regime is based on the concept of freedom to invest, and foreign investors are treated equally as local investors.
+
+The FDI law does not outline Investment Screening
+Article 1 explicitly establishes a ""notification-based system rather than screening and approval""
+- No prior approval required for investments
+- Only requires statistical information submission (Article 4)
+- System based on post-investment notification rather than pre-investment screening",Since June 2003,"https://investmentpolicy.unctad.org/investment-laws/laws/33/Türkiye-foreign-investment-law
+",https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,The Foreign Direct Investment Law of Türkiye No.4875 (2003),"The FDI law outlines Commercial Presence Requirements
+
+Article 3(h) addresses commercial presence through liaison offices:
+- Foreign companies can establish liaison offices
+- Key restriction: liaison offices cannot engage in commercial activities
+For actual commercial activities, companies must establish legal presence through:
+- New company establishment
+- Branch office
+- Share acquisition in existing company",Since June 2003,https://www.eryurekli.com/legislations/foreign-direct-investment-law-law-no-4875,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011),"Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011)
+- Article 2: Media service providers must be based in Türkiye, which implies a requirement for commercial presence to operate legally.",Since February 2011,https://www.lawsTürkiye.com/law/law-on-the-establishment-of-radio-and-television-enterprises-and-their-media-services-6112,,,,
+4,4.1,Patent application issues,1,Decree-law No.551 pertaining to the Protection of Patent Rights 1995,"According to Article 171.b of the Decree-law No.551, patent agents entered in the records of the Turkish Patent Institute have the capacity to act before the Institute. The persons domiciled abroad have to be represented by patent agents.
+
+Article 171 states:
+""The following persons have capacity to act before the Institute:
+a) natural or legal persons,
+b) patent agents entered in the records of the Institute.
+""Legal persons may be represented by those person(s) duly empowered by their authorised bodies/organs.""
+""The persons domiciled abroad can only be represented by patent agents.""","Since June 1995, amended in November 1995
+
+",https://wipolex-resources-eu-central-1-358922420655.s3.amazonaws.com/edocs/lexdocs/laws/en/tr/tr074en-related_1.pdf,,,,0.181
+4,4.1,Patent application issues,0,Industrial Property Code Law No. 6769 (2016),"Turkish Industrial Property Code (Law No. 6769) does not explicitly address differential treatment between local and foreign firms in patent applications, requirements to appoint a local representative, or discriminatory rejection of patent applications. 
+
+Article 3: This article outlines who can benefit from the protection of the Industrial Property Code. It states that:
+- Citizens of the Republic of Türkiye.
+- Natural or legal entities domiciled or engaged in industrial or commercial activities within Türkiye.
+- Persons who have the right of application according to the Paris Convention or the Agreement Establishing the World Trade Organization.
+- Persons from countries that provide Turkish citizens with protection of industrial property rights based on reciprocity.
+
+Article 39 – Applications Originating from Foreign Countries: Foreign applications for geographical indications or traditional specialties must meet additional conditions, such as:
+- Proof of protection in the country of origin.
+- Evidence of compliance with control requirements in the country of origin.
+- Equal protection for Turkish applications in the foreign country.
+These requirements are based on reciprocity and international agreements, not discrimination.",Since December 2016,https://www.wipo.int/wipolex/en/legislation/details/16609,,,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0,Industrial Property Code Law No. 6769 (2016),"Industrial Property Code No. 6769
+
+Civil and Administrative Procedures
+Article 136: Infringement of Rights Conferred by a Patent. Defines acts that constitute infringement, including:
+- Imitating a patented product without consent.
+- Selling, distributing, or using patented products without permission.
+- Using patented processes without authorization.
+The patent holder has the right to take legal action against infringers.
+
+Article 137: Legal Proceedings. The patent holder may appeal to the court for:
+- Cessation of infringing acts.
+- Compensation for material and moral damages.
+- Confiscation of infringing products and means used in infringement.
+- Precautionary measures to prevent continued infringement.
+
+Article 138: Infringers are liable to remedy the unlawful situation and compensate damages caused by their actions.
+Compensation includes both actual losses and lost profits due to infringement.
+
+Article 139: Documents Evidencing Infringement
+The patent holder can request documents from the infringing party to evaluate damages suffered due to infringement.
+
+Article 149: Patent owners whose rights are infringed can file lawsuits.
+
+Article 158: Exclusive licensees can independently file lawsuits for infringement. Non-exclusive licensees must notify the patent owner and wait three months before filing a lawsuit if the owner does not act.
+
+Criminal Penalties 
+Article 73/A of Imprisonment terms:
+- 1-2 years for false declarations
+- 2-3 years for unauthorized rights transfer
+- 2-4 years for patent infringement
+- Monetary fines ranging from 300 million to 1 billion liras
+- Business closure for minimum one year
+- Ban on commercial activities
+
+Provisional Measures
+Article 151: Parties intending to institute proceedings can request the court to order precautionary measures to secure the effectiveness of the main action. Precautionary measures may include:
+- Cessation of infringing acts.
+- Seizure of infringing goods.
+- Placement of security for damages to be compensated.
+
+Article 152: Nature of Precautionary Measures. The court can order measures to prevent continued infringement, including:
+- Modifying the shapes of infringing products.
+- Destruction of infringing products if necessary.
+
+Objections and Appeals
+Article 99: Objection to Granting of Patent. Third parties can object to the granting of a patent within six months of publication, citing non-compliance with patentability conditions. The objection must be evaluated by the Board, and the patentee has the right to respond.
+
+Article 100: Objection to Decisions of the Office. The patent applicant, patentee, or related third parties can object to decisions made by the Office within two months of notification.",Since December 2016,https://www.wipo.int/wipolex/en/legislation/details/16609,,,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0,Decree-law No.551 pertaining to the protection of patent rights (1995),"Decree-Law No. 551 Pertaining to the Protection of Patent Rights (1995)
+
+Article 73: The patent holder has the exclusive right to prevent unauthorized third parties from:
+- Producing, selling, using, or importing patented products.
+- Using a patented process or offering it for use.
+- Selling or importing products directly obtained through a patented process
+
+Article 137: Patent holders can file lawsuits to:
+- Stop infringing acts.
+- Seek compensation for material and moral damages.
+- Confiscate infringing products and tools used in their production.
+- Request ownership of confiscated items.
+- Request publication of court decisions at the infringer's expense
+
+Article 138: Infringers are liable for:
+- Actual damages (e.g., loss of profits).
+- Unrealized income (calculated based on potential profits, infringer's profits, or a reasonable license fee).
+- Additional compensation if the patent's reputation is harmed (Article 142).
+
+Article 73/A: Criminal penalties include:
+- Imprisonment (1-4 years) and fines for intentional infringement.
+- Closure of businesses for at least one year.
+- Ban on commercial activities during the closure period.
+
+Article 151: Patent holders can request precautionary measures to:
+- Stop infringing acts.
+- Seize infringing goods and tools used in their production.
+- Require the infringer to provide security for potential damages.","Since June 1995, amended in November 1995
+
+",https://wipolex-resources-eu-central-1-358922420655.s3.amazonaws.com/edocs/lexdocs/laws/en/tr/tr074en-related_1.pdf,,,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0.50,"Decree-law No.551 pertaining to the protection of patent rights (1995)
+;
+Industrial Property Code Law No. 6769 (2016)","National Security Concerns (Decree-Law No. 551, Article 125; Law No. 6769, Article 124): 
+This is a significant restriction. If an invention is deemed crucial for national security, the government can impose secrecy orders, preventing foreign filing or disclosure without permission. This impacts all sectors potentially involved in sensitive technologies.
+
+Requirement for Local Representation (Decree-Law No. 551, Article 171; Law No. 6769, Article 160): Foreign applicants are required to use a local representative (patent attorney) to navigate the Turkish patent system. While not a direct barrier, this adds cost and complexity, potentially discouraging some foreign applicants affecting all sectors.","Since June 1995, amended in November 1995
+;
+Since December 2016",https://wipolex-resources-eu-central-1-358922420655.s3.amazonaws.com/edocs/lexdocs/laws/en/tr/tr074en-related_1.pdf,https://www.wipo.int/wipolex/en/legislation/details/16609,,,
+4,4.3,Not in the WIPO Copyright Treaty (WCT),0,Participation to the Patent Cooperation Treaty,Türkiye signed the Patent Cooperation Treaty in 1996.,Since January 1996,https://www.wipo.int/pct/en/pct_contracting_states.html#note2,,,,
+4,4.4,Lack of copyright framework and exceptions,0,The Law on Intellectual and Artistic Works Law No 5846 as amended by Law No. 5728,"Türkiye has a comprehensive copyright framework established under the Law on Intellectual and Artistic Works (Law No. 5846), which has been amended multiple times to align with international standards and treaties. Türkiye's copyright law includes several exceptions and limitations to balance the rights of authors with public interest. These exceptions are consistent with international norms, such as those outlined in the Berne Convention and the TRIPS Agreement.
+
+Articles 30–37 of Public Order and Public Interest:
+- Works can be used as evidence in court or for public security purposes.
+- Reproduction of laws, regulations, and court decisions is permitted.
+- Speeches made in public assemblies or courts can be reproduced for news purposes.
+- Educational and Research Use (Articles 33–34):
+- Published works can be performed in educational institutions for face-to-face teaching without profit.
+- Selected or collected works can be created for educational purposes, provided they do not conflict with the normal exploitation of the work.
+
+Article 35 of Freedom of Quotation:
+- Quotations from published works are allowed for purposes such as criticism, review, or scientific research, provided the source is cited.
+
+Article 38 of Personal Use:
+- Individuals can reproduce works for personal use without profit, as long as it does not conflict with the normal exploitation of the work or harm the rights holder's legitimate interests.
+
+Article 40 - Use of Works in Public Spaces:
+- Works of fine art permanently located in public spaces can be reproduced through photography or similar means.
+
+Additional Article 11 of Special Provisions for Disabled Persons:
+- Reproduction of works in formats such as Braille or audio for personal use by disabled persons is permitted.","Since December 1951, as amended in 2008",https://www.mevzuat.gov.tr/MevzuatMetin/1.3.5846-20141212.pdf,https://gun.av.tr/media/x31pzvgs/thought-leadership-copyright-2020.pdf,,,
+4,4.5,Online copyright enforcement issues: civil and administrative procedures and remedies; and provisional measures,0,"The Law on Intellectual and Artistic Works Law No 5846 as amended by Law No. 5728
+;
+Industrial Property Code Law No. 6769 (2016)","The Law on Intellectual and Artistic Works (Law No. 5846) and the Industrial Property Code No. 6769, Türkiye has established a framework for copyright enforcement that includes both civil and administrative procedures, as well as remedies and provisional measures.
+
+Law on Intellectual and Artistic Works (Law No. 5846)
+Article 66 of Action for Cessation of Infringement allows any person whose moral and economic rights have been infringed to bring an action against the infringer to cease the infringement.
+Article 68 of the Compensation for Infringement: Right holders can claim compensation for unauthorized adaptations, reproductions, performances, or communications of their works, with compensation potentially up to three times the amount that could have been demanded if the right had been granted by contract.
+Article 69 of Action for Prevention of Infringement: Authors can bring an action to prevent probable infringements, especially if the infringement is likely to continue or recur.
+Article 70 of Action for Damages: Individuals whose moral rights have been infringed can claim moral damages, and economic rights infringements allow for claims for compensation, including profits gained by the infringing party.
+Article 77 of Precautionary Measures: Individuals can request precautionary measures to secure the effectiveness of their main action, such as cessation of infringing acts or seizure of infringing goods.
+
+Industrial Property Code No. 6769
+Article 146: Establishes specialized courts to handle actions and claims related to copyright and intellectual property rights.
+Article 137 of Confiscation of Infringing Goods: The proprietor of a patent or copyright can request the confiscation of products manufactured or imported in infringement of their rights.
+Article 163 of Seizure and Destruction of Infringing Goods: If infringing goods cannot be preserved, they may be destroyed after taking sufficient samples, with the destruction performed under judicial oversight.","Since December 1951, as amended in 2008
+;
+Since December 2016",https://www.mevzuat.gov.tr/MevzuatMetin/1.3.5846-20141212.pdf,https://www.wipo.int/wipolex/en/legislation/details/16609,,,
+4,4.6,Not in the WIPO Copyright Treaty (WCT),0,Signature of the WIPO Copyright Treaty,"Türkiye is a contracting party to the WIPO Copyright Treaty (WCT). Türkiye acceded to the treaty on August 28, 2008, and it entered into force for Türkiye on November 28, 2008
+","Since August 2008, entry into force since November 2008",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=16,,,,
+4,4.7,Not in the WIPO Performances and Phonographs Treaty (WPPT),0,Signature of the WIPO Performances and Phonograms Treaty,"Türkiye acceded to the WIPO Performances and Phonograms Treaty (WPPT) on August 28, 2008","Since August 2008, entry into force since November 2008",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=20,,,,
+4,4.8,"Mandatory disclosure of trade secrets, such as source code and algorithms",0,The Turkish Commercial Code No.6102,"Trade secrets are protected under several Turkish regulations, including the Turkish Commercial Code No. 6102, which states that disclosing manufacturing and business secrets that belong to others unlawfully constitutes unfair competition. Employees are obliged not to disclose their employers' business and manufacturing secrets to third parties and not to utilize them for their own benefit. Trade secrets, such as technical production secrets, production methods, and research and development plans, are also protected. There is no mandatory disclosure of trade secrets in Türkiye, and there is no regulatory requirement to be an escrow agent.
+
+Article 55: Defines acts of unfair competition, including the unlawful disclosure of manufacturing and business secrets belonging to others. ""Disclosing manufacturing and business secrets that belong to others unlawfully or using them for one's own benefit constitutes unfair competition."" This provision explicitly protects trade secrets and prohibits their unauthorized disclosure or use.
+Article 396: Obligates employees to maintain confidentiality regarding their employers' business and manufacturing secrets.
+Relevant Provision: ""Employees are obliged not to disclose their employers' business and manufacturing secrets to third parties and not to utilize them for their own benefit.""",Since January 2011,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6102-20130328.pdf,https://www.lexology.com/library/detail.aspx?g=13cb5bef-6b66-4107-bc0b-80c0b8158290,,,
+4,4.9,Lack of effective trade secrets legal framework,0,The Turkish Commercial Code No.6102,"The trade secrets can be protected under the Unfair Competition Provisions of the Turkish Commercial Code, which states that disclosing manufacturing and business secrets that belong to others unlawfully constitutes unfair competition. Article 56 of the Commercial Code allows persons who have suffered damages or who may be exposed to the risk of such damage to apply to the competent court for the following:
+- Declare as to whether the defendant's action is unfair;
+- Prevent unfair competition;
+- Removal of the material condition caused by the action of unfair competition; rectification of statement if the unfair competition is committed by wrong or misleading statements; and destruction of the means used in the unfair competition action, provided that it is unavoidable to prevent the infringement;
+- In the case of a faulty action, compensation of damages; Should the conditions set forth by Article 58 of the Turkish Code of Obligations be met (i.e. damages to incur one’s personal rights), there will be compensation of non-pecuniary damages.
+
+Criminal Code (Law No. 5237)
+Article 239: Criminalizes the unauthorized disclosure of trade secrets, imposing penalties for violations.","Since January 2011
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6102-20130328.pdf,https://wipolex.wipo.int/en/legislation/details/11081,,,
+4,4.9,Lack of effective trade secrets legal framework,0,"Industrial Property Code Law No. 6769 (2016)
+;
+The Law on Intellectual and Artistic Works Law No 5846 as amended by Law No. 5728","Industrial Property Code Law No. 6769 (2016)
+
+Article 5 of the Industrial Property Law, a trade secret is any information that is confidential, not generally known or easily accessible, and provides a business advantage over competitors. 
+Article 148: Trade secrets are protected as part of industrial property rights. Legal actions such as transfer, licensing, or inheritance of industrial property rights must respect confidentiality.
+Article 149: Right holders can claim protection against infringement of industrial property rights, including trade secrets.
+Article 147: If the owner of an industrial property right is not domiciled in Türkiye, a local representative (e.g., a patent attorney) is required for legal actions, ensuring compliance with Turkish law.
+
+Law on Intellectual and Artistic Works (Law No. 5846)
+Article 38: Protects computer programs as intellectual property. Reproduction, adaptation, or reverse engineering of software is restricted unless necessary for interoperability or error correction, provided certain conditions are met.
+Article 84: Protects signs, images, and sounds fixed on devices, prohibiting unauthorized reproduction or distribution.","Since December 2016
+;
+Since December 1951, as amended in 2008",https://www.wipo.int/wipolex/en/legislation/details/16609,https://www.mevzuat.gov.tr/MevzuatMetin/1.3.5846-20141212.pdf,,,
+4,4.9,Lack of effective trade secrets legal framework,0,"Banking Law No. 5411;
+Capital Markets Law Law No. 6362 (2012)","Banking Law (Law No. 5411)
+Article 73: Strict confidentiality obligations are imposed on banking personnel and related parties. Disclosure of confidential information, including trade secrets, is prohibited except when explicitly authorized by law or court order.
+
+Capital Markets Law (Law No. 6362)
+Article 135: Protects confidential information obtained by the Capital Markets Board. Disclosure is prohibited except under specific legal or regulatory circumstances.
+","Since October 2005, last amended in Feburary 2020;
+
+Since December 2012",https://www.lawsTürkiye.com/law/banking-law-5411,https://www.lawsTürkiye.com/law/capital-market-law-6362,,,
+4,4.9,Lack of effective trade secrets legal framework,0,Law on the Protection of Competition Law No. 4054 (1994),"Law on the Protection of Competition (Law No. 4054)
+Article 4: Prohibits agreements or practices that restrict competition, including those involving the misuse of trade secrets.",Since December 1994,https://www.wipo.int/wipolex/en/legislation/details/3874,,,,
+5,5.1,Absence of passive infrastructure sharing,0,"The Electronic Communications Law No. 5809 (2008)
+
+","Passive sharing is mandated and is effective in both the mobile and fixed sectors. The Authority may impose obligations on operators to provide any kind of collocation including physical collocation for the equipments of other operators within their own facilities in return for a cost-based charge (Article 17(2)). 
+
+Electronic Communications Law No. 5809
+Article 12(2)(c) explicitly grants the Authority the power to impose obligations related to co-location and facility sharing, ensuring that operators comply with such requirements.
+Article 16(5) reinforces the principle of non-discrimination and fair access, which is essential for effective passive sharing in both mobile and fixed sectors.
+Article 17(1) emphasizes the Authority's power to mandate facility sharing in the public interest, ensuring efficient use of resources and promoting competition.
+Article 17(2) explicitly mandates passive sharing by allowing the Authority to impose obligations on operators to share facilities and provide collocation services, ensuring that charges are cost-based.
+Article 24(1) highlights the priority of facility sharing in cases where existing infrastructure is available, further supporting the effectiveness of passive sharing.","Since November 2008
+
+",https://tahseen.ae/media/3385/Türkiye_electronic-communications-law.pdf,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=13416&MevzuatTur=7&MevzuatTertip=5,,,0.515
+5,5.2,Foreign equity limits in telecom sector,0.80,Law on the Establishment of Radio and Television Enterprises and Their Media Services Law No. 6112 (2011),"Law on Radio and Television Enterprises No. 6112 limits foreign ownership in media companies to 50%
+Article 19(1)(f): 
+- Foreign Ownership Limit: Foreign ownership in media companies is capped at 50% of the paid-in capital.
+- Direct Shareholding Limit: A foreign individual or entity can directly hold shares in a maximum of two media service providers.
+- Indirect Shareholding Rules: If foreign entities hold shares indirectly (via other companies), the following conditions apply:
+- The chairman, vice chairman, and majority of the board of directors and general manager must be Turkish citizens.
+- The majority of voting rights in the general assembly must belong to Turkish citizens or entities.
+- Articles of Association: These provisions must be explicitly included in the company's articles of association.
+
+ARTICLE 2 – (1) This Law covers matters related to radio, television and on-demand broadcasting
+services provided by electromagnetic waves or other means, under any name, technique, procedure and means,
+under the jurisdiction of the Republic of Türkiye. Media service providers under the jurisdiction of the Republic of
+Türkiye are those who are considered to be resident in Türkiye in accordance with the second paragraph and
+those subject to the provisions of the third and fourth paragraphs.1
+
+Definitions in Article 3 list various media companies, namely: Infrastructure operator,  Independent producer, Media service provider, Multiplex operator,  Platform operator, Transmitter facility and operating company, Broadcaster, ","Since February 2012
+
+Since March 2011",https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6112.pdf,https://www.lawsTürkiye.com/law/law-on-the-establishment-of-radio-and-television-enterprises-and-their-media-services-6112,,,
+5,5.2,Foreign equity limits in telecom sector,0,The Electronic Communications Law No. 5809 (2008),"Electronic Communications Law (Law No. 5809) does not impose any specific foreign ownership restrictions on telecom operators. Foreign investors can own 100% of a telecom company in Türkiye, provided they comply with the general regulatory and licensing requirements.",Since November 2008,"https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4502.pdf;
+
+https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf",,,,
+5,5.3,Shares owned by the Government in telecom companies,1,"Telegraph and Telephone Law No.406
+;
+2024 Interim Financial Statements Türk Telekomünikasyon 
+;
+2023 Integrated Annual Report Turkcell
+;
+2022 Annual Report Türkiye Wealth Fund ","Telegraph and Telephone Law No. 406
+Article 37 of the Telegraph and Telephone Law No. 406, telecom operators authorized to provide mobile telecommunication services must pay 15% of their monthly gross sales as a Treasury Share. This applies equally to both domestic and foreign operators and does not impose ownership restrictions.
+
+- Türk Telekomünikasyon is a telecommunications company in Türkiye and the government still holds a 25% stake in the company. State control defined as 25% ownership and the golden share of the Treasury and 61,68% ownership of Türkiye Wealth Fund (“TWF”). SOE at 86.68%
+
+- Turkcell is a telecommunications company in which the Turkish Wealth Fund (which is owned by the Government) holds a 26.2% stake in the company, which makes it the largest shareholder. (SOE)
+
+-Türksat Satellite Communications Cable TV and Operations Incorporated (SOE) is the sole G39 communications satellite operator in Türkiye. It was established on 21 December 1990 as a 100% state-owned company (through the Turkish Wealth Fund).
+
+- Vodafone Türkiye: 51% Owned by Türk Telekomünikasyon (SOE) - shown on the 2024 Interim Financial Statements Türk Telekomünikasyon.
+
+","Since February 1924
+;
+Published in 2024
+;
+Published in 2023
+;
+Published in 2022","https://www.lexadin.nl/wlg/legis/nofr/eur/arch/tur/406.pdf
+;
+https://www.ttinvestorrelations.com/media/qxwhkwsd/30-09-2024-cmb-report.pdf
+",https://ffo3gv1cf3ir.merlincdn.net/hakkimizda/en/yatirimciiliskileri/InvestorReportLibrary/trkcll-efr-2023-en_web.pdf,https://www.tvf.com.tr/en/our-portfolio/technology-and-telecom,https://www.tvf.com.tr/uploads/file/twf-integrated-report-2022-website.pdf,
+5,5.4,Lack of functional/accounting separation,0.50,The Electronic Communications Law No. 5809 (2008),"Under Article 21 of the Electronic Communications Law (Law No. 5809) Only accounting separation is mandated for operators with Significant Market Power (SMP). However, functional separation is not explicitly mandated.
+
+Article 20 – Obligations for Operators with Significant Market Power (SMP)
+""The Authority may impose obligations on operators with significant market power, including obligations related to transparency, non-discrimination, accounting separation, access, and price control."" This article establishes the legal basis for imposing functional separation and other obligations on SMP operators to ensure fair competition.
+
+Article 21 – Accounting Separation Obligations: ""The Authority may impose obligations on operators with significant market power to keep separate accounts for their activities related to electronic communications services and networks, including the preparation of financial reports for each service provided."" This article explicitly empowers the ICTA to require accounting separation from operators with SMP to ensure transparency and prevent cross-subsidization between competitive and non-competitive services.
+
+",Since November 2008,https://tahseen.ae/media/3385/Türkiye_electronic-communications-law.pdf,,,,
+5,5.5,Licensing requirements in telecom sector for operators,0,The Electronic Communications Law No. 5809 (2008),"The Electronic Communications Law No. 5809 (2008)
+Companies providing electronic communication services must obtain authorization from the Information and Communication Technologies Authority (ICTA). This often involves establishing a local entity or representative.
+Article 6 of Competencies of the Authority: This provision grants the ICTA the authority to regulate competition in the electronic communications sector, including imposing obligations on SMP operators and addressing issues such as mergers and acquisitions that may affect competition.
+
+Article 9 states that telecom operators must obtain authorization to provide electronic communications services or operate networks. Authorization is based on:
+- Notification: For services that do not require scarce resources (e.g., frequency, numbering, or satellite positions).
+- Right of Use: For services requiring scarce resources, such as spectrum or numbering.
+Article 9(9) allows the ICTA to reject applications for authorization or impose additional conditions based on national security, public order, or public health. While this could indirectly affect foreign operators, it is not explicitly discriminatory and applies to all operators.
+
+Articles 20 and 21 - Operators with SMP are subject to additional obligations to ensure fair competition:
+- Access and Interconnection: SMP operators must provide access and interconnection to other operators on a non-discriminatory and cost-oriented basis.
+- Accounting Separation: SMP operators may be required to maintain separate accounts for different services to prevent anti-competitive practices (Article 21).
+- Tariff Regulation: SMP operators may be subject to tariff approval, price ceilings, or cost-based pricing to prevent anti-competitive behavior (Article 20).
+
+Article 8 of Authorization Requirement: Companies intending to provide electronic communications services or construct and operate electronic communications networks or infrastructure must obtain authorization from the Authority.
+Article 9 of Notification or Rights of Use: Authorization is issued based on:
+- Notification: For services that do not require the assignment of scarce resources (e.g., frequency, number, satellite position).
+- Rights of Use: For services that require the assignment of scarce resources.
+Steps for Authorization:
+- Notification: Companies must notify the Authority of their intention to provide electronic communications services or operate networks/infrastructure before starting their activities. This notification must comply with the Authority’s regulations.
+- Rights of Use: If the service requires scarce resources (e.g., frequency, number, satellite position), the company must apply for and obtain the right of use from the Authority.
+- Timeframe for Authorization: The Authority must issue the right of use within 30 days of a valid application if the number of rights of use is not limited. If the number of rights of use is limited, the Authority may conduct a tender process to allocate the rights.
+- Grounds for Rejection: The Authority may reject applications for rights of use due to: Insufficient resources. Failure to meet qualification requirements. Concerns related to national security, public order, public health, or similar public interests.
+
+Article 10 of Trial Permissions: The Authority may issue provisional permissions for trial or demonstration purposes to companies applying to provide electronic communications services or operate networks/infrastructure.","Since November 2008,
+amended in January 2018
+
+",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=13078&MevzuatTur=7&MevzuatTertip=5,http://www.wipo.int/wipolex/en/details.jsp?id=11023,,
+5,5.6,Not in the WTO Telecom Reference Paper,1,Partial appendment of WTO Telecom Reference Paper to schedule of commitments,"Türkiye has not fully adopted all the principles outlined in the WTO Telecom Reference Paper, which serves as a guideline for regulatory best practices in the telecommunications sector.","Since 1994
+Last reviewed January 2025",https://www.wto.org/english/tratop_e/serv_e/telecom_e/sc88.pdf,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_commit_exempt_list_e.htm,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_highlights_commit_exempt_e.htm#country,,
+5,5.7,Lack of independent telecom authority,0,"The Electronic Communications Law No. 5809;
+
+Law on the Establishment of the Information and Communication Technologies Authority Law No.2813","Law No. 5809 establishes that Türkiye has an independent telecommunications authority, the Information and Communication Technologies Authority (ICTA). The ICTA is responsible for supervising and administering services in the telecommunications sector and making impartial decisions (Article 6). 
+
+- ICTA is defined as a public legal entity with administrative and financial autonomy under Article 5 of Law No. 2813.
+It has its own budget and income sources, including administrative fees, fines, and other revenues, as outlined in Article 5 of Law No. 2813 and Article 11 of Law No. 5809.
+
+- ICTA operates independently in performing its duties, and no organ, authority, institution, or person can give orders or instructions to the Authority (Article 5 of Law No. 2813). The Information and Communication Technologies Board, the decision-making body of ICTA, is composed of seven members, including a chairman, who are appointed for fixed terms and cannot be arbitrarily dismissed.
+
+- ICTA has broad regulatory powers, including licensing, spectrum management, tariff regulation, competition oversight, and consumer protection, as outlined in Articles 6 and 7 of Law No. 5809. It can impose obligations on operators with Significant Market Power (SMP) to ensure fair competition and prevent anti-competitive practices (Article 6 of Law No. 5809).
+
+- ICTA's decisions are subject to judicial review by the Council of State, ensuring accountability while maintaining its independence (Article 62 of Law No. 5809).
+
+The ICTA is legally independent and has the necessary regulatory powers to oversee the telecommunications sector. However, practical concerns, such as its association with the Ministry of Transport and the government's ownership in major telecom operators, may raise questions about the full extent of its operational independence.","Since November 2008;
+
+Since April 1983 amended in 2017",http://www.lawsTürkiye.com/law/2813-law-on-the-establishment-of-the-information-and-communication-technologies-authority,https://wipolex.wipo.int/en/text/246311,,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",1,"The Regulation on Processing of Personal Data and the Protection of Privacy in the Electronic Communication Sector;
+
+Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499","Article 5(2) of the Regulation on Processing of Personal Data and the Protection of Privacy in the Electronic Communication Sector said that it is essential that traffic and location data are not exported abroad for national security reasons. However, Personal Data Protection Law No. 6698 further clarifies that data can be transferred abroad if consent is sought or third party countries have the same level of data protection as the one in Türkiye.
+
+Türkiye has specific bans and local processing requirements for personal data, as outlined in Personal Data Protection Law No. 6698 (KVKK) and its amendments.
+
+Local Processing Requirements
+Article 16 of KVKK establishes the Registry of Data Controllers (VERBIS), which requires data controllers to register and disclose:
+- Whether personal data will be transferred abroad.
+- Measures taken to ensure data security.
+Article 12 of KVKK mandates that data controllers take technical and administrative measures to ensure data security, including preventing unauthorized access and ensuring compliance with local laws.
+
+Article 9(5) of KVKK prohibits the transfer of personal data abroad if it would seriously harm the interests of Türkiye or the data subject. This includes cases where:
+- National security or public order is at risk.
+- The transfer conflicts with Türkiye's international agreements.
+Key Clause: Article 9(5) states: ""In cases where the interest of Türkiye or the data subject will be seriously harmed, personal data may only be transferred abroad upon the permission of the Board after receiving the opinions of related public institutions and organizations.""
+
+Article 18 of KVKK imposes administrative fines for violations of cross-border data transfer rules:
+- Fines range from 20,000 to 1,000,000 TL for failing to comply with Article 9.
+- Additional penalties may apply under the Turkish Penal Code (Article 138) for failing to erase or anonymize personal data.","Since June 2021;
+
+Since April 2016, as amended in August 2024",https://www.resmigazete.gov.tr/eskiler/2020/12/20201204-13.htm,"https://www.lawsTürkiye.com/law/6698-law-on-the-protection-of-personal-data#:~:text=The%20purpose%20of%20this%20Law,persons%20who%20process%20personal%20data.",https://www.resmigazete.gov.tr/eskiler/2024/03/20240312-1.htm,,1
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020;
+ 
+Social Network Provider Procedures and Principles (regulation of the Information and Communication Technologies Authority (ICTA)","Under the Amending Law of the Law No.5651, social network providers that have more than one million daily access from Türkiye are obligated to store user data within the country. The Law was amended in October 2020 and now defines the term ""social network provider"", oblige them to appoint a local representative, set out procedures for content removal, request reports every six months, and require user data to be stored within Türkiye.
+
+In September 2020, the Information and Communication Technologies Authority (ICTA) published a secondary regulation called ""Social Network Provider Procedures and Principles"", which clarifies the amendments applicable to social network providers.The amendments entered into force in October 2020.
+
+Under the law, domestic or foreign social network providers that have more than one million daily accesses to their services from Türkiye are obligated to store user data within the country. ICTA's secondary regulation indicates that social network providers must prioritize storing users' basic information and the information required by ICTA within Türkiye, and the measures must be reported every six months. ","Since May 2007, as amended in October 2022;
+
+Since October 2020","https://mbkaya.com/turkish-internet-law/；
+
+https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf
+
+",https://www.btk.gov.tr/uploads/boarddecisions/sosyal-ag-saglayici-hakkinda-usul-ve-esaslar/274-2020-web.pdf,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",1,The Presidential Circular on Information and Communication Security Measures No. 2019/12,"Presidential Circular No. 2019/12 mandates that critical data, such as population, health, communication records, genetic, and biometric data, must be stored domestically within Türkiye. This is not explicitly a restriction on cross-border data transfers but is interpreted as a requirement to maintain a backup of such data within Türkiye for accessibility and security purposes.
+
+Article 1 of the Presidential Circular No. 2019/12 ""Critical information and data such as population, health, and communication records, and genetic and biometric data shall be securely stored domestically."" This provision mandates that critical data must be stored within Türkiye to ensure its confidentiality, integrity, and accessibility. While not explicitly prohibiting cross-border transfers, it requires a domestic backup for accessibility and security purposes.
+
+Article 2 of the Presidential Circular No. 2019/12""Critical data in public institutions and organizations shall be kept in a secure network in an offline and physically secure medium, access to the devices to be used in such network shall be controlled, and the logs shall be preserved under precautions against modification."" This applies to public institutions and critical infrastructure enterprises, ensuring that their critical data is stored securely within Türkiye.
+
+",Since July 2019,https://cbddo.gov.tr/en/presidential-circular-no-2019-12-on-information-security-measures,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,"Banking Law No. 5411;
+
+VII-128.9 Communiqué on Management of Information Systems (2018)","Banking Law No. 5411:
+Article 11 of the Regulation on Internal Systems of Banks: ""Banks must maintain their primary and secondary data systems in Türkiye."" This includes all infrastructure, hardware, software, and data necessary for fulfilling banking duties under applicable laws.
+
+Article 26 of the Communique on Information Systems: ""Primary and secondary systems of public companies and institutions under CMB supervision must be stored domestically.""
+","Since October 2005, last amended in Febrary 2020
+;
+Since January 2018",https://www.lawsTürkiye.com/law/banking-law-5411,https://cmb.gov.tr//data/6281521a1b41c617eced0ee8/89e94fd27420c0c94828633d90e7b299.pdf,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,"Electronic Communications Law Law No. 5809 (2008)
+;
+ICTA Decision No. 2019/DK-TED/53","Electronic Communications Law (Law No. 5809):
+
+Article 51(6): ""Traffic and location data can only be transferred abroad based on the explicit consent of the data subjects.""
+Traffic and location data must be stored domestically for national security reasons.
+
+eSIM and eCall Regulations ICTA Decision No. 2019/DK-TED/53: 
+""Data generated by eSIM technologies and in-vehicle emergency call systems must be stored in Türkiye."" 
+Specifically, all infrastructure, system and storage units, including equipment and software related to the eSIM platform in GSMA standards, shall be established in Türkiye by a licensed local operator (or by a third party to be appointed by such local operators, but liability remaining with the local operator). The decision also states that all data should be kept within Turkish borders. Moreover, where the devices manufactured to be used in Türkiye or imported to the country have remotely programmable SIM (eUICC, eSIM/embedded SIM, etc.) technologies, their relevant modules are expected to be programmable only by local mobile operators and only local mobile operator profiles may be installed.","Since November 2008
+;
+Since February 2019",https://www.lawsTürkiye.com/law/5809-electronic-communications-law,https://www.btk.gov.tr/uploads/boarddecisions/uzaktan-programlanabilir-sim-teknolojileri-esim/053-2019-web.pdf,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499
+;
+Regulation on Personal Health Data (2019)","Article 9 of the KVKK on the Regulation on Personal Health Data: 
+""Health data must be stored domestically, and its transfer abroad is subject to strict conditions, including explicit consent or adequate safeguards.""
+
+Aligning with Article 15 of Transfer of Health Data of the Regulation on Personal Health Data (published under number 30808 in the Official Gazette on June 21, 2019)","Since April 2016, as amended in August 2024
+;
+Since June 2019",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://www.resmigazete.gov.tr/eskiler/2019/06/20190621-3.htm,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499
+;
+The Presidential Circular on Information and Communication Security Measures No. 2019/12","Presidential Circular No. 2019/12
+
+Article 3 of the Presidential Circular No. 2019/12 ""Data of public institutions and organizations shall not be stored in cloud storing services except for the institutions’ own private systems or local service providers controlled by the institutions."" This provision indirectly applies to private entities (e.g., cloud service providers) that serve public institutions, requiring them to host data on local servers.
+
+Article 20: ""Operators authorized to provide communication services shall be obliged to establish an internet exchange point in Türkiye. Necessary measures shall be taken for preventing the export of the domestic communication traffic that should be exchanged domestically."" This provision ensures that domestic communication traffic remains within Türkiye's borders by building IXP.
+
+Article 21: ""In those regions where critical institutions are located, operators shall transmit data on fiber optic cables instead of methods such as radio link. In critical data communication, radio link communication shall not be used; however, in cases where such use is inevitable, data shall be encrypted using devices that hold national encryption systems."" This provision emphasizes the localization of infrastructure data related to critical sectors.","Since April 2016, as amended in August 2024
+;
+Since July 2019",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://cbddo.gov.tr/en/presidential-circular-no-2019-12-on-information-security-measures,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1,"Banking Law No. 5411;
+
+VII-128.9 Communiqué on Management of Information Systems (2018)","Banking Law No. 5411: Banks must maintain primary and secondary data systems (including infrastructure, hardware, software, and data) within Türkiye. Article 11 of the Regulation requires that all data necessary for fulfilling banking duties under applicable laws must be stored domestically. Backup systems must also be located within Türkiye to ensure business continuity and compliance with local regulations.
+
+Capital Markets Board (CMB) Regulations: Public companies and institutions under CMB supervision must store primary and secondary systems domestically. Article 26 of the Communique on Information Systems specifies that systems involved in the storage and use of data required for compliance with capital market regulations must be located in Türkiye.","Since October 2005, last amended in February 2020
+;
+Since January 2018",https://www.lawsTürkiye.com/law/banking-law-5411,https://cmb.gov.tr//data/6281521a1b41c617eced0ee8/89e94fd27420c0c94828633d90e7b299.pdf,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1,"Electronic Communications Law Law No. 5809 (2008)
+;
+ICTA Decision No. 2019/DK-TED/53","Electronic Communications Law (Law No. 5809) 
+Article 51(6) restricts the cross-border transfer of traffic and location data unless explicit consent is obtained. Operators must ensure that domestic communication traffic remains within Türkiye's borders. Traffic and location data must be stored domestically for national security reasons.
+
+ICTA Decision No. 2019/DK-TED/53 requires that all data generated by eSIM technologies be stored domestically. Data generated by eSIM technologies and in-vehicle emergency call systems must be stored in Türkiye.
+
+","Since November 2008
+;
+Since February 2019",https://www.lawsTürkiye.com/law/5809-electronic-communications-law,https://www.btk.gov.tr/uploads/boarddecisions/uzaktan-programlanabilir-sim-teknolojileri-esim/053-2019-web.pdf,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,Banking Law No. 5411 ,"Banking Law No. 5411 (only available in Turkish) foresees specific rules for cross-border transfers of customer data. Conditions regarding the cross-border transfer of customer data set forth under the Banking Law should take precedence over conditions set forth under the Data Protection Law. The Banking Law stipulates that even if the explicit consent of the customer is obtained pursuant to the Data Protection Law for cross-border transfers or transfers of customer data to third parties located in Türkiye, the customer data should not be shared with and transferred to third parties located in Türkiye or outside Türkiye without the customers' instructions or requests.
+
+Furthermore, under the Banking Law, the Banking Regulation and Supervision Authority is authorised to prohibit the sharing or transfer of customer data or bank secrets with third parties located outside Türkiye, as well as to make decisions regarding keeping information systems used by banks and their backups locally due to evaluations regarding economic security.
+
+Banks must ensure that personal data is not transferred abroad unless it complies with Article 9 of the KVKK.","Since October 2005, last amended in February 2020",https://www.lawsTürkiye.com/law/banking-law-5411,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,"Personal Data Protection Law No. 6698  (KVKK), as amended in August 2024 by Law 7499
+","According to the article 9 of the Personal Data Protection Law, data cannot be processed or transferred abroad without the individual's explicit consent. Consent will not be required if the transfer is necessary to exercise a right or is required by law, and either: 
+- Sufficient protection exists in the transferee country, or
+- if the data controller gives a written security undertaking and Türkiye’s Data Protection Board grants permission.
+
+It is reported that these conditions are very restrictive, so that, in some cases, data controllers have made their own assessment of whether personal data will be adequately protected based on the criteria used by the Turkish Personal Data Protection Authority to assess adequacy. 
+
+Personal Data Protection Law No. 6698 (KVKK)
+
+Article 9: This is the primary article regulating cross-border data transfers. Key provisions include:
+- Adequacy Decision: Data can be transferred to countries deemed to provide an adequate level of protection by the Personal Data Protection Board (DPA).
+- Appropriate Safeguards: If no adequacy decision exists, data can be transferred if the data controller provides appropriate safeguards (e.g., Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)), subject to DPA approval.
+- Explicit Consent: In the absence of adequacy or safeguards, data can only be transferred abroad with the explicit consent of the data subject.
+Exceptional Transfers: Data may be transferred without consent in specific cases, such as:
+- Protection of life or physical integrity.
+- Performance of a contract.
+- Establishment, exercise, or protection of legal claims.
+- Legitimate interests of the data controller, provided it does not harm the data subject's rights.
+
+Article 8: Regulates the domestic transfer of personal data but also applies to cross-border transfers indirectly. Requires compliance with general data processing principles and the data subject's explicit consent, unless an exception applies.
+
+Article 18: Specifies penalties for non-compliance with cross-border data transfer rules, including:
+- Administrative fines ranging from 15,000 to 1,000,000 TL.
+- Suspension of data processing activities.","Since April 2016, as amended in August 2024",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6698.doc,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,Electronic Communications Law No. 5809 (2008),Article 51(6): Traffic and location data can only be transferred abroad with explicit consent and under strict conditions to ensure national security.,"Since November 2008, as amended in January 2015",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499
+;
+Regulation on Personal Health Data (2019)","This regulation governs the processing and transfer of health data, which is considered sensitive personal data under the KVKK.
+
+Article 15: Health data can only be transferred abroad if:
+- The data subject provides explicit consent.
+- The transfer complies with Article 9 of the KVKK.
+- Adequate safeguards are in place, or the transfer is necessary for public health or the protection of public order.
+
+Article 12 of Secure Storage of Health Data: Health data must be stored in secure systems that comply with national and international data security standards, ensuring that infrastructure requirements are met.","Since April 2016, as amended in August 2024
+;
+Since June 2019",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://www.resmigazete.gov.tr/eskiler/2019/06/20190621-3.htm,,,
+6,6.5,Not in an agreement with binding commitments on data transfer.,1,Lack of participation in agreements with binding commitments on data flows,"Türkiye has not joined any agreement with binding commitments to open transfers of data across borders.
+
+Türkiye has not fully committed to binding international agreements on data flows, such as those under the EU GDPR framework. While Türkiye has introduced mechanisms like Binding Corporate Rules (BCRs) and Standard Contractual Clauses (SCCs) for cross-border data transfers, these are implemented domestically under the Personal Data Protection Law No. 6698 (KVKK) and are subject to approval by the Personal Data Protection Authority (DPA).
+
+Türkiye has not formally committed to or joined binding international agreements on data flows, such as the Comprehensive and Progressive Agreement for Trans-Pacific Partnership (CPTPP) or the Digital Economy Partnership Agreement (DEPA).
+
+Türkiye's data localization policies and conditional data flow regimes create challenges for aligning with international agreements like the CPTPP, DEPA, or similar frameworks. Key domestic policies include:
+
+- Presidential Circular No. 2019/12: Mandates domestic storage of critical data, such as health, population, and communication records.
+- Sector-Specific Regulations: Banking, healthcare, and telecommunications sectors impose strict localization requirements.
+- KVKK (Article 9): Allows cross-border data transfers only under specific conditions, such as adequacy decisions, appropriate safeguards, or explicit consent.",Last reviewed January 2025,https://www.unilu.ch/fileadmin/fakultaeten/rf/burri/TAPED/TAPED_Dataset_Burri_Vasquez_Polanco_June_2022.xlsx,,,,
+7,7.1,Lack of comprehensive legal framework for data protection,0,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499","Türkiye has adopted a comprehensive data protection legal framework that applies to personal data across sectors. In April 2016, Türkiye enacted the Law on Protection of Personal Data No. 6698, which regulates the processing of personal data in Türkiye. The law includes stricter provisions for special categories of personal data, such as sensitive personal data relating to race, ethnic origin, political opinions, philosophical beliefs, religion, sect or other beliefs, clothing, membership of associations, foundations, or trade unions, health data, information related to sexual life, previous criminal convictions and security measures, and biometric and genetic data. The law is primarily based on EU Directive 95/46/EC and includes provisions similar to those of the GDPR. The law also allows the Personal Data Protection Authority to prohibit the cross-border transfer of data even if explicit consent of the data subject is obtained if it deems necessary
+
+Türkiye has a dedicated data protection law, the Personal Data Protection Law No. 6698 (KVKK), which was enacted in 2016. It provides a legal framework for the protection of personal data and includes:
+
+- General Principles: Articles 4 and 5 outline principles such as lawfulness, accuracy, purpose limitation, and data minimization.
+- Data Subject Rights: Article 11 grants individuals rights such as access, rectification, erasure, and objection to data processing.
+- Obligations for Data Controllers: Articles 10 and 12 impose obligations on data controllers to inform data subjects and ensure data security.
+- Cross-Border Data Transfers: Article 9 regulates the transfer of personal data abroad, requiring either explicit consent or sufficient protection in the recipient country.
+- Sensitive Data: Article 6 provides additional safeguards for sensitive data, such as health and biometric data.
+","Since April 2016, as amended in August 2024",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://www.dataguidance.com/notes/Türkiye-data-protection-overview,,,0.531
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,"Law No. 6493 on Payment and Security Settlement Systems, Payment Services and Electronic Money Institutions ","The article 23 of law  requires that ""the system operator, payment institution and electronic money institution shall be required to keep all the documents and records related to the matters within the scope of this Law for at least ten years within the country, in a secure and accessible manner"". The article also specifies that ""The information systems and their substitutes, which are used by system operator to carry out its activities shall also be kept within the country"".","Since 2013, amended in March 2015",https://www.tcmb.gov.tr/wps/wcm/connect/de4fb4cc-19c4-47fe-a9cb-9ef0397a8923/Payment+Systems+Law.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-de4fb4cc-19c4-47fe-a9cb-9ef0397a8923-nbMX.z3,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,Electronic Communications Law No. 5809,"According to Article 51(10) of the Electronic Communications Law No. 5809: 
+- Personal data subject to inspection, examination, investigation or dispute shall be retained until the related period has been completed;
+- Logs that prove the consent of subscribers/users for processing personal data are retained throughout subscription period;
+- Categories of data to be retained and data retention periods, not less than one year and not more than two years from the date of the communication, are determined by secondary law.
+
+Article 51 - Retention of Traffic Data: Operators providing electronic communications services are required to retain traffic data for a minimum period of one year and a maximum period of two years, as determined by the Information and Communication Technologies Authority (ICTA).","Since November 2008, as amended in June 2021",https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5809&MevzuatTur=1&MevzuatTertip=5 ,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",0,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499
+;
+The Presidential Circular on Information and Communication Security Measures No. 2019/12","Personal Data Protection Law No. 6698 (KVKK)
+
+Article 4(2)(d) - Retention Period:
+Personal data must be retained only for the period stipulated by relevant legislation or for the purpose for which they are processed. While this does not specify a fixed minimum period, it implies that retention must comply with sector-specific laws or regulations.
+
+Presidential Circular No. 2019/12 on Information and Communication Security Measures
+This circular mandates that critical data (e.g., health, population, and communication data) must be securely stored domestically, but it does not explicitly define a minimum retention period. Instead, it emphasizes compliance with sector-specific regulations.","Since April 2016, as amended in August 2024
+;
+Since July 2019",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://cbddo.gov.tr/en/presidential-circular-no-2019-12-on-information-security-measures,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,Social Security and General Health Insurance Law No. 5510 ,"Article 86 of the law requires:
+- Employers to retain information in employee personnel files for ten years after the employee departs;
+- Private employers and workplace owners to retain insurance-related books, records, and documents for ten years after the beginning of the year after they create them;
+- Public administrations to retain insurance-related books, records, and documents for 30 years;
+-  Liquidation and bankruptcy administration officers to retain insurance-related books, records, and documents during their term office from the beginning of the relevant year.",Since May 2006,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Distance Contracts ,"The article 20 (1), (2), requires sellers, providers, and intermediary service providers to retain transaction-related information documents for distance contracts for three years after the transaction.",Since November 2014,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=20237&MevzuatTur=7&MevzuatTertip=5,https://ticaret.gov.tr/data/5d42aa1613b87632542a2db3/REGULATION%20ON%20DISTANCE%20CONTRACTS.pdf,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Commercial Communications and Commercial Electronic Communications,"The article 13 (2) of the regulation requires service providers and intermediary service providers to retain:
+- consents they obtain to send recipients electronic commercial communications for three years after the
+consents expire; and
+-  other records related to electronic commercial communications for three years after they create them.
+",Since July 2015,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=20914&MevzuatTur=7&MevzuatTertip=5,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Turkish Commercial Code No. 6102 ,"The article 82 (1), (5) of the Code requires natural and legal persons engaging in commercial activity (merchants) to retain sent and received commercial letters, commercial books, accounting reports, opening and interim balance sheets, inventories, annual activity reports, community financial statements, organizational documents, and any other related documents for ten years.
+
+Article 82 (1): Obligation to Retain Commercial Documents. Natural and legal persons engaging in commercial activity (merchants) are required to retain:
+- Sent and received commercial letters.
+- Commercial books.
+- Accounting reports.
+- Opening and interim balance sheets.
+- Inventories.
+- Annual activity reports.
+- Community financial statements.
+- Organizational documents.
+- Any other related documents.
+Retention Period: These documents must be retained for ten years starting from the end of the fiscal year in which they were created.
+
+Article 82 (5): Accessibility and Security of Records. The retained documents must be stored in a manner that ensures:
+- Security: Protection against unauthorized access or damage.
+- Accessibility: The ability to retrieve the documents when needed.
+- Compliance: Adherence to legal and regulatory requirements.",Since July 2011,"https://www.wipo.int/wipolex/en/legislation/details/11081
+
+",,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Tax Procedure Law No. 213 ,"The articles 253 and 654 of the law require applicable taxpayers to retain tax books and related records for five years after the ensuing calendar year.
+
+Article 253: Obligation to Retain Tax Books and Records. Taxpayers are required to retain:
+- Tax books.
+- Records.
+- Receipts.
+- Invoices.
+- Other documents related to taxation.
+Retention Period: These documents must be retained for five years starting from the end of the calendar year in which the documents were created.
+
+Article 254: Accessibility of Records. The retained tax books and records must be:
+- Accessible: Available for inspection by tax authorities upon request.
+- Secure: Stored in a manner that prevents loss, damage, or unauthorized access.",Since 1961,https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf,https://av-saimincekas.com/en/kanunlar/vergi-usul-kanunu/,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Procedures and Principles Regarding Accounting Practices of Banks and Retention of Documents ,"The article 17 of the regulation requires banks to retain documents related to their activities, including letters, telegraphs, emails, contracts, notices, and other communications they receive from customers and private or public institutions and organizations, for ten years.
+
+Article 17 of the regulation explicitly requires banks to retain documents related to their activities, including:
+- Letters.
+- Telegraphs.
+- Emails.
+- Contracts.
+- Notices.
+- Other communications received from customers, private institutions, or public institutions and organizations.
+Retention Period: These documents must be retained for a minimum of ten years.",Since November 2005,https://www.resmigazete.gov.tr/eskiler/2006/11/20061101-22.htm,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Ministry of Health's Regulation on Personal Health Data,"The article 11 (2) of the regulation requires health service providers to retain deceased persons' health data for at least 20 years.
+
+Article 11 (2) of the Regulation on Personal Health Data explicitly states: Health service providers are required to retain the health data of deceased persons for at least 20 years. This retention requirement ensures that the health data of deceased individuals is preserved for legal, medical, and administrative purposes, such as resolving disputes, conducting research, or fulfilling regulatory obligations.",Since June 2019,https://www.resmigazete.gov.tr/eskiler/2019/06/20190621-3.htm,https://ict.moph.go.th/upload_file/files/eHealth_Strategy_ENG_141117.pdf,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Genetic Disease Assessment Centers,"The article 24 of the regulation requires genetic assessment centers to retain:
+- patients' informed consent forms and genetic counseling informative report samples they take before a genetic study for at least ten years;
+- reports and records for at least 30 years;
+- electronic records indefinitely with backup; and
+- samples and slides for at least two years.",Since January 2020,https://www.resmigazete.gov.tr/eskiler/2020/01/20200110-1.htm,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Health and Safety Measures in Working with Carcinogenic and Mutagenic Substances,"Articles 14, 16 and 17(1) of the regulation require employers to retain specified employee health information on carcinogenic and mutagenic substance exposure for 40 years after the exposure.",Since August 2013,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=18695&MevzuatTur=7&MevzuatTertip=5,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Service Providers and Intermediary Service Providers in E-Commerce,The article 11 (2) of the regulation  requires service providers and intermediary service providers to retain electronic records related to e-commerce transactions for three years after the transaction.,Since August 2015,https://www.resmigazete.gov.tr/eskiler/2015/08/20150826-10.htm,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020
+","The article 5 (3) requires hosting providers to retain traffic information for provided services for between one and two years, and the article 6 (1) (b) requires access providers to retain specified traffic information for provided services for between six months and two years.
+
+Article 5 (3): Hosting Providers' Obligation to Retain Traffic Information. Hosting providers are required to retain traffic information related to the services they provide for a period of 1 to 2 years. This retention is necessary for legal and regulatory compliance, particularly for investigations into crimes committed through internet broadcasting.
+
+Article 6 (1)(b): Access Providers' Obligation to Retain Traffic Information. Access providers are required to retain specified traffic information related to the services they provide for a period of 6 months to 2 years. This ensures that access providers maintain sufficient records to assist in identifying and investigating illegal activities conducted online.","Since May 2007, as amended in October 2022","https://perma.cc/T97C-AM9H
+
+
+",https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,https://mbkaya.com/turkish-internet-law/,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Regulation on Processing and Protection of the Privacy of Personal Data in the Electronic Communication Sector,"The article 14 of the regulation requires operators to retain:
+- personal data for an ongoing investigation, examination, audit, or dispute until they complete the process;
+- specified subscriber and service data for one year after the relevant communication; and
+- transaction records regarding access to personal data or other related systems for no more than four years.",Since June 2021,https://www.resmigazete.gov.tr/eskiler/2020/12/20201204-13.htm,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,The Occupational Health and Safety Regulation ,The article 7 (1) (b) of the regulation requires employers to keep health-related data for 15 years. ,Since December 2012,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=16924&MevzuatTur=7&MevzuatTertip=5,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1,Regulation on the Registry of Data Controllers ,"According to Article 11 of the Regulation on the Registry of Data Controllers, a contact person must be appointed if the data controller is a legal entity located in Türkiye and is not exempt from registration with the Turkish Personal Data Protection Authority. Additionally, if the data controller is not located in Türkiye, it must appoint a representative who must be either a Turkish legal entity or Turkish citizen.
+
+The data controller’s contact person or representative is responsible for managing communications with the Turkish Personal Data Protection Authority and data subjects. Data controllers remain liable for compliance with the Protection of Personal Data Law regardless of the appointment of a contact person or a representative.",Since January 2018,https://www.kvkk.gov.tr/Icerik/4117/Veri-Sorumlulari-Sicili-Hakkinda-Bilgilendirme,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499","Accord to the law, companies are required to appoint a ""data controller"" who will be responsible for compliance under the Protection of Personal Data Law. If a data controller is located in Türkiye, a contact person for the data controller must be appointed. However, if a data controller is located outside Türkiye, a national representative, either a natural or juristic person, must be appointed.
+
+While the Law does not directly require companies to appoint a Data Protection Officer (DPO), it does regulate the obligation to take all necessary technical and administrative measures to provide a sufficient level of security in order to prevent unlawful processing of personal data.
+
+KVKK does not explicitly require a DPO. However, organizations must designate a contact person (referred to as ""İrtibat Kişisi"") for communication with the Personal Data Protection Authority (KVKK Board) if they are registered in the Data Controllers Registry (VERBIS).
+Contact Person (İrtibat Kişisi):
+- This person is responsible for ensuring communication between the organization and the KVKK Board.
+- The contact person does not have the same responsibilities as a GDPR DPO but serves as a point of contact for compliance-related matters.
+- For foreign data controllers, a representative must be appointed in Türkiye.
+
+KVKK does not explicitly require a DPIA as defined under GDPR. However, there are obligations that indirectly align with the objectives of a DPIA:
+- Under Article 12 of KVKK, data controllers are required to take technical and administrative measures to ensure the security of personal data and prevent unlawful processing, access, or loss. This includes conducting internal assessments to identify risks and implement appropriate safeguards.
+- For sensitive data (e.g., health, biometric, or genetic data), Article 6 requires the implementation of adequate measures determined by the KVKK Board. These measures may involve risk assessments similar to a DPIA to ensure compliance.",Since April 2016,https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,,,,
+7,7.4,Requirements to allow government access to personal data,1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020 
+","Law No. 5651 on Regulating the Internet was amended in September 2014, broadening the scope of administrative blocking and allowing the authorities to access user data without a warrant. While the Constitutional Court overturned these provisions a month later, they were once again passed in March 2015. 
+
+Internet Law No. 5651
+
+Article 6(1)(b): Access providers are required to store traffic data for 6 months to 2 years and ensure its accuracy, integrity, and privacy. This data can be accessed by the government upon request.
+
+Article 6/A(6): The Access Providers Association must implement access blocking decisions, which can be issued by the ICTA without judicial oversight in certain cases.","Since May 2007, as amended in October 2022",https://mbkaya.com/turkish-internet-law/,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,,,
+7,7.4,Requirements to allow government access to personal data,1,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499","Article 28 of the Personal Data Protection Law outlines situations where personal data can be shared without the consent of the user. These include:
+-Personal data used for official statistics, research, planning, and statistics after anonymization.
+-Personal data used for artistic, historical, literary, or scientific purposes, as long as it doesn't violate various national interests or personal rights.
+-Personal data processed for national defense, security, public order, or economic security by authorized public institutions.
+-Personal data processed by judicial or execution authorities during investigations or legal proceedings.
+
+Additionally, certain provisions of the law related to informing data subjects, their rights (excluding compensation claims), and data controller registration do not apply when personal data processing is necessary for:
+- Crime prevention or investigation.
+- Data voluntarily made public by the individual.
+- Regulatory, supervisory, or disciplinary activities conducted by authorized public institutions or professional organizations.
+- Protection of the State's economic and financial interests regarding budget, tax, and financial matters.
+
+The provisions in Article 28(2) of the KVKK provide a legal basis for processing personal data without consent in specific scenarios, such as crime prevention, regulatory activities, or protecting the State's financial interests.",Since April 2016,https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6698.doc,https://www.kvkk.gov.tr/Icerik/4196/Kisisel-Verilerin-Korunmasi-Kanunu-Hakkinda-Sikca-Sorulan-Sorular,,
+7,7.4,Requirements to allow government access to personal data,1,"Electronic Communications Law No. 5809 (2008)
+
+","Electronic Communications Law No. 5809
+
+Article 59(2): The Information and Communication Technologies Authority (ICTA) can inspect all electronic communications infrastructure, systems, and data stored electronically without requiring a court order. This includes the right to examine documents, take copies, and request explanations.
+
+Article 60(1): The ICTA can impose measures to ensure national security and public order, including taking over facilities or revoking authorizations, without judicial approval.","Since November 2008, as amended in January 2015",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,,,
+7,7.4,Requirements to allow government access to personal data,0,The Disinformation Law No. 7418 (2002),"Disinformation Law (Amendments to Internet Law No. 5651)
+
+Article 217/A of the Turkish Penal Code (introduced by the Disinformation Law): Allows imprisonment for spreading ""misleading information"" that disrupts public order. 
+
+Article 6/A(11): The Access Providers Association can notify content or hosting providers of blocking decisions via email, bypassing judicial processes in certain cases.",Since October 2022,https://www.resmigazete.gov.tr/eskiler/2022/10/20221018-1.htm,,,,
+8,8.1,Lack of safe harbour for copyright infringements,0,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020;
+
+Regulation on Electronic Commerce Intermediary Service Providers and Electronic Commerce Service Providers No. 32058
+
+","Article 4 and 6 of the Law No. 5651 regulates the liability of Internet intermediaries and service providers and provide a safe harbor to both. However, Article 6 also states that, if informed by the government, the access providers should prevent access to the content that considered illegal in accordance with the provisions of the law.
+
+Türkiye has a framework in place that limits liability for intermediaries under Internet Law No. 5651. This law outlines the responsibilities and obligations of intermediaries, such as content providers, hosting providers, and access providers, while also limiting their liability under certain conditions.
+
+Article 4: Content providers are responsible for the content they create, amend, or provide on the internet.They are not liable for links to third-party content unless it is clear that they endorse or intend to make the linked content accessible.
+
+Article 5: Hosting providers are not obligated to monitor the content they host or investigate its legality. They are required to remove illegal content only if notified in accordance with Articles 8 and 9 of the law.
+
+Article 6: Access providers are not responsible for the content accessed through their services. They are required to block access to illegal content only if notified in accordance with the law.
+
+Article 6/A: The association is responsible for implementing decisions to block access or remove content. Notifications to the association are considered sufficient for compliance by access providers.
+
+Intermediaries (content, hosting, and access providers) are not held liable for illegal content unless they fail to act after being notified of a legal decision to remove or block access to the content.","Since May 2007, as amended in October 2022;
+
+Since December 2022
+",https://mbkaya.com/turkish-internet-law/,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,"https://perma.cc/T97C-AM9H
+
+
+",,0.625
+8,8.1,Lack of safe harbour for copyright infringements,0,"Law No. 6563 on the Regulation of Electronic Commerce ;
+
+Law No.7416 Amending the Law on the Regulation of Electonic Commerce","Article 9 of the E-commerce Law regulates that unless there is a contrary provision in other laws, the general principle is that the intermediary service providers are not responsible for the illegality of the content offered by the service provider. Nevertheless, it is obliged to remove the content and to report the illegal issue to the relevant public institutions and organisations without delay, if it becomes aware ofthe illegality of the content.","Since May 2015;
+
+Since January 2023",https://www.resmigazete.gov.tr/eskiler/2014/11/20141105-1.htm,https://www.resmigazete.gov.tr/eskiler/2022/07/20220707-2.htm,,,
+8,8.2,Export restrictions on ICTgoods and online services,1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020;
+
+Regulation on Electronic Commerce Intermediary Service Providers and Electronic Commerce Service Providers No. 32058
+
+","Internet Law No. 5651 provides limited liability for intermediaries (e.g., hosting providers, access providers, and content providers) for illegal content, provided they comply with obligations such as removing or blocking access to content upon notification. The safe harbor applies only to content-related issues (e.g., defamation, privacy violations, or illegal content). It does not extend to other illegal activities, such as fraud, intellectual property violations, or other criminal acts facilitated through their platforms.","Since May 2007, as amended in October 2022;
+
+Since December 2022
+",https://mbkaya.com/turkish-internet-law/,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,"https://perma.cc/T97C-AM9H
+
+
+",,
+8,8.2,Export restrictions on ICTgoods and online services,0.50,"Law No. 6563 on the Regulation of Electronic Commerce;
+
+Law No.7416 Amending the Law on the Regulation of Electonic Commerce","Article 9 of the E-commerce Law regulates that unless there is a contrary provision in other laws, the general principle is that the intermediary service provideris not responsible for the illegality of the content offered by the service provider. Nevertheless, it is obliged to remove thecontent and to report the illegal issue to the relevant public institutions and organisations without delay, if it becomes aware ofthe illegality of the content.
+
+Article 9 of the E-Commerce Law limits the liability of intermediary service providers for illegal content offered by service providers, provided they act to remove the content and report it upon becoming aware of its illegality. The safe harbor applies only to content-related issues in the context of e-commerce. It does not provide protection for intermediaries against liability for other illegal activities, such as counterfeit goods, financial fraud, or violations of consumer protection laws.","Since May 2015;
+
+Since January 2023",https://www.resmigazete.gov.tr/eskiler/2014/11/20141105-1.htm,https://www.resmigazete.gov.tr/eskiler/2022/07/20220707-2.htm,,,
+8,8.3,User identify requirements,0.50,Electronic Communications Law No. 5809,"Article 56 of Electronic Communications Law No. 5809
+- Subscribers must provide a copy of their identity card during the SIM registration process.
+- Operators are required to verify the identity of the subscriber before activating the SIM card.
+- It is prohibited to provide false information or documents during the SIM registration process.
+- Operators must ensure that the identity information provided by the subscriber is accurate and valid.
+- Operators are required to retain subscriber information, including identity details, for regulatory and security purposes.","Since November 2008, as amended in January 2015",http://www.lawsTürkiye.com/law/5809-electronic-communications-law,,,,
+8,8.3,User identify requirements,1,The Regulation on the Process of Identity Authentication of Applicants in the Electronic Communications Sector of the Information Technologies and Communication Authority No.31523,"This Regulation establishes procedures and principles for authenticating identity during the creation of electronic documents for subscription contracts and applications in the electronic communications sector.
+
+The Regulation introduces four different methods for identity authentication in the electronic communications sector:
+- Authentication through the e-Government System.
+- Authentication through artificial intelligence compliant with the ICAO 9303 standard.
+- Authentication through the Turkish Republic Identity Card (TCKK) by Enhanced PDF Electronic Signature compliant with the TSI EN 319 142 standard.
+- Authentication through video recording in face-to-face applications.",Since December 2021,https://www.resmigazete.gov.tr/eskiler/2021/06/20210626-21.htm,,,,
+8,8.4,Monitoring requirements,1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020
+
+","Türkiye has monitoring requirements under its legal framework, particularly through Internet Law No. 5651 and related regulations. These requirements include obligations for monitoring users' activities and removing or blocking content under specific circumstances.
+
+Article 7: Mass use providers (e.g., internet cafes, public Wi-Fi providers) are required to:
+- Restrict access to illegal content.
+- Keep access records of users' activities.
+- Take measures to protect minors and prevent crimes.
+These obligations effectively require monitoring of users' activities in public internet access points.
+
+Article 8: Content and access providers must comply with decisions to remove content or block access to illegal content, such as:
+Child sexual abuse,
+Terrorism, Public misinformation, Crimes against national security.
+These decisions can be issued by a judge, public prosecutor, or the Information and Communication Technologies Authority (ICTA).
+
+Social Media Law No. 7253 (2020)
+
+Article 5: Individuals can request the removal of content that violates their personal rights. Providers must act on such requests and remove or block access to the content within 24 hours of receiving a judicial decision.
+New Clause (10): Courts may decide that the applicant's name should not be associated with the content in search engines, effectively requiring monitoring of search engine results.
+
+","Since May 2007, as amended in October 2022",https://www.resmigazete.gov.tr/eskiler/2020/07/20200731-1.htm,https://mbkaya.com/turkish-internet-law/,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,,
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020；
+
+Social Media Law No. 7253 (2020)
+","Internet Law No. 5651 provides the legal basis for blocking and filtering online content, including commercial websites, under certain conditions. The law allows for the removal of content and blocking access to websites that violate Turkish laws, including those related to:
+- National security,
+- Public order,
+- Protection of minors,
+- Prevention of crimes such as obscenity, gambling, and terrorism.
+
+Law No. 7253, which amended Internet Law No. 5651, expanded the government's authority to block or filter content, including commercial web content.
+- Article 8: Allows blocking of content related to specific crimes (e.g., obscenity, gambling, terrorism) without prior judicial approval in urgent cases.
+- Article 9: Permits individuals to request content removal or access blocking for violations of personal rights.
+- Article 8/A allows the President of Türkiye or relevant ministries to issue urgent decisions to block access to content or websites without prior judicial approval in cases involving national security, public health, or public order.
+- Article 9 allows individuals to request the removal of content that violates their personal rights, including commercial disputes, through court orders.
+
+Social network providers with more than 1 million daily users in Türkiye are required to:
+- Remove or block content deemed illegal within 24 hours of notification.
+- Respond to user complaints about content removal within 48 hours.
+- Failure to comply can result in administrative fines, advertising bans, or bandwidth throttling.
+If they fail to comply, the following penalties are applied in stages:
+- First Stage: An administrative fine of 10 million Turkish Liras.
+- Second Stage: An additional fine of 30 million Turkish Liras if the obligation is not fulfilled within 30 days of the first fine.
+- Third Stage: A ban on advertising for the social network provider if the obligation is not fulfilled within 30 days of the second fine.
+Bandwidth Reduction Policy: A bandwidth reduction policy is explicitly mentioned in Additional Article 4, Paragraph 2 of Law No. 7253, which amends Law No. 5651
+- If the obligation is still not fulfilled within three months of the advertising ban, the President of the Information and Communication Technologies Authority (BTK) may apply to a criminal court of peace to reduce the social network provider's internet traffic bandwidth by 50%.
+- If the obligation remains unfulfilled within 30 days of the 50% bandwidth reduction, the President may request a further reduction of up to 90%.
+- The judge may decide on a lower percentage (not less than 50%) based on the nature of the service provided.
+- The bandwidth reduction decision is sent to access providers, who must implement it immediately and within four hours of notification.
+","Since May 2007, as amended in October 2022
+;
+Since July 2020","https://perma.cc/T97C-AM9H
+
+
+",https://www.resmigazete.gov.tr/eskiler/2020/07/20200731-1.htm,https://mbkaya.com/turkish-internet-law/,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,0.750
+9,9.2,Internet shutdowns,0.25,Internet shutdown,"The indicator ""6.2.4 - Government Internet shut down in practice"" of the V-Dem Dataset, which measures whether the government has the technical capacity to actively make internet service cease, thus interrupting domestic access to the internet or whether the government has decided to do so, has a score of 2.73 in Türkiye. This corresponds to when internet shutdown rarely occurs.",Reported in 2024,https://www.v-dem.net/vdemds.html,https://www.v-dem.net/data_analysis/CountryGraph/,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",1,The Commercial Advertising and Unfair Commercial Practices Regulation amended by the Regulation 29232,"The Commercial Advertising and Unfair Commercial Practices Regulation, amended by Regulation 29232, sets limitations on certain types of advertisements whether online or offline in Türkiye as the article 2 states that the scope of the regulation is ""all kinds of commercial advertisements and unfair commercial practices aimed at the consumer"". 
+- Dating Services: Advertising related to all types of dating services is forbidden.
+- Advertising services of psychics, astrologers and seers are prohibited.
+- in the field of business: Advertising legal and audit services and suppliers of these services, tax and financial consultancy, legal consultancy, and medical advice services is prohibited.
+Article 5
+- Advertisements must be clearly distinguishable from editorial content.
+- Subliminal advertising and deceptive practices are strictly prohibited.
+- Endorsements must reflect genuine experiences and disclose any compensation arrangements.","Since January 2015, as amended in March 2022",https://mevzuat.gov.tr/mevzuat?MevzuatNo=20435&MevzuatTur=7&MevzuatTertip=5,https://www.mondaq.com/Türkiye/consumer-law/1158980/amendments-to-the-regulation-on-commercial-advertisement-and-unfair-commercial-practices,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",0,Law No. 6502 on the Protection of Consumers (2013),"Law No. 6502 on the Protection of Consumers
+- Article 61 prohibits misleading advertisements that could deceive consumers about the nature, quality, or price of products or services.
+- Article 62: Comparative advertising is allowed but must be objective and not disparage competitors.
+Violations can result in administrative fines, suspension of advertisements, or other penalties.",Since November 2013,https://ticaret.gov.tr/data/5d42a9b313b87632542a2dae/LAW%20ON%20CONSUMER%20PROTECTION.pdf,,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",0,"Personal Data Protection Law No. 6698 (KVKK), as amended in August 2024 by Law 7499
+;
+Electronic Communications Law No. 5809 (2008)","Law No. 6698 on the Protection of Personal Data (KVKK)
+- Advertisers must secure explicit consent for collecting and processing personal data for targeted advertising (Article 5).
+- Businesses must obtain explicit consent from consumers before sending electronic commercial messages (e.g., emails, SMS).
+- Consumers must be provided with an easy and cost-free method to opt out of receiving further messages.
+
+Law No. 6563 on the Regulation of Electronic Commerce
+- Businesses must obtain explicit consent from consumers before sending electronic commercial messages, such as emails or SMS.
+Consumers must be provided with an easy and cost-free method to opt out of receiving further messages.
+
+Healthcare and Pharmaceuticals:
+- Advertising of prescription drugs is prohibited.
+- Over-the-counter medications can only be advertised with approval from the Ministry of Health.
+
+Financial Services:
+- Advertisements for financial products must include clear disclaimers about risks and must not mislead consumers.","Since April 2016
+;
+Since November 2008, as amended in January 2015",https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6698.doc,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0.50,"Regulation on the Presentation of Radio, Television and On-Demand Broadcasts on the Internet","In July 2019, the Regulation on the Presentation of Radio, Television and On-Demand Broadcasts on the Internet was published requiring all online radio, television and on-demand streaming services such as YouTube and Netflix, and online news sites, to obtain a license from the government controlled state television and radio regulator, the Radio and Television Supreme Council (RTÜK). 
+
+Online media service providers must obtain licenses from the Radio and Television Supreme Council (RTÜK).",Since August 2019,"https://perma.cc/34VW-CUS9
+",https://www.loc.gov/item/global-legal-monitor/2019-08-20/Türkiye-new-regulation-requires-media-and-platform-service-providers-to-obtain-licenses-for-offering-radio-and-audiovisual-services-on-the-internet/,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",1,"Law No. 5651 on Regulating Broadcasting in the Internet and Fighting Against Crimes Committed through Internet Broadcasting as amended by the Amending Law of July 31 2020；
+
+Social Media Law No. 7253 (2020)
+;
+Electronic Communications Law No. 5809 (2008)","Law No. 5651 (Internet Law)
+
+Article 3 Content, hosting, and access providers must:
+- Maintain up-to-date identifier information accessible to users.
+- Obtain authorization from the ICTA to operate.
+
+Additional Article 4: Social network providers with over 1 million daily users in Türkiye must:
+- Appoint a local representative in Türkiye (must be a Turkish citizen or a legal entity established in Türkiye).
+- Ensure the representative is authorized to handle technical, administrative, legal, and financial matters.
+- Notify the Information and Communication Technologies Authority (ICTA) of the representative's identity and contact details.
+
+Article 5 Hosting providers must:
+- Retain traffic data for a period of 1-2 years as determined by regulations.
+- Remove illegal content upon notification under Articles 8 and 9.
+- Obtain authorization from the ICTA to operate.
+
+Article 6 Access providers must:
+- Block access to illegal content upon notification.
+- Retain traffic data for 6 months to 2 years.
+- Prevent alternative access methods to blocked content.
+- Obtain authorization from the ICTA to operate.
+
+Article 8: News providers operating online must comply with content removal and access blocking decisions issued by courts or the ICTA. 
+Law No. 7253 (Amendments to Law No. 5651) News providers are subject to the same obligations as social network providers if they meet the daily user threshold of 1 million.
+
+Law No. 5809 (Electronic Communications Law) 
+Article 9: Providers of electronic communications services, including VPNs and cloud services, must obtain a license from the ICTA.
+The ICTA may revoke licenses for non-compliance with national security, public order, or public health requirements.
+Article 10: The ICTA may issue trial licenses for new services or technologies, including online platforms and applications
+Article 11: Providers must pay administrative charges and fees for the right to operate. Non-payment of fees may result in license revocation.
+Article 56 Subscriber and Data Protection: VPN and cloud service providers must ensure the security of subscriber data and prevent unauthorized access.","Since May 2007, as amended in October 2022
+;
+Since July 2020
+;
+Since November 2008, as amended in January 2015",https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,https://www.resmigazete.gov.tr/eskiler/2020/07/20200731-1.htm,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,
+10,10.1,"Import ban applied to ICT goods and online services (e.g. network equipment, servers, handsets, applications, and data processing)",0,The Customs Law No.4458 ,"There isn't any import ban on ICT goods or online products/services in Türkiye.
+
+",Since October 1999 as amended in August 2011,https://www.wipo.int/wipolex/en/legislation/details/11104,,,,0.417
+10,10.2,Other import restrictions on ICT goods and online services,0.50,Regulation on After-sale service,"Products requiring after-sales service such as advanced data processing equipment, office equipment and computers, cash registers, TV and video equipment, and wireless equipment require an import permit from the Ministry of Trade. To obtain such a permit, importers must guarantee that they will provide service and spare parts either by establishing offices or by signing agreements with existing service/parts firms. ",Since November 2013,https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=19783&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5,,,,
+10,10.2,Other import restrictions on ICT goods and online services,0.50,Communique on Import Surveillance 2019/4 ,"On 3 September 2019, the Turkish Ministry of Trade issued the Communique No. 2019/4 imposing a licensing requirement on the imports of LED lamps.",Since September 2019,https://www.resmigazete.gov.tr/eskiler/2019/09/20190903-3.htm,,,,
+10,10.2,Other import restrictions on ICT goods and online services,0.50,Communique on Import Surveillance No. 2020/6 ,"On 8 May 2020, the Turkish Ministry of Trade issued a licensing requirement on the imports of mobile phones with a price threshold of USD 5 per piece.
+
+On January 26, 2021, the Turkish government abolished the licensing requirement on the import of mobile phone parts in complete knockdown (CKD) condition. This revision applies only to smartphones.","Since May 2020, as amended  in January 2021",https://www.resmigazete.gov.tr/eskiler/2020/05/20200508-9.htm,,,,
+10,10.3,Local content requirements ,1,"Radio Equipment Regulation (Telsiz Ekipmanları Yönetmeliği) 2014, as amended in November 2020","Sectoral Level (HS-4 and HS-2 Levels)
+Telephony Equipment (HS-4: 8517):
+Telsiz Ekipmanları Yönetmeliği (Radio Equipment Regulation): Import of telephony equipment (e.g., wireless communication devices, CB radios, and amateur radio devices) is subject to compliance with Turkish standards, including:
+- AB Uygunluk Beyanı (EU Declaration of Conformity).
+- Turkish-language user manuals.
+These requirements indirectly promote local content by ensuring that imported products meet Turkish regulatory and language standards.
+
+Electronics and Electrical Equipment (HS-2: 85):
+- Energy Labeling and Eco-Design Regulations (EKO-TASARIM and ENERJI ETIKETLEMESI): Products such as electronic displays, refrigerators, and air conditioners must comply with energy efficiency and eco-design standards. These regulations encourage the use of locally certified components and testing facilities.
+
+Product Level (HS-6 and HS-8 Levels) such as Mobile Phones and Smartphones (HS-6: 8517.12):
+TAREKS System Requirements:
+- Mobile phones and smartphones must be registered in the TAREKS (Risk-Based Trade Control System) for import approval.
+Importers must provide:
+- Test reports from accredited laboratories.
+- Turkish-language documentation.
+These requirements promote the use of local testing and certification services. 
+Wireless Communication Devices (HS-8: 8517.69.90.90.24) - Telsiz Ekipmanları Yönetmeliği:
+- Import of low-power radio devices and amateur radio equipment is restricted unless they meet Turkish technical standards.
+- Local testing and certification are required to ensure compliance.","Since 2014, last amended in November 2020",https://www.resmigazete.gov.tr/eskiler/2020/11/20201105-6.htm,,,,
+10,10.4,Export restrictions on ICTgoods and online services,0,The Customs Law No.4458 ,"There are no export restrictions on ICT goods and products in Türkiye. 
+
+Turkish Customs Law (Law No. 4458)
+Article 55 (Customs-Approved Treatment or Use): The Council of Ministers may impose export restrictions on goods, including ICT goods, for reasons such as:
+- Public morality, public order, or public security.
+- Protection of national treasures or intellectual property rights.
+- National security concerns.
+This provides a legal basis for export restrictions on ICT goods if they are deemed sensitive or critical to national interests.
+
+Article 163 (Re-Exportation): Goods not in free circulation may be re-exported, but this is subject to commercial policy measures. Export restrictions may apply to ICT goods if they are subject to such measures.
+
+Article 165 (Prohibition of Re-Exportation): The Undersecretariat for Customs may prohibit the re-exportation of goods, including ICT goods, if they are subject to specific export restrictions or commercial policy measures.
+","Since October 1999, as amended in August 2011",https://www.wipo.int/wipolex/en/legislation/details/11104,,,,
+11,11.1,Lack of transparent technical standards,0,Law No. 7223 on Product Safety and Technical Regulations,"There isn't any measure that prohibits foreign business to participate in standard-setting bodies and there were no reports that standard requirements are not transparent.
+
+Article 3, Item j: The Turkish Standards Institute (TSE) is identified as the primary audit unit for conformity assessments. TSE collaborates with international organizations (e.g., ISO), but participation in its standard-setting processes is generally limited to domestic stakeholders.
+
+Article 4, Item 3 Technical regulations must be:
+- Clear, proportionate, and feasible.
+- Prepared in a way that does not prevent competition.
+- Open to opinions from the Ministry and all related parties during the draft stage.
+- Notified to relevant international parties as required by legislation and international obligations.
+Article 4, Item 3b: The competent body must open technical regulations to opinions from all related parties, but there is no explicit mention of foreign stakeholders or their ability to participate in the standard-setting process.
+
+Article 6, Item 6: Products imported for use as inputs in branded products must comply with TSE standards. This indirectly promotes local content and limits foreign influence in standard-setting.
+
+Article 8, Item 2: Risk analysis criteria for inspections are determined by the Ministry, with input from other parties if deemed necessary. The criteria for risk analysis and the decision-making process are not disclosed, making it difficult for foreign companies to predict outcomes.
+Article 8, Item 9: If a product fails to meet the relevant standard, the importer can request re-inspection or object to the test result. However, the process for resolving disputes is not fully transparent.
+
+Article 9, Item 3 Actual inspections can be based on:
+- International standards (e.g., ISO, IEC, CEN, CENELEC, ETSI).
+- Criteria determined by international agreements.
+While international standards are referenced, the criteria for their application and the decision-making process are not always clear.
+
+Article 24, Item 1: Procedures and principles for preparing technical regulations must align with European Union technical legislation.
+Coordination between authorized organizations is provided by the Ministry, but the process for foreign participation is not explicitly mentioned.",Since March 2021,https://www.resmigazete.gov.tr/eskiler/2020/03/20200312-1.htm,,,,0.400
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",0.50,Law No. 7223 on Product Safety and Technical Regulations,"Product Safety and Technical Regulations Law No. 7223
+Article 13: Products must comply with technical regulations and undergo conformity assessment procedures before being placed on the market. The law does not explicitly allow or prohibit SDoC but emphasizes compliance with technical regulations.
+Article 14: Conformity assessment bodies (CABs) may be employed for technical regulations, and their activities must be independent, impartial, and transparent. 
+
+Radio Equipment Regulation (2014/53/EU):
+Türkiye has adopted the Radio Equipment Regulation (2014/53/EU), which allows for SDoC in the EU for certain low-risk products. However, it does not explicitly confirm whether Türkiye permits SDoC for radio equipment or EMC/EMI products. 
+
+TAREKS System (Risk-Based Control System):
+Products subject to import inspections (e.g., radio equipment, EMC/EMI products) must be registered in the TAREKS system. The system requires documentation such as:
+- EU Declaration of Conformity (if applicable).
+- Test reports from accredited laboratories.
+- Other compliance documents.
+The TAREKS system does not explicitly allow SDoC for foreign businesses. Instead, it emphasizes third-party certification and conformity assessment.
+
+Article 9 of the Radio Equipment Import Inspection Communique (2025/8):
+Conformity assessment reports from CABs accredited by TURKAK (Turkish Accreditation Agency) or equivalent bodies in the European Union are accepted. This indicates that Türkiye recognizes third-party certifications from CABs in countries with Mutual Recognition Agreements (MRAs) or equivalent accreditation systems.
+Article 12 of the Radio Equipment Import Inspection Communique (2025/8):
+Importers are responsible for ensuring that products comply with all relevant legislation, including the Radio Equipment Regulation (2014/53/EU).
+
+Article 9 of the Import Conformity with Standards Audit Communique (2025/1):
+For certain tests (e.g., raw material tests, long-term performance tests), reports from CABs accredited by TURKAK or EU-accredited bodies are sufficient. Türkiye accepts third-party certifications from CABs in countries with established agreements or equivalence.
+Article 12 of the Import Conformity with Standards Audit Communique (2025/1):
+Importers must ensure that products comply with Turkish standards and provide accurate documentation. The TAREKS reference number does not guarantee product safety or compliance, indicating that additional verification may be required.
+
+Mutual Recognition in the Unregulated Area Regulation (2021):
+Products imported under A.TR certificates (within the EU-Türkiye Customs Union) may benefit from mutual recognition. However, the Ministry reserves the right to evaluate whether the product meets Türkiye's protection levels and may impose additional requirements.
+",Since March 2021,https://www.resmigazete.gov.tr/eskiler/2020/03/20200312-1.htm,https://www.resmigazete.gov.tr/eskiler/2020/11/20201105-6.htm,https://www.resmigazete.gov.tr/eskiler/2024/12/20241231M4-8.htm,"https://www.resmigazete.gov.tr/eskiler/2024/12/20241231M4-1.htm
+;
+https://www.resmigazete.gov.tr/eskiler/2021/03/20210312-3.htm",
+11,11.3,Product screening and testing requirements,1,Communiqué no. 2011/53 on the Risk-Based Trade Control System (TAREKS) launched at the end of 2010 ,"The TAREKS system conducts real-time risk assessment and makes a determination regarding whether the shipment should proceed for physical examination. In cases where the system identifies a high level of risk, both the exporter and the Head of Inspectors are promptly notified of the necessity for a physical inspection. The Head of Inspectors utilizes the TAREKS system to assign a Product Inspector to conduct the physical checks and shares all relevant information provided by the exporter about the shipment, including its type, variety, and quality classification, with the assigned Product Inspector.
+
+Subsequently, the designated Product Inspector arrives at the inspection location to carry out a thorough physical examination and collect samples for laboratory analysis, if deemed necessary. It is essential that the consignment is appropriately packaged, labeled, and prepared for transportation prior to the inspection. Following the physical inspection, if the Product Inspector determines that the shipment complies with the quality and labeling standards outlined in the applicable regulations, they grant approval through TAREKS using their electronic signature.
+
+Article 8 of Import Conformity with Standards Audit:
+- Risk analysis determines whether products are directed to actual inspection.
+- Criteria for risk analysis include past inspection results, product type, origin, and other relevant factors.
+Article 9 of Radio Equipment Import Inspection:
+- Products directed to actual inspection must provide all required documents within 20 working days.",Since 2010 as amended in January 2023,https://www.resmigazete.gov.tr/eskiler/2022/12/20221231M4-8.htm,https://www.trade.gov.tr/legislation/product-safety-and-technical-regulation/product-safety-and-quality-control-system-on-import-export-in-Türkiye,,,
+11,11.3,Product screening and testing requirements,0.50,"Law No. 7223 on Product Safety and Technical Regulations
+;
+Import Conformity with Standards Audit (2025/1)
+;
+Product Safety and Control: 2025/8 - Radio Equipment Import Inspection 
+;
+Product Safety and Control: 2025/12","Türkiye has robust screening and testing requirements for imported products, particularly for high-risk items. The TAREKS system plays a central role in identifying products that require additional scrutiny, including laboratory testing. While third-party testing results are accepted under specific conditions, importers remain responsible for ensuring compliance with Turkish technical regulations and safety standards.
+
+Product Safety and Technical Regulations Law (Law No. 7223)
+Article 4 (Technical Regulations):
+- Products must comply with technical regulations before being placed on the market.
+- Non-compliant products cannot be supplied, placed on the market, or put into service.
+- Screening and testing are required to ensure compliance with technical regulations, particularly for safety, health, and environmental protection.
+Article 5 (Product Safety):
+- Products must be safe and comply with technical regulations or general product safety legislation.
+- In the absence of specific technical regulations, products are evaluated under general product safety legislation.
+Article 7 (Manufacturer's Obligations) Manufacturers must:
+- Perform conformity assessments.
+- Maintain technical files for at least 10 years.
+- Take corrective measures for non-compliant products.
+This implies that products may undergo screening and testing to verify compliance.
+
+Article 9(4) of Import Conformity with Standards Audit (2025/1):
+Third-party testing results are accepted if:
+- The testing is conducted by a conformity assessment body (CAB) accredited by TURKAK (Turkish Accreditation Agency) or equivalent bodies in the EU.
+- The tests cannot be performed domestically or require specific conditions (e.g., long-term performance tests, raw material tests).
+
+Article 9(4) of Radio Equipment Import Inspection (2025/8):
+Third-party testing results are accepted for:
+- Long-term performance tests.
+- Tests conducted at the production stage.
+- Tests on raw materials.
+
+Product Safety and Control: 2025/1) Import Conformity with Standards Audit
+Article 4 (TAREKS System):
+- All transactions related to the audit of products are conducted via the TAREKS system (Risk-Based Control System).
+- Products are screened based on risk analysis, which determines whether they are directed to actual inspection.
+Article 8 (Risk Analysis): Risk analysis considers factors such as:
+- Past inspection results.
+- Product type, origin, and manufacturer.
+- Market surveillance data.
+- Products flagged as high-risk are directed to actual inspection, which may include laboratory testing.
+Article 9 (Actual Inspection) Products directed to actual inspection must provide:
+- Test reports.
+- Conformity certificates.
+- Other relevant documents.
+Laboratory testing may be required for certain products, especially if there are concerns about compliance with technical standards.
+Article 12 (Importer Responsibility):
+- Importers are responsible for ensuring that products comply with all relevant legislation and are safe.
+- The issuance of a TAREKS reference number does not guarantee product safety, and additional testing may be required.
+
+Product Safety and Control: 2025/8 - Radio Equipment Import Inspection
+Article 4 (TAREKS System):
+- All transactions related to the import inspection of radio equipment are conducted via TAREKS.
+- Products are screened based on risk analysis, and high-risk products are directed to actual inspection.
+Article 9 (Actual Inspection) Products directed to actual inspection must provide:
+- EU Declaration of Conformity.
+- Test reports or other documents requested by the audit unit.
+Laboratory testing may be required for:
+- Long-term performance tests.
+- Tests on raw materials.
+- Tests conducted after assembly.
+Article 12 (Importer Responsibility):
+- Importers must ensure compliance with the Radio Equipment Regulation (2014/53/EU).
+- Devices with electronic identity information (e.g., IMEI numbers) must be registered with the Information Technologies and Communication Authority.
+
+Product Safety and Control: 2025/12 - Consumer Product Import Inspection
+Article 4 (TAREKS System):
+- All transactions related to the audit of consumer products are conducted via TAREKS.
+- Products are screened based on risk analysis, and high-risk products are directed to actual inspection.
+Article 9 (Actual Inspection) Products directed to actual inspection must provide:
+- Test reports.
+- Conformity certificates.
+- Other relevant documents.
+Laboratory testing may be required for certain products, especially if there are concerns about compliance with safety standards.","Since March 2020
+;
+Since December 2024
+;
+Since December 2024
+;
+Since December 2024",https://www.resmigazete.gov.tr/eskiler/2020/03/20200312-1.htm,https://www.resmigazete.gov.tr/eskiler/2024/12/20241231M4-1.htm,"https://www.resmigazete.gov.tr/eskiler/2024/12/20241231M4-8.htm
+",https://www.resmigazete.gov.tr/eskiler/2024/12/20241231M4-12.htm,
+11,11.3,Product screening and testing requirements,0.50,"Radio Equipment Regulation (Telsiz Ekipmanları Yönetmeliği) 2014, as amended in November 2020","Radio Equipment Regulation (Telsiz Ekipmanları Yönetmeliği) 
+Scope: Import restrictions apply to low-power radio devices (e.g., CB radios, 49 MHz amateur radios) and other amateur radio devices. These restrictions are enforced to ensure compliance with Turkish safety and technical standards for radio equipment.
+Importers must provide:
+- AB Uygunluk Beyanı (EU Declaration of Conformity).
+- Turkish-language user manuals and technical documentation.
+
+Products Subject to Inspection (Ek-1: Denetime Tabi Ürünler) - HS Codes: 8517.69.90.90.24 and Similar: Wireless communication devices, including transmitters and receivers.
+- These products are subject to inspection under the Telsiz Ekipmanları Yönetmeliği to ensure they meet electromagnetic compatibility (EMC) and low-voltage directive (LVD) standards.
+- Administrative requirements such as conformity assessments and documentation are enforceable and failure could lead to restrict non-compliant imports. Non-compliant devices are subject to import bans or rejection at customs.
+
+Products Subject to Import Inspection (Ek-1: İthalatta Denetlenen Ürünler) - HS Codes: 8471, 8517, 8528, etc.: ICT hardware such as servers, network equipment, and electronic displays.
+- Products must comply with Turkish standards for energy efficiency (EKO-TASARIM) and energy labeling (ENERJI ETIKETLEMESI).
+Non-compliant products are restricted from importation.
+- These measures are enforced through administrative inspections and certification requirements.
+
+TAREKS System Requirements - (Risk-Based Trade Control System):
+ICT goods must be registered in the TAREKS system for import approval. Importers must submit:
+- Test reports from accredited laboratories.
+- Photographs of the product taken at customs.
+- Compliance certificates (e.g., CE marking for EU conformity).
+Products failing to meet these requirements are denied import clearance.","Since 2014, last amended in November 2020",https://www.resmigazete.gov.tr/eskiler/2020/11/20201105-6.htm,,,,
+11,11.3,Product screening and testing requirements,0.50,"REACH Regulation Kimyasalların Kaydı, Değerlendirilmesi, İzni ve Kısıtlanması Hakkında Yönetmelik 2017, as amended in December 2023","REACH Regulation Kimyasalların Kaydı, Değerlendirilmesi, İzni ve Kısıtlanması Hakkında Yönetmelik
+Scope: ICT goods containing hazardous chemicals (e.g., lead, cadmium, chromium VI) are restricted.
+- GTIP Code: 3926.90.97.90.18: Restrictions on plastic components in ICT goods (e.g., phone cases, screen protectors) due to hazardous chemical content.
+- GTIP Code: 8539.52.00.00.00: Restrictions on LED modules and lighting equipment for non-compliance with environmental standards.
+These restrictions are enforced through chemical safety assessments and documentation requirements.","Since June 2017, as amended in December 2023",https://www.resmigazete.gov.tr/eskiler/2023/12/20231223-9.htm,,,,
+11,11.3,Product screening and testing requirements,0.50,"""Technical Regulations Regime Decision"" (No. 2022/12) (Türkçe: Teknik Düzenlemeler Rejimi Kararı) 2001, as amended in February 2013","""Technical Regulations Regime Decision"" (No. 2022/12) (Türkçe: Teknik Düzenlemeler Rejimi Kararı)
+
+This decision was published on September 14, 2022, in the Official Gazette of Türkiye and governs the importation of goods subject to technical regulations. It outlines the penalties and procedures for non-compliant imports, including:
+
+Fines: 
+- Non-compliant goods are subject to fines of up to 60% of the CIF (Cost, Insurance, and Freight) value of the goods.
+- Re-export Requirement: Non-compliant goods must be re-exported within 30 business days if they fail to meet Turkish technical standards or other regulatory requirements.
+
+This regulation is enforced by the Ministry of Trade and is part of Türkiye's broader framework for ensuring compliance with product safety, technical standards, and conformity assessments. It applies to a wide range of goods, including ICT products, under the TAREKS (Risk-Based Trade Control System).","Since June 2001, as amended in February  2013",https://www.resmigazete.gov.tr/eskiler/2013/02/20130222-1.htm,,,,
+11,11.4,"Deviation from international encryption standards (ISO, IEC, ITU, FIPS, AES, TDES, and ECC)",0,"The Electronic Communication Law No. 5809
+","Türkiye doesn't impose mandatory encryption standards that deviate from international standards or any other restriction on the use of internationally recognized encryption standards.
+
+Law on the Regulation of Internet Broadcasts and Prevention of Crimes Committed Through Such Broadcasts (Law No. 5651) and Amendments Introduced in October 2022 (""Disinformation Law""): The amendments to Law No. 5651 expanded the obligations of social media platforms and online service providers, including encryption-related requirements.
+
+
+","Since November 2008, as amended in January 2015
+",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,,,
+12,12.01,Foreign equity limits in e-commerce sector,0,"The Foreign Direct Investment Law No. 4875
+;
+E-Commerce Law (Law No. 6563)","According to Art. 3 (a) of the Foreign Direct Investment Law, 100% foreign equity share is allowed. Foreign investors are free to make investments and shall be subject to equal treatment as domestic investors. This law also applies to the E-commerce sector.
+
+Foreign Direct Investment Law (Law No. 4875):
+Article 3(a): Foreign investors are free to make investments in Türkiye and are subject to equal treatment with domestic investors.
+There are no specific provisions in this law imposing foreign equity limits in the e-commerce sector.
+
+The e-commerce sector in Türkiye is primarily regulated by the E-Commerce Law (Law No. 6563), which does not impose any foreign equity restrictions. Foreign investors can fully own e-commerce companies in Türkiye, provided they comply with general regulatory requirements, such as registration with the E-Commerce Information System (ETBIS).
+
+","Since June 2003, as amended in 2016
+;
+Since November 2008, as amended in January 2015",https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4875&MevzuatTur=1&MevzuatTertip=5,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6563.pdf,https://investmentpolicy.unctad.org/investment-laws/laws/33/Türkiye-foreign-investment-law;,0.410
+12,12.2,"Online purchases and delivery limitations
+Exception: Not score limitations on online purchases and delivery applied specifically to products related to consumer protection, notably restrictions on alcoholic beverages, tobacco, and pharmaceuticals.",0,"Decision on the Amendment of Certain Articles of the Customs Law No. 4458, as amended in August 2024","The Turkish government aims to reduce competition from international e-commerce platforms like AliExpress, Temu, and Amazon, which have been undercutting local retailers. These measures are part of a broader effort to address the budget deficit and increase customs revenues. By limiting the number of items and imposing stricter customs procedures, the government seeks to curb bulk imports and resale activities.
+
+Decision No. 5303 amending certain articles of Customs Law No. 4458 - New Duty-Free Shopping Limits:
+- As of August 21, 2024, the Turkish government reduced the duty-free shopping limit for international online purchases to €30 (including shipping costs), down from the previous limit of €150.
+- The number of items allowed per shipment has been reduced to 500 items, down from 2,000 items, for non-commercial imports. This is intended to prevent bulk purchases and resale activities.
+- A flat €3 shipping fee is now applied to all international purchases, even for items that previously included free shipping. If the shipping cost is not documented, this fee is automatically added during customs processing.
+- For items exceeding the €30 limit but valued below €1,500, buyers must complete customs declarations and follow additional procedures. This applies to goods that are not in commercial quantities.
+- Goods purchased from the European Union are now subject to a 30% customs duty, up from 18%.
+- Goods purchased from non-EU countries (e.g., China) are subject to a 60% customs duty, up from 30%.
+- An additional 20% tax is applied to certain luxury items, such as electronics and fashion accessories.
+
+Initially, these were the limit that were changed as per summary above:
+Article 62: New Tax Rates for Goods Delivered via Post or Express Cargo
+Goods valued up to €150 (non-commercial) are subject to:
+- 18% tax if originating from EU countries.
+- 30% tax if originating from non-EU countries.
+- An additional 20% tax for goods listed under the Special Consumption Tax Law (Law No. 4760).
+Books and printed materials for personal use valued up to €1,500 are exempt from taxes.
+Goods for legal entities valued up to €22 are taxed at the same rates as above.
+Goods must not exceed 30 kilograms in weight to qualify for these provisions.
+
+Article 62, Paragraph 5 - Restrictions on Commercial Quantities
+Goods imported via post or express cargo must not be in commercial quantities or exceed the specified value and weight limits.
+Article 62, Paragraph 6 -  Exemptions for Diplomatic and Special Goods
+Diplomatic goods and passenger goods under Article 58 are exempt from the value and weight limits.
+
+Article 126 - Customs Procedures for Specific Goods
+Simplified customs declarations are allowed for:
+- Goods under €150 for personal use.
+- Goods valued between €150 and €1,500 (non-commercial).
+- Goods for export valued up to €1,500 and weighing up to 30 kilograms.
+- Express cargo companies are authorized as indirect representatives for customs procedures, provided they employ customs brokers.
+
+Article 127 -  Prohibition of Additional Fees by Cargo Companies
+- Express cargo companies are prohibited from charging additional fees (e.g., customs brokerage, terminal fees) for customs services.
+- No storage fees can be charged for the first three days after notifying the recipient of the arrival of goods.
+
+Article 91 - Exemptions for Research and Medical Materials
+Exemptions are granted for:
+- Goods imported for research, analysis, or testing purposes.
+- Biological materials sent for medical testing, provided they are sent to licensed medical laboratories or genetic evaluation centers.
+Article 67 - Restrictions on Sale of Certain Imported Vehicles
+Vehicles imported under Article 67 cannot be sold for 10 years without paying customs duties. After 10 years, they can be sold without customs duties.","Since September 2009, as amended in August 2024","https://www.oykugrup.com.tr/Uploads/Document/4a70b0bc-7a48-4584-aa07-743f121a5054.pdf?v-637841476614853935
+","https://www.resmigazete.gov.tr/eskiler/2022/03/20220315-1.pdf
+;
+https://abmevzuat.com/posta-ve-hizli-kargo-yoluyla-tasinan-esya-ggm/
+;
+https://abmevzuat.com/gumruk-kanunu-bazi-maddelerinin-uygulanmasi-5303/#madde3",https://abmevzuat.com/gumruk-kanunu-bazi-maddelerinin-uygulanmasi-8362/#madde5,,
+12,12.3,"Licensing scheme for e-commerce providers (B2B and B2C)
+Exception: Licenses pertiaining to other aspects of e-commerce businesses, such as license to operate online payment services and delivery are not captured. ",1,Law on the Regulation of Electronic Commerce No.6563 as amended by the Law on the Amendments to the Law on the Regulation of Electronic Commerce No.6563,"E-commerce intermediary service providers with a net transaction volume of over 10 billion Turkish Lira and over 100,000 transactions, excluding cancellations and returns in a calendar year, will be required to obtain a license since 2014. The Amendment of the Regulation said that Electronic commerce intermediary service providers with a net transaction volume over ten billion and number of transactions over 100,000 excluding cancellations and returns in a calendar year shall obtain a license from the Ministry and renew such license to continue its activities. The provisions regarding the obligation to obtain a license will enter into force on 1 January 2025
+
+Internet Law No. 5651
+Article 7 (Liabilities of Mass Use Providers)
+Licensing Requirement: Mass use providers (e.g., internet cafes or public internet access points) operating in a commercial manner are required to obtain a permission document from the local district official. The local district official must notify the Information and Communication Technologies Authority (BTK) within 30 days of issuing the permit.
+Penalties - Violations of these obligations may result in:
+- A warning.
+- An administrative fine ranging from 1,000 to 15,000 Turkish Liras.
+- Suspension of commercial activities for up to three days.
+
+Disinformation Law (Amendments to Internet Law No. 5651)
+Additional Article 4 - Representative Requirement for Social Network Providers: Social network providers with over one million daily accesses from Türkiye must appoint a local representative in Türkiye.
+The representative must:
+- Be a Turkish citizen and a resident of Türkiye (if an individual).
+- Be a branch of the social network provider (if a legal entity).
+The representative is responsible for ensuring compliance with Turkish laws, including responding to requests for content removal, access blocking, and user data disclosure.
+Penalties for Non-Compliance such as failure to appoint a representative:
+- First fine: 10 million Turkish Liras.
+- Second fine: 30 million Turkish Liras.
+- Advertisement ban: Taxpayers in Türkiye are prohibited from advertising with the provider.
+- Bandwidth throttling: Internet traffic bandwidth may be reduced by 50%, and eventually by 90% if non-compliance persists.
+
+Technical Regulations and Product Safety Law
+Article 4 (Technical Regulations) - Licensing for Products in E-Commerce:
+- Products offered in the market (including through e-commerce) must comply with technical regulations and general product safety legislation.
+- Non-compliant products cannot be supplied, placed on the market, or put into service.
+Article 5 (Product Safety) - Obligations for E-Commerce Providers:
+- E-commerce providers must ensure that the products they sell are safe and comply with technical regulations.
+- Products are considered safe if they meet the requirements of the relevant technical regulations or general product safety legislation.
+Article 20 (Administrative Fines) - Penalties for Non-Compliance:
+Violations of technical regulations or product safety legislation:
+- Fines ranging from 50,000 to 500,000 Turkish Liras.
+- Violations of other provisions:
+- Fines ranging from 20,000 to 200,000 Turkish Liras.","Since November 2014, as amended in January 2023","https://ogulkoseoglu.com/post/law_6563;
+
+https://www.resmigazete.gov.tr/eskiler/2022/07/20220707-2.htm",,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Law on Payment 6493 
+
+Article 66, Paragraph 3 - Restrictions on Cross-Border Payments: Payment transactions where both parties are located in Türkiye must be conducted in Turkish Lira and through local payment service providers. This effectively mandates the use of local bank accounts for such transactions.
+
+Article 11, Paragraph 2 Licensing and Operational Requirements: Companies applying for a license to provide payment services or issue electronic money in Türkiye must meet minimum capital requirements and establish operations locally, which includes maintaining a local bank account.
+
+Article 60, Paragraph 2 Payment Account Accessibility: Payment service providers must ensure secure communication and access to payment accounts for authorized payment initiation services. This requires the accounts to be maintained within Türkiye to comply with technical and operational requirements.
+
+","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",0,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Law on Payment 6493
+
+Article 66(1): For payments where one of the parties is located abroad, the transaction can be conducted in the currency agreed upon by the parties, provided it complies with the Turkish Currency Protection Law (Decree No. 32).
+
+Article 66(3) Mandate for Local Currency (Turkish Lira) in Domestic Transactions:
+If both parties to the transaction are located in Türkiye and use local payment service providers, the payment must be conducted in Turkish Lira (TRY).
+:
+Article 66(4) Restrictions on Foreign Currency Accounts:
+Payment service providers are prohibited from opening foreign currency payment accounts for residents in Türkiye. Additionally, foreign currency cannot be deposited or held in such accounts unless the transaction involves a party located abroad.
+
+Article 66(4) Time Limits for Foreign Currency Transfers:
+For payments involving foreign currency:
+- Foreign currency deposited domestically for transfer abroad must be sent by the end of the next business day.
+- Foreign currency received from abroad must be credited to the recipient's account within one month.
+
+","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Türkiye has national standards for payment security that, in some cases, deviate from international standards. These deviations are primarily driven by the country's regulatory framework, which emphasizes data localization, consumer protection, and financial stability. 
+
+- Data Localization Requirements: Turkish regulations mandate that sensitive payment data and customer information must be stored within Türkiye. This is stricter than many international standards, such as PCI DSS (Payment Card Industry Data Security Standard), which do not impose geographic restrictions on data storage.
+Law on Payment 6493 Article 66, Paragraph 3: Sensitive customer data related to payment services must be stored within Türkiye.
+Electronic Money Regulation (Article 62, Paragraph 3): Payment service providers must ensure that sensitive customer data is stored domestically.
+
+- Strong Authentication Requirements: Türkiye enforces strong customer authentication (SCA) for all electronic payment transactions, including financial and non-financial transactions. This includes multi-factor authentication (MFA) and specific requirements for biometric data and PINs. While international standards like PSD2 (in the EU) also require SCA, Türkiye's implementation is more prescriptive in certain areas.
+
+- Shared Payment Regulation Article 10, Paragraph 8: Strong authentication is mandatory for all financial and non-financial transactions unless explicitly exempted.
+- Law on Payment 6493 (Article 64): Strong authentication must include unique, tamper-proof elements such as PINs or biometric data.","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","To offer electronic money and electronic payment services in Türkiye, companies must obtain a license from the Central Bank of Türkiye. Starting in June 2015, companies that meet specific criteria, including having a physical business presence in Türkiye in the form of a joint-stock company, are eligible for this license. It's important to highlight that these licensed entities are restricted from participating in any other commercial activities aside from providing payment services. Additionally, they are prohibited from offering certain financial services such as accepting deposits or extending credit.
+
+Banking and Payment Services (Law No. 6493)
+- Payment service providers and electronic money institutions must obtain licenses from the Banking Regulation and Supervision Agency (BRSA) to operate in Türkiye. This law explicitly requires a commercial presence (e.g., a local subsidiary or branch) for foreign companies offering payment services or digital financial solutions.
+
+Law on Payment 6493, Article 11: Any entity providing payment services or issuing electronic money in Türkiye must obtain a license from the Central Bank of the Republic of Türkiye (CBRT). Payment service providers and electronic money institutions must apply for a license and meet specific conditions to operate legally in Türkiye.
+Article 11(1): Applicants must pay a licensing fee of 500,000 TRY and provide proof of payment during the application process.
+Article 11(2): Minimum Capital Requirements: Companies must meet minimum paid-in capital requirements, which vary depending on the type of service:
+- 1 million TRY for basic payment services.
+- 2 million TRY for other payment services.
+- 5 million TRY for electronic money issuance.
+Article 11(3): Payment service providers and electronic money institutions must establish a local entity in Türkiye to apply for a license. The licensing process includes an intelligence review and a final approval stage, requiring the applicant to have a local presence.
+Article 16: Payment service providers and electronic money institutions are prohibited from offering credit or engaging in activities that create the impression of credit issuance.","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","There are ceilings on the maximum amount that can be paid using electronic payment methods in Türkiye, as outlined in Law on Payment 6493 and related regulations.
+
+Article 16(3): Payments facilitated by telecommunication or electronic communication operators (e.g., for utility bills) are subject to a ceiling of 1,000 TRY per transaction and 2,750 TRY per month for all accounts linked to a single customer.
+
+Article 58: Anonymous prepaid cards or payment instruments that are not linked to a payment account are subject to stricter ceilings. These instruments cannot exceed 2,750 TRY in stored value or spending limits.
+
+Article 73: For payment instruments with a spending limit of 2,750 TRY or less, or those containing funds not exceeding 2,750 TRY at any time, specific rules and ceilings apply.
+- Payment instruments with these limits are subject to simplified information and reporting requirements.
+- These instruments cannot be used for payments exceeding their defined limits.
+Article 73(4): The Central Bank of Türkiye has the authority to increase or decrease these ceilings by up to five times or reduce them to one-fifth of the defined limits, depending on economic conditions or regulatory needs.","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Türkiye has specific requirements mandating the use of certain intermediaries for online payments.
+
+Law on Payment 6493:
+Article 66(3): Payment transactions involving Turkish residents must be processed through local payment service providers authorized by the CBRT.
+Article 3(l): The Bankalararası Kart Merkezi (BKM), or Interbank Card Center, is a key intermediary for payment systems in Türkiye. It provides infrastructure for card payments, clearing, and settlement. Payment service providers must integrate with BKM for certain services, such as card payments and open banking APIs. The BKM-API Gateway is a mandatory intermediary for open banking services, ensuring compliance with security and data-sharing standards.
+","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,,,
+12,12.4,"Restrictions on online payment 
+",1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Law on Payment 6493:
+
+Article 19: Entities offering digital wallet services must apply for a license by April 7, 2025, to continue operations legally.
+Digital wallet providers must comply with the new 4/A article of the regulation, which includes stricter operational and security requirements.
+
+Transition Periods for Compliance:
+Existing payment service providers and electronic money institutions must comply with new regulations by specific deadlines, such as:
+- March 31, 2025, for certain technical requirements.
+- December 31, 2025, for direct online access to customer accounts.
+
+Regulation on the Non-Use of Crypto Assets in Payments
+Article 3 and 4: Crypto assets cannot be used directly or indirectly for payments in Türkiye. Payment service providers and electronic money institutions are prohibited from:
+- Using crypto assets in payment services or electronic money issuance.
+- Facilitating the transfer of funds to or from platforms offering crypto-related services.
+
+
+","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/6937855a-7c29-4d08-a26e-51ef3273c022/%C3%96demelerde+Kripto+Varl%C4%B1klar%C4%B1n+Kullan%C4%B1lmamas%C4%B1na+Dair+Y%C3%B6netmelik.pdf?MOD=AJPERES,,
+12,12.5,Low De Minimis,1,The Decree on Amendments of Certain Articles of Customs Law No. 4458,"The Decree of 2019 removed the exemption threshold for certain imported goods. The Council of Ministers Resolution No. 15481, published in 2009, established the exemption threshold for imported products whose price did not exceed €150, which was then reduced to €75 in 2011, to €30 at the beginning of 2017, to €22 in April 2018 and finally to zero on 15 May 2019. There is now no more de minimis threshold in Türkiye. Therefore, there is no value below which goods are exempted from taxes and duties collected by customs. It's important to note that the exemption threshold still applies to books or relevant publications whose price does not exceed €150.",Since 2019,https://www.resmigazete.gov.tr/eskiler/2019/11/20191107-24.htm,,,,
+12,12.6,Domain name requirements,0,"Law No. 5809 of November 5, 2008 on Electronics Communication and"".tr” Domain Names Policies, Rules and Procedures;
+
+Amendment on Article 35 of Law No. 5809 on Electronic Communications and the Internet Domain Names Regulation
+;
+Internet Domain Names Directive 2010","Both natural and legal persons can apply for domain name registration. 
+","Since 2008;
+
+Since September 2022
+;
+Since November 2010",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=14416&MevzuatTur=7&MevzuatTertip=5,,,
+12,12.7,Local presence requirements for online service providers,0,E-Commerce Law (Law No. 6563),"E-Commerce Law (Law No. 6563)
+Service providers and intermediary service providers engaged in e-commerce must register with the E-Commerce Information System (ETBIS) before initiating operations in Türkiye.
+Implication: While this does not explicitly mandate a physical presence, compliance with local registration and reporting requirements can act as a de facto commercial presence obligation for foreign companies.
+
+Article 3 – Obligations of Service Providers and Intermediary Service Providers:
+Service providers and intermediary service providers engaged in e-commerce must comply with the obligations set forth in the law, including transparency, information disclosure, and consumer protection requirements.
+
+Article 11 – E-Commerce Information System (ETBIS):
+Companies engaged in e-commerce activities are required to register with the E-Commerce Information System (ETBIS), which is managed by the Ministry of Trade. The registration includes providing detailed information about the company, its activities, and its compliance with Turkish e-commerce regulations.
+
+ETBIS Registration Requirements. To register with ETBIS, companies must:
+- Provide their tax identification number (which typically requires a local tax registration).
+- Submit information about their e-commerce activities, including:
+- The website or platform used for e-commerce.
+- Types of goods or services offered.
+- Payment methods and delivery processes.
+- Comply with Turkish consumer protection laws, data protection laws, and other relevant regulations.","Since November 2008, as amended in January 2015",https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5809.pdf,,,,
+12,12.7,Local presence requirements for online service providers,1,Social Media Law (Amendments to Law No. 5651),"Social Media Law (Amendments to Law No. 5651)
+Requirement: Social media platforms with over 1 million daily Turkish users must appoint a local representative in Türkiye.",Since July 2020,https://mbkaya.com/turkish-internet-law/,https://www.resmigazete.gov.tr/eskiler/2020/07/20200731-1.htm,https://gokce.av.tr/wp-content/uploads/2020/08/Amendments-Made-to-the-Law-No.-5651-050820-Gokce-2.pdf,,
+12,12.7,Local presence requirements for online service providers,1,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Law on Payment 6493:
+
+Article 14: Online service providers offering payment services or electronic money issuance must establish a local presence in Türkiye to obtain a license from the Central Bank of the Republic of Türkiye (CBRT).
+This includes:
+- Registering as a legal entity in Türkiye.
+- Maintaining a physical office or operational base within the country.
+
+Article 19: Foreign entities providing payment services in Türkiye must collaborate with a local representative or establish a local subsidiary to comply with Turkish regulations. The local representative is responsible for ensuring compliance with Turkish laws and regulations.
+Article 19(1): Foreign service providers can only offer services in Türkiye through partnerships with locally licensed entities. These partnerships must comply with Turkish laws and are limited to cross-border transactions where one party is located outside Türkiye.
+
+Article 64: Online service providers must submit to audits and inspections by Turkish authorities, including the CBRT. This requires maintaining local systems and records accessible to regulators.
+
+Article 21(1): Payment service providers must ensure that their primary and secondary systems, as well as data backup centers, are located within Türkiye. This applies to all information systems used for payment transactions involving Turkish residents.","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/6937855a-7c29-4d08-a26e-51ef3273c022/%C3%96demelerde+Kripto+Varl%C4%B1klar%C4%B1n+Kullan%C4%B1lmamas%C4%B1na+Dair+Y%C3%B6netmelik.pdf?MOD=AJPERES,,
+12,12.8,Lack of legal framework for online consumer protection,0,"Amendment Law No.7392 on the Law No.6502 on Consumer Protection;
+
+The Distance Contracts Regulation No. 29188;
+
+The Electronic Signature Law No.5070
+;
+Regulation of Electronic Commerce No. 6563","The general consumer protection law was updated in 2013 in order to be harmonized with the EU framework. The law covers all consumer transactions. For financial services (banking, private pensions, insurance, investment and payment services) sold on distance sales, consumers have the right to withdraw from the agreement within a period of 14 days. There are no barriers found related to the consumer protection practices in Türkiye. The Law on Consumer Protection has been amended in 2022 to include provisions on distance contracts, which are contracts concluded without the physical presence of the parties. 
+
+Another relevant legal framework is the Regulation on Distance contracts. It includes the regulation of the performance methods and principles of distance contracts, the delivery processes, prior information of consumers, right of withdrawal and the liabilities of the parties. The supplier or seller has to perform the order within 30 days, and the consumer has the right to withdraw from the distance contract within 14 days, starting from the date of delivery for goods.
+
+In Türkiye, e-signature is regulated by Law No. 5070 on Electronic Signature.
+
+Consumer Protection Law No. 6502
+
+Article 48 regulates contracts concluded without the simultaneous physical presence of the consumer and the seller (e.g., online shopping). It mandates that sellers provide clear and accurate information about the product or service, including:
+- Price,
+- Delivery terms,
+- Right of withdrawal.
+- Consumers have the right to withdraw from the contract within 14 days without providing a reason.
+Article 11 - Consumer Rights for Defective Goods
+Consumers can demand:
+- Free repair,
+- Replacement,
+- Price reduction,
+- Full refund for defective goods purchased online.
+Article 68 - Consumer Arbitration Committees
+Consumers can file complaints about disputes under a certain monetary threshold with Consumer Arbitration Committees, which provide a cost-effective resolution mechanism.
+
+Right of Withdrawal (Article 9): Consumers can cancel the contract within 14 days of receiving the product without incurring any penalties.
+Obligations of the Seller (Article 12): Sellers must refund payments within 14 days of receiving the returned product. Delivery must occur within the agreed timeframe, and delays can result in contract termination.","Since November 2013 as amended in October 2022;
+
+Since February 2015;
+
+Since January 2004;
+
+Since November 2008, as amended in January 2015","https://ticaret.gov.tr/data/5d42a9b313b87632542a2dae/LAW%20ON%20CONSUMER%20PROTECTION.pdf
+
+
+
+
+",https://www.resmigazete.gov.tr/eskiler/2014/11/20141127-6.htm,https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5070.pdf,https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6563.pdf,
+12,12.8,Lack of legal framework for online consumer protection,0,"Law on Payment and Securities Settlement Systems, Payment Services, and Electronic Money Institutions (Law No. 6493)
+;
+Regulation on Payment Organizations and Electronic Money Institutions with Payment Services and Electronic Money Export","Law on Payment 6493:
+
+Article 3 - Information Obligations for E-commerce platforms must provide clear and accessible information about:
+- The seller's identity,
+- Contact details,
+- Terms of sale,
+- Payment methods.
+Article 5 - Commercial Communication: Prohibits misleading advertisements and requires explicit consumer consent for promotional messages.
+Article 11 - Data Protection: Aligns with the Personal Data Protection Law (KVKK) to ensure consumer data privacy in online transactions.
+
+Article 49 Irrevocability of Payment Orders: A payment order cannot be revoked by the sender after it has been received by the payment service provider unless otherwise agreed between the parties.
+
+Article 55 Liability for Non-Execution or Incorrect Execution of Payment Transactions: The sender's payment service provider is responsible for the correct execution of the payment transaction. If the transaction is not executed or executed incorrectly, the provider must promptly refund the sender for the unexecuted or incorrectly executed portion
+
+Article 73 Low-Value Payment Instruments and Electronic Money: he payment service provider is obligated to inform the customer about the basic features of the payment service, including the method of use, responsibilities, fees, and other important information.
+
+Article 74: Payment service providers must respond to complaints and objections related to payment services within 20 days of the application date, using the same method as the customer's application, in a verifiable and justified manner.","Since December 2021
+;
+Since June 2014",https://www.tcmb.gov.tr/wps/wcm/connect/25571f4f-72ac-4f4b-ab59-2d683fcbc271/Y%C3%B6netmelik.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/d2eb7231-110c-475a-b8e9-7325951a6f4a/Y%C3%B6netmelik+27.02.2020.pdf?MOD=AJPERES,https://www.tcmb.gov.tr/wps/wcm/connect/6937855a-7c29-4d08-a26e-51ef3273c022/%C3%96demelerde+Kripto+Varl%C4%B1klar%C4%B1n+Kullan%C4%B1lmamas%C4%B1na+Dair+Y%C3%B6netmelik.pdf?MOD=AJPERES,,
+12,12.9,Not in the United Nations Convention of Electronic Communications,1,Lack of signature of the UN Convention on Electronic Communications,Türkiye did not sign the UN Convention on Electronic Communications.,Last reviewed January 2025,https://uncitral.un.org/en/texts/ecommerce/conventions/electronic_communications,https://treaties.un.org/pages/ViewDetails.aspx?src=IND&mtdsg_no=X-18&chapter=10&clang=_en,,,
+12,12.10,Not in the UNCITRAL Model Law on Electronic Commerce,0.50,Lack of adoption of the UNCITRAL Model Law on Electronic Commerce,Türkiye has not notified its adoption of the UNCITRAL Model Law on Electronic Commerce to the UNCITRAL Secretariat.,Last reviewed January 2025,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_commerce/status,,,,
+12,12.11,Not in the UNCITRAL Model Law on Electronic Signatures,0.50,Lack of adoption of the UNCITRAL Model Law on Electronic Signature,Türkiye has not notified its adoption of the UNCITRAL Model Law on Electronic Signatures to the UNCITRAL Secretariat.,Last reviewed January 2025,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_signatures/status,,,,
+,,,,,,,,,,Overall RDTII score,0.562
