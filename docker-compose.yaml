@@ -25,6 +25,29 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - redis-data:/data
+
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: rdtii-ai-service
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      CORS_ALLOW_ORIGINS: http://localhost:5173,http://localhost:3000
+    restart: on-failure
+
+  frontend:
+    build:
+      context: ./rdtii-frontend
+      dockerfile: Dockerfile
+    container_name: rdtii-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - ai-service
   
   backend:
     build:
