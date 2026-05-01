@@ -1,0 +1,54 @@
+UML:
+1. documents - The uploaded legal PDFs/documents
+2. document_sections - Sliced articles/clauses from PDFs (deterministic anchoring)
+3. regulations - Extracted regulatory provisions
+4. rdtii_pillars - RDTII framework structure (pillars, criteria, indicators)
+5. regulation_mappings - Mapping between extracted regulations and RDTII criteria
+6. extracted_obligations - Specific compliance obligations extracted by LLM
+7. audit_trail - Links JSON outputs to highlighted source text (for transparency UI)
+8. countries - Country information (since they have data for 18 countries)
+9. users (optional) - If there's user management
+
+┌─────────────────────┐     ┌─────────────────────────┐     ┌──────────────────────────┐
+│     documents       │     │    document_sections    │     │    extracted_obligations │
+├─────────────────────┤     ├─────────────────────────┤     ├──────────────────────────┤
+│ id (PK)             │◄────│ id (PK)                 │◄────│ id (PK)                  │
+│ filename            │     │ document_id (FK)        │     │ section_id (FK)          │
+│ file_path           │     │ section_number          │     │ obligation_type          │
+│ country_code        │     │ article_title           │     │ extracted_text           │
+│ upload_date         │     │ raw_text                │     │ confidence_score         │
+│ status              │     │ page_start/end          │     │ status                   │
+│                     │     │ source_pdf_offset       │     │ created_at               │
+│                     │     │ created_at              │     │                          │
+└─────────────────────┘     └─────────────────────────┘     └──────────────────────────┘
+         │                             │                              │
+         │                             ▼                              ▼
+         │              ┌─────────────────────────┐     ┌──────────────────────────┐
+         │              │     rdtii_pillars       │     │    regulation_mappings   │
+         │              ├─────────────────────────┤     ├──────────────────────────┤
+         └─────────────►│ pillar_id (PK)          │     │ id (PK)                  │
+                        │ pillar_number (6 or 7)  │     │ obligation_id (FK)       │
+                        │ pillar_name             │     │ pillar_id (FK)           │
+                        │ criterion_id            │     │ criterion_id (FK)        │
+                        │ criterion_name          │     │ evidence_text            │
+                        │ indicator_id            │     │ compliance_status        │
+                        │ indicator_description   │     │ mapped_at                │
+                        │ weight/score            │     │ audited_by               │
+                        └─────────────────────────┘     └──────────────────────────┘
+┌─────────────────────┐     ┌─────────────────────────┐
+│      countries      │     │     audit_trail         │
+├─────────────────────┤     ├─────────────────────────┤
+│ country_code (PK)   │     │ id (PK)                 │
+│ country_name        │     │ mapping_id (FK)         │
+│ region              │     │ source_section_id (FK)  │
+│ is_eswap_member     │     │ highlight_start         │
+│ created_at          │     │ highlight_end           │
+└─────────────────────┘     │ reviewer_notes          │
+                            │ created_at              │
+                            └─────────────────────────┘
+
+Solution of finding PDF on webpage:
+1. Visit the reference URL
+2. Parse the HTML page to find PDF download links
+3. Download the PDF
+4. Process it

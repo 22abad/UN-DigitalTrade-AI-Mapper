@@ -1,0 +1,10 @@
+# Pure text extraction
+pymupdf>=1.24.0
+
+# OCR pipeline
+pdf2image>=1.17.0
+pytesseract>=0.3.13
+opencv-python>=4.9.0
+
+# Fallback (optional, set OPENAI_API_KEY)
+openai>=1.30.0

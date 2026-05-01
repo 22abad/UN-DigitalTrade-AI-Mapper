@@ -1,0 +1,916 @@
+Chapter,Question,Question: description,Individual Indicator Score,Source Legislation,Impact,Timeframe for Indicator,References,"References, 2","References, 3","References, 4",Overall Pillar Score,,
+1,1.1,Weighted average of effective tariff rates applied on ICT goods imported from other Asia-Pacific economies (%),0.084,Effectively applied tariffs on ICT goods (in weighted average) imported from other economies within the considered United Nations region (%),0.84,Since 2022,http://wits.worldbank.org/WITS/,,,,0.263,,
+1,1.2,Percentage of none duty-free tariff lines on ICT goods imported from other Asia-Pacific economies (%),0.404,No duty-free tariff lines on ICT goods from other economies within the considered United Nations region (%),53.84,Since 2022,http://wits.worldbank.org/WITS/,,,,,,
+1,1.3,Not a signatory to the WTO ITA I and ITA II,0.00,Participation in Information Technology Agreement (ITA) and in ITA Expansion Agreement (ITA II),China is a signatory of the 1996 WTO Information Technology Agreement (ITA) and its expansion. The ITA provides for participants to completely eliminate duties on IT products covered by the Agreement.,"Since April 2003, ITA expansion since December 2015",https://www.wto.org/english/tratop_e/inftec_e/itscheds_e.htm,,,,,,
+1,1.4,"Imposing trade defence measures (anti-dumping, countervailing duties and safeguards) on ICT-related products imported by other Asia-Pacific economies",0.25,Announcement No. 37 of 2022 by the Ministry of Commerce ??????2022??37? ????????????????????????????????????????,"In January 2005, the Ministry of Commerce of the People's Republic of China announced anti-dumping duties on non-displacement single-mode optical fibers (used, for example, for long-distance telephony and multichannel television broadcasting systems) (HS code: 9001.1000) imported from Japan and South Korea. This measure was reviewed and extended in January 2011 and, subsequently, in January 2017 and January 2023 for five years. The rate of duty imposed on imports originating in Japan is 46%, while for imports originating in the Republic of Korea ranges from 7.9% to 46% depending on the company.","Since January 2005, extended in January 2011, 2017 and 2023, until January 2028",http://www.mofcom.gov.cn/zcfb/gpmy/art/2022/art_096c8c82743b44f38d76a8f19be08f1d.html,,,,,,
+1,1.4,"Imposing trade defence measures (anti-dumping, countervailing duties and safeguards) on ICT-related products imported by other Asia-Pacific economies",0.25,Announcement No. 16 of 2023 by the Ministry of Commerce ??????2023??16? ?????????????????????????????????????????,"In April 2011, the Ministry of Commerce of the People's Republic of China announced anti-dumping duties on non-displacement single-mode optical fibers (used, for example, for long-distance telephony and multichannel television broadcasting systems) (HS code: 9001.1000) imported from the European Union and the United States This measure was reviewed and extended in April 2017 and, subsequently in April 2023 for five years. The rate of duty on imports originating from the European Union ranges from 12.9% to 29.1%, depending on the company. The rate of duty on imports originating from the United States ranges from 33.3% to 78.2%, depending on the company.","Since April 2011, extended in April 2017 and 2022, until April 2028
+
+",http://trb.mofcom.gov.cn/myjjdc/art/2023/art_1274732306504b0dbad40983d2211d3a.html,,,,,,
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,0.00,"Government Procurement Law of the People's Republic of China ??????????????;
+
+Foreign Investment Law of the People's Republic of China ??????????????","According to Article 16 of the Foreign Investment Law, the State ensures that foreign-invested enterprises can participate in government procurement activities through fair competition in accordance with the law. Products manufactured and services provided by foreign-invested enterprises within the territory of the PRC are to be treated equally in government procurement activities.","Since June 2002, last amended in August 2014;
+
+Since January 2020",https://flk.npc.gov.cn/detail2.html?MmM5MDlmZGQ2NzhiZjE3OTAxNjc4YmY3N2UxNzA3NTM,"https://www.gov.cn/xinwen/2019-03/20/content_5375360.htm?
+
+https://en.ndrc.gov.cn/policies/202105/t20210527_1281403.html",,,0.680,,
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,1.00,Administrative Measures for the Multi-level Protection of Information Security ????????????,"The MLPS requires all IT systems in China to be classified on different levels of security, from one to five (with the most sensitive systems designated as level 5).
+
+According to Article 21 of the Administrate Measures: Information systems classified as Level 3 or above shall select and use information security products that meet the following conditions: (1) The product development and manufacturing entity is invested in by Chinese citizens, legal persons, or the State, or is State-controlled, and has independent legal entity status within the territory of the People's Republic of China; (2) The product's core technology and key components possess independent intellectual property rights of China; and (3) For products listed in the information security product certification catalog, certification must be obtained from the national information security product certification authority.",Since June 2007,https://www.gov.cn/gzdt/2007-07/24/content_694380.htm,,,,,,
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,1.00,Government Procurement Law of the People's Republic of China??????????????,"As per Article 10 of the Govenment Procurement Law, the government must procure domestic goods, construction and services except when: (i) the goods, construction and services needed are not available in China and cannot be required on reasonable commercial terms; (ii) the items to be procured are for use abroad; (iii) otherwise provided for by other laws and administrative regulations. 
+
+","Since June 2002, last amended in August 2014",http://www.gov.cn/gongbao/content/2002/content_61590.htm,,,,,,
+2,2.2,"Specific requirements on source codes, encryption and trade secrets ",0.00,"Administrative Measures for the Multi-level Protection of Information Security ????????????;
+
+GB/T 22239-2019 Information Security Technology – Baseline for Multi-level Protection of Cyber Security ??????? ?????????????
+
+","The MLPS requires all IT systems in China to be classified on different levels of security, from one to five (with the most sensitive systems designated as level 5).
+
+Article 8.1.9.3 of the GB/T 22239-2019 states that in terms of product procurement and usage, companies classified as level 3 and above need to ensure that (1) the procurement and usage of cybersecurity products comply with relevant national regulations; (2) the procurement and usage of encryption products and services comply with the requirements of the national encryption management authority; and (3) preliminary product selection testing shall be carried out to define the scope of candidate products. The list of selected products shall be reviewed and updated on a regular basis.
+
+So far, there are no requirements for source code disclosure or for using specific encryption in order to win a tender.
+
+
+
+
+
+","Since June 2007;
+
+Since December 2019",https://www.gov.cn/gzdt/2007-07/24/content_694380.htm,https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=BAFB47E8874764186BDB7865E8344DAF,,,,,
+2,2.3,Limitations in procurement bidding,1.00,Administrative Measures for Promoting the Development of Small and Medium-Sized Enterprises through Government Procurement??????????????????,"As per Article 3: In government procurement activities, procuring entities shall enhance procurement demand management and implement measures such as reserved procurement quotas, price evaluation preferences, and priority procurement, in order to increase the share of small and medium-sized enterprises (SMEs) in government procurement and support their development.",Since January 2021,https://www.gov.cn/gongbao/content/2021/content_5591418.htm,,,,,,
+2,2.4,"Not in the WTO Government Procurement Agreement (GPA) and not fully covered the three most relevant services sectors (CPC752, 754, 84)",1.00,WTO Government Procurement Agreement (GPA),"China is currently an observer to the WTO Agreement on Government Procurement, but is negotiating its accession.",Since February 2002,https://www.wto.org/english/tratop_e/gproc_e/memobs_e.htm,,,,,,
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",1.00,"Special Management Measures for Foreign Investment Access (Negative list), 2024????????????? ???? 2024?","As per the 2024 Negative List, it is prohibited to invest in internet news information services, online publishing services, online audiovisual program services, internet cultural operations (except for music), and internet public information dissemination services (except for content that China has committed to opening up in its WTO commitments).
+
+The negative further prohibits foreign investment in news organisations (including but not limited to news agencies), electronic publication, film production companies, ditribution companies, and film import businesses.
+
+Investment in various levels of radio stations (stations), television stations (stations), radio and television channels (frequencies), radio and television transmission coverage networks (including transmission stations, relay stations, microwave stations, monitoring stations, and online radio and television transmission coverage networks) is prohibited. Investment in radio and television video-on-demand services and satellite ground receiving facilities installation services is also prohibited.
+
+",Since November 2024,https://www.gov.cn/gongbao/2024/issue_11606/202409/content_6976935.html,,,,0.847,,
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",0.00,Provisional Regulations on the Restructuring of State-Owned Enterprises Using Foreign Investment ????????????????,"Under the current regulatory framework, there is no specific cap on foreign investment in state-owned enterprises.
+
+According to Article 6 of the 2003 Provisional Regulaitons, the restructuring of state-owned enterprises using foreign investment shall adhere to the following principles:
+
+1. Compliance with national laws and regulations, and safeguarding of national economic security;
+
+2. Alignment with national industrial policies. If the business scope of the enterprise (including any enterprises it directly or indirectly holds shares in) falls under the prohibited sectors for foreign investment as listed in the Catalogue for the Guidance of Foreign 3. Investment Industries, foreign investors shall not participate in the restructuring. For industries where Chinese control or relative control is required, the restructured enterprise must maintain such control by the Chinese party;
+
+3. Promotion of economic restructuring and optimization of the allocation of state-owned capital;
+
+4. Encouragement of the introduction of advanced technologies and management expertise, the establishment of standardized corporate governance structures, and the advancement of technological progress and industrial upgrading;
+
+5. Adherence to the principles of openness, fairness, impartiality, and good faith; prevention of the loss of state-owned assets; prohibition of evasion or neglect of debts owed to banks or other creditors; protection of employees’ lawful rights and interests, as well as protection of the legitimate rights and interests of foreign investors;
+
+6. Promotion of fair competition, and prohibition of the formation of market monopolies.",Since January 2023,https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/200303/t20030321_143413.html,,,,,,
+3,3.2,Joint venture requirements,1.00,"Provisions on the Administration of Foreign-Invested Telecommunications Enterprises??????????????;
+
+Notice of the State Council on Temporarily Adjusting the Implementation of Relevant Administrative Regulations in Pilot Free Trade Zones????????????????????????????????
+
+Approval on Temporarily Adjusting the Implementation of Relevant Administrative Regulations and Departmental Rules Approved by the State Council in Beijing Municipality???????????????????????????????????????
+","In January 2014, the Ministry of Industry and Information Technology (MIIT) and the Shanghai Municipal Government jointly issued the ""Opinions of the Ministry of Industry and Information Technology and the Shanghai Municipal People’s Government on Further Opening Up Value-Added Telecommunications Services in the China (Shanghai) Pilot Free Trade Zone."" The document proposed a pilot program for domestic internet virtual private network (VPN) services, with foreign ownership capped at 50%. The enterprise's registered location and service facilities were required to be within the pilot free trade zone.
+
+In January 2020, the ""Notice of the State Council on Temporarily Adjusting the Implementation of Relevant Administrative Regulations in Pilot Free Trade Zones"" proposed extending the pilot policies originally implemented in the Shanghai Pilot Free Trade Zone (28.8 square kilometers) to all pilot free trade zones.
+
+In September 2020, the State Council approved a plan allowing foreign firms to own up to 50 percent in joint ventures providing virtual private network (VPN) services for foreign companies in Beijing.
+","Since December 2001, last amended March 2022;
+
+Since January 2020;
+
+Since February 2021
+
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgxODE4MGUwYTQ0MTAxODExZTMwNDljYTE0MDE,http://app.www.gov.cn/govdata/gov/202001/22/453315/article.html,https://jxj.beijing.gov.cn/ztzl/ywzt/lqjs/gzrwjd/202102/t20210222_2286129.html,,,,
+3,3.3,Nationality or residency requirements for board of directors or managers,0.00,"Special Management Measures for Foreign Investment Access (Negative list), 2024????????????? ???? 2024?","Currently, there are no legal restrictions on who can become a director or manager in sectors relevant to digital trade.In general, any natural person with full civil capacity may become a director. In particular, a director is not required to be resident in China and there is no nationality requirement.",Since November 2024,https://www.gov.cn/gongbao/2024/issue_11606/202409/content_6976935.html,,,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,"Provisions on the Administration of Foreign Invested Telecommunications Enterprises?????????????? 
+","Article 10 of the Provisions states that foreign-invested telecommunications enterprises, after legally completing market entity registration, shall apply to the competent department of the Ministry of Industry and Information Technology of the State Council for a telecommunications business operating license. The competent department of the Ministry of Industry and Information Technology of the State Council shall, upon receiving the application, review the relevant documents within the prescribed timeframe:
+
+- For applications related to basic telecommunications services, the review shall be completed within 180 days from the date of receipt of the application, and a decision shall be made to approve or disapprove the application.
+- For applications related to value-added telecommunications services, the review shall be completed within 60 days from the date of receipt of the application, and a decision shall be made to approve or disapprove the application.
+
+For approved applications, a Telecommunications Business Operating License shall be issued. For disapproved applications, the applicant shall be notified in writing with an explanation of the reasons.
+
+Additionally, 
+Article 11: The main content of the statement on the investor's situation for foreign-invested telecommunications enterprises includes: the name and basic information of the investor, the shareholding ratios of all parties, and the control situation of foreign investors over the foreign-invested telecommunications enterprise, among other details.
+
+Article 12: Foreign-invested telecommunications enterprises operating cross-border telecommunications services must obtain approval from the competent department of the Ministry of Industry and Information Technology of the State Council. These services shall be conducted through international telecommunications entry and exit bureaus established with the approval of the competent department of the Ministry of Industry and Information Technology of the State Council.","Since December 2001, last amended in March 2022",https://flk.npc.gov.cn/detail2.html?ZmY4MDgxODE4MGUwYTQ0MTAxODExZTMwNDljYTE0MDE,,,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,Circular of the General Office of the State Council on the Establishment of Security Review System Regarding Merger and Acquisition of Domestic Enterprises by Foreign Investors????????????????????????????????,"Article 1 of the Circular sets the scope of merger and acquisition security reviews, including: (1) Foreign investors acquiring domestic military enterprises and enterprises supporting military industries, enterprises located near key and sensitive military facilities, as well as other entities related to national defense security; and (2) Foreign investors acquiring domestic enterprises involved in key areas related to national security, such as important agricultural products, critical energy and resources, vital infrastructure, essential transportation services, core technologies, and major equipment manufacturing, where the actual control of the enterprise may be obtained by foreign investors.
+
+Article 2 states the content of merger and acquisition security reviews:
+1. The impact of the merger or acquisition transaction on national defense security, including its effect on the domestic production capacity of products needed for national defense, the ability to provide domestic services, and related equipment and facilities.
+2. The impact of the merger or acquisition transaction on the stable operation of the national economy.
+3. The impact of the merger or acquisition transaction on the basic social living order.
+4. The impact of the merger or acquisition transaction on the research and development capabilities of critical technologies related to national security.
+",Since March 2011,https://www.gov.cn/gongbao/content/2011/content_1808591.htm,,,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,Measures for Security Review of Foreign Investments ???????????? ,"According to Article 2 of the Measure for Security Review of Foreign Investments, the types of transactions carried out by foreign investors directly or indirectly in China that may be subject to security review include the following: (i) investments by foreign investors by themselves or jointly with other investors, that are investing in any new project or establishing a business in China; (ii) foreign investors that are acquiring equity or assets of domestic business through mergers and acquisitions; and (iii) foreign investors making investments into China through other methods.
+
+Article 4 states that Foreign investments in the important information technology and Internet products and services, major equipment, key technologies sectors must be declared to the office of the Operational Mechanism (the office is set up under the Measure for the review of foreign investments), to the extent that the investment has a bearing on national security and the that actual control of the investee enterprise is required. Actual control has been been said to exist when the total amount of foreign investment is larger than 50% or the foreign investor is able to affect the board, shareholder meetings or the essential personnel who decide the operation, human resources, finance or key technology of the company.
+
+Pursuant to review, the Operational Mechanism can decide that the foreign investment will not affect national security, in which case the security review has been passed. If it is decided that the foreign investment will affect national security, the parties to the investment may be required to accept the attached conditions which will govern the investment. If the Operational Mechanism decides to prohibit the investment, the same shall not be carried out.",Since January 2021,https://www.ndrc.gov.cn/xxgk/zcfb/fzggwl/202012/P020201219582032130362.pdf,https://www.bakermckenzie.com/-/media/files/insight/publications/2021/01/foreign_investment_security_review_measures.pdf?la=en,,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,Ministry of Commerce Order No. 4 of 2020 on the List of Unreliable Entities ????2020??4?? ??????????,"The Ministry of Commerce Order No. 4 of 2020 on the List of Unreliable Entities sets up a list of unreliable enterprises. As per the Order, foreign entities classified as unreliable entities could face sanctions in the form of restrictions or prohibition on the foreign entity from engaging in China-related import or export activities, restrictions on prohibition on the foreign entity from investing in China etc. Foreign entities that could be included in the unreliable entity list include those involved in international commerce or related activities that engage in endangering national sovereignty, security or development interests in China, suspending normal transactions against any organization or individual in China, entities which violate market principles and cause damage to the rights and interests of the Chinese entity. Under this Order, a special unit in MOFCOM will be responsible for identifying foreign entities (which include foreign enterprises, organizations and individuals) that will be subject to restrictions. 
+
+In February 2023, the Unreliable Entities List Working Mechanism headed by China’s Ministry of Commerce has for the first time designated two US aerospace and defense companies as “Unreliable Entities”. So far, no firms in digital trade related sectors have been designated as an unreliable entity. ",Since September 2020,http://www.mofcom.gov.cn/article/b/fwzl/202009/20200903002593.shtml,,,,,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,National Security Law of the People's Republic of China ??????????????,"Article 59 of the National Security Law states that the state shall establish a system and mechanism for national security review and supervision. It conducts national security reviews on foreign investments, specific items and critical technologies, network information technology products and services, construction projects involving national security matters, as well as other major issues and activities that affect or may affect national security. This aims to effectively prevent and mitigate national security risks.
+
+
+",Since July 2015,https://www.gov.cn/xinwen/2015-07/01/content_2888316.htm,,,,,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1.00,"Regulations of the People's Republic of China on Telecommunications ?????????????;
+
+Regulation on Internet Information Services of the People's Republic of China ??????????????
+
+Measures for the Administration of Telecommunication Business Operation License??????????????
+
+
+
+","Article 7 of the Regulation on Internet Information Services of the People's Republic of China: ""For the operation of internet information services, the applicant should submit a request to the provincial, autonomous region, or directly governed municipality telecommunications management authority or the national industrial and information technology management authority to apply for an internet information service value-added telecommunications business operating license (hereinafter referred to as the ""operating license"").
+
+The provincial, autonomous region, or directly governed municipality telecommunications management authority or the national industrial and information technology management authority should, upon receiving the application, complete the review within 60 days. If approved, the operating license should be issued; if not approved, the applicant should be notified in writing with an explanation of the reasons. After obtaining the operating license, the applicant should proceed with registration and continue with the relevant processing for business registration.""
+
+Such commercial operations include: E-commerce, online advertising, social media, WeChat H5 pages and mini programmes, forums and discussion platforms, and user-generated content websites.
+
+Furthermore, according to Article 6 of the Measures for the Administration of Telecommunication Business Operation License, in order to obtain a lisence, The operator must meet the following conditions: 1) The operator is a legally established company; 2) The operator has sufficient funds and professional personnel suitable for carrying out business activities; 3) The operator has the reputation or ability to provide long-term services to users; 4) For operations within a province, autonomous region, or directly governed municipality, the minimum registered capital is 1 million RMB; for operations nationwide or across provinces, autonomous regions, or directly governed municipalities, the minimum registered capital is 10 million RMB; 5) The operator has the necessary premises, facilities, and technical plans; 6) The company and its major investors and key management personnel are not listed on the telecommunications business dishonesty list; 7) Other conditions as stipulated by the state.
+","Since September 2000, last amended in February 2016;
+
+Since September 2000, last amended in January 2011;
+
+Since September 2017
+
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE3YTQ2ZDE2OWU,https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE4ZTQ3NjE2ZjE,https://www.gov.cn/zhengce/2022-08/23/content_5722715.htm,,,,
+4,4.1,Patent application issues,1.00,Patent Law of the People's Republic of China????????????,"Article 18 of the amended Chinese Patent Law establishes that non-resident foreigners or organizations without business establishments in China shall entrust the patent agency established by law to handle patent applications or other patent-related matters in China. 
+
+Article 19 provides that any entity or individual intending to file a patent application in a foreign country for an invention or utility model completed in China shall submit a request for confidential examination to the patent administration department under the State Council in advance. The patent administration department of the State Council shall handle international patent applications in accordance with the relevant international treaties to which the People's Republic of China is a party, this Law and the relevant provisions of the State Council.","Since April 1984, last amended in June 2021",http://www.npc.gov.cn/npc/c2/c30834/202011/t20201119_308800.html,,,,0.250,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0.00,Patent Law of the People's Republic of China????????????,"Civil and administrative procedures:
+Articles 46 and 63 allow parties to appeal administrative decisions related to invalidity and compulsory licensing by filing lawsuits with the courts.
+Article 46: Any organization or individual who believes that the grant of a patent does not comply with the provisions of this Law may request the administrative department for patent affairs under the State Council to declare the patent right invalid. The administrative department for patent affairs under the State Council shall promptly examine and decide on the request for invalidation of the patent right and notify the parties concerned. The decision on the invalidation of a patent right shall be registered and announced by the administrative department for patent affairs under the State Council. The decision shall be final and binding.
+Article 63: In the event of a dispute over patent infringement, the parties concerned may resolve the dispute through mediation. If mediation fails, or if one of the parties refuses mediation, they may bring a lawsuit to the people's court or request the relevant administrative department for patents to handle the matter.
+When the relevant administrative department for patents determines the matter, if a party is dissatisfied with the handling decision, they may bring a lawsuit to the people's court within 15 days from the date of receiving the notification. If no lawsuit is brought within the prescribed time limit, the decision shall come into effect and be enforced by the people's court.
+
+Remedies:
+Article 71: When the amount of damages for patent infringement cannot be determined based on the losses suffered by the patent holder, the benefits obtained by the infringer, or a reasonable multiple of the patent license fee, the People's Court may award damages ranging from RMB 30,000 to RMB 5,000,000, depending on factors such as the type of patent, nature, and circumstances of the infringement. Where intentional infringement occurs under severe circumstances, the People's Court may determine compensation up to five times the amount calculated based on the above methods. The amount of damages shall also include the reasonable expenses incurred by the patent holder in stopping the infringement.
+
+Provisional Measures:
+Article 69 provides patent enforcement agencies the authority to inspect, seize, and secure evidence during suspected patent infringement or counterfeiting investigations.","Since April 1984, last amended in June 2021",http://www.npc.gov.cn/npc/c2/c30834/202011/t20201119_308800.html,,,,,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0.00,Patent Law of the People's Republic of China????????????,"Article 18 of the amended Chinese Patent Law establishes that non-resident foreigners or organizations without business establishments in China shall entrust the patent agency established by law to handle patent applications or other patent-related matters in China. 
+
+","Since April 1984, last amended in June 2021",http://www.npc.gov.cn/npc/c2/c30834/202011/t20201119_308800.html,,,,,,
+4,4.3,Not in the WIPO Copyright Treaty (WCT),0.00,Patent Cooperation Treaty,China is a contracting state to the Patent Cooperation Treaty.,Since January 1994,https://www.wipo.int/pct/en/pct_contracting_states.html,,,,,,
+4,4.4,Lack of copyright framework and exceptions,0.00,Copyright Law of the People's Republic of China?????????????,"Article 24 of the Copyright Law of China outlines an exhaustive list of copyright exceptions. In particular, the third amendment (2020) introduced a new catch-all provision, allowing other statues and administrative regulations to specify other forms of fair use. The exceptions include:
+
+(1) use of a published work of another for purposes of personal study, research or appreciation;
+(2) appropriate quotation from a published work of another in one’s own work for the purpose of introducing or commenting a certain work, or illustrating a point;
+(3) unavoidable reproduction or quotation from a published work in newspapers, periodicals, radio stations, television stations or other media for the purpose of reporting news;
+(4) publication or broadcasting by newspapers, periodicals, radio stations, television stations or other media?of current event articles on issues of politics, economy and religion, which have been published by other newspapers or periodicals, or broadcast by other radio stations or television stations, except where the copyright owner?declares that such publication or broadcasting is not permitted;
+(5) publication or broadcasting by newspapers, periodicals, radio stations, television stations or other media of a speech delivered at a public gathering, except where the author declares that such publication or broadcasting is not permitted;
+(6) translation, adaptation, compilation, broadcasting, or reproduction in a small quantity of copies, of a published work by teachers or scientific researchers for use in classroom teaching or scientific research, provided that such a work shall not be published or distributed;
+(7) use of a published work by a State organ to a reasonable scope for the purpose of fulfilling its official duties;
+(8) reproduction of a work in its collections by a library, archive, memorial hall, museum, art gallery, cultural center or similar institution for the purpose of display, or preservation of a copy of the work;
+(9) free performance of a published work for non-profit purposes, for which the public does not pay any fees and no remuneration is made to the performers;
+(10) copying, drawing, photographing or video-recording of a work of art put up or displayed in public places;
+(11) translation of a published work of a Chinese citizen, legal person?or unincorporated organization from the standard spoken and written Chinese language into minority nationality languages for publication and distribution in the country;
+(12) provision of published works to dyslexics in a barrier-free way through which they can perceive; and
+(13) other circumstances as provided by laws and administrative regulations.
+
+In general, the people’s courts have in part applied the three-step test to reinforce the traditionally narrow interpreta- tive approach of exceptions in some jurisdictions of the civil law family, and in part adopted a rather open, flexible approach, assimilated to the US fair use doctrine. Overall, the perceived trend is that the people’s courts increasingly prefer a more flexible approach to identify exempted unauthorized copyright exploitation on a case-by-case basis, which is viewed as a breaktrhough in the framework of the three-step test method. 
+
+","Since September 1990, last amended in June 2021",https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm,,,,,,
+4,4.5,Online copyright enforcement issues: civil and administrative procedures and remedies; and provisional measures,0.00,"Copyright Law of the People's Republic of China?????????????
+","Civil and administrative measures:
+Article 49. To protect copyright and rights related to copyright, rights holders may adopt technical measures.
+Without the permission of the rights holder, no organization or individual may intentionally circumvent or disable such technical measures, manufacture, import, or provide to the public devices or components intended for the purpose of circumventing or disabling technical measures, or intentionally provide technical services to others for the same purpose. Exceptions apply in circumstances where circumvention is permitted by law or administrative regulations.
+The ""technical measures"" referred to in this law are effective technologies, devices, or components used to prevent or restrict the unauthorized browsing, viewing, or enjoyment of works, performances, or audio-visual recordings, or their provision to the public through information networks.
+
+Remedies:
+Article 52 states that those commit infringement shall, depending on the circumstances, bear civil liabilities such as ceasing the infringement, eliminating the impact, making a formal apology, and compensating for losses.
+Furthermore, Article 53 states that If the infringement also harms the public interest, the copyright administration department shall order the cessation of the infringing act, issue a warning, confiscate any illegal gains, and seize or harmlessly destroy the infringing copies, as well as the materials, tools, and equipment primarily used to produce such copies. If the illegal business revenue exceeds 50,000 yuan, a fine of one to five times the revenue may also be imposed. If there is no illegal business revenue, or the revenue is difficult to calculate or less than 50,000 yuan, a fine of up to 250,000 yuan may be imposed. If the act constitutes a crime, criminal liability shall be pursued in accordance with the law.
+
+Provisional measures:
+Article 56
+If a copyright owner or a holder of rights related to copyright has evidence proving that another party is infringing or is about to infringe upon their rights, thereby obstructing the realization of their rights, and if failure to stop such actions in time may cause irreparable harm to their legitimate interests, they may apply to the People's Court for measures such as property preservation, orders to perform specific actions, or orders to prohibit specific actions before filing a lawsuit, in accordance with the law.
+Article 57
+To prevent infringement, in cases where evidence may be destroyed or difficult to obtain later, the copyright owner or a holder of rights related to copyright may apply to the People's Court for evidence preservation before filing a lawsuit, in accordance with the law.
+
+
+","Since September 1990, last amended in June 2021",https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm,,,,,,
+4,4.6,Not in the WIPO Copyright Treaty (WCT),0.00,Signature of the WIPO Copyright Treaty,Accession to the WIPO Copyright Treaty since 2007,"Since March 2007, in force since June 2007",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=16,,,,,,
+4,4.7,Not in the WIPO Performances and Phonographs Treaty (WPPT),0.00,Signature of the WIPO Performances and Phonogram Treaty,Accession to the WIPO Performances and Phonogram Treaty since 2007,"Since March 2007, in force since June 2007",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=20,,,,,,
+4,4.8,"Mandatory disclosure of trade secrets, such as source code and algorithms",0.50,"National Security Law of the People's Republic of China ??????????????;
+
+Cybersecurity Law of the People's Republic of China ??????????????","Article 25 of the Chinese government’s 2015 National Security Law states that ""the State shall establishes a national network and information security safeguard system, raising the capacity to protect network and information security; increasing innovative research, development and use of network and information technologies; to bring about security core techniques and key infrastructure for networks and information, information systems in important fields, as well as data""
+
+Furthermore, Article 28 of the Cybersecurity Law states that ""network operators shall provide technical support and assistance to public security organs and national security organs that are safeguarding national security and investigating criminal activities in accordance with the law.”","Since July 2015?
+
+Since June 2017",https://www.gov.cn/xinwen/2015-07/01/content_2888316.htm,https://www.cac.gov.cn/2016-11/07/c_1119867116_2.htm,,,,,
+4,4.9,Lack of effective trade secrets legal framework,0.00,"Anti-Unfair Competition Law of the People's Republic of China????????????????;
+
+Criminal Law of the People's Republic of China???????????;
+
+Civil Code of the People's Republic of China????????????;
+
+Labour Law of the People's Republic of China????????????","China has not legislated a unified law specifically directed to trade secret protection. So far in China, the laws related to trade secret protection scatter across the Anti-Unfair Competition Law (revised in 2019), the Civil Code (effective in 2021), the Labour Law (revised in 2018), and the Criminal Law (revised in 2020).
+
+According to the Anti-Unfair Competition Law: trade secrets refer to any technical information, operational information or commercial information, which is not known to the public and has commercial value, and for which its infringer adopted measures to ensure its confidentiality (Article 9). 
+
+Article 21 of the Anti-Unfair Competition Law further states that where a business operator or any other natural person, legal person or unincorporated organisation infringes any trade secret in violation of Article 9 herein, the supervision and inspection authority shall order it to cease the illegal act, confiscated the illegal gains and impose on it a fine of between CNY100, 000 and CNY1 million; where the circumstance is serious, the fine shall be between CNY500, 000 and CNY5 million.
+
+Furthermore, Article 219 of the Criminal Law writes:
+Anyone who commits any of the following acts of infringing on trade secrets, and if the circumstances are serious, shall be sentenced to imprisonment of not more than three years, along with a fine or a standalone fine; if the circumstances are particularly serious, they shall be sentenced to imprisonment of more than three years but not more than ten years, and fined:
+
+- Obtaining a trade secret of the rights holder through theft, bribery, fraud, coercion, electronic intrusion, or other improper means;
+
+- Disclosing, using, or allowing others to use the trade secret of the rights holder obtained through the means described in the previous item;
+
+- Disclosing, using, or allowing others to use a trade secret in their possession in violation of confidentiality obligations or the requirements of the rights holder regarding the confidentiality of the trade secret.
+
+Any person who, knowing the acts listed in the preceding paragraph, obtains, discloses, uses, or allows others to use the trade secret shall be deemed to have infringed on trade secrets.
+
+
+
+","Since September 1993, last amended in April 2019;
+
+Since July 1979, last amended in December 2020;
+
+Since January 2021;
+
+Since July 1994, last amended in December 2018
+
+
+
+
+
+
+",http://www.npc.gov.cn/zgrdw/npc/lfzt/rlyw/2017-02/21/content_2007613.htm?eqid=ebbc256a0006906e000000046437b594,https://flk.npc.gov.cn/detail2.html?ZmY4MDgxODE3OTZhNjM2YTAxNzk4MjJhMTk2NDBjOTI,https://www.gov.cn/xinwen/2020-06/01/content_5516649.htm,https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394625.html,,,
+5,5.1,Absence of passive infrastructure sharing,0.00,"Telecommunications Regulations of the People's Republic of China ?????????????
+
+","Passive sharing is mandated and is effective in both the mobile and fixed sectors. 
+
+Section 2 of the Telecommunication Regulations stipulates measures on interconnection of telecommunication networks, specifically: 
+
+Article 17
+Telecommunication networks shall achieve interconnection and intercommunication in accordance with the principles of technical feasibility, economic rationality, fairness, impartiality, and mutual cooperation.
+
+A dominant telecommunication service provider shall not refuse interconnection and intercommunication requests made by other telecommunication service providers or dedicated network operators.
+
+The ""dominant telecommunication service provider"" mentioned in the preceding paragraph refers to an operator that controls essential telecommunication infrastructure, holds a significant market share in the telecommunication services market, and can substantially affect the ability of other operators to enter the market.
+
+The dominant telecommunication service provider shall be determined by the competent department of the State Council responsible for information industry management.
+
+Article 18
+A dominant telecommunication service provider shall formulate interconnection procedures, time limits, and a directory of unbundled network elements, among other contents, in accordance with the principles of non-discrimination and transparency. These interconnection regulations shall be submitted to the competent department of the State Council responsible for information industry management for review and approval.
+
+The interconnection regulations shall be binding on the interconnection and intercommunication activities of the dominant telecommunication service provider.
+
+
+","Since September 2000, last amended in February 2016",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE3YTQ2ZDE2OWU,,,,0.735,,
+5,5.2,Foreign equity limits in telecom sector,0.80,"Provisions on Administration of Foreign-Invested Telecommunications Enterprises??????????????
+
+
+","Article 6 of the Provisions:
+
+For foreign-invested telecommunications enterprises engaged in basic telecommunications services (excluding wireless paging services), the share of capital contributed by foreign investors shall not exceed 49%, unless otherwise stipulated by the state.
+
+For foreign-invested telecommunications enterprises engaged in value-added telecommunications services (including wireless paging services within basic telecommunications services), the share of capital contributed by foreign investors shall not exceed 50%, unless otherwise stipulated by the state.
+","Since December 2001, last amended in May 2022",https://flk.npc.gov.cn/detail2.html?ZmY4MDgxODE4MGUwYTQ0MTAxODExZTMwNDljYTE0MDE,,,,,,
+5,5.2,Foreign equity limits in telecom sector,0.00,Provisional Regulations on the Restructuring of State-Owned Enterprises Using Foreign Investment ????????????????,"Under the current regulatory framework, there is no specific cap on foreign investment in state-owned enterprises.
+
+
+
+",Since January 2023,https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/200303/t20030321_143413.html,,,,,,
+5,5.3,Shares owned by the Government in telecom companies,1.00,State Owned Enterprise (SOE),"China United Network Communications Group (Chna Unicom), China Telecom Corporation Limited (China Telecom), and China Mobile Limited are all wholly State-owned enterprise (SOE) providing basic, mobile and value added telecommunication services. ","Since 1994, 1995, 1999 respectively
+
+",http://www.chinaunicom.com.cn/52/menu01/559/564/sub-column06,https://www.chinatelecom-h.com/en/company/structure.php,https://www.10086.cn/aboutus/culture/intro/index/,,,,
+5,5.4,Lack of functional/accounting separation,1.00,Telecommunications Regulations of the People's Republic of China ?????????????,There is no requirement for functional or accounting separation for operators with significant market power in telecommunication sector.,"Since 1985, last amended 2018
+
+Since September 2000, last amended in February 2016",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE3YTQ2ZDE2OWU,,,,,,
+5,5.5,Licensing requirements in telecom sector for operators,1.00,Administrative Measures for the Licensing of Telecommunication Business ??????????????,"In China, telecommunication services can be categorized into two groups: basic telecom services and value-added telecom services.
+
+- Basic telecom services refer to services that provide public network infrastructure, public data transmission, and basic voice communication services.
+- Value-added telecom services refer to services that utilize public network infrastructure to provide telecom and information services.
+
+According to Article 5 of the Administrative Measures, to operate basic telecom services, the following conditions must be met: (1) the operator must be a company legally established specifically for engaging in basic telecom services, with no less than 51% of state-owned equity or shares; (2) there must be a business development research report and a network construction technical plan; (3) there must be sufficient funds and professional personnel suitable for the business activities; (4) there must be premises, facilities, and corresponding resources for conducting business activities; (5) there must be a reputation or capability to provide long-term services to users; (6) for operations within a province, autonomous region, or municipality, the minimum registered capital must be 100 million RMB, while for nationwide or cross-provincial operations, the minimum registered capital must be 1 billion RMB; (7) the company and its major investors and senior management personnel must not be listed on the telecom business dishonesty list; and (8) other conditions stipulated by the state.
+
+Furthermore, Article 6 states that to operate value-added telecom services, the following conditions must be met: (1) the operator must be a company legally established; (2) possess sufficient funds and professional personnel suitable for conducting business activities; (3) have the credibility or capability to provide long-term services to users; (4) for operations within a province, autonomous region, or municipality, the minimum registered capital requirement is 1 million RMB, while for nationwide or cross-provincial operations, the minimum registered capital requirement is 10 million RMB; (5) have necessary premises, facilities, and technical solutions; (6) the company and its major investors and senior management personnel must not be listed on the telecom business dishonesty list; and (7) meet other conditions stipulated by the state.",Since September 2017,https://www.gov.cn/zhengce/2017-07/03/content_5722715.htm,,,,,,
+5,5.6,Not in the WTO Telecom Reference Paper,0.00,WTO Telecom Reference Paper,China has attached the WTO Telecom Reference Paper to its schedule of commitments.,Since February 2002,"https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S009-DP.aspx?language=E&CatalogueIdList=71613,11725,21775,25776,34016&CurrentCatalogueIdIndex=2&FullTextHash=&HasEnglishRecord=True&HasFrenchRecord=True&HasSpanishRecord=True",https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_commit_exempt_list_e.htm,,,,,
+5,5.7,Lack of independent telecom authority,1.00,2008 State Council Institutional Reform Plan???????????,China does not have an independent telecom authority. The Ministry of Industry and Information Technology (MIIT) is the primary telecoms regulatory body in China. ,Last review in August 2023,https://www.gov.cn/test/2009-01/16/content_1207014.htm,http://english.www.gov.cn/state_council/2014/08/23/content_281474983035940.htm,,,,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",0.50,Interim Measures for the Administration of Online Ride-Hailing Services????????????????????,"Article 27: Ride-hailing platform companies shall comply with relevant national regulations on network and information security. The personal information collected and business data generated shall be stored and used within mainland China, with a retention period of no less than two years. Unless otherwise stipulated by laws and regulations, the aforementioned information and data shall not be transferred abroad.
+
+
+","Since July 2016, last amended 2022",https://www.gov.cn/zhengce/2022-12/06/content_5730384.htm,,,,0.923,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",0.50,Interim Measures for the Administration of the Business Activities of Online Lending Information Intermediaries??????????????????????,"Article 27 states that for online lending information intermediaries shall strengthen the management of information related to lenders and borrowers, and ensure the legality and security of the collection, processing, and use of such information.
+
+The storage, processing, and analysis of information on lenders and borrowers collected within China shall be conducted within the territory of China. Except as otherwise provided by laws and regulations, online lending information intermediaries shall not provide information of domestic lenders and borrowers to parties outside of China.",Since August 2016,https://www.gov.cn/gongbao/content/2017/content_5181095.htm,,,,,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",0.50,Regulations on the Administration of Credit Reporting Industry?????????,"Article 24: The collation, storage, and processing of information collected by credit reporting agencies within the territory of China shall be conducted within China.",Since March 2013,https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE5NzEzMjE3MGY,,,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,Administrative Measures for Population Health Information (For Trial Implementation) ?????????????????,"Article 10: Responsible entities shall update and maintain population health information in a timely manner according to service and management needs, ensuring that the information remains current, continuous, and effective.
+
+Population health information shall not be stored on servers located abroad, nor shall it be hosted or leased on overseas servers.",Since May 2014,https://www.cac.gov.cn/2014-08/20/c_1112064075.htm,,,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,Map Management Regulations ????????,Article 34: Internet map service providers shall store map data on servers located within the territory of the People's Republic of China and establish an internet map data security management system along with protective measures.,"Since January 2016
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTJkNjc1MjFiNjY,,,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,Data Protection Measure for Industrial and Telecom Companies ??????????????????????,"According to Article 3 of the Measures, Industrial data refers to data generated and collected during research and development, design, production, manufacturing, business management, operation and maintenance, and platform operation across various industries and fields within the industrial sector. Telecommunications data refers to data generated and collected during telecommunications business operations. Radio data refers to data generated and collected during radio business activities, including radio frequency data, station parameters, and other radio wave parameters.
+
+Furthermore, Chapter 2 classifies data into ""general"", ""important"" and ""core"", and require firms to take different degrees of protection measures when collecting, processing, transferring, and disposing of data. 
+
+In particular, Article 21 states that data processors in the industrial and information technology sector that collect and generate important data and core data within the territory of the People's Republic of China shall store such data domestically if required by laws and administrative regulations. If it is necessary to provide the data abroad, a data export security assessment shall be conducted in accordance with laws and regulations.
+
+",Since December 2022,https://www.gov.cn/zhengce/zhengceku/2022-12/14/content_5731918.htm,,,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",1.00,"Personal Information Protection Law of the People's Republic of China????????????????;
+
+Cybersecurity Law of the People's Republic of China??????????????","Under the Personal Information Protection Law (PIPL):
+
+Article 36: Personal information processed by state agencies shall be stored within the territory of the People's Republic of China. If it is necessary to provide such information abroad, a security assessment shall be conducted. The security assessment may require support and assistance from relevant departments.
+
+Article 40: Operators of critical information infrastructure and personal information processors that handle personal information in quantities specified by the national cybersecurity authority shall store the personal information collected and generated within the territory of the People's Republic of China. If it is necessary to provide such information abroad, a security assessment organized by the national cybersecurity authority must be conducted. If laws, administrative regulations, or provisions of the national cybersecurity authority exempt such security assessments, those provisions shall prevail.
+
+Similarly, Article 37 of the Cybersecurity Law states exactly the same with Article 40 of the PIPL. 
+","Since November 2021;
+
+Since June 2017",https://www.gov.cn/xinwen/2021-08/20/content_5632486.htm,https://www.cac.gov.cn/2016-11/07/c_1119867116.htm,,,,,
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,Interim Measures for the Administration of Online Ride-Hailing Services????????????????????,"Article 27 states that online ride-hailing platform companies must comply with national regulations on cybersecurity and information security. The personal information collected and business data generated shall be stored and used within mainland China, with a retention period of no less than two years. Unless otherwise stipulated by laws and regulations, such information and data shall not be transferred abroad.","Since July 2016, last amended in November 2022",https://www.gov.cn/zhengce/2022-12/06/content_5730384.htm,,,,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1.00,Interim Measures for the Administration of Online Ride-Hailing Services????????????????????,"Article 5 states that applicants seeking to engage in online ride-hailing operations must possess both online and offline service capabilities, have their servers located in mainland China, and implement network security management systems and security protection measures in compliance with regulations.
+","Since July 2016, last amended in November 2022",https://www.gov.cn/zhengce/2022-12/06/content_5730384.htm,,,,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1.00,Map Management Regulations ????????,Article 34: Internet map service providers shall store map data on servers located within the territory of the People's Republic of China and establish an internet map data security management system along with protective measures.,"Since January 2016
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTJkNjc1MjFiNjY,,,,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",1.00,Administrative Regulations for Online Publishing Services????????????,"Article 7: Engaging in online publishing services requires approval from the publishing administrative authority in accordance with the law and obtaining an Online Publishing Service License.
+
+Article 8: Publishing entities such as book, audiovisual, electronic, newspaper, and periodical publishers engaging in online publishing services must meet the following conditions:
+
+1. Possess a designated publishing platform for online publishing activities, such as a website domain or an intelligent terminal application;
+2. Have a clearly defined scope of online publishing services;
+3. Have the necessary technical equipment required for online publishing services, with relevant servers and storage devices located within the territory of the People's Republic of China.
+",Since March 2016 ,https://www.gov.cn/zhengce/2022-11/09/content_5724634.htm,,,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1.00,Personal Information Protection Law of the People's Republic of China????????????????,"Chapter 3 of the Law stipulates Rules for Cross-Border Provision of Personal Information.
+
+Specifically, Article 38 states that if a personal information processor needs to provide personal information outside the People's Republic of China due to business or other needs, it must meet one of the following conditions:
+
+1. Passing a security assessment organized by the national cybersecurity authority in accordance with Article 40 of this law;
+2. Undergoing personal information protection certification by a professional institution in accordance with the regulations of the national cybersecurity authority;
+3. Entering into a contract with the overseas recipient based on the standard contract formulated by the national cybersecurity authority, stipulating the rights and obligations of both parties;
+4. Meeting other conditions stipulated by laws, administrative regulations, or the national cybersecurity authority.
+
+If an international treaty or agreement concluded or participated in by the People's Republic of China provides conditions for the cross-border provision of personal information, such provisions may be followed.
+
+Furthermore, Article 39 states that when a personal information processor provides personal information outside the People's Republic of China, they shall inform the individual of the name or identity of the overseas recipient, their contact information, the purpose and method of processing, the types of personal information involved, and the means and procedures for the individual to exercise their rights under this law with the overseas recipient. The processor must also obtain the individual's separate consent.
+
+","Since November 2021
+",https://www.samr.gov.cn/wljys/gzzd/art/2023/art_3ef1e889c1e644d4b65b5f5c7f432386.html,,,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1.00,Provisions on Promoting and Regulating Cross-border Data Flow???????????????,"The Provisions clarify the applicable standards for data processors in cross-border data transfers, including security assessment, standard contract for outbound transfer of personal data, and personal information protection certification. Critical information infrastructure operators (CIIOs) shall undergo a security assessment when transferring personal information or important data outside China.  Other entities also need to conduct a security assessment when transferring important data or a large volume of personal information, with specific thresholds set at personal information (without sensitive personal information) of more than 1 million individuals or sensitive personal information of more than 10,000 individuals accumulated from January 1 of the current year.
+
+Furthermore, the Provisions includes specific scenario exemptions: 
+
+Article 2: Data processors shall identify and report important data in accordance with relevant regulations. If the relevant authorities or regions have not notified or publicly designated the data as important data, data processors are not required to declare it as important data for a data export security assessment.
+
+Article 3: Data generated from international activities (e.g., trade, transportation, academic cooperation, manufacturing, marketing) that does not include personal or important data is exempt from cross-border data security assessments and compliance requirements.
+
+Article 4: Personal information collected abroad and processed in China before being transferred overseas, as long as no domestic personal or important data is involved, is exempt from cross-border data security assessments and compliance requirements.
+
+Article 5: Certain cross-border personal information transfers are exempt from security assessments and compliance requirements, including (1) fulfilling contracts (e.g., cross-border shopping, visa processing), (2) managing international human resources, (3) handling emergencies, and (4) transferring personal data abroad under a 100,000-person threshold (excluding sensitive data). Personal information provided abroad must not include important data.
+
+",Since March 2024,https://www.gov.cn/gongbao/2024/issue_11366/202405/content_6954192.html,,,,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",0.50,Personal Financial Information Protection Technical Specification??????????????,"Article 7.1.3, part (d) of the Techinical Specification states that in the process of providing financial products or services within the territory of the People's Republic of China, personal financial information collected and generated shall be stored, processed, and analyzed within the country. If it is necessary to provide personal financial information to overseas institutions (including headquarters, parent companies, branches, subsidiaries, and other affiliated institutions essential for completing the business) due to business requirements, the specific requirements are as follows:
+
+- It must comply with national laws and regulations as well as relevant provisions of the competent industry authorities;
+- Explicit consent must be obtained from the subject of the personal financial information;
+- A security assessment for the cross-border transfer of personal financial information must be conducted in accordance with the measures and standards established by relevant national and industry authorities to ensure that the data security protection capabilities of overseas institutions meet the security requirements of relevant national and industry authorities as well as financial institutions;
+- Agreements must be signed with overseas institutions, and on-site inspections shall be conducted to clarify and supervise the overseas institutions in effectively fulfilling their obligations, such as maintaining the confidentiality of personal financial information, data deletion, and case investigation cooperation.
+
+",Since February 2020,http://www.pbc.gov.cn/zhengwugongkai/4081330/4406346/4693549/4085091/2020030414554980731.pdf,,,,,,
+6,6.5,Not in an agreement with binding commitments on data transfer.,0.00,"Regional Comprehensive Economic Partnership Agreement (""RCEP"")","China is a member of the Regional Comprehensive Economic Partnership Agreement (""RCEP""), which includes a data free flow commitment under Article 12.15. 
+
+",Since January 2022,https://www.mfat.govt.nz/assets/Trade-agreements/RCEP/RECP-Agreement-112020/Chapter-12.pdf,,,,,,
+7,7.1,Lack of comprehensive legal framework for data protection,0.00,Personal Information Protection Law of the People's Republic of China????????????????,"The Personal Information Protection Law (PIPL) is applicable to any organization and individual who processes personal information in China. For companies outside China, the PIPL is also applicable if they provide services or products to people in China or analyze and evaluate the activities of people in China. The PIPL sets out the conditions for transfer of personal information out of China, protection of sensitive personal information, classification and retention of personal information and other compliance requirements. 
+
+",Since November 2021,https://www.samr.gov.cn/wljys/gzzd/art/2023/art_3ef1e889c1e644d4b65b5f5c7f432386.html,,,,0.375,,
+7,7.1,Lack of comprehensive legal framework for data protection,0.00,Data Security Law of the People's Republic of China??????????????,"On June 10, 2021, the Data Security Law of the People’s Republic of China was officially passed during the 29th session of the Standing Committee of the 13th National People’s Congress. Aiming to further strengthen the current protection regime for the country’s fast-growing digital economy, the law stipulates how data is used, collected, developed, and protected in China. It emphasizes on top-down coordination of data security implementation among local governments and differentiated fines based on severity of violations.",Since September 2021,https://www.gov.cn/xinwen/2021-06/11/content_5616919.htm,,,,,,
+7,7.1,Lack of comprehensive legal framework for data protection,0.00,"Management Standards for the Entry and Removal of Digital Educational Resources on the National Smart Education Platform ????????????????????????;
+
+Notice on Further Advancing the Electronic Information Management of Physicians ???????????????????????;
+
+Interim Measures for Data Security Management of Accounting Firms ??????????????????;
+
+Implementation Plan for Establishing a Carbon Footprint Management System ??????????????????
+
+","In addition to comprehensive legislation that applies horizontally across all sectors, China has also developed and implemented a wide range of sector-specific regulations related to data protection, offering detailed guidance tailored to different industries. For example, in just the first half of 2024 alone, the Chinese government issued over 20 national laws, industry regulations, and local policies concerning data security. A selection of these is listed below.
+
+Education sector: 
+The General Office of the Ministry of Education Issued the “Management Standards for the Entry and Removal of Digital Educational Resources on the National Smart Education Platform”. According to the Standards, platform service providers must comply with relevant laws, regulations, and national standards, and adopt technical and other necessary measures to ensure the security of the platform and its resources, as well as retain network logs in accordance with the law.
+
+Healthcare sector: 
+The National Health Commission, the National Administration of Traditional Chinese Medicine, and the National Disease Control and Prevention Administration jointly issued the ""Notice on Further Advancing the Electronic Information Management of Physicians"". The Notice calls on local authorities to implement a data security accountability system, strengthen data security monitoring and early warning mechanisms, regularly conduct security assessments and risk evaluations, and establish disaster recovery and data backup systems to ensure the security of information within electronic registration systems.
+
+Finance sector: 
+The Ministry of Finance and the Cyberspace Administration of China jointly issued the ""Interim Measures for Data Security Management of Accounting Firms"". The Measures require accounting firms to classify and categorize data in accordance with relevant laws, regulations, and the data classification standards applicable to the industry of the audited entity. Firms must identify core data, important data, and general data, and comply with specific requirements regarding the storage, transmission, and logging of core and important data.
+
+Energy sector: 
+The Ministry of Ecology and Environment, together with 14 other departments, jointly issued the ""Implementation Plan for Establishing a Carbon Footprint Management System"". The Plan calls for strengthening the protection of data security and intellectual property related to product carbon footprints. It emphasizes the implementation of data security laws and regulations, enhanced oversight of data circulation, and the creation of a secure and reliable environment for data exchange. The Plan also encourages digital technology enterprises to provide cloud-based security services to improve overall data security standards.","Since May 2024;
+
+Since March 2024;
+
+Since October 2024;
+
+Since May 2024",https://www.gov.cn/zhengce/zhengceku/202407/content_6961951.htm,https://www.gov.cn/zhengce/zhengceku/202403/content_6940719.htm,https://www.gov.cn/gongbao/2024/issue_11386/202406/content_6955750.html,https://www.gov.cn/gongbao/2024/issue_11506/202408/content_6966477.html,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1.00,Regulation on Network Data Security Management????????????,"Article 12: When a network data processor provides or entrusts the processing of personal information and important data to another network data processor, it shall agree on the processing purposes, methods, scope, and security protection obligations through a contract or other means with the data recipient, and shall supervise the fulfillment of these obligations by the data recipient. Records of the processing activities involving the provision or entrustment of personal information and important data to another network data processor must be kept for at least 3 years.
+",Since January 2025,https://www.gov.cn/zhengce/zhengceku/202409/content_6977767.htm,,,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1.00,"Regulation on Internet Information Services of the People's Republic of China ?????????????
+
+","The Regulation on Internet Information Services of the People's Republic of China requires that Internet Service Providers (ISPs) keep records of each service user’s time spent online, user account, IP address or domain name, phone number and other information for 60 days and provide that information to the authorized government authorities when required (Article 14.).
+","Since September 2000, last amended January 2011
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE4ZTQ3NjE2ZjE,,,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1.00,Interim Measures for the Administration of Online Ride-Hailing Services????????????????????,"Article 27 states that online ride-hailing platform companies must comply with national regulations on cybersecurity and information security. The personal information collected and business data generated shall be stored and used within mainland China, with a retention period of no less than two years. Unless otherwise stipulated by laws and regulations, such information and data shall not be transferred abroad.","Since November 2016, last amended in November 2022",https://www.gov.cn/zhengce/2022-12/06/content_5730384.htm,,,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1.00,Measures on the Administration of Accounting Records??????????,"According to Article 14 of the measures, there are minimum retention periods for various accounting vouchers, accounts, books, financial reports and other accounting documents, and the retation periods are either 10 years or 30 years.
+Furthermore, certain key accounting records are subject to permanent retention. These records include:
+- Annual financial accounting reports
+- List of handover accounting records
+- List of retained accounting records
+- Accounting records evaluation opinion",Since January 2016,https://www.gov.cn/gongbao/content/2016/content_5041555.htm,,,,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1.00,E-commerce Law of the People's Republic of China??????????????,"Article 31 of the Law states that all e-commerce platform business shall record and retain the information on the commodities and services and transaction information released in the platform and ensure the integrity, confidentiality and availability of the information. The information on commodities, services, and transactions shall be retained for at least three years from the day of completion of the transaction, unless otherwise provided by any law or administrative regulation.",Since January 2019,http://www.mofcom.gov.cn/article/zt_dzswf/deptReport/201811/20181102808398.shtml,,,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1.00,"Personal Information Protection Law of the People's Republic of China????????????????;
+
+Guidance for Personal Information Security Impact Assessment (GB/T 39335–2020)??????? ?????????????
+","Article 52 of The Personal Data Protection Law states that:
+
+Where the quantity of personal information processed by a processor reaches that specified by the state cyberspace administration, the processor shall designate a person in charge of personal information protection to be responsible for supervising the processing of personal information and the adopted protection measures.
+
+A personal information processor shall make public the contact information of the person in charge of personal information protection and submit the name and contact information of the person in charge of personal information protection to the department performing duties of personal information protection.
+
+Furthermore, according to Article 55, a personal information processor shall conduct personal information protection impact assessment of the following circumstances in advance and keep a record of the processing:
+
+(I) processing sensitive personal information;
+
+(II) making use of personal information to make automatic decisions;
+
+(III) entrusting others to process personal information, providing other personal information processors with personal information, and disclosing personal information;
+
+(IV) providing personal information to overseas parties; and
+
+(V) other personal information processing activities that have a significant impact on individuals’ rights and interests.
+
+Guidance for Personal Information Security Impact Assessment (GB/T 39335 – 2020) ('the Security Impact Assessment Guidance') further provides detailed rules for personal information handlers on how to conduct protection impact assessment for high-risk data processing activities, e.g. processing sensitive personal information, providing personal information to another data handler, and cross-border transfer of personal information.
+
+
+","Since November 2021;
+
+Since June 2021",https://www.sac.gov.cn/cms_files/filemanager/samr/www/samrnew/wljys/gzzd/202304/t20230417_354662.html,https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=9EA84C0C3C2DBD3997B23F8E6C8ECA35,,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1.00,Amendment to the Information Security Technology – Personal Information Security Specification (GB/T 35273-2020) ???????-??????????GB/T 35273-2020????,"The 2020 Specification provides that personal information controllers shall appoint a person and a department responsible for personal information (PI) protection. Article 11.1 further stipulates that the person responsible for PI protection must be someone who has relevant management experience and personal information protection expertise and shall participate in important decisions on personal information processing activities and report directly to the principal of the organization.
+
+Article 11.1 further states that organizations meeting any of the following conditions should establish a dedicated personal information protection officer and a personal information protection work mechanism, responsible for personal information security work:
+
+1. The primary business involves handling personal information, and the organization has more than 200 employees engaged in this business;
+2. Processes personal information of over 1 million individuals, or is expected to process the personal information of over 1 million individuals within 12 months;
+3. Processes the sensitive personal information of more than 100,000 individuals.",Since October 2020,https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=4568F276E0F8346EB0FBA097AA0CE05E,https://www.tc260.org.cn/upload/2020-09-18/1600432872689070371.pdf,,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,1.00,Cybersecurity Law of the People's Republic of China??????????????,"Article 21 of the Cybersecurity Law requires network operators to appoint persons in charge of cybersecurity. Critical information infrastructure operators (CIIO) are also required to set up specialized security management bodies and persons responsible for security management. Further, CIIO's must conduct security background checks on those responsible persons and personnel in critical positions. 
+",Since June 2017,https://www.newamerica.org/cybersecurity-initiative/digichina/blog/translation-cybersecurity-law-peoples-republic-china/,http://www.cac.gov.cn/2016-11/07/c_1119867116.htm,,,,,
+7,7.4,Requirements to allow government access to personal data,1.00,Counter-Espionage Law of the People's Republic of China?????????????,"Article 25 and 26 of the Counterespionage Law provides for state security organ personnel to gain entry to restricted regions, venues or units and to inspect, read or collect relevant archives, materials or items. Such access is permitted on the basis of relevant national regulations and upon approval and presentation of appropriate documents. Further, state security organ personnel can also check electronic communication tools, equipment and facilities in accordance with the regulations.
+
+However, court order is not necessary when accessing archive, data, and information. Instead, Article 26 of the Law states that approval is required from the person in charge of the national security agency at the municipal level or above. In China, national security agency (??????) does not include the court. 
+","Since November 2014, last amended in July 2023
+",https://www.gov.cn/yaowen/2023-04/27/content_5753385.htm,,,,,,
+7,7.4,Requirements to allow government access to personal data,1.00,Measures for the Administration of Internet E-mail Services 2006 ???????????????,"These measures by the MIIT provide that “Citizens’ privacy of correspondence in using Internet e-mail services shall be protected by law. Unless the public security organisation or procuratorial organisation makes an inspection on the contents of correspondence pursuant to the procedures prescribed in law when required by national security or investigation of crimes, no organisation or individual shall infringe upon any citizen’s privacy of correspondence on any pretext.”
+
+A requirement for court order is not present in the measures. ",Since March 2006,https://www.gov.cn/zhengce/2022-08/23/content_5722728.htm,,,,,,
+7,7.4,Requirements to allow government access to personal data,1.00,Counterterrorism Law of the People's Republic of China ???????????????,"Article 18 of the Counterterrorism law requires Internet service providers and telecommunication sector to “provide technical support and assistance, such as technical interface and decryption, to support the activities of the public security and state security authorities in preventing and investigating terrorist activities.”
+
+In addition, no ""court order"" is required for the technical support and assistance. ","Since January 2016, last amended in April 2018",https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201912/t20191211_1055941.html,,,,,,
+7,7.4,Requirements to allow government access to personal data,1.00,Provisions on the Management of Internet Post Comments Services ???????????????,"Article 5 states that comment and reply service providers shall strictly fulfill their primary responsibilities by cooperating with relevant competent authorities in conducting supervision and inspection activities and providing the necessary technical support, documentation, and data assistance in accordance with the law.
+
+A requirement for court order is not present in the measures. ",Since October 2017,https://www.cac.gov.cn/2017-08/25/c_1121541842.htm,,,,,,
+7,7.4,Requirements to allow government access to personal data,1.00,Interim Administrative Measures for Generative Artificial Intelligence Services?????????????????,"Article 19: Relevant regulatory authorities shall conduct supervision and inspections of generative artificial intelligence (AI) services in accordance with their responsibilities. Service providers must cooperate as required by law and provide explanations regarding the sources, scale, types, and labeling rules of training data, as well as algorithm mechanisms and principles. They must also offer necessary technical, data, and other forms of support and assistance.
+
+Institutions and personnel involved in the security assessment and supervision of generative AI services must keep confidential any state secrets, trade secrets, personal privacy, or personal information they become aware of in the course of their duties. They are prohibited from disclosing or unlawfully providing such information to others.",Since August 2023,http://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm,,,,,,
+8,8.1,Lack of safe harbour for copyright infringements,0.00,"Regulation on Protection of the Right to Network Dissemination of Information?????????????
+","Articles 20 - 23 of the Regulations for the Protection of Information Network Dissemination Rights state that service providers who qualify for safe harbour protection will not be held liable for certain illegal activities, including copyright violations, committed by their customers. 
+
+To qualify for safe harbor immunity, service providers must meet several conditions outlined in the Regulations. These conditions vary depending on the type of safe harbor protection being claimed. Regardless of the specific immunity sought, service providers must ensure that they have not actively engaged in accessing, transmitting, copying, storing, linking to, or searching for unauthorized information.
+
+Additionally, to receive safe harbour for storage and linking services, service providers must follow a notice and removal procedure. When servise providers are notified of infringing activities but fail to remove the unauthorized information from their sites, their claim for safe harbour protection will be denied.  
+","Since July 2006, amended in March 2013
+
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTM5OTJiMjFkYjk,,,,0.500,,
+8,8.2,Export restrictions on ICTgoods and online services,0.00,"Regulation on Protection of the Right to Network Dissemination of Information?????????????
+
+","Article 20 Under the following circumstances, a network service provider that provides automatic access services according to the instructions of the service object, or provides automatic transmission services of the works, performances, or audio-visual recordings to its service objects, shall not be liable for compensation:
+1. Having not selected or altered the transmitted work, performance, or audio-visual recording;
+2. Having provided the work, performance, or audio-visual recording to the designated service objects, and having prevented others beyond the designated service objects from obtaining access.
+??
+Article 21 Under the following circumstances, a network service provider that automatically stores works, performances, or audio-visual recordings obtained from other network service providers for the purpose of enhancing network transmission efficiency, and automatically provides them to the service objects according to the technical arrangements, shall not assume liability for compensation:
+1. Having not altered the automatically stored works, performances, or audio-visual recordings;
+2. Having not affected the original network service provider of the works, performances, or audio-visual recordings in managing the relevant works;
+3. When the original network provider alters, deletes, or shields the works, performances, or audio-visual recordings, automatically altering, deleting, or shielding them according to the technical arrangement.
+??
+Article 22 Under the following circumstances, a network service provider that provides information storage space to a service object or provides works, performances, or audio-visual recordings to the public through the information network, shall not be liable for compensation:
+1. Having clearly mentioned that the information storage space is provided to the service object, and also having publicized the name, contact information, and web address of the network service provider;
+2. Having not altered the work, performance, or audio-visual recording provided to the service object;
+3. Having not known and having no justified reason to know that the works, performances, or audio-visual recordings provided by the service object have infringed upon an other’s right;
+4. Having not directly obtained economic benefits from the service object’s provision of the work, performance, or audio-visual recording;
+5. After receiving the notification from the owner, having deleted the work, performance, or audio-visual regarded as infringing on the right of the owner according to the provisions of this regulation.","Since July 2006, amended in March 2013
+
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTM5OTJiMjFkYjk,,,,,,
+8,8.3,User identify requirements,1.00,Provisions on the Management of Mobile Internet Applications' Information Services ???????????????????,"Article 6: Application providers that offer services such as information publishing and instant messaging must verify the real identity information of users applying for registration. This can be done using methods such as mobile phone numbers, ID card numbers, or unified social credit codes. If users fail to provide real identity information or use false registrations by impersonating organizations or others, the application providers must not offer related services to them.",Since August 2022,https://www.gov.cn/xinwen/2022-06/14/content_5695690.htm,,,,,,
+8,8.3,User identify requirements,1.00,Counterterrorism Law of the People's Republic of China ???????????????,"According to the Counterterrorism Law (Art. 21) providers of telecommunication, internet, and financial services are required to conduct identity checks of their customers or clients and refuse to provide services to those that decline to provide such information. No implementing regulations have been issued yet. 
+
+","Since January 2016, last amended in April 2018
+
+",https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201912/t20191211_1055941.html,,,,,,
+8,8.3,User identify requirements,1.00,"Administrative Measures on Internet Forum Community Service ???????????????;
+
+Provisions on the Management of Internet Post Comments Services ???????????????","Article 8 of the Administrative Measures on Internet Forum Community Service states that internet forum and community service providers shall follow the principle of ""real-name authentication in the background, voluntary display in the foreground."" They must require users to register accounts through real identity verification and implement real identity information filing and periodic verification for section initiators and administrators. If users do not provide real identity information, internet forum and community service providers shall not provide them with information publishing services.
+
+Moreover, Article 4 of the Provisions on the Management of Internet Post Comments Services stipulates that providers of comment and reply services shall strictly fulfill their primary responsibility for managing such services and perform the following duty in accordance with the law:
+
+Adhering to the principle of ""real-name registration in the backend, user anonymity in the frontend,"" they must verify the real identity information of registered users using methods such as mobile phone numbers, ID card numbers, or unified social credit codes. They shall not provide comment and reply services to users who fail to authenticate their real identity information or who impersonate organizations or other individuals.","Since October 2017;
+
+Since October 2017",http://www.cac.gov.cn/2017-08/25/c_1121541921.htm,http://www.cac.gov.cn/2017-08/25/c_1121541842.htm,,,,,
+8,8.3,User identify requirements,0.50,Regulations on the Registration of Authentic Identity Information of Telephone Subscribers????????????????,"Article 5: Telecommunications service operators shall legally register and protect the real identity information provided by telephone users when completing network access procedures.
+
+Article 6: When handling network access procedures for users, telecommunications service operators shall require users to present valid identification documents and provide real identity information. Users must cooperate with this requirement.
+
+Article 7: Individuals registering real identity information as telephone users may present one of the following valid identification documents:
+
+- Resident ID card, temporary resident ID card, or household registration booklet;
+- ID card of a serviceman in the Chinese People’s Liberation Army or ID card of a member of the Chinese People's Armed Police Force;
+- Mainland Travel Permit for Hong Kong and Macao Residents, Mainland Travel Permit for Taiwan Residents, or other valid travel documents;
+- Passport of a foreign citizen;
+- Other valid identification documents as specified by laws, administrative regulations, and national provisions.",Since September 2013,https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/201311/t20131119_145359.html,,,,,,
+8,8.3,User identify requirements,0.00,Regulation on Network Data Security Management????????????,"Article 43: The country shall promote the construction of public network identity authentication services, with the principle of government guidance and user voluntariness for promotion and application.
+
+Network platform service providers are encouraged to support users in using the national network identity authentication public service to register and verify their real identity information.",Since January 2025,https://www.gov.cn/zhengce/zhengceku/202409/content_6977767.htm,,,,,,
+8,8.4,Monitoring requirements,1.00,"Decision of the Standing Committee of the National People’s Congress on Strengthening Online Information Protection ????????????????????????????
+
+","According to Article 5 of the Decision of the Standing Committee of the National People’s Congress on Strengthening Online Information Protection, Internet service providers shall strengthen the management of information published by their users. If they discover information that is prohibited by laws and regulations from being published or transmitted, they shall immediately cease the transmission of such information, take measures such as removal, and retain relevant records, reporting to the relevant competent authorities.","Since December 2012
+",https://www.cac.gov.cn/2015-02/05/c_1114266581.htm,,,,,,
+8,8.4,Monitoring requirements,1.00,Counterterrorism Law of the People's Republic of China ???????????????,"The Counter-Terrorism Law issued in 2015 requires telecom and Internet Service Providers (ISP) to establish content monitoring and network security programs. The companies are required to adopt precautionary security measures to prevent the dissemination of information on extremism, to report terrorism information to the authorities in a timely manner, to keep original records, and to promptly delete such messages to prevent further circulation (Art. 19). 
+
+Furthermore, Article 84 introduces both pecuniary fines and detentions up to 15 days for telecommunications operators and ISPs personnel who commit any of the following acts: 
+1. Failure to provide technical interfaces, decryption, or other technical support and assistance to public security or state security authorities in accordance with regulations to prevent and investigate terrorist activities;
+2. Failure to comply with the requirements of the competent authority to stop the transmission, delete information containing terrorist or extremist content, preserve relevant records, shut down related websites, or suspend related services;
+3. Failure to implement network security, information content supervision systems, or security technical measures, resulting in the dissemination of information containing terrorist or extremist content, with severe consequences.","Since January 2016, last amended in April 2018",https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201912/t20191211_1055941.html,,,,,,
+8,8.4,Monitoring requirements,1.00,Provisions on the Management of Mobile Internet Applications' Information Services ???????????????????,"Article 8: Application providers shall be responsible for the presentation of information content results. They must not produce or disseminate illegal information and shall actively prevent and resist harmful information.
+
+Article 20: Application distribution platforms shall review applications submitted for listing or updates. If any application is found to have illegal or harmful information in its name, icon, or description, discrepancies between the application and the registered entity’s real identity, or unlawful or non-compliant business types, the platform shall not provide services to such applications.
+
+Application distribution platforms shall also strengthen the daily management of listed applications. They must not provide services to applications that contain illegal or harmful information, engage in fraudulent activities such as falsifying download numbers or evaluation metrics, pose data security risks, unlawfully collect or use personal information, or infringe upon the legitimate rights and interests of others.
+
+
+","Since August 2022
+
+",https://www.gov.cn/xinwen/2022-06/14/content_5695690.htm,,,,,,
+8,8.4,Monitoring requirements,1.00,Provisions on the Management of Internet Post Comments Services ???????????????,"Article 5: Providers of comment and reply services shall strictly fulfill their primary responsibilities and perform the following obligations in accordance with the law:
+
+- For providing comment and reply services on news information, a pre-review system must be established before comments are published.
+
+- Establish and improve information security management systems for reviewing and managing comments, real-time monitoring, and emergency response. Illegal information must be promptly identified, addressed, and reported to the relevant authorities.
+
+- Develop technologies for the protection and management of comment and reply information security, innovate management methods, and use anti-spam management systems to improve the handling of spam. Security flaws, vulnerabilities, and risks in comment services must be promptly identified, remedied, and reported to the relevant authorities.",Since October 2017,https://www.cac.gov.cn/2017-08/25/c_1121541842.htm,,,,,,
+8,8.4,Monitoring requirements,1.00,Interim Administrative Measures for Generative Artificial Intelligence Services?????????????????,"Providers are held accountable as “content producers” according to the Generative AI Measures (Article 9). When “illegal content” is identified among users of these services, providers must promptly take actions, including suspending content generation and transmission, taking down the content, and addressing the issue through model optimization. Additionally, providers are required to report such incidents to regulators (Article 14).",Since August 2023,http://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm,,,,,,
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",1.00,"Regulation on Internet Information Service of the People's Republic of China ?????????????
+
+","Article 15 stipulates that internet information service providers shall not produce, copy, publish, or disseminate information containing the following content:
+1. Opposing the basic principles as they are confirmed in the Constitution.
+2. Jeopardizing the security of the nation, divulging state secrets, subverting state power, or jeopardizing the integrity of the nation's unity
+3. Harming the honor or the interests of the nation
+4. Inciting hatred against peoples, racism against peoples, or disrupting the solidarity of peoples
+5. Disrupting national policies on religion, propagating evil cults and feudal superstitions
+6. Spreading rumors, disturbing social order or disrupting social stability
+7. Spreading obscenity, pornography, gambling, violence, murder, terror, or abetting the commission of a crime
+8. Insulting or defaming third parties, infringing on the legal rights and interests of third parties
+9. Containing any other content prohibited by law or administrative rules
+
+Furthermore, Article 20: Producing, copying, publishing, or disseminating any of the content listed in Article 15 of these Measures that constitutes a crime shall be subject to criminal liability in accordance with the law. For commercial internet information service providers, the licensing authority shall order them to suspend operations for rectification or revoke their business license and notify the enterprise registration authority. For non-commercial internet information service providers, the filing authority shall order the temporary closure of the website, up to and including permanent shutdown.
+
+Thus, this Regulation provides legal basis for blocking and filtering commercial web content.
+
+
+
+","Since September 2000, last amended in January 2011",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE4ZTQ3NjE2ZjE,,,,0.625,,
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",1.00,Commercial Web Content Blocking and Filtering in Practice,"According to Freedom on the Net 2024 Country Report, the government maintains control over China’s gateways to the global internet, giving authorities the ability to restrict connectivity or access to content hosted on servers outside the country. This arrangement is the foundation for the “Great Firewall,” the informal name for the government’s comprehensive internet censorship system. All service providers must subscribe via the gateway operators, which are overseen by the Ministry of Industry and Information Technology (MIIT).
+
+According to GreatFire.org—an anticensorship group that tracks filtering in China—as of February 2024, over 100,000 websites were blocked in China. Many international news outlets and their Chinese-language websites are blocked, such as those of the New York Times, Reuters, the Wall Street Journal, the Australian Broadcasting Corporation (ABC), and the British Broadcasting Corporation (BBC).
+
+Most international social media and messaging platforms are blocked, including Facebook, WhatsApp, Twitter, Instagram, Signal, Clubhouse, YouTube, Telegram, Snapchat, Line, and Pinterest. The popular discussion forum Reddit was blocked in August 2018, while all languages of Wikipedia were blocked in April 2019. A number of Google services—including Maps, Translate, Calendar, Docs, Drive, Scholar, and Analytics—remained blocked as of the end of the coverage period.
+
+Blocks on global search engines severely limit the content available on the Chinese internet. Google’s search engine has been blocked since 2012, while the Yahoo search function was blocked in 2018.
+
+A minority of Chinese internet users, though they number in the tens of millions, access blocked websites with circumvention tools like VPNs. However, the government has intensified its restrictions on these tools since 2017, when the MIIT banned the use of unlicensed VPNs.
+",Last reviewed in January 2025,https://freedomhouse.org/country/china/freedom-net/2024#footnote2_1Pi-PKdmSrMlk4qO5hRWZoKTlNp80vKBau23n5Sg_cYfXRNYnbr7j,https://en.greatfire.org/analyzer,,,,,
+9,9.2,Internet shutdowns,0.25,"V-Dem, variable v2smgovshut","The indicator ""6.2.4 - Government Internet shut down in practice"" of the V-Dem Dataset, which measures whether the government has the technical capacity to actively make internet service cease, thus interrupting domestic access to the internet or whether the government has decided to do so, has a score of 2.75 in China. This corresponds to ""Internet shutdown rarely occurs"".",Reported in 2024,https://v-dem.net/data_analysis/VariableGraph/,,,,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",0.00,Measures for the Administration of Internet Advertising???????????,"The provisions of these new Measures will apply to all entities that carry out commercial advertising activities within the mainland territory of the People's Republic of China and use websites, web pages, internet applications, and other internet media (such as text, images, audio, or video, etc.) to either directly or indirectly market goods or services.
+
+Per these new Measures, organizations are strictly prohibited from conducting any advertising for the following:
+
+- Medical treatments;
+- Medication;
+- Medical devices;
+- Food with health claims;
+- Formula products with medical claims.
+
+Specifically, under the Measures, live streams featuring any product/service will be considered a form of internet advertising, subject to the appropriate regulations. Similarly, the individuals involved in such live streams, such as the live-stream product owner, the livestream website operator, and the live-stream service provider, will now all be considered advertising agents or publishers based on the degree of their involvement.
+
+Lastly, individuals who promote any products/services on live streams based on their own personal use and experience with the product will now be considered endorsers, subject to all the relevant requirements and provisions under the PRC Advertising Law.",Since May 2023,https://www.gov.cn/zhengce/202305/content_6858084.htm,,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)","1.00
+",Administrative Regulations for Online Publishing Services????????????,"Article 7: Engaging in online publishing services requires approval from the publishing administrative authority in accordance with the law and obtaining an Online Publishing Service License.
+
+Article 8: Publishing entities such as book, audiovisual, electronic, newspaper, and periodical publishers engaging in online publishing services must meet the following conditions:
+
+1. Possess a designated publishing platform for online publishing activities, such as a website domain or an intelligent terminal application;
+2. Have a clearly defined scope of online publishing services;
+3. Have the necessary technical equipment required for online publishing services, with relevant servers and storage devices located within the territory of the People's Republic of China.
+
+
+",Since March 2016 ,https://www.gov.cn/zhengce/2022-11/09/content_5724634.htm,,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0.50,Regulation on Internet Information Services of the People's Republic of China ?????????????,"Under the regulation, Internet information services are classified into two categories: commercial and non-commercial.
+
+- Commercial internet information services refer to activities that provide information, webpage creation, or other services to internet users for a fee.
+- Non-commercial internet information services refer to activities that provide open and shared information to internet users free of charge.
+
+According to Article 7, entities engaging in commercial internet information services must apply for an Internet Information Service Value-Added Telecommunications Business License (hereinafter referred to as the Operating License) from the telecommunications regulatory authority of the province, autonomous region, municipality, or the competent department of the State Council responsible for the information industry.
+
+The relevant telecommunications regulatory authority shall review the application and make a decision within 60 days of receiving it. If approved, an Operating License shall be issued. If denied, the applicant shall be notified in writing with an explanation of the reasons.
+
+After obtaining the Operating License, the applicant must use it to complete the business registration process with the relevant enterprise registration authority.","Since September 2000, last amended in January 2011",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE4ZTQ3NjE2ZjE,,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)","1.00
+","Internet News Information Service Management Regulations ???????????????
+
+","Article 5: Entities providing internet news information services to the public through websites, applications, forums, blogs, microblogs, public accounts, instant messaging tools, live streaming platforms, or other online formats must obtain an Internet News Information Service License. It is prohibited to engage in internet news information services without a license or beyond the permitted scope.
+
+The term internet news information services in the preceding paragraph includes news information collection, editing, and publishing services, news reposting services, and news dissemination platform services.
+
+Article 6: Applicants for an Internet News Information Service License must meet the following conditions:
+
+1. Be a legally established legal entity within the territory of the People's Republic of China;
+2. Have a chief executive and editor-in-chief who are Chinese citizens;
+3. Employ dedicated news editors, content reviewers, and technical support personnel appropriate to the scale of the service;
+4. Establish a comprehensive management system for internet news information services;
+5. Implement a robust information security management system and secure, controllable technical safeguards;
+6. Have appropriate premises, facilities, and financial resources to support the service.
+
+","Since June 2017
+
+",http://www.cac.gov.cn/2017-05/02/c_1120902760.htm,,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0.50,"Interim Provisions of the People's Republic of China on the Management of International Networking of Computer Information Networks??????????????????????????;
+
+Circular on Clearing up and Regulating the Internet Access Service Market ?????????????????????????????","According to Article 8 of the Interim Provisions, entities intending to engage in international internet business activities must apply for an International Internet Business License from the competent authority responsible for handling such applications. Entities without this license are prohibited from conducting international internet business activities. Moreover, entities intending to engage in non-commercial international internet access must seek approval from the relevant competent authority responsible for handling non-commercial internet access applications. Without such approval, they are not permitted to connect to the global internet.
+
+In 2017, the Circular on Clearing up and Regulating the Internet Access Service Market urged basic telecommunications enterprises and internet network access service providers to conduct a comprehensive self-inspection of their network infrastructure, IP address usage, bandwidth allocation, and other network access resources to rectify any unauthorized cross-border business activities. Specifically, without approval from the telecommunications regulatory authority, they shall not independently establish or lease dedicated lines (including Virtual Private Networks, VPNs) or other channels for cross-border business operations. For international dedicated lines leased to users by basic telecommunications enterprises, user records must be centrally maintained. Users must be explicitly informed that such dedicated lines are strictly for internal office use and must not be used to connect domestic and overseas data centers or business platforms for telecommunications business operations.
+
+
+
+","Since February 1996, last amended in May 2024;
+
+Since January 2017",http://xzfg.moj.gov.cn/front/law/detail?LawID=1713,https://www.cac.gov.cn/2017-01/23/c_1120366809.htm,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0.50,Interim Measures for the Administration of Online Ride-Hailing Services????????????????????,"Article 6: Entities applying to engage in online ride-hailing operations shall submit an application to the relevant taxi administrative authority based on their intended operating area and provide the required supporting documents.
+
+Article 8: When the taxi administrative authority grants approval for an online ride-hailing business application, it shall specify the scope of operations, operating area, and duration of the license, and issue a Network Reservation Taxi Business License.
+
+Article 9: If the application does not meet the required conditions, the taxi administrative authority shall issue a Notice of Denial of Administrative License to the applicant.","Since November 2016, last amended in November 2022",https://www.gov.cn/zhengce/2022-12/06/content_5730384.htm,,,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",0.50,Map Management Regulations ????????,"Article 33: Internet mapping service providers that offer services such as geographic location positioning, geographic information uploading and labeling, and map database development to the public must obtain the appropriate surveying and mapping qualification certificate in accordance with the law.
+
+Internet mapping service providers engaged in online map publishing activities must be reviewed and approved by the publishing administrative authority of the State Council in accordance with the law.","Since January 2016
+",https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTJkNjc1MjFiNjY,,,,,,
+10,10.1,"Import ban applied to ICT goods and online services (e.g. network equipment, servers, handsets, applications, and data processing)",0.00,"MOFCOM Notice 106/2018?????106/2018????;
+
+Administrative Measures for the Prohibition and Restriction of Technology Imports????????????????
+
+","On 26 December, 2018, the Ministry of Commerce (MOFCOM) and the General Administration of Customs issued the adjusted catalogue of used mechanical and electrical products prohibited from import to be effective from 1 January 2019. The adjusted catalogue includes part of the mechanical and electrical products. Some of the products included in this list are video recorders, sound recorder or playback equipment using semiconductor media, disc type broadcast video recorder, color LCD monitors that can be directly connected and designed for automatic data processing equipment. 
+
+However, this measure is implemented under the National Sword Policy which is a ban on import e-waste. Thus, this is not a restrictive measure to digital trade but a measure concerning environmental damage. 
+
+Furthermore, according to Article 2 of the Administrative Measures, any technology listed as prohibited for import in the Catalogue of Prohibited and Restricted Technology Imports of China (to be published separately) shall not be imported. So far, no ICT technology has been listed.","Since January 2019;
+
+Since March 2009",http://www.mofcom.gov.cn/article/b/e/201812/20181202821859.shtml,http://images.mofcom.gov.cn/wms/201812/20181229183638730.pdf,https://www.gov.cn/gongbao/content/2009/content_1331188.htm,,0.479,,
+10,10.2,Other import restrictions on ICT goods and online services,0.50,"MOFCOM Notice 37/2021 The Catalogue of Technologies Prohibited or Restricted by China from Import ????37/2021???????????????????;
+
+Administrative Measures for the Prohibition and Restriction of Technology Imports????????????????","Under the catalogue, import of deepfake technologies and data encryption technologies with stronger security than 256-bit encryption algorithm are restricted. 
+
+For all import restricted technologies, technology import operators should fill out the 'Application for Restricted Import of Technology in China' and submit it to the local competent commercial department to complete the import licensing procedures. After signing the technology import contract, the technology import operator should bring the 'Letter of Intent for Technology Import License,' a copy of the contract and its attachments, and the legal status certification documents of both signing parties to the local competent commercial department to apply for a technology import license.
+
+","Since November 2021;
+
+Since March 2009
+
+",http://images.mofcom.gov.cn/fms/202111/20211116131222501.pdf,https://www.gov.cn/gongbao/content/2009/content_1331188.htm,,,,,
+10,10.2,Other import restrictions on ICT goods and online services,0.50,"Customs Law of the People's Republic of China?????????????
+
+List of Prohibited Items for Entry and Exit of the People's Republic of China?????????????????","According to Article 24 of the Customs Law, goods subject to national import and export restrictions must obtain import and export licenses.
+
+Restricted import items include radio transceivers and communication encryption devices.","Since July 1987, last amended in April 2021;
+
+Since March 1993",http://chongqing.customs.gov.cn/customs/302249/302266/302267/356575/index.html,http://tianjin.customs.gov.cn/shenzhen_customs/511683/grydwptgfw/jjydwpjg/4670638/index.html,,,,,
+10,10.3,Local content requirements ,0.50,Notice concerning Further Implementing Regulations on the Management of Online Foreign Film and Television Dramas ?????????????????????????,"Since September, 2014, the Chinese State Administration of Radio, Film and Television (SARFT) tightened the regulation for foreign TV and online streaming content. According to Article 3 of the Notice, the total annual import and broadcast volume of foreign TV dramas and films by a single website shall not exceed 30% of the total volume of domestically produced TV dramas and films purchased and broadcast by the website in the previous year.",Since September 2014,https://www.chinafilm.gov.cn/xxgk/zcfg/gfxwj/dyfxfyjck/201409/t20140902_1508.html,,,,,,
+10,10.4,Export restrictions on ICTgoods and online services,1.00,"Catalogue for the Administration of Import and Export Licenses for Dual-Use Items and Technologies???????????????????
+
+","According to the 2025 Catalogue for the Administration of Import and Export Licenses for Dual-Use Items and Technologies, the following ICT goods require an export license: 
+
+high-performance digital computers, integrated circuit chips (security chips), encryption devices, encryption cards, encrypted VPN devices, cryptographic analysis equipment, electronic devices and components, scanning cameras, framing cameras with a recording rate exceeding 225,000 frames per second, framing cameras with a frame exposure time of ?50 ns, and radiation-resistant television cameras and their lenses.
+
+Notably, the names of the goods listed are based on the reference product names provided in the Catalogue for the Administration of Import and Export Licenses for Dual-Use Items and Technologies. However, the original catalogue provides more detailed descriptions of the specific types of items that require an export license.
+
+For example, ""high-performance digital computers"" is quoted based on the reference product name, while the original catalogue provides a more precise description of this category. The full description in the catalogue is high-performance digital computers, electronic components, and related equipment, which includes specific types such as:
+
+1. Digital computers with an adjusted peak performance (APP) greater than 8.0 Weighted TeraFLOPS
+2. Electronic components specifically designed or modified to enhance performance, utilizing processor aggregation to achieve an APP greater than 8.0 Weighted TeraFLOPS
+
+This distinction highlights that while the reference product names provide a general categorization, the original descriptions in the catalogue define the technical specifications that determine whether an item requires an export license.
+
+Furthermore, on April 4, 2025, the Ministry of Commerce, in coordination with the General Administration of Customs, issued an announcement on implementing export control measures on seven types of medium and heavy rare earth-related items — specifically samarium (Sm), gadolinium (Gd), terbium (Tb), dysprosium (Dy), lutetium (Lu), scandium (Sc), and yttrium (Y). The measures took effect from the date of publication. Although rare-earth materials are not ICT goods, they are crucial in the production of various high-tech products, such as batteries, and display screends in electronic devices. ","Since January 2025
+",https://www.mofcom.gov.cn/cms_files/filemanager/600926013/attach/202412/8db3aacb2b7c47f0a4402203cff7f635.pdf?fileName=2025?????????????????????.pdf,https://www.mofcom.gov.cn/zwgk/zcfb/art/2024/art_636ab584a448477d906e54f63719b27f.html,,,,,
+10,10.4,Export restrictions on ICTgoods and online services,1.00,Catalogue of Technologies Prohibited or Restricted from Export in China????????????????,"The catalogue was last revised in 2023, and after the revision, the number of items was reduced from 164 to 134. Among these, prohibited export items related to digital trade include:
+1. Information security and confidentiality technologies involving state secrets used by government, financial, industrial, and scientific research sectors in our country, including information concealment technology and security threat detection technology.
+2. Integrated circuit manufacturing technology.
+3. Beidou satellite navigation system information transmission encryption technology, including the corresponding software.
+
+Furthermore, ICT technologies subject to export restrictions (requiring a license) include, but are not limited to, electronic device manufacturing technology, optical fiber manufacturing and optical fiber communication technology, computer core hardware manufacturing technology, wireless communication technology, computer network technology, satellite application technology, cryptographic security technology, information processing technology, general-purpose computer software development technology, and security enhancement technology for basic software. (Note: The names listed here are general descriptions of the technologies. For more specific details, please refer directly to the catalogue.)
+
+On January 2, 2025, the Ministry of Commerce issued a notice seeking public comments on the adjustment of the Catalogue of Technologies Prohibited and Restricted from Export in China. The deadline for feedback is February 1, 2025.
+
+","Since December 2023
+",https://www.most.gov.cn/tztg/202312/W020231221620858841394.pdf,http://fms.mofcom.gov.cn/xxfb/art/2025/art_4717648e8ef94faba7564800b90ea3cc.html,,,,,
+11,11.1,Lack of transparent technical standards,0.00,"Measures for the Administration of Mandatory National Standards??????????;
+
+Guiding Opinions on Foreign-Funded Enterprises Participating in the Standardization Work of China??????????????????????","Under the Measures for the Administration of Mandatory National Standards:
+
+Article 6: Actively promote the adoption of international standards in accordance with national conditions. National standards drafted based on international standards shall comply with the copyright policies of relevant international organizations.
+
+Article 28: The draft version of national standards and explanatory documents shall be publicly solicited for feedback through relevant portals, the National Public Service Platform for Standardization Information, and other channels. Simultaneously, feedback shall be sought from relevant stakeholders, including other competent administrative departments of the State Council, enterprises, public institutions, social organizations, consumer organizations, and research institutions.
+
+The public consultation period for national standards shall generally be no less than 60 days. When soliciting opinions on mandatory national standards, notification to foreign parties shall be made in accordance with the requirements of the World Trade Organization (WTO).
+
+Furthermore, in 2017, the National Standardization Administration, the National Development and Reform Commission, and the Ministry of Commerce jointly issued the Guiding Opinions on Foreign-Funded Enterprises Participating in the Standardization Work of China, aiming to create a fair standardization environment for foreign-invested enterprises.
+
+Specifically, Article 1 of the Guiding Opinions stipulates that foreign-invested enterprises participating in China’s standardization work shall enjoy equal treatment with domestic enterprises. Article 4 then states that foreign-invested enterprises may participate in the drafting of national standards and the translation of national standards into foreign languages. They may also provide opinions and suggestions during processes such as project initiation, solicitation of opinions, and implementation of standards. 
+
+
+
+","Since March 2023;
+
+Since November 2017",https://www.gov.cn/zhengce/2022-09/19/content_5728110.htm,"https://www.sac.gov.cn/cms_files/filemanager/1907776593/attach/20233/P020210122409610027408.pdf;
+
+http://lawinfochina.com/display.aspx?id=27020&lib=law&SearchKeyword=&SearchCKeyword=",,,0.500,,
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",1.00,"Provisions on the Administration of Compulsory Product Certification ?????????????;
+
+Catalogue of Compulsory Product Certification???????????","The Self-Declaration of Compulsory Product Certification has two product types known as “Type A” and “Type B.” Type A products can be allowed to be tested in own or self-determined laboratories, whereas Type B products must be tested in laboratories accredited by the Chinese authority CNAS. Products for which self-certification (Type A) is allowed are mostly electrical tools, without ICT products. Type B products, include but not limited to, small power electric motor, low-voltage components, electric motor-compressor, and vehicle safety accessories. 
+
+Another 13 categories of ICT products are subject to China Compulsory Certification (CCC). According to Article 10 of the Provisions on the Administration of Compulsory Product Certification, producers, sellers, or importers of products listed in the catalogue (hereinafter collectively referred to as certification applicants) shall entrust certification bodies designated by the State. In addition, after accepting the certification application, the certification body shall arrange for product type testing and factory inspection in accordance with the provisions of the specific product certification rules.
+ ","Since September 2009, last amended in September 2022;
+
+Since August 2023",https://www.gov.cn/zhengce/2022-10/08/content_5723510.htm,https://www.cnca.gov.cn/zwxx/gg/zjgg/art/2023/art_31ce43f5837d408cb2023ec693615ada.html,,,,,
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",1.00,"Measures for the Network Access Management of Telecommunication Equipment????????????
+
+","Article 3 of the Measures stipulates a network access licensing system for telecommunications terminal equipment connected to public telecommunications networks, radio communication equipment, and telecommunications equipment involving inter-network connectivity.
+
+Moreover, in order to receive the permission, a quality management system certification certificate or audit report and a test report or product certification certificate need to be submitted. 
+
+According to Article 11, radio communication equipment, inter-network connectivity equipment, or new products applying for a network access license must undergo testing on telecommunications networks within China or on simulated test networks designated by the Ministry of Industry and Information Technology (MIIT) for a minimum of three months. A test report must be issued by the testing organization. The Telecommunications Administration Bureau of the MIIT will organize experts to evaluate the overall technical scheme, test report, detection report, and other relevant documents of the telecommunications equipment mentioned in the preceding paragraph. Based on the expert evaluation, if the equipment meets the required conditions upon review, a network access license will be issued.
+
+","Since March 2001, last amended in September 2014
+",https://www.gov.cn/zhengce/2022-08/23/content_5722718.htm,,,,,,
+11,11.3,Product screening and testing requirements,1.00,National Security Law of the People's Republic of China????????????  ,"Article 59 of the National Security Law states that the state has established a national security review and regulatory system and mechanism to conduct security reviews on foreign investments, specific items and key technologies, network information technology products and services, construction projects involving national security matters, as well as other major matters and activities that affect or may affect national security. This aims to effectively prevent and mitigate national security risks.
+
+",Since July 2015,https://www.gov.cn/xinwen/2015-07/01/content_2888316.htm,,,,,,
+11,11.3,Product screening and testing requirements,0.00,"Regulation on the Administration of Commercial Cryptography??????????;
+
+Cryptography Law of the People's Republic of China????????????","According to Article 9 of the Regulation on the Administration of Commercial Cryptography, the national cryptography administration organizes the review and evaluation of commercial cryptographic technologies, including encryption algorithms, cryptographic protocols, and key management mechanisms, used in networks and information systems that are required by laws, administrative regulations, and relevant national provisions to be protected with commercial cryptography.
+
+Moreover, under the Cryptography Law of the People's Republic of China:
+
+Article 26: Commercial cryptographic products related to national security, the national economy and people's livelihood, and public interest shall be legally included in the catalogue of critical network equipment and specialized cybersecurity products. They may only be sold or provided after being tested and certified as qualified by accredited institutions.
+
+Article 27: Operators of critical information infrastructure (CII) that are required by laws, administrative regulations, and relevant national provisions to use commercial cryptography for protection must use commercial cryptography for security and conduct commercial cryptography application security assessments either independently or through an accredited commercial cryptography testing institution. Such assessments shall be integrated with the security testing and evaluation of critical information infrastructure and the cybersecurity grading evaluation system to avoid redundant assessments and evaluations.
+
+If operators of critical information infrastructure purchase network products and services involving commercial cryptography that may impact national security, they shall undergo a national security review organized by the national cyberspace administration.","Since October 1999, last amended in April 2023
+
+Since January 2020",https://www.gov.cn/zhengce/zhengceku/202305/content_6875928.htm,https://www.oscca.gov.cn/sca/xxgk/2023-06/04/content_1057225.shtml,,,,,
+11,11.4,"Deviation from international encryption standards (ISO, IEC, ITU, FIPS, AES, TDES, and ECC)",0.00,Regulation on the Administration of Commercial Cryptography??????????,"No deviations from international encryption standards have been identified.
+
+China has developed several international encryption standards in recent years. According to the State Cryptography Administration, on April 24, 2020, at the 60th Working Group Meeting of the ISO/IEC Joint Technical Committee 1 Subcommittee 27 on Information Security (ISO/IEC JTC 1/SC 27), ISO/IEC 18033-4/AMD1 Encryption Algorithms – Part 4: Stream Ciphers – Amendment 1, which includes China’s ZUC stream cipher algorithm, was unanimously approved as an ISO/IEC international standard and entered the publication stage.
+
+The ZUC stream cipher marks another Chinese commercial cryptographic algorithm that has successfully become an ISO/IEC international standard, following SM2, SM3, and SM9.
+
+
+
+","Since October 1999, last amended in April 2023
+
+",https://www.gov.cn/zhengce/zhengceku/202305/content_6875928.htm,https://www.oscca.gov.cn/sca/xwdt/2020-05/11/content_1060747.shtml,,,,,
+12,12.01,Foreign equity limits in e-commerce sector,0.00,Notice on Lifting Foreign Equity Ratio Restrictions for Online Data Processing and Transaction Processing Services (Operational E-commerce)?????????????????????????????????????,"The notice, published by the Ministry of Industry and Information Technology, states that 'To implement the spirit of the Third Plenary Session of the 18th CPC Central Committee, support the development of e-commerce in China, encourage and guide foreign investment participation, and further stimulate market competition, the Ministry has decided to lift foreign equity ratio restrictions for online data processing and transaction processing services (operational e-commerce) nationwide. This decision builds on the pilot program conducted in the China (Shanghai) Pilot Free Trade Zone, allowing foreign investors to hold up to 100% equity.'
+
+Thus, in China, full ownership (100%) is allowed in e-commerce sector.",Since June 2015,https://www.cac.gov.cn/2015-06/23/c_1115688552.htm,,,,0.408,,
+12,12.2,"Online purchases and delivery limitations
+Exception: Not score limitations on online purchases and delivery applied specifically to products related to consumer protection, notably restrictions on alcoholic beverages, tobacco, and pharmaceuticals.",1.00,Notice on Improving Tax Policies for Cross-Border E-Commerce Retail Imports ???????????????????????,"According to the Notice published by the Ministry of Finance, starting from Jan 1, 2019, the annual quota on cross-border e-commerce purchases for individual buyers will be raised from 20,000 to 26,000 yuan (about 3,566 USD). The limit on a single transaction will also be raised from 2,000 to 5,000 yuan (about 686 USD). ",Since January 2019,https://www.gov.cn/zhengce/zhengceku/2018-12/31/content_5440499.htm,,,,,,
+12,12.3,"Licensing scheme for e-commerce providers (B2B and B2C)
+Exception: Licenses pertiaining to other aspects of e-commerce businesses, such as license to operate online payment services and delivery are not captured. ",1.00,"E-Commerce Law of the People’s Republic of China ???????????? ;
+
+Measures for the Administration of Telecommunication Business Operation License??????????????;
+
+Regulations of the People's Republic of China on Telecommunications ?????????????","China's first comprehensive legislation governing e-commerce took effect on January 2019. The law applies to all 'e-commerce operators' including all natural and legal persons that engage in the business of selling merchandise and/or providing services on the internet or other information networks. This covers e-commerce platform operators, the vendors of goods and services on the e-commerce platforms of others, and those who operate their self-built websites or through other network services. The expanded wording is important as it covers non-traditional shopping channels including social media and messaging services such as WeChat and streaming sites such as Douyin. 
+
+Article 12 states that E-commerce operators engaging in business activities that require relevant administrative licenses by law must obtain such licenses in accordance with the law.
+
+The licenses that need to be obtained include both the Internet Content Provider (ICP) license and the Electroic Data Interchange (DEI) license.
+
+According to Article 6 of the Measures for the Administration of Telecommunication Business Operation License, in order to obtain a DEI license, the following conditions must be met: (1) the operator must be a company legally established in accordance with the law; (2) it must have sufficient capital and professional personnel appropriate for its business activities; (3) it must have a good reputation or the capability to provide long-term services to users; (4) if operating within a province, autonomous region, or municipality, the minimum registered capital is RMB 1 million; if operating nationwide or across provinces, autonomous regions, or municipalities, the minimum registered capital is RMB 10 million; (5) it must have the necessary premises, facilities, and technical plans; (6) the company, its main investors, and key management personnel must not be listed on the telecom business dishonesty blacklist; and (7) other conditions as stipulated by the state.
+
+Furthermore, According to Article 13 of the Regulations of the People's Republic of China on Telecommunications, in order to obtain an ICP license, the following conditions must be met: (1) the operator must be a company legally established in accordance with the law; (2) it must have sufficient capital and professional personnel appropriate for its business activities; (3) it must have the credibility or capability to provide long-term services to users; and (4) other conditions as stipulated by the state.","Since January 2019;
+
+Since September 2017;
+
+Since September 2000, last amended in February 2016",https://www.gov.cn/xinwen/2018-08/31/content_5318220.htm,https://www.gov.cn/zhengce/2022-08/23/content_5722715.htm,https://flk.npc.gov.cn/detail2.html?ZmY4MDgwODE2ZjNjYmIzYzAxNmY0MTE3YTQ2ZDE2OWU,,,,
+12,12.4,"Restrictions on online payment 
+",0.00,"Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????;
+
+Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????","No mandate local bank account requirements have been identified.
+
+","Since September 2010, last amended in April 2020;
+
+Since June 2016",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,,,,,
+12,12.4,"Restrictions on online payment 
+",0.00,"Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????;
+
+Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????","No mandate currency used for international payments requirements have been identified.
+
+","Since September 2010, last amended in April 2020;
+
+Since June 2016",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,,,,,
+12,12.4,"Restrictions on online payment 
+",0.00,"Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????;
+
+Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????;
+
+Information technology–Mobile payment based on radio frequency-Part 1: Radio frequency interface ????? ????????? ?1????????GB/T 30001.1-2013","No deviations from international standards requirements have been identified.
+
+Currently, the national standard for mobile payments refers to the Chinese standard titled Information technology - Mobile Payment Based on Radio Frequency. This standard covers fundamental technical aspects such as radio frequency (RF) interfaces, cards, devices, multi-application management, security, and testing methods, ensuring interoperability and compatibility among mobile payment products. It is based on the international standards ISO/IEC 18092 and ISO/IEC 21481.","Since September 2010, last amended in April 2020;
+
+Since June 2016;
+
+Since May 2014",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,https://std.samr.gov.cn/gfs/search/gfsDetailed?id=F296340F95E50715E05397BE0A0AD2AC,,,,
+12,12.4,"Restrictions on online payment 
+",1.00,Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????,"According to Article 2, online payment is included under the coverage of this Administrative Measures. More specifically, the term ""network payment"" as used in these measures refers to the transfer of monetary funds between payers and payees via public or private networks. This includes currency exchange, internet payments, mobile phone payments, fixed-line phone payments, and digital TV payments.
+
+Article 3 stipulates that non-financial institutions providing payment services must obtain a Payment Business License in accordance with the provisions of these measures and become a payment institution.
+
+Furthermore, Article 8 states that applicants for the Payment Business License must be a non-financial institution legal entity established as a limited liability company or a joint-stock company within the territory of the People's Republic of China in accordance with the law.","Since September 2010, last amended in April 2020",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,,,,,,
+12,12.4,"Restrictions on online payment 
+",1.00,Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????,"Article 24: Payment institutions shall manage transaction limits for personal customers using payment account balances based on the security level of the transaction verification method, in accordance with the following requirements:
+
+1. For transactions verified using at least two valid authentication factors, including a digital certificate or electronic signature, the daily cumulative transaction limit shall be independently agreed upon between the payment institution and the customer through an agreement.
+
+2. For transactions verified using at least two valid authentication factors but excluding digital certificates and electronic signatures, the total daily cumulative transaction amount for all payment accounts of a single customer shall not exceed 5,000 yuan (excluding transfers from the payment account to the customer's own bank account with the same name).
+
+3. For transactions verified using fewer than two valid authentication factors, the total daily cumulative transaction amount for all payment accounts of a single customer shall not exceed 1,000 yuan (excluding transfers from the payment account to the customer's own bank account with the same name). Additionally, the payment institution must unconditionally assume full liability for any risk-related losses associated with such transactions.",Since June 2016,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,http://lawinfochina.com/display.aspx?id=21209&lib=law,,,,,
+12,12.4,"Restrictions on online payment 
+",0.00,"Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????;
+
+Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????","No mandate specific intermediaries requirements have been identified.
+
+","Since September 2010, last amended in April 2020;
+
+Since June 2016",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,,,,,
+12,12.4,"Restrictions on online payment 
+",0.00,"Administrative Measures for the Payment Services Provided by Non-financial Institutions???????????????;
+
+Administrative Measures for the Online Payment Business of Non-Banking Payment Institutions???????????????????","No other online payment limitations have been identified.
+","Since September 2010, last amended in April 2020;
+
+Since June 2016",https://www.gov.cn/zhengce/2010-06/21/content_2603313.htm,https://fgw.sh.gov.cn/ys-hqjrfw-1.3.1.2-h5/20240820/04d6d8fdbd5a4cfc833855677d36e7ad.html,,,,,
+12,12.5,Low De Minimis,0.5,"Customs Law of the People's Republic of China????????????
+
+","In accordance with Article 32 of the Customs Law of the People's Republic of China and with the approval of the State Council, customs duties will continue to be exempted for shipments with a duty amount of less than 50 RMB (6.86 USD).",Since December 2024,https://www.gov.cn/yaowen/liebiao/202404/content_6947843.htm,https://cws.mofcom.gov.cn/xxfb/art/2025/art_709f0b1a907c4e9c848d1018617c66cc.html,,,,,
+12,12.6,Domain name requirements,0.00,China Internet Domain Name Regulations ???????????,"There is no domain name requirement. Local presence requirements for registering "".cn"" were removed in 2012. Note that according to Article 30, domain name registration service providers must require domain name applicants to provide true, accurate, and complete identity information and other domain registration details.
+
+The Internet domain name system in China shall be issued by the Ministry of Industry and Information Technology (MIIT) through official proclamations. MIIT may adjust and reissue the Internet domain name system based on practical needs.",Since November 2017,https://www.gov.cn/zhengce/2022-08/23/content_5722732.htm,,,,,,
+12,12.7,Local presence requirements for online service providers,1.00,Personal Information Protection Law of the People's Republic of China????????????????,"Article 53 stipulates that personal information processors outside the terriotory of the People's Republic of China are required to establish a specialized agency or designate a representative in the People's Republic of China to handle matters related to the protection of personal information, and the name of the relevant agency or the name and contact information of the representative shall be reported to the department responsible for the implementation of personal information protection.",Since November 2021,https://www.sac.gov.cn/cms_files/filemanager/samr/www/samrnew/wljys/gzzd/202304/t20230417_354662.html,,,,,,
+12,12.8,Lack of legal framework for online consumer protection,0.00,"Law of the People's Republic of China on Protection of Consumer Rights and Interests?????????????????
+
+","The Chinese consumer protection framework is set out in the Law of the People's Republic of China on Protection of Consumer Rights and Interests. The law applies to all consumers purchasing and using commodities or receiving services for daily consumption and to business operators, in their supply of commodities produced and sold by them or services provided to consumers. 
+","Since January 1994, last amended in March 2014",https://www.gov.cn/jrzg/2013-10/25/content_2515601.htm,,,,,,
+12,12.8,Lack of legal framework for online consumer protection,0.00,E-Commerce Law of the People’s Republic of China ???????????? ,"the E-Commerce Law protects the legitimate rights and interests of e-commerce consumers by defining the responsibilities and obligations of e-commerce operators. The consumer rights covered by the E-Commerce Law primarily include the right to safety, the right to information, the right to independent choice, the right to fair transactions, the right to convenience, the right to inspect goods upon receipt, the right to review and provide feedback, the right to information protection, and the right to seek compensation. These rights are based on relevant provisions of the Consumer Rights Protection Law but are not merely a repetition. Instead, they are tailored to address the specific characteristics of e-commerce consumers.",Since January 2019,https://www.gov.cn/xinwen/2018-08/31/content_5318220.htm,,,,,,
+12,12.9,Not in the United Nations Convention of Electronic Communications,1.00,UN Convention on Electronic Communications,"China has signed the United Nations Convention on Electronic Communications, however it is has not entered into force.",Since July 2006,https://uncitral.un.org/en/texts/ecommerce/conventions/electronic_communications/status,,,,,,
+12,12.10,Not in the UNCITRAL Model Law on Electronic Commerce,0.00,UNCITRAL Model Law on Electronic Commerce,China adopted the UNCTIRAL model law on e-commerce in 2004.,Since 2004,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_commerce/status,,,,,,
+12,12.11,Not in the UNCITRAL Model Law on Electronic Signatures,0.00,UNCITRAL Model Law on Electronic Signature,China adopted the Model Law on Electronic Signatures in 2004.,Since 2004,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_signatures/status,,,,,,
+,,,,,,,,,,Overall RDTII score,0.549,,

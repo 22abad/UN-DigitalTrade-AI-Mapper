@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rdtii_user -d rdtii"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    container_name: rdtii-postgres
+    environment:
+      POSTGRES_DB: rdtii
+      POSTGRES_USER: rdtii_user
+      POSTGRES_PASSWORD: rdtii_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: rdtii-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+  
+  backend:
+    build:
+      context: ./rdtii-backend/RDTII
+      dockerfile: Dockerfile
+    container_name: rdtii-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rdtii
+      SPRING_DATASOURCE_USERNAME: rdtii_user
+      SPRING_DATASOURCE_PASSWORD: rdtii_password
+    depends_on:
+      - postgres
+    restart: on-failure
+      
+volumes:
+  redis-data:
+  postgres_data:

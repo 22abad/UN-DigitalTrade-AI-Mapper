@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+scikit-learn
+psycopg2-binary

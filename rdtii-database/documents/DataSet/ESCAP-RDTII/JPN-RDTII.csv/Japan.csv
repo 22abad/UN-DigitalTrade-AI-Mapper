@@ -1,0 +1,606 @@
+Chapter,Question,Question: description,Individual Indicator Score,Source Legislation,Impact,Timeframe for Indicator,References,"References, 2","References, 3","References, 4",Overall Pillar Score
+1,1.1,Weighted average of effective tariff rates applied on ICT goods imported from other Asia-Pacific economies (%),0.026,Effectively applied tariffs on ICT goods (in weighted average) imported from other economies within the considered United Nations region (%),0.26,Since 2022,http://wits.worldbank.org/WITS/,,,,0.010
+1,1.2,Percentage of none duty-free tariff lines on ICT goods imported from other Asia-Pacific economies (%),0,No duty-free tariff lines on ICT goods from other economies within the considered United Nations region (%),95.17,Since 2022,http://wits.worldbank.org/WITS/,,,,
+1,1.3,Not a signatory to the WTO ITA I and ITA II,0,Participation in Information Technology Agreement (ITA) and in ITA Expansion Agreement (ITA II),Japan is a signatory of the 1996 WTO Information Technology Agreement (ITA) and its expansion in 2015. The ITA provides for participants to completely eliminate duties on IT products covered by the Agreement.    ,"Since 1997;
+
+Since 2015",https://www.wto.org/english/tratop_e/inftec_e/itscheds_e.htm,https://www.mofa.go.jp/mofaj/press/release/press4_002794.html,https://www.wto.org/english/news_e/news22_e/ita_06apr22_e.htm,,
+1,1.4,"Imposing trade defence measures (anti-dumping, countervailing duties and safeguards) on ICT-related products imported by other Asia-Pacific economies",0,E-Gov Japan Portal,"There is no trade defence measures including anti-dumping, countervailing duties and safeguards on imported ICT-related goods.",Last reviewed in June 2025,https://www.e-gov.go.jp/en/sitemap.html,,,,
+2,2.1,Foreign exclusions from public procurement related to ICT goods and digital services,0,"Public Accounting Act (Act No. 35 of 1947);
+
+Voluntary Measures on Government Procurement ","No preferences grated to national supplier in government procurement
+
+From the cited reference List (Attachment 1~6)  of Voluntary Measures in Individual Sectors  : In order to achieve further non-discrimination, transparency, fairness and openness in competition, the government has established additional voluntary measures specific to some areas besides the voluntary measures for government procurement on products in general. 
+
+For example, Attachment 6: 'Measure related to Japanese public sector procurement of medical technology products and services', for example:
+(a) II. National treatment and non-discrimination --> ""with regard to procurement covered by the Measures, the Government will accord to foreign products and services and foreign suppliers of such products and services, treatment no less favorable than it accords to  domestic products, services and suppliers...""
+(b) III. Policies and procedures applicable to all procurements covered by the measures --> 2.4 Qualification of suppliers (1) The entities, in the process of qualifying suppliers in a tendering procedure, will not
+discriminate among foreign suppliers or between domestic and foreign suppliers.
+
+","Since March 1947, last amended in 2019;
+
+Since March 2014","https://laws.e-gov.go.jp/law/322AC0000000035
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3789/en","https://japan.kantei.go.jp/document_pdf/EN-R3/4-1.pdf；
+https://japan.kantei.go.jp/document_pdf/EN-R3/4-2.pdf；
+https://japan.kantei.go.jp/document_pdf/EN-R3/4-3.pdf；
+https://japan.kantei.go.jp/document_pdf/EN-R3/4-4.pdf；
+https://japan.kantei.go.jp/document_pdf/EN-R3/4-5.pdf；
+https://japan.kantei.go.jp/document_pdf/EN-R3/4-6.pdf
+",https://www.cas.go.jp/jp/seisaku/chotatsu/pdf/r2_hontai.pdf,,0.200
+2,2.2,"Specific requirements on source codes, encryption and trade secrets ",0.50,"CRYPTREC e-Government Recommended Ciphers List;
+
+Unified Standards for Cybersecurity Measures of Government Agencies, etc.
+
+","The Digital Agency, the Ministry of Internal Affairs and Communication, and the Ministry of Economy, Trade and Industry,are evaluating the cryptographic technology used in e-Government through the CRYPTREC activity. In the procurement and use of information systems by government agencies, the ""e-Government Recommended Ciphers List"", a subset of the CRYPTREC Ciphers List, provides guideline for secure encryption in Japan's eGovernment system. 
+
+The government Unified Standards for Cybersecurity Measures of Government Agencies, etc. (Fiscal Year 2023 Edition) issued by the Cybersecurity Strategic Headquarters are not intended to define the conditions or requirements for bidding. Rather, they establish the common information security measures that are necessary for all government agencies. Furthermore, the unified standards do not require the disclosure of source code, cryptographic algorithms, patents, or other trade secrets. 
+
+7.1.5 Encryption and Electronic Signatures 
+Compliance Items
+(1) Implementation of Encryption and Electronic Signature Functions
+(b) The Information System Security Officer shall establish the algorithms and key lengths for encryption and electronic signatures used in the information system, as well as secure protocols that utilize them, based on the “e-Government Recommended Ciphers List,” which has been verified by the Cryptographic Technology Evaluation Committee and related committees (CRYPTREC) for security and implementation performance. In addition, procedures for their operation shall be established. 
+
+[Basic Security Measures] 
+<Related to 7.1.5(1)(b)>
+7.1.5(1)-2 The Information System Security Officer shall determine the algorithms and key lengths for encryption and electronic signatures used in the information system, as well as secure protocols that utilize them, based on the “e-Government Recommended Ciphers List,” when staff use encryption or electronic signatures, or when introducing encryption or electronic signatures in the construction or upgrade of information systems.","Since Feb 2003. last amended in March  2023;
+
+Since July 2023
+
+","https://www.cryptrec.go.jp/list/cryptrec-ls-0001-2012r8.pdf;
+
+https://www.cryptrec.go.jp/en/list.html",https://www.nisc.go.jp/pdf/policy/general/kijyunr5.pdf,,,
+2,2.3,Limitations in procurement bidding,0,Public Accounting Act (Act No. 35 of 1947),The principle of non-discrimination is pursued in all procurement activities except for preferences granted under RTAs to which Japan is a party. There are currently no RTAs in force that grant suppliers from non-GPA parties treatment more favourable than suppliers from GPA parties. Suppliers from non-GPA parties are not excluded from participating in GPA-covered procurement. ,"Since March 1947, last amended in 2019","https://laws.e-gov.go.jp/law/322AC0000000035
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3789/en",https://japan.kantei.go.jp/document_pdf/EN-R3/3-0.pdf,,,
+2,2.4,"Not in the WTO Government Procurement Agreement (GPA) and not fully covered the three most relevant services sectors (CPC752, 754, 84)",0.50,WTO Government Procurement Agreement (GPA),"Japan is a Party to the GPA and its coverage schedules (Annex 5) includes “computer and related services” (CPC 84). Although its coverage schedules (Annex 5 of the GPA) does not include ""telecommunications related services"" (CPC 754), its coverage schedules of the Japan-EU Economic Partnership Agreement and The Japan-UK Comprehensive Economic Partnership Agreement include these services (CPC 754, for entities covered under Annex 1, Appendix I to the GPA).",Since April 2014,https://www.wto.org/english/tratop_e/gproc_e/memobs_e.htm,,,,
+3,3.1,"Foreign equity limits in sectors relevant to digital trade 
+Exception: Not cover foreign equity cap in telecom sector (covered under Pillar 5) and e-commerce sector (covered under Pillar 12)",0,"Foreign Exchange and Foreign Trade Act (Act No. 228 of 1949) (Chapter V)
+
+","Full ownership (100%) allowed in all sectors relevant for digital trade. 
+
+
+","Since 1949, last amended in April 2024
+
+","https://www.japaneselawtranslation.go.jp/en/laws/view/4102;
+
+https://laws.e-gov.go.jp/law/324AC0000000228",,,,0.449
+3,3.2,Joint venture requirements,0,"Companies Act (Act No. 86 of 2005);
+
+Telecommunications Business Act (Act No. 86 of 1984)",No joint venture requirement found.,"Since July 2005, last amended in March 2015;
+
+Since December 1984, last amended April 2024","https://www.japaneselawtranslation.go.jp/en/laws/view/3206/en
+","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,
+3,3.3,Nationality or residency requirements for board of directors or managers,1,"Act on Nippon Telegraph and Telephone Corporation, etc. (Act No. 85 of 1984)","The Act on Nippon Telegraph and Telephone Corporation (Act No. 85 of 1985) previously prohibits foreign people from becoming a board member in NTT Group, NTT East and NTT West. Starting in 2024, amendments to the NTT Act allow foreign nationals to serve as directors or auditors in NTT Group, NTT East, and NTT West, provided they make up less than one-third of the board and do not hold representative director positions.","Since December 1984, last amended in July 2005",https://www.japaneselawtranslation.go.jp/ja/laws/view/3768,https://www.japaneselawtranslation.go.jp/outline/117/905R619.pdf,https://laws.e-gov.go.jp/law/359AC0000000085/20220617_504AC0000000068,,
+3,3.4,"Screening of investment and acquisitions
+Exception: Anti-trust measures related to M&A are not considered a restriction, unless discriminatory. ",0.25,"Foreign Exchange and Foreign Trade Act (Act No. 228 of 1949);
+
+Foreign Exchange and Foreign Trade Act, Foreign Investment Screening System, Annual Report (FY2023)","Japan's inward direct investment screening system started with the Foreign Capital Act enacted in 1950 as a special law for the then (Foreign Exchange and Foreign Trade Act) FEFTA.  Please refer to page 7 of the FEFTA Foreign Investment Screening System Annual Report (FY2023). 
+
+Under the FEFTA, the Paragraphs (3) through (5), Article 27 of FEFTA stipulate a series of process before the ministries finally determine to issue the orders for modification or discontinuance of inward direct investments. Please refer to the relevant paragraphs of FEFTA. Specifically, Article 27, Paragraph (3), (i) states that the Minister of Finance of Japan is responsible for evaluating the impact of an investment on the preservation of production foundations and technologies within specific business sectors. If the investment poses (a) a threat to national security, disrupts the maintenance of public order, or hinders public safety, the Minister has the authority to reject the foreign investment, and (b) has Significant adverse effect to the Japanese economy.
+
+Certain business sectors requiring prior notification of inward direct investment are defined as ‘designated business sectors’, including business sectors that could significantly undermine national security, which are classified as ‘core business sectors’. Core business sectors, a type of business involving inward direct investments that are likely to undermine Japan’s national security, includes semi-conductors; certain cybersecurity-related business (such as network security monitoring, service providers of the programmes designed for critical infrastructures); and certain infrastructure-related business (such as electricity, gas, telecommunications, water supply, railway and oil).
+
+Foreign investors who plan to acquire 1% or more of stocks and shares of Japanese companies engaging in designated business sectors are required to submit prior notifications for screening from the viewpoints of Japan’s national security and other objectives of FEFTA. (When digital trade in which investee Japanese companies engage fall into the designated business sectors, foreign investors are required to submit the prior notifications.) The Ministry of Finance and other ministries responsible for relevant business sectors screen the notifications to see if such investments impair Japan’s national security or other objectives under FEFTA. If the screening finds it does, the authorities may recommend or order the modification or discontinuance of the investments after hearing opinions from the Council on Customs, Tariff, Foreign Exchange and Other Transactions. If the screening finds it doesn’t, foreign investors are allowed to undertake investments after screening period.
+
+For business in core business sectors, foreign investors cannot attend meetings of the target company’s board of directors or other committees that make important decisions on such business. Moreover, foreign investors cannot, by themselves or through their designated person, make proposals, in writing, to (a) the target company’s board of directors or other committees that make important decisions or (b) the members of such board or committees, requiring responses or actions by certain deadlines.","Since December 1949, last amended in April 2024;
+
+Since 2023
+
+","https://www.japaneselawtranslation.go.jp/en/laws/view/4102;
+
+https://laws.e-gov.go.jp/law/324AC0000000228",https://www.mof.go.jp/english/policy/international_policy/fdi/Data/annual_report2023_en2.pdf,https://www.mof.go.jp/english/policy/international_policy/fdi/gaitamehou_20200508.htm,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,"Immigration Control and Refugee Recognition Act 
+
+","When a foreign national starts activities to operate business of international trade or other businesses, or to engage in the management of those businesses, in Japan (except for the cases where they meet the criteria of the status of residence of ""Legal/Accounting Services""), he or she needs to acquire the status of residence of ""Business Manager"", the following two requirements are to be fulfilled.
+(i) a business office for the purpose of conducting the business pertaining to the application exists in Japan; provided, however, that if the business has not been commenced, facilities to be used as a business office for the purpose of conducting the business have been secured in Japan;
+(ii) the size of the business pertaining to the application falls under any of the following requirements:
+(a) the business is conducted by at least two full-time employees residing in Japan (except for foreign nationals residing in Japan with a status of residence listed in the left-hand column of the Appended Table I of the Act) other than those who operate or manage the business;
+(b) the amount of the stated capital or the total amount of the contribution is least 5 million yen;
+(c) the size of the business is found to be equivalent to the size set forth in (a) or (b).
+
+A foreign national who reside in Japan under the status of residence of “Business Manager” may engage in the activities to operate business of international trade or other businesses, or to engage in the management of those businesses, in Japan (except for the cases where they meet the criteria of the status of residence of ""Legal/Accounting Services"").","Since October 1951, last amended in 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/164/en,https://www.jetro.go.jp/en/invest/setting_up/section2/page12.html,https://www.moj.go.jp/isa/applications/status/businessmanager.html?hl=en,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,Telecommunications Business Act (Act No. 86 of 1984),"Such foreign companies must register with the Ministry of Internal Affairs and Communications, designate domestic representative or domestic agent in Japan, and protect the consumer's right to secrecy of communication.
+
+Article 9 : A person that intends to operate telecommunications business must obtain registration from the Minister for Internal Affairs and Communications
+
+Article 10(1) : A person that intends to obtain a registration as set forth in the preceding Article must file a written application describing the following particulars with the Minister for Internal Affairs and Communications, pursuant to the provisions of Order of the Ministry of Internal Affairs and Communications:
+Article 10(2) in cases of a foreign corporation, etc. (meaning a corporation or organization based abroad, or an individual with an address abroad; hereinafter the same applies in this Chapter and Article 118, item (4)), the name and address of its domestic representative or domestic agent
+
+Article 118 : A person that falls under any of the following items may not obtain the approval 
+4 a foreign corporation, etc. that has not designated a domestic representative or domestic agent.
+
+","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+3,3.5,Commercial presence requirements to offer cross-border services in sectors relevant to digital trade,1,Radio Act (Act No. 131 of 1950,"According to the Radio Act, (Article 4) Any person who wishes to establish a radio station must obtain a license from the Minister of Internal Affairs and Communications.
+Article 5(1) No radio station license is granted to any person who falls under any of the following items: 
+(i) A person who does not have Japanese nationality
+(ii) A foreign government or its representative
+(iii) A foreign corporation or organization
+(iv) A corporation or organization, which is represented by any person listed in the preceding three items, or one third or more officers of which are those persons, or one third or more voting rights of which are made up of the aggregate of voting rights held by those persons.","Since May 1950, last amended in April 2024","https://www.japaneselawtranslation.go.jp/en/laws/view/3205#je_ch2;
+
+https://laws.e-gov.go.jp/law/325AC0000000131",,,,
+4,4.1,Patent application issues,1,"Patent Act (Act No. 121 of 1959)
+
+","In principle, under Article 8 of the Patent Act, most all procedures cannot be conducted by non-residents directly with Japan Patent Office but have to be conducted by an appointed representative residing or domiciled in Japan. However, under Article 184-11(1) of the Patent Act, there is an exception for Form 53, and non-residents can submit it directly, without the need of appointing a representative in Japan.
+
+Article 184-11 (Special provisions concerning patent administrators for overseas residents)
+(1) Notwithstanding Article 8(1), an applicant of an international patent application who is an overseas resident may, until the National Processing Standard Time, undertake procedures without being represented by a patent administrator.
+(2) The person prescribed in the preceding paragraph shall appoint a patent administrator and notify the Commissioner of the Patent Office thereof on or after the National Processing Standard Time, but not later than the time limit as provided in Ordinance of the Ministry of Economy, Trade and Industry.
+(3) Where no appointment of a patent administrator has been notified within the time limit as provided in the preceding paragraph, the international patent application shall be deemed to have been withdrawn.","Since April 1959, last amended in April 2024",https://laws.e-gov.go.jp/law/334AC0000000121,https://www.wipo.int/export/sites/www/pct/guide/en/gdvol2/annexes/jp.pdf,,,0.139
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0,"Patent Act (Act No. 121 of 1959);
+
+Civil Provisional Remedies Act（Act No. 91 of 1989）","Under Japan's Patent Act (Articles 100–106), patent holders can pursue civil remedies to address infringement. These remedies include the right to seek injunctions to halt infringing activities and claim compensation for damages. Damages may be calculated based on the patent holder’s lost profits or the infringer’s profits derived from the infringement. Additionally, under Article 100 (Right to demand an Injunction), the Patent Act allows courts to order corrective measures, such as the disposal of products constituting the act of infringement, ensuring the cessation of unlawful activities. If the patented invention is a process by which a product is produced, this includes articles produced through infringement; the same applies in Article 102, paragraph (1)) and the removal of equipment used to infringe.
+
+Japan ensures patent holders can protect their rights through provisional measures under the Civil Provisional Remedies Act. Article 13 allows courts to issue preliminary injunctions to stop infringement and preserve evidence, provided the applicant demonstrates the need for protection.","Since April 1959, last amended in April 2024;
+
+Since December 1999, last amended in March 2024",https://laws.e-gov.go.jp/law/334AC0000000121,https://laws.e-gov.go.jp/law/401AC0000000091#Mp-Ch_2-Se_2-Ss_1,,,
+4,4.2,"Patent enforcement issues: civil and administrative procedures and remedies, provisional and other measures",0,"Patent Act (Act No. 121 of 1959)
+
+","Under Article 8 of the Patent Act, non-residents are generally required to appoint a local representative residing in Japan to conduct most procedures with the Japan Patent Office (JPO). Specifically, except in cases specified by Cabinet Order, a person who has no address or residence in Japan (hereinafter referred to as an """"overseas resident"""") may not carry out procedures or file an action against a disposition made by an administrative agency pursuant to the provisions of this Act or an order thereunder, except through an agent for that person who has an address or residence in Japan (hereinafter referred to as a """"patent administrator""""). However, Article 184-11(1) provides an exception, allowing non-residents to carry out procedures without the assistance of a patent administrator until the National Processing Standard Time.","Since April 1959, last amended in April 2024",https://www.meti.go.jp/english/press/2021/0302_002.html,https://www.japaneselawtranslation.go.jp/en/laws/view/4097/en,https://laws.e-gov.go.jp/law/334AC0000000121,,
+4,4.3,Not in the WIPO Copyright Treaty (WCT),0,Patent Cooperation Treaty,Japan acceded to the Patent Cooperation Treaty in 1978.,Since October 1978,https://www.wipo.int/export/sites/www/pct/guide/en/gdvol2/annexes/jp.pdf,,,,
+4,4.4,Lack of copyright framework and exceptions,0,Copyright Act (Act No. 48 of 1970),"Japan establishes a clear list of exceptions to copyright, which is similar to the approach of fair dealing and fair use. A list of exception is set forth in Articles 30 to 50 of the Copyright Act. After the amendment to the Copyrights Act in 2020, the exception list has expanded considerably to adapt to the spread of internet technologies. ","Since May 1970, last amended in July 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/4207#je_ch2sc3sb5,https://www.bunka.go.jp/english/policy/copyright/amendments_2020/,https://laws.e-gov.go.jp/law/345AC0000000048#Mp-Ch_2-Se_3-Ss_5,,
+4,4.5,Online copyright enforcement issues: civil and administrative procedures and remedies; and provisional measures,0,Copyright Act (Act No. 48 of 1970),"The Content Overseas Distribution Association (CODA) estimated amount of damage from pirated Japanese content circulating online in 2022 (video, publishing, music, and video games) is approximately 1.95 to 2.20 trillion yen, which is about five times higher than the estimate from the previous survey in 2019 (approximately 333.3-430 billion yen).
+
+Although the 2020 amendment makes it illegal to download anything other than music or videos, downloads that cause only minor damage to the copyright owner (eg, screenshots), are exempted.
+
+Article 119 of Copyright Act imposes penalties for unauthorized downloads and copyright infringement, including digital content, ensuring deterrence against illegal activity. Penalties for unauthorized downloads and copyright infringement include imprisonment of up to 10 years, fines of up to 10 million yen, or both for serious violations. Lesser offenses, such as repeated private-use infringements, carry penalties of up to 2 years imprisonment or fines up to 2 million yen, with exceptions for unintentional actions. Article 30 defines exceptions for personal use, permitting lawful reproduction within limits while excluding minor infringements, such as screenshots, from penalties. 
+
+Japan ensures copyright holders can protect their rights through provisional measures under the Civil Provisional Remedies Act. Article 13 allows courts to issue preliminary injunctions to stop infringement and preserve evidence, provided the applicant demonstrates the existence of the copyright and the necessity for protection.","Since May 1970, last amended in July 2024;
+
+Since December 1999, last amended in March 2024",https://www.bunka.go.jp/english/policy/copyright/amendments_2020/,https://coda-cj.jp/en/news/299/,https://laws.e-gov.go.jp/law/345AC0000000048#Mp-Ch_2-Se_3-Ss_5,,
+4,4.6,Not in the WIPO Copyright Treaty (WCT),0,Signature of the WIPO Copyright Treaty,Accession to the WIPO Copyright Treaty since 2000,"Since June 2000, entry into force since March 2002",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=16,,,,
+4,4.7,Not in the WIPO Performances and Phonographs Treaty (WPPT),0,Signature of the WIPO Performances and Phonograms Treaty,Accession to the WIPO Performances and Phonograms Treaty since 2002,"Since July 2002, entry into force since October 2002",https://wipolex.wipo.int/en/treaties/ShowResults?search_what=C&treaty_id=20,,,,
+4,4.8,"Mandatory disclosure of trade secrets, such as source code and algorithms",0,E-Gov Japan Portal,"No mandatory disclosure of trade secrets, such as souce code and algorithms. ",Last reviewed in June 2025,https://www.e-gov.go.jp/en/sitemap.html,,,,
+4,4.9,Lack of effective trade secrets legal framework,0,"Unfair Competition Prevention Act (Act No. 47 of 1993);
+
+Management Guidelines for
+Trade Secrets
+
+
+","The Unfair Competition Prevention Act regulates infringement of trade secrets, unfair usage of a well-known sign, misleading representation regarding the place of origin, imitation of the configuration of a third party’s product, etc. The Unfair Competition Prevention Act provides civil and criminal remedies in such cases where secret information of the company is stolen or disclosed illegally. To protect information according to the Act, companies need to manage such data as “trade secrets”.
+
+Moreover, the Management Guidelines for Trade Secrets, established by the Ministry of Economy, Trade and Industry, specify a set of concepts that it has from the viewpoint of an administrative organ in charge of the Unfair Competition Prevention Act (hereinafter, “the Act”), and of managing trade agreements including Trade-Related Aspects of Intellectual Property Rights (TRIPS). The Guidelines address the definitions and other details of trade secrets including requirements for protection under the Unfair Competition Prevention Act, based on the goal of promoting innovation, overseas trends and typical court decisions both at home and abroad (although no decisions have yet been given by the Supreme Court of Japan on these issues as of the current revision of the Guidelines), along with other aspects. The Guidelines, however, are not legally binding.
+","Since May 1993, last amended in April 2024;
+
+Since January 2003, last amended in January 2019
+
+","https://laws.e-gov.go.jp/law/405AC0000000047/;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/2803/en",https://www.meti.go.jp/english/policy/economy/chizai/chiteki/pdf/0813mgtc.pdf,"https://www.meti.go.jp/english/policy/economy/chizai/chiteki/index.html#:~:text=About%20Trade%20Secret,data%20as%20%E2%80%9Ctrade%20secrets%E2%80%9D.",,
+5,5.1,Absence of passive infrastructure sharing,0,Telecommunications Business Act (Act No. 86 of 1984) ,"This passive sharing is effective in both the mobile and fixed sectors. Infrastructure sharing is mandated only for telecommunications carriers with Category 1 designated telecommunications facilities. (Article 37 Agreement on Sharing Category I Designated Telecommunications Facilities). Moreover, Article 38 (Order to Share Telecommunications Facilities) allows the government to order sharing of general telecommunications-related structures (like buildings, towers, poles, etc.) includes regulations on the sharing of structures for installing telecommunications equipment such as buildings, towers, poles and so on, but such sharing might be only required under certain conditions and is not mandatory. Therefore, while some passive sharing exists, it is not universally mandatory across all infrastructure types.   
+","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,0.279
+5,5.2,Foreign equity limits in telecom sector,0.50,"Act on Nippon Telegraph and Telephone Corporation, etc. (Act No. 85 of 1984)","Japan’s NTT Act imposes foreign equity limits specifically on Nippon Telegraph and Telephone Corporation (NTT), restricting foreign ownership to less than one-third of voting shares (Article 6).","Since December 1984, last amended in July 2005",https://www.japaneselawtranslation.go.jp/ja/laws/view/3768,,,,
+5,5.3,Shares owned by the Government in telecom companies,0.50,"Act on Nippon Telegraph and Telephone Corporation, etc. (Act No. 85 of 1984)","Nippon Telegraph and Telephone Corporation (NTT) is incorporated under the Act on Nippon Telegraph and Telephone Corporation, etc. (Act No. 85 of 1984) (NTT Act). NTT, being the incumbent in the telecommunications industry, is partly owned by the Japanese government by one-third of its stock Article 4(1). NTT is not the telecommunications carrier. NTT's subsidiaries, NTT East and NTT West, are telecommunications carriers.","Since December 1984, last amended in July 2005",https://www.japaneselawtranslation.go.jp/en/laws/view/3768/en,https://laws.e-gov.go.jp/law/359AC0000000085/20220617_504AC0000000068,,,
+5,5.4,Lack of functional/accounting separation,0,Telecommunications Business Act (Act No. 86 of 1984) ,"Accounting seperation 
+(Article24) telecoms carriers providing designated telecommunications services and installing designated facilities must keep accounts in accordance with the classification of accounting titles and other accounting procedures specified by Order of the Ministry of Internal Affairs and Communications.
+(Article 30 (6)) telecoms carriers installing Category I designated telecommunications facilities must announce the status of income and expenditure to the public.
+
+functional separation
+(Article 30(3) 30(4)) is a restriction on some designated telecommunications carriers is. Designated telecoms carriers must not using or providing information they obtain from an interconnect with other telecoms carriers for purposes other than interconnections, and giving preferential treatment or an advantage to certain telecommunications carriers in an unreasonable manner.
+
+Japan requires that NTT EAST/WEST, a Japanese telecom company which owns essential facilities must implement functional separation, such as setting up firewalls between network development and service development.","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+5,5.5,Licensing requirements in telecom sector for operators,0,Telecommunications Business Act (Act No. 86 of 1984) ,"Telecommunications carriers who intends to operate telecommunications business shall obtained registration from the MIC (Minister for Internal Affairs and Communications) or has submitted a notification to the Minister.
+*The necessity of registration or notification depends on the scope and scale of the Telecommunications Business being pursued. Only entities that possess substantial telecommunications circuit facilities, either through ownership or or indefeasible right of user (IRU) , are required to register with the MIC.
+
+Under Japan's Telecommunications Business Act, licensing requirements differ based on the nature of operations. Type I Telecommunications Businesses, involving ownership or indefeasible right of user（IRU) of substantial line facilities, require registration with the MIC, as outlined in Articles 9–12, which specify the registration process, implementation, and conditions for refusal. ","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+5,5.6,Not in the WTO Telecom Reference Paper,0,WTO Telecom Reference Paper,Japan has attached the WTO Telecom Reference Paper to its schedule of commitments,Since February 1997,https://www.wto.org/english/tratop_e/serv_e/telecom_e/sc46.pdf,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_commit_exempt_list_e.htm,https://www.wto.org/english/tratop_e/serv_e/telecom_e/telecom_highlights_commit_exempt_e.htm#country,,
+5,5.7,Lack of independent telecom authority,1,Telecommunications Business Act (Act No. 86 of 1984),Japan does not have an independent telecom authority.,"Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+6,6.1,"Ban and local processing requirements
+Exception: Not score data localization measure applied to government data.",0,Act on the Protection of Personal Information (Act No. 57 of 2003),"There is no data processing requirement or ban on data transfer. 
+
+","Since May 2003, last amended in April 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/4241#je_ch4sc2at1,https://laws.e-gov.go.jp/law/415AC0000000057/,https://www.wto.org/english/tratop_e/tpr_e/s438_e.pdf,https://www.ppc.go.jp/personalinfo/legal/,0.173
+6,6.2,"Local storage requirements
+Exception: Not score data localization measure applied to government data.",0.50,"Act on the Protection of Personal Information (Act No. 57 of 2003);
+
+Medical Practitioners Act（Act No. 201 of 1948);
+
+Dental Practitioners Act（Act No. 202 of 1948);
+
+Pharmacists Act（Act No. 146 of 1960);
+ 
+Medical Care Act (Law No. 205 of 1948)","There are no data localisation requirements under the APPI. However, government agencies have issued official guidelines that contain data localization requirements for certain fields and industries including: Medical Information Systems.
+
+Guidelines for Safety Management of Medical Information by Providers of Information Systems and Services Handling Medical Information require providers of medical information systems to locate medical information and medical information systems within the jurisdictional scope of Japanese laws. 
+
+6.1 Medical information pertains to a patient's physical well-being and life. Complying with legal requirements, such as the Medical Practice Act, Dentist Act, Pharmacist Act, and Medical Facility Act, is crucial for the collection and storage of such information. The responsibility for adhering to these regulations lies with the healthcare practitioner. Additionally, the Criminal Code and similar laws impose penalties for unauthorized disclosure of confidential information obtained in the workplace.
+
+In order to ensure compliance with the obligations and administrative procedures imposed on medical facilities by the aforementioned laws and regulations, it is essential to maintain medical information and associated medical information systems within the boundaries defined by domestic law enforcement.
+","Since May 2003, last amended in April 2024;
+
+Since July 1948, last amended in April 2024;
+
+Since July 1948, last amended in April 2024;
+
+Since August 1960, last amended in January 2023;
+
+Sonce July 1948, last amended in June 2024
+
+","https://elaws.e-gov.go.jp/document?lawid=415AC0000000057;
+
+https://www.ppc.go.jp/files/pdf/280222_amendedlaw.pdf
+","https://www.meti.go.jp/policy/mono_info_service/healthcare/01gl.pdf;
+
+https://laws.e-gov.go.jp/law/323AC0000000201",https://laws.e-gov.go.jp/law/323AC0000000202,https://laws.e-gov.go.jp/law/335AC0000000146,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",0,Telecommunications Business Act (Act No. 86 of 1984) ,"No infrastructure requirement. 
+","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+6,6.3,"Infrastructure requirements
+Exception: Not score data localization measure applied to government data.",0,Act on the Protection of Personal Information (Act No. 57 of 2003),"No infrastructure requirement. 
+The Data Centre is entrusted with the storage of Personal data pursuant to the PIPA. Therefore, security control measures to appropriately manage Personal data must be taken. Specifically, this requires the establishment of:
+- an organisational control system
+- a personnel control system
+- a physical control system, and
+- a technical control system.
+In addition, it is necessary to comply with the regulations relating to the supervision of employees and restrictions on the provision of data to third parties and certain others.","Since May 2003, last amended in April 2024",https://www.cas.go.jp/jp/seisaku/hourei/data/APPI.pdf,https://laws.e-gov.go.jp/law/415AC0000000057/,,,
+6,6.4,"Conditional flow regimes
+Exception: Not score data localization measure applied to government data.",1,"Act on the Protection of Personal Information (Act No. 57 of 2003);
+
+
+Enforcement Rules for the Act on the Protection of Personal Information (Personal Information Protection Commission Regulations No. 3 of 2016)","The Act on the Protection of Personal Information (Act No. 57 of 2003) (APPI) did not originally restrict the transfer of personal information to foreign countries, but amendments enacted in 2015 and which took effect in May 2017 added restrictions on cross-border data flows. The amended APPI prescribes three types of legitimate transfers of personal information to a third party in a foreign country under Article 24: (1) transfers to a country that the Personal Information Protection Commission (PPC) has designated as having an acceptable level of data protection; (2) transfers to a third party in a foreign country in circumstances in which actions have been taken to ensure the same level of data protection as in Japan (such as entering into a data transfer agreement imposing obligations on the transferee meeting the requirements of the APPI); or (3) transfers with the data subject’s consent.
+
+Under the Enforcement Rules for the APPI, as for (2), Article 11 specifies that it means: ""(i) a personal information handling business operator and a person who receives the provision of personal data have ensured in relation to the handling of personal data by the person who receives the provision the implementation of measures in line with the purport of the provisions under Chapter IV, Section 1 of the Act by an appropriate and reasonable method or (ii) a person who receives the provision of personal data has obtained a recognition based on an international framework concerning the handling of personal information."" To date, the only PPC-recognized international framework is the APEC Cross-Border Privacy Rules System.","Since May 2003, last amended in April 2024;
+
+Since October 2016, last amended in April 2024",https://www.ppc.go.jp/files/pdf/Act_on_the_Protection_of_Personal_Information.pdf,https://www.ppc.go.jp/files/pdf/PPC_rules.pdf,https://laws.e-gov.go.jp/law/415AC0000000057/,https://laws.e-gov.go.jp/law/428M60020000003,
+6,6.5,Not in an agreement with binding commitments on data transfer.,0,"Comprehensive and Progressive Agreement for Trans-Pacific Partnership;
+
+Agreement Between The United States Of America And Japan Concerning Digital Trade ;
+
+Agreement between the United Kingdom of Great Britain and Northern Ireland and Japan for a Comprehensive Economic Partnership;
+
+EU-Japan Economic Partnership Agreement (EPA)","Japan has joined agreements with binding commitments to open transfers of data across borders: the Comprehensive and Progressive Agreement for Trans-Pacific Partnership (CPTPP, Art. 14.11), the Agreement Between The United States Of America And Japan Concerning Digital Trade (Art. 11), and the Agreement between the United Kingdom of Great Britain and Northern Ireland and Japan for a Comprehensive Economic Partnership (Art 8.84).","In force since March 2018;
+
+In force since January 2020;
+
+In force since January 2021;
+
+In force since February 2019,  last amended in July 2024",https://www.dfat.gov.au/trade/agreements/in-force/cptpp/official-documents,https://www.mofa.go.jp/na/na2/page24e_000261.html,https://www.mofa.go.jp/ecm/ie/page24e_000270.html,https://policy.trade.ec.europa.eu/news/eu-japan-deal-data-flows-enters-force-2024-07-01_en?utm_source=chatgpt.com,
+7,7.1,Lack of comprehensive legal framework for data protection,0,"Act on the Protection of Personal Information (Act No. 57 of 2003)
+
+
+
+","Japan has the compehensive data protection law. The Act on the Protection of Personal Information (Act No. 57 of 2003)(APPI), enacted in 2003 and last amended in 2017, is Japan's data protection regime. Under the Act, as amended in June 2020, all business operators will be required to obtain consent from data subjects when they acquire cookies or other information that can become personal information.
+
+In addition to the APPI, the Personal Information Protection Commission (PPC), created in 2016, issue general guidelines, guidelines on data transfer to a third party in a foreign country, guidelines on confirmation and records for providing to a third party, and guidelines on anonymously processed information. Furthermore  the Guideline on Personal Information Protection in Telecommunications Business issued by the Ministry of Internal Affairs and Communications, genetic information guidelines issued by the Ministry of Economy, Trade and Industry, financial affairs guidelines jointly issued by the PPC and the Financial Services Agency, medical care guidelines jointly issued by the PPC and the Ministry of Health, Labor and Welfare are also relevant.
+","Since May 2003, last amended in April 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/4241#je_ch4sc2at7,https://elaws.e-gov.go.jp/document?lawid=415AC0000000057,,,0.156
+7,7.1,Lack of comprehensive legal framework for data protection,0,Telecommunications Business Act (Act No. 86 of 1984),"The Ministry of Internal Affairs and Communications (MIC) amended the Telecommunications Business Act in May 2020 to extend its extraterritorial enforcement to foreign companies that provide telecoms services to Japanese customers that are equivalent to those provided by domestic companies regulated under the Act. Specifically, foreign operators providing telecommunications services from abroad to users in Japan were originally subject to regulation under the Telecommunications Business Act. As such, such foreign companies must register with the MIC, designate a local representative in Japan, and protect the consumer's right to secrecy of communication. However, due to a lack of effective law enforcement, provisions have been established to enhance the enforceability of the Act against such foreign operators. This does not constitute an expansion of extraterritorial application. Foreign operators providing telecommunications services to Japan have been subject to the Telecommunications Business Act, just like domestic operators, even prior to the legal amendment.
+
+The Amendment of the Act in 2022 (Act No. 70 of 2022, Partial Amendment to the Telecommunications Business Act) was enacted including new regulations for the use of information that can identify or is related to users, including cookies. The Amendment aims to introduce data privacy protections for users of telecommunications services. The Act require telecommunications service providers, including online business operators, social networking service providers and search engine providers, to notify the users in advance or make relevant information readily available for them concerning the external transmission of user-related information.
+
+","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",0,"Guidelines for Protection of Personal Information in Telecommunications Bussiness
+(MIC Public Notice No. 152 of April 18, 2017);
+
+Act on the Protection of Personal Information (Act No. 57 of 2003) (amended)","Article 10 (Retention Period etc.)
+1. A telecommunications carrier shall, in handling personal data (excluding those protected under the secrecy of communications; the same shall apply hereinafter in this Article), determine a retention period to the extent necessary for the utilization purpose and strive to delete such personal data without delay after the expiration of such retention period or after such utilization has become unnecessary. 
+
+Ariticle 2 (7) of Act on the Protection of Personal Information -  the data which is specified by a Cabinet Order as harming public or other interests if its presence or absence is known and the data which will be erased within a period of no longer than one year that is specified by a Cabinet Order.
+","Since September 2017, last amended in March 2022;
+
+Since 2015 Since May 2003, last amended in 2022 April 2024",https://www.soumu.go.jp/main_content/000744054.pdf,https://www.soumu.go.jp/main_content/000805614.pdf,https://www.soumu.go.jp/main_sosiki/joho_tsusin/d_syohi/telecom_perinfo_guideline_intro.html,https://elaws.e-gov.go.jp/document?lawid=415AC0000000057,
+7,7.2,"Minimum period of data retention requirements
+Exception: Not score requirement applied to government data.",1,Medical Practitioners Act (Act No. 201 of 1948),"Japan's Medical Practitioners Act provides specific regulations for the retention and handling of medical records. Under Article 24, medical practitioners must record details of medical treatments promptly in medical records. These records must be retained for at least five years by the administrator of a hospital or clinic or, in other cases, by the doctor themselves.","Since July 1948, last amended in April 2024",https://laws.e-gov.go.jp/law/323AC0000000201#Mp-Ch_5-At_24_2-Pr_1,,,,
+7,7.3,Data Protection Impact Assessment (DPIA) or Data Protection Officer (DPO) requirements,0,"Act on the Protection of Personal Information (Act No. 57 of 2003);
+
+Guidelines for Personal Information Protection in the Financial Field;
+
+Guidelines on the Act on Protection of Personal Information;
+
+Guidelines Targeting Economic and Industrial Sectors Pertaining to the Act on the Protection of Personal Information;
+
+Guidelines for Protection of Personal Information in Telecommunications Business
+","Under the Act on the Protection of Personal Information (APPI), there is no requirement mandating the appointment of a Privacy or Data Protection Officer. However, according to Article 23, businesses handling personal information must take the necessary and appropriate measures for managing the security of personal data including preventing the leaking, loss or damage of the personal data they handle.
+
+Therefore, some guidelines recommend it, including (1) Guidelines for Personal Information Protection in the Financial Field, issued by the Financial Services Agency in 2007, (2) Guidelines on the APPI, issued by the Personal Information Protection Commission in 2009 last amended in 2020, (3) Guidelines Targeting Economic and Industrial Sectors Pertaining to the Act on the Protection of Personal Information issued by the Ministry of Economy, Trade and Industry in 2007, and (4) Guidelines for Protection of Personal Information in Telecommunications Business.","Since May 2003, last amended in April 2024;
+
+Since April 2007 last amended in March 2024;
+
+Since November 2016, last amended in December 2021;
+
+Since October 2004, last amended in January  2015;
+
+Since December 1998, Last amended in March 2024 ","https://www.japaneselawtranslation.go.jp/en/laws/view/4241;
+
+https://elaws.e-gov.go.jp/document?lawid=415AC0000000057",https://www.fsa.go.jp/common/law/kj-hogo-2/01-4.pdf,https://www.ppc.go.jp/personalinfo/legal/guidelines_tsusoku/,https://www.meti.go.jp/policy/it_policy/privacy/100319guidline-gaiyou.pdf,
+7,7.4,Requirements to allow government access to personal data,0,Act on Communications Interception for Criminal Investigation（Act No. 137 of 1999）,"It is not permitted to intercept communications without a judicial warrant.
+
+The Act on Communications Interception for Criminal Investigation (Act No. 137 of 1999) provides that a public prosecutor or a judicial police officer may, with a warrant for interception issued by a judge, intercept crime-related communications in certain cases (Article 3(1)). A warrant must contain such information as the name of the suspect, a summary of the alleged facts, the name of the offence, the applicable penal statute, communications to be intercepted, the means of communication subject to the implementation of interception, the method and place of the implementation of interception, the period during which interception is authorized, conditions concerning the implementation of interception, the validity period (Article 6(1)). When conducting an interception in accordance with a warrant, a public prosecutor or a judicial police officer may take any measures necessary for the implementation of interception, such as connecting equipment to telecommunication facilities (Article 11(1)), and may ask a telecommunications service provider for necessary cooperation such as connecting equipment to telecommunication facilities (Article 12). The Act provides three ways of interception: a public prosecutor or a judicial police officer can conduct real-time interception on site with attendance of the third party such as a manager or an employee of the provider (Article 13, etc.); a public prosecutor or a judicial police officer may, with permission of a judge, order the service provider to encrypt and temporarily store the communications, then to decrypt and reproduce the restored communications later with attendance of the third party such as a manager or an employee of the provider (Article 20 and 21); a public prosecutor or a judicial police officer may, with permission of a judge, order the service provider to encrypt the communications and to transmit them to a special computer which satisfies the requirements of the Act, then may decrypt and reproduce the restored communications later, using the special computer (Article 23). Intercepted communications must all be recorded in a medium and must be submitted to a judge without delay (Article 24 to 26).
+
+The Act was last amended in 2025, which will make an electromagnetic warrant available (not yet in force).","Since August 1999, last amended in 2025
+
+
+","https://www.japaneselawtranslation.go.jp/en/laws/view/3857/en;
+
+https://laws.e-gov.go.jp/law/411AC0000000137",,,,
+7,7.4,Requirements to allow government access to personal data,0,"Criminal Procedure Code (Act No. 131 of 1948)
+
+","The Code of Criminal Procedure (Act No. 131 of 1948) provides that a judicial warrant is required when investigators conduct a search, seizure or inspection, unless the search or seizure is conducted on the spot at the arrest of a suspect (Article 218 and 220).
+In the execution of a search or seizure warrant, necessary measures such as unlocking or unsealing of relevant articles may be taken (Article 111 and 222), and where the article to be seized is a recording medium containing electronic or magnetic records, the person such as a public prosecutor or a judicial police officer conducting the search or seizure may ask the person subject to the measure for necessary cooperation such as operating the computer or decrypting an encrypted electronic or magnetic record (Article 111-2 and 222).
+
+Article 197(2) provides that public offices or public or private organizations may be asked to make a report on necessary particulars relating to the investigation; however, it does not mean that private enterprises are required to assist in investigations without a warrant generally.
+
+The Act was last amended in 2025, which will abolish the provisions of a record copying order (Article 99-2, etc.) and will create a judicial order of providing electronic or magnetic records (not yet in force as of June 2025).","Since July 1948, last amended in 2025
+
+","https://laws.e-gov.go.jp/law/323AC0000000131/20250601_504AC0000000067;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/2056/en;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3739",,,,
+8,8.1,Lack of safe harbour for copyright infringements,0.50,"Act on Measures Against Rights Infringement, etc. Arising from Distribution of Information by Specified Telecommunications  (Act No. 137 of 2001)","Japan's Act on Measures Against Rights Infringement, etc. Arising from Distribution of Information by Specified Telecommunications (Act No. 137 of 2001), enacted in 2001 and last amended in 2024, shelters """"specified telecommunications service provider"""" from liability for damages caused by distribution of information by specified telecommunications to the right of others unless it is aware of or has a good reason to be aware of the infringement. Furthermore, the Act also shields specified telecommunications service provider from the liability for any damage caused by the deletion of content on its network if the specified telecommunication service provider reasonably believes that the content infringes the intellectual property rights or privacy of others, or if the right holder alleges infringement and the content sender does not respond to the specified telecommunications service provider's inquiry within seven days.","Since November 2001, last amended in 2024","https://laws.e-gov.go.jp/law/413AC0000000137
+;
+https://www.soumu.go.jp/main_sosiki/joho_tsusin/eng/Resources/laws/pdf/H13HO137.pdf",,,,0.375
+8,8.2,Export restrictions on ICTgoods and online services,0.50,"Act on Measures Against Rights Infringement, etc. Arising from Distribution of Information by Specified Telecommunications  (Act No. 137 of 2001)","Japan's Act on Measures Against Rights Infringement, etc. Arising from Distribution of Information by Specified Telecommunications (Act No. 137 of 2001), enacted in 2001 and last amended in 2024, shelters ""specified telecommunications service provider"" from liability for damages caused by distribution of information by specified telecommunications to the right of others unless it is aware of or has a good reason to be aware of the infringement (Article 3).","Since November 2001, last amended in 2024","https://laws.e-gov.go.jp/law/413AC0000000137
+;
+https://www.soumu.go.jp/main_sosiki/joho_tsusin/eng/Resources/laws/pdf/H13HO137.pdf",,,,
+8,8.3,User identify requirements,0.50,"Act for Identification, etc. by Mobile Voice Communications Carriers of their Subscribers, etc. and for Prevention of Improper Use of Mobile Voice Communications Services  (Act No. 31 of 2005)","The Act on Prevention of Improper Use of Mobile Phones requires mobile voice communication carriers to verify the identity of subscribers. The submission of identification is required at the time of contract, but it is not required for cancellation or relocation.
+
+Article 3 (Identification Confirmation Obligation, etc. In Concluding Contract )
+(1) When a mobile voice communications carrier intends to conclude a contract for the provision of a mobile voice communications service with a person who wishes to receive such service, said carrier shall confirm by methods stipulated in the applicable Ordinance of MIC  ,the identity of the person wishing to become the counterparty to the service provision contract (hereinafter in this article and Article 11 item (i) referred to as the ""counterparty"") With respect to the matters specified in the following items according to the classification of the counterparty. 
+(i) Natural person: his or her name, address and date of birth
+(ii) Juridical person: its name and address of head or principal office","Since April 2005, last amended in June 2022",https://www.soumu.go.jp/main_sosiki/joho_tsusin/eng/Resources/laws/pdf/H17HO031.pdf,https://laws.e-gov.go.jp/law/417AC1000000031,,,
+8,8.4,Monitoring requirements,0,Copyright Act (Act No. 48 of 1970),"Posting URLs or links to pirated content on an index site or app is also now considered copyright infringement, punishable by up to three years in prison and/or a fine of JPY 3 million, upon the complaint of a right holder. In 2018, the Government asked Internet service providers to voluntarily block three notorious manga pirate sites as an emergency measure while a panel was convened to review potential site-blocking legislation. No such legislation has been presented to the Diet to date. However, platform service providers, such as YouTube or Google, are not liable except in malicious circumstances where requests to remove infringing links have been unjustifiably ignored for an extended period of time.
+",Since May 1970 as amended in July 2024,https://www.japaneselawtranslation.go.jp/en/laws/view/3379,https://www.bunka.go.jp/english/policy/copyright/amendments_2020/,https://laws.e-gov.go.jp/law/345AC0000000048,,
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",0,"The Constitution of Japan 
+
+","Japan does not pursue site blocking as an anti-piracy tool. According to Article 21, Paragraph 2 (prohibition of censorship and protection of the secrecy of communications) of the Constitution, no censorship shall be maintained, nor shall the secrecy of any means of communication be violated. The Constitution of Japan promulgated on November 3, 1946 and came into effect on May 3, 1947. 
+","Since May 1947
+
+
+
+
+
+",https://japan.kantei.go.jp/constitution_and_government_of_japan/constitution_e.html,,,,0.208
+9,9.1,"Blocking or filtering commercial web content
+Exception: Not score political content, criminal content (e.g., child pornography), aged-restricted content, defamation and other non-commercial content.",0,"Telecommunications Business Act（Act No. 86 of 1984）
+
+
+
+
+
+
+","Japan does not pursue site blocking as an anti-piracy tool. According to Article 4 (Protection of Secrecy) of the Telecommunications Business Act, the secrecy of communications handled by a telecommunications carrier must not be violated. A person who is engaged in telecommunications business must not disclose other persons' secrets which came to their knowledge while in service with respect to communications handled by a telecommunications carrier. The same applies even after that person has left office.","Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+9,9.2,Internet shutdowns,0,"V-Dem, variable v2smgovshut","The government did not restrict or disrupt access to the internet or censor online content, and there were no credible reports that the government monitored private online communications without appropriate legal authority. Moreover, the indicator ""6.2.4 - Government Internet shut down in practice"" of the V-Dem Dataset, which measures whether the government has the technical capacity to actively make internet service cease, thus interrupting domestic access to the internet or whether the government has decided to do so, has a score of 3.965 in Japan. This corresponds to ""Never, or almost never. The government does not typically interfere with the domestic access to the Internet"".
+
+",Reported in 2023,https://www.v-dem.net/data/the-v-dem-dataset/,,,,
+9,9.3,"Online advertising requirements
+Exception: Not score requirements that advertising should not be misleading",0,E-Gov Japan Portal,There is no restriction to online advertising.,Last reviewed in June 2025,https://www.e-gov.go.jp/en/sitemap.html,,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",1,Broadcasting Act (Act No. 132 of 1950),"The Broadcasting Act requires basic broadcasting businesses to obtain approval from the MIC (Article 93), ensuring compliance with technical and operational standards.
+
+Article 93(1) Persons intending to conduct basic broadcasting operations (excluding those intending to receive or who have already received a basic terrestrial broadcasting station license for use in the operations of the basic broadcasting pursuant to the provisions of the Radio Act) must obtain the approval of the Minister of Internal Affairs and Communications. The person intending to conduct such operations does not come under any of the following: 
+(a) A person who does not have Japanese nationality
+(b) A foreign government or its representative
+(c) A foreign corporation or organization
+(d) A corporation or organization where the person given in (a) through (c) is a specified officer or where the person holds one-fifth or more of the voting rights
+(e) A corporation or organization where the ratio obtained by adding the ratio of the voting rights directly held by the person given in 1. and the ratio provided for by Order of the Ministry of Internal Affairs and Communications as the ratio of the voting rights indirectly held by the person given in 2. through the person accounts for one-fifth or more of the voting rights (excluding cases coming under (d)).
+
+Article 121 stipulates the obligation to maintain conformity with the standards for facilities and the operational management system for their operation. ","Since May 1950, last amended in 2025","https://laws.e-gov.go.jp/law/325AC0000000132/#Mp-Ch_5-Se_2;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/2954/en",,,,
+9,9.4,"Licensing requirements for online content providers and applications (social media platforms, new providers, VPN, cloud servics, etc.)
+Exception: Not cover license for telecommunication facilities and service providers (captured under Pillar 5), License for e-commerce platform (captured under Pillar 12)",1,Radio Act (Act No. 131 of 1950,"According to the Radio Act, (Article 4) Any person who wishes to establish a radio station must obtain a license from the Minister of Internal Affairs and Communications.
+Article 5(1) No radio station license is granted to any person who falls under any of the following items: 
+(i) A person who does not have Japanese nationality
+(ii) A foreign government or its representative
+(iii) A foreign corporation or organization
+(iv) A corporation or organization, which is represented by any person listed in the preceding three items, or one third or more officers of which are those persons, or one third or more voting rights of which are made up of the aggregate of voting rights held by those persons.","Since May 1950, last amended in April 2024","https://www.japaneselawtranslation.go.jp/en/laws/view/3205#je_ch2;
+
+https://laws.e-gov.go.jp/law/325AC0000000131",,,,
+10,10.1,"Import ban applied to ICT goods and online services (e.g. network equipment, servers, handsets, applications, and data processing)",0,Customs Act (Act No. 61 of 1954）,"No import bans on ICT products or online services are found. Because ICT goods and online services do not correspond to “cargo” under Customs Act, and out of coverage of “import”, there are also no provisions to ban importing them under Customs Act.","Since April 1954, last amended in October 2024",https://laws.e-gov.go.jp/law/329AC0000000061/20220101_503AC0000000012,https://www.japaneselawtranslation.go.jp/en/laws/view/3510,https://www.customs.go.jp/english/summary/prohibit.htm,,0.167
+10,10.2,Other import restrictions on ICT goods and online services,0,Electrical Appliance and Material Safety Act (Act No. 234 of 1961) ,"No import restrictions on ICT products are found.
+
+Electrical Appliance and Material Safety Act (Act No. 234 of 1961) requires electronic devices to meet proper labeling for compliant products (Article 10) (Labeling). Specifically, Article 10(1)When a Notifying Supplier has performed its obligations pursuant to the provisions of Article 8, paragraph (2) (in the case of Specified Electrical Appliances and Materials, Article 8, paragraph (2) and Article 9, paragraph (1)) concerning compliance with the Technical Standards for Electrical Appliances and Materials of the product type pertaining to the notification, it may affix labeling to said Electrical Appliances and Materials in the form specified by Ordinance of the Ministry of Economy, Trade and Industry. Article 10 (2)Except where a Notifying Supplier affixes labeling to the Electrical Appliances and Materials of the product type pertaining to the notification pursuant to the provisions of the preceding paragraph, no person shall affix labeling as set forth in said paragraph or any other labeling similar thereto to the Electrical Appliances and Materials. ","Since November 1961, last amended in June 2024","https://laws.e-gov.go.jp/law/336AC0000000234/#Mp-Ch_2;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/2745/en#:~:text=Article%201The%20purpose%20of,of%20Electrical%20Appliances%20and%20Materials.",,,,
+10,10.3,Local content requirements ,0,Telecommunications Business Act（Act No. 86 of 1984）,No local content requirements,"Since December 1984, last amended April 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",,,,
+10,10.4,Export restrictions on ICTgoods and online services,1,"Foreign Exchange and Foreign Trade Act (Act No. 228 of 1949);
+
+Export Trade Control Order (Cabinet Order No. 378 of 1949)","Japan enforces export restrictions on certain ICT goods under the Foreign Exchange and Foreign Trade Act (FEFTA), primarily targeting dual-use items—goods with both civilian and military applications. These restrictions are outlined in the Export Trade Control Order (Schedule 1-7) and include high-performance computers, telecommunications equipment, semiconductors, and encryption software. Exporting such items requires a license from the Ministry of Economy, Trade, and Industry (METI) to ensure compliance with national security and international agreements.","Since December 1949, last amended in April 2024;
+
+Since December1949, last amended in July 2024","https://www.japaneselawtranslation.go.jp/en/laws/view/4102;
+
+https://laws.e-gov.go.jp/law/324AC0000000228","https://www.japaneselawtranslation.go.jp/en/laws/view/3389;
+
+https://laws.e-gov.go.jp/law/324CO0000000378/",,,
+11,11.1,Lack of transparent technical standards,0, Industrial Standardization Act (Act No. 185 of 1949),"No restriction and Standard requirements are transparent in Japan.
+
+Article 3 The METI establishes the Japanese Industrial Standards Committee in respone to consultations from relevant ministers, the Committee may deliberate on matters within its authority in accordance with this Act, as well as on the promotion of industrial and international standardization, and reports the results or make proposals to the relevant ministers.
+Article 4 The Committee is composed of up to 30 committee members which are appointed by the METI and  by recommendations of the relevant ministers, selected from among persons with relevant knowledge and experience in accordance with the recommendations by relevant ministers.
+
+Any interested parties may propose a draft of standards for deliberation by JISC. JISC is also responsible for Japan's growing contribution to setting international standards through its work with the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC).","Since June 1949, last amended in June 2022",https://www.japaneselawtranslation.go.jp/en/laws/view/3592/en,https://www.jisc.go.jp/eng/,https://www.jisc.go.jp/eng/policy/Japan_and_Industrial_Standards_2017.pdf,https://www.meti.go.jp/english/press/2021/0520_002.html,0.150
+11,11.2,"Self-certification limitations for product safety (radio transmissions, EMC/EMI)",0,"Act for Mutual Recognition between Japan and Foreign States on the Results of Conformity Assessments for Specified Equipment (Act No. 111 of 2001);
+
+Telecommunications Business  Act (Act No. 86 of 1984);
+
+Rules Regarding Accreditation of the Conformity of Terminal Equipment to Technical Requirements (Ordinance No. 15 of the Minister of Internal Affairs and Communication of 2004)","As stipulated in Article 63 (Self-Confirmation of Conformity to Technical Standards) of Telecommunications Business Act and Article 41 of Rules Regarding Accreditation of the Conformity of Terminal Equipment to Technical Requirements, for specified terminal equipment, a manufacturer or importer may also conduct self-confirmation of technical standards conformity.
+
+Specifically, under Article 63 of the Telecommunications Business Act, a manufacturer or importer of certain terminal equipment, designated by the Ministry of Internal Affairs and Communications (MIC), may confirm on their own whether the design of the equipment meets the technical standards set out in Article 52(1). This self-confirmation is allowed when the equipment is not likely to significantly interfere with other users’ communications. Self-confirmation can only be carried out if the manufacturer or importer verifies, in accordance with MIC regulations, that the equipment’s design complies with the required technical standards and that each product produced under that design will match the approved design. 
+
+Under Article 41 of the Rules Regarding Accreditation of the Conformity of Terminal Equipment to Technical Requirements, manufacturers or importers who self-confirm compliance with technical standards under Article 63(2) must verify the equipment as required by the Ministry. If they choose to notify under Article 63(3), they must submit relevant details, including equipment name, factory or manufacturer information, and calibration data of measuring instruments used. The Ministry will acknowledge the notification and issue a public notice.
+
+Moreover, under Article 10 of Act for Mutual Recognition between Japan and Foreign States on the Results of Conformity Assessments for Specified Equipment, Japan accepts 3rd party-certification from CABs from countries with MRA. 
+
+The mandatory process of certification for telecommunications terminal equipment, according to the Japan Telecommunications Business Law, includes testing by a Ministry of Internal Affairs and Communications accredited lab. Telecommunications terminal equipment requires certification for connection to public network services in Japan. There are two ways to prove that telecom terminal equipment complies with the technical requirements according to the Rules Regarding Accreditation of the Conformity of Terminal Equipment to Technical Requirements (Ordinance No. 15 of the Minister of Internal Affairs and Communication of 2004): 
+- Accreditation of a single piece of equipment by conformity of terminal equipment to technical requirements (Article 8);
+- Type certification for mass-produced products (Article 19).
+
+","Since July 2001, last amended in April 2023;
+
+Since December 1984, last amended in April 2024;
+
+Since January 2004, last amended in April 2024","https://www.japaneselawtranslation.go.jp/en/laws/view/4054
+
+https://laws.e-gov.go.jp/law/413AC0000000111","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",https://laws.e-gov.go.jp/law/416M60000008015,,
+11,11.3,Product screening and testing requirements,0.50,"Telecommunications Business Act (Act No. 86 of 1984);
+
+Radio Law (Law No. 131 of 1950);
+
+Ordinance concerning Technical Regulations Conformity Certification etc. of Specified Radio Equipment  (Ministry of Posts and Telecommunications Ordinance No. 37 of 1981);
+
+Act on the Implementation of Mutual Recognition with Foreign Countries of the Results of Conformity Assessment Procedures for Specified Medical Equipment (Act No. 111 of 2001)","Telecommunications terminal equipment requires certification for connection to public network services in Japan. Although testing is mandatory, it may be conducted in several conformity assessment bodies abroad. Certification is issued by certifications bodies that obtained a registration from the Minister for Internal Affairs and Communications (Article 56).  
+
+Under Article 38-2 of Japan's Radio Law (Law No. 131 of 1950), radio devices must obtain technical standards conformity certification and construction design certification from the Ministry of Internal Affairs and Communications. Certified devices must display the Giteki mark and certification number.
+
+Additionally, the terminal facilities that the user uses by connecting to the telecommunications carrier’s telecommunication line facilities are required to conform to technical standards for connection. (Telecommunications Business Act, Article 52, Paragraph 2)
+
+The Act on the Implementation of Mutual Recognition with Foreign Countries of the Results of Conformity Assessment Procedures for Specified Equipment (Chapter II, Articles 3-13 ) allows Japan to accept conformity assessment results from foreign conformity assessment bodies under Mutual Recognition Agreements (MRAs).","Since December 1984, last amended in April 2024;
+
+Sine May 1950, last amended in April 2024;
+
+Since November 1981, last amended in September 2024;
+
+Since July 2001, last amended in January 2024","https://laws.e-gov.go.jp/law/359AC0000000086/20250601_504AC0000000068;
+
+https://www.japaneselawtranslation.go.jp/en/laws/view/3648/en#je_ch2sc3at29;
+
+https://www.japaneselawtranslation.go.jp/ja/laws/view/4450",https://laws.e-gov.go.jp/law/325AC0000000131,https://laws.e-gov.go.jp/law/356M50001000037/,https://laws.e-gov.go.jp/law/413AC0000000111,
+11,11.4,"Deviation from international encryption standards (ISO, IEC, ITU, FIPS, AES, TDES, and ECC)",0,"Industrial Standardization Act (Act No. 185 of 1949);
+
+Cryptographic Module Validation Program (JCMVP) ","Japanese Industrial Standards utilizes globally recognized standards. Additionally, Cryptographic module validation is done based on ""JCMVP"" (Japan cryptographic Module Validation Program). JCMVP is done in accordance with ISO/IEC 19790. 
+
+The Approved Security Functions in JCMVP are specified on the IPA (Information-technology Promotion Agency, Japan) website https://www.ipa.go.jp/en/security/jcmvp/algorithm.html such as encryption functions, hash functions, and signature functions. For instance, the recognized symmetric key 128-bit block ciphers are Advanced Encryption Standard (AES) and Camellia (2nd version).
+
+","Since June 1945, last amended in June 2022;
+
+Last reviewed in December 2024",https://laws.e-gov.go.jp/law/324AC0000000185/,https://www.ipa.go.jp/en/security/jcmvp/index.html,,,
+12,12.01,Foreign equity limits in e-commerce sector,0,"Foreign Exchange and Foreign Trade Act (Act No. 228 of 1945);
+
+Company Law (Act No. 86 of 2005)",There is no foreign equity share limit in the e-commerce sector. Investment screening may be conducted from the perspective of national security under Foreign Exchange and Foreign Trade Act.,"Since December 1949, last amended in June 2023;
+
+Since July 2005, last amended on November 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/3700/en,https://www.japaneselawtranslation.go.jp/en/laws/view/3206,https://laws.e-gov.go.jp/law/324AC0000000228/20230601_504AC0000000097,https://laws.e-gov.go.jp/law/417AC0000000086,0.297
+12,12.2,"Online purchases and delivery limitations
+Exception: Not score limitations on online purchases and delivery applied specifically to products related to consumer protection, notably restrictions on alcoholic beverages, tobacco, and pharmaceuticals.",0,E-Gov Japan Portal,"There is no Act that defines the restriction on the delivery of products bought online in Japan. Also, there is no restrictions. ",Last reviewed in June 2025,https://www.e-gov.go.jp/en/sitemap.html,,,,
+12,12.3,"Licensing scheme for e-commerce providers (B2B and B2C)
+Exception: Licenses pertiaining to other aspects of e-commerce businesses, such as license to operate online payment services and delivery are not captured. ",0,Interpretative Guidelines on Electronic Commerce and Information Property Trading,There is no specific licensing requirement to operate e-commerce business in Japan. ,"Since March 2002, last amended on December 2022",https://www.meti.go.jp/press/2019/12/20191219003/20191219003.html,https://www.meti.go.jp/english/press/2022/0401_002.html,,,
+12,12.4,"Restrictions on online payment 
+",0,"Payment Services Act (Act No. 59 of 2009);
+
+Banking Act (Act No. 59 of 1981)",Japan does not require a local bank account for online payments,"Since June 2009, last amended in April 2024;
+
+Since June 1981, last amedned in November 2024",https://laws.e-gov.go.jp/law/421AC0000000059/,https://laws.e-gov.go.jp/law/356AC0000000059,,,
+12,12.4,"Restrictions on online payment 
+",0,Foreign Exchange and Foreign Trade Act (Act No. 228 of 1949),Japan does not have any requirements regarding the currency used for international payments.,"Since December 1949, last amended in June 2023","https://www.japaneselawtranslation.go.jp/en/laws/view/4102;
+
+https://laws.e-gov.go.jp/law/324AC0000000228",,,,
+12,12.4,"Restrictions on online payment 
+",0,"Installment Sales Act (Act No. 159 of 1961);
+
+Credit Card Security Guidelines [Version 6.0]","Japan aligns its online payment security standards with international norms. 
+
+12.4.3 Installment Sales Act (Act No. 159 of 1961) (last amended in 2022) Credit Card Security Guidelines [Version 6.0] (last amended in 2025), the Installment Sales Act includes some provisions for measures to prevent the inappropriate disclosure and unauthorized use etc. in respect of a credit card number. 
+
+The Credit Card Security Guidelines are issued by the Credit Transaction Security Measures Council (Secretariat: Japan Consumer Credit Association) in private sector, and they provide supportive and practical methods and examples to comply with regulations of the Act. The Guidelines stipulate the adoption of 3D Secure 2 by 2025 and require either compliance with PCI DSS or system configurations that do not retain credit card information.","Since July 1961, last amended in June 2022;
+
+Since March 2025",https://laws.e-gov.go.jp/law/336AC0000000159,https://www.j-credit.or.jp/security/pdf/Creditcardsecurityguidelines_6.0_published.pdf,,,
+12,12.4,"Restrictions on online payment 
+",1,"Payment Services Act (Act No. 59 of 2009);
+
+Banking Act (Act No. 59 of 1981)","Under Article 37 of the Payment Services Act, non-bank entities providing funds transfer services must register as Funds Transfer Service Providers, complying with operational standards such as safeguarding user funds and ensuring secure processing. Additionally, the Banking Act requires entities conducting banking activities, such as accepting deposits and loans, to obtain a license under Article 4, with further financial and operational requirements outlined in Article 10. These regulations ensure the security, stability, and reliability of Japan's online payment systems while imposing conditions on market entry and operations.","Since June 2009, last amended in April 2024;
+
+Since June 1981, last amedned in November 2024",https://laws.e-gov.go.jp/law/421AC0000000059/,https://laws.e-gov.go.jp/law/356AC0000000059,,,
+12,12.4,"Restrictions on online payment 
+",1,"Payment Services Act (Act No. 59 of 2009);
+
+Enforcement Order of the Payment Services Act (Cabinet Order No. 19 of 2010)","The Payment Services Act in Japan classifies funds transfer businesses into three categories based on transaction limits: Type I (no transaction limit), Type II (transactions up to 1 million JPY), and Type III (transactions up to 50,000 JPY), as specified under Article 36-2 of the Act. Unlike some jurisdictions that impose a universal ceiling on online payment amounts, Japan allows Type I Funds Transfer Businesses to operate without a maximum transaction limit.
+
+Under Chapter III, Section 1 of Japan's Payment Services Act, fund transfer businesses are classified into three types. Type I involves unrestricted fund transfers, excluding specified trust exchange transactions. Type II is limited to small transactions as defined by Cabinet Order, while Type III handles particularly small transactions. These distinctions ensure a structured approach to fund transfer services. ","Since June 2009, last amended in April 2024;
+
+Since March 2010, last amedned in February  2024",https://laws.e-gov.go.jp/law/421AC0000000059/,https://laws.e-gov.go.jp/law/422CO0000000019/#Mp-Ch_2-At_12,,,
+12,12.4,"Restrictions on online payment 
+",0,"Act on the Provision of Financial Services (Act No. 101 of 2000);
+
+Payment Services Act (Act No. 59 of 2009);
+
+Banking Act (Act No. 59 of 1981)","In Japan, there are no requirements mandating the use of specific intermediaries for online payments","Since May 2000, last amended in November 2024;
+
+Since June 2009, last amended in April 2024;
+
+Since June 1981, last amedned in November 2024",https://laws.e-gov.go.jp/law/412AC0000000101,https://laws.e-gov.go.jp/law/421AC0000000059/,https://laws.e-gov.go.jp/law/356AC0000000059,,
+12,12.4,"Restrictions on online payment 
+",0,E-Gov Japan Portal,"Japan has no other restrictions on online payments. 
+",Last reviewed in June 2025,https://www.e-gov.go.jp/en/sitemap.html,,,,
+12,12.5,Low De Minimis,0.50,Custom Tariff Act (No. 54 of 1910),"According to Japan's de minimis rule, goods not exceeding 10, 000 JPY (About 63.74 USD) of value are exempted from custom duties and consumption tax (item 18 of Article 14 of the Customs Tariff Act).  However, domestic excises other than consumption tax (ex. liquor tax, tobacco tax, etc.) which are supposed to be imposed on the goods shall not be exempted. 
+
+Additionally, there are some articles that are not exempted from customs duty and consumption tax even if the total customs value is not more than 10,000 yen (Article 16-3 of the enforcement Order of the Customs Tariff Act, etc.).","Since April 1910, last ameded at October 2025",https://www.customs.go.jp/english/c-answer_e/imtsukan/1006_e.htm,https://laws.e-gov.go.jp/law/143AC0000000054,,,
+12,12.6,Domain name requirements,1,General-Use JP Domain Names,"It is necessary to apply for registration at the Japan Registry Service (JPRS) or its designated agencies to obtain a licence to use domain names. The licence will be renewed yearly. In order to apply for the domain name .jp, companies or individuals are required to have a permanent postal address in Japan. Second level domains, such as co.jp, may be applied for by companies incorporated with official registration in Japan. Non-Japanese corporations registered in Japan as ""Gaikoku Kaisha"" (Foreign Company) may also apply for a ""co.jp"" domain name. To register a ""co.jp"" domain name, a company must be established in Japan. Foreign companies can meet this requirement by, for example, having a registered branch office.",Last reviewed in December 2024,https://jprs.co.jp/en/jpdomain.html,https://jprs.co.jp/en/regist.html#q1,,,
+12,12.7,Local presence requirements for online service providers,1,"Act on Improving Transparency and Fairness of Digital Platforms (Act No. 38 of 2020);
+
+Guidelines on Measures to be Taken by Specified Digital Platform Providers to Promote Mutual Understanding in Transactional Relationships with User Providers of Goods, etc. (METI Notification No. 16 of 2021)","A Specified Digital Platform Provider must appoint a person domiciled in Japan to perform necessary management of business and communicate closely with Provider Users of Goods, etc. and other related persons (Article 7 (3)iv). Specifically, Specified Digital Platform in this Act refers to (1) digital platform providers of general online shopping malls selling goods (e.g., Amazon.co.jp, Yahoo! Shopping); (2) digital platform providers of application stores (e.g., Apple Store, Google Play Store); (3) digital platform providers of media-integrated digital ad platforms (e.g., Google, Facebook); and (4) digital platform providers of ad intermediary digital platforms (e.g., Google Ads). 
+
+Under the Guidelines no. 2.3,  to efficiently comprehend the diverse circumstances of the numerous concerned parties in Japan and formulate appropriate responses that consider their opinions and knowledge, it is crucial for specified digital platform providers to appoint administrators who perform necessary management of business in Japan and communicate closely with Concerned Parties (Domestic Managers).","Since June 2020, last amended in April 2024",https://www.meti.go.jp/english/policy/mono_info_service/information_economy/digital_platforms/pdf/1012_001a.pdf,https://www.meti.go.jp/english/policy/mono_info_service/information_economy/digital_platforms/pdf/1012_001d.pdf,https://www.meti.go.jp/english/policy/mono_info_service/information_economy/digital_platforms/index.html,https://www.meti.go.jp/english/policy/mono_info_service/information_economy/digital_platforms/pdf/20221222.pdf,
+12,12.8,Lack of legal framework for online consumer protection,0,Act on Specified Commercial Transaction (Act No. 57 of 1976),"The purpose of the Act on Specified Commercial Transactions is to prevent business operators’ illegal or malicious solicitation while protecting consumer benefits, sets rules what business operators should obey for consumer protection, such as the cooling-off system, are specified for the types of transactions which tend to cause consumer problems, such as mail-order sales.","Since June 1976, last amended in April 2024",https://www.japaneselawtranslation.go.jp/en/laws/view/3340/en ,,,,
+12,12.8,Lack of legal framework for online consumer protection,0,Act on Improving Transparency and Fairness of Digital Platforms (Act No. 38 of 2020),"The Act on Improving Transparency and Fairness of Digital Platforms operators which are designated by the Ministry of Economy, Trade and Industry (METI) to disclose terms and conditions for the use of their platforms, to take certain measures to promote mutual understanding of digital transactions, and to file an annual report. The Act has extraterritorial application since it applies to all operators of digital platforms that provide services to the Japan market regardless of where they are based. The METI may impose penalties of up to JPY 500,000 for failure to comply with the requirements under the Act. It is important to note that the Act aimed at protecting business users of online platforms not online consumers. While both business users and consumers can submit claims to METI requesting the enforcement of appropriate measures by the platforms, the Act is specifically designed to protect the interests of business users. This includes, for example:
+•the obligation to disclose the terms and conditions for providing specified digital platform services (Article 5(1)–(4)), and
+•the obligation to take necessary measures to promote mutual understanding in transactional relationships between specified digital platform providers and the business users offering goods and services (Article 7(1)).
+","Since June 2020, last amended in April 2024",https://laws.e-gov.go.jp/law/502AC0000000038,,,,
+12,12.8,Lack of legal framework for online consumer protection,0,Act on the Protection of Personal Information (Act No. 57 of 2003),Japan counts with a Act on the Protection of Personal Information (APPI). According to the Article 1 of the Act the aim of it is to protect an individual’s rights and interests while considering the utility of personal information including that the proper and effective application of personal information contributes to the creation of new industries.,"Since May 2003, last amended in April 2024",https://laws.e-gov.go.jp/law/415AC0000000057/,,,,
+12,12.9,Not in the United Nations Convention of Electronic Communications,1,Lack of signature of the UN Convention on Electronic Communications,Japan did not sign the United Nations Convention on the Use of Electronic Communications in International Contracts.,Last review in December 2024,https://uncitral.un.org/en/texts/ecommerce/conventions/electronic_communications/status,,,,
+12,12.10,Not in the UNCITRAL Model Law on Electronic Commerce,0.50,Lack of adoption of the UNCITRAL Model Law on Electronic Commerce,Japan has not notified its adoption of the UNCITRAL Model Law on Electronic Commerce to the UNCITRAL Secretariat.,Last review in December 2024,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_commerce/status,,,,
+12,12.11,Not in the UNCITRAL Model Law on Electronic Signatures,0.50,Lack of adoption of the UNCITRAL Model Law on Electronic Signatures,Japan has not notified its adoption of the UNCITRAL Model Law on Electronic Signatures to the UNCITRAL Secretariat.,Last review in December 2024,https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_signatures/status,,,,
+,,,,,,,,,,Overall RDTII score,0.217
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
