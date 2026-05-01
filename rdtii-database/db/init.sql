@@ -23,11 +23,14 @@ CREATE TABLE rdtii_pillars (
     pillar_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     pillar_number INTEGER NOT NULL,
     pillar_name VARCHAR(255) NOT NULL,
+    country_code VARCHAR(3) REFERENCES countries(code),
     criterion_id VARCHAR(50) NOT NULL,
     criterion_name VARCHAR(500) NOT NULL,
     indicator_id VARCHAR(50) NOT NULL,
     indicator_description TEXT,
     weight_score NUMERIC(5, 3),
+    overall_pillar_score NUMERIC(5, 3),
+    "references" JSONB DEFAULT '[]',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
