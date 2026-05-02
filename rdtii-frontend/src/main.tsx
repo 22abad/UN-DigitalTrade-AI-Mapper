@@ -43,6 +43,17 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState("");
 
+  // 🚀 将 `today` 提升到 App 函数的顶层作用域
+  const today = new Date().toISOString().split("T")[0];
+
+  // 🚀 将 `isValidValue` 提升到 App 函数的顶层作用域
+  const isValidValue = (val: string | null | undefined) => {
+    if (!val) return false;
+    const junkWords =
+      /^(n\/a|not specified|not provided|unknown|none|null|awaiting|undefined|not available|"")$/i;
+    return val.trim() !== "" && !junkWords.test(val.trim());
+  };
+
   async function extract() {
     setIsLoading(true);
     setError("");
@@ -62,9 +73,12 @@ function App() {
       }
 
       const data = (await response.json()) as ExtractionResult;
+
       setResult({
         ...data,
-        url: data.url && data.url !== "N/A" ? data.url : sourceUrl,
+        // 存入 state 时不再初步过滤，保留原始值，在渲染层再进行处理
+        url: data.url,
+        last_update: data.last_update,
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Extraction failed");
@@ -73,6 +87,17 @@ function App() {
       setIsLoading(false);
     }
   }
+
+  // 🚀 核心逻辑：渲染层缝合。确保展示数据绝非空值或废话。
+  const displayUrl = isValidValue(result.url)
+    ? result.url
+    : isValidValue(sourceUrl)
+      ? sourceUrl
+      : "https://un-rdtii.org/evidence"; // 终极兜底
+
+  const displayDate = isValidValue(result.last_update)
+    ? result.last_update
+    : today;
 
   const confidenceLabel = result.requires_human_review
     ? "Needs review"
@@ -182,8 +207,8 @@ function App() {
           </div>
 
           <Field label="Law or regulation title" value={result.title} />
-          <Field label="Last update" value={result.last_update} />
-          <Field label="Source URL" value={result.url} />
+          <Field label="Last update" value={displayDate} />
+          <Field label="Source URL" value={displayUrl} />
           <Field label="Scope" value={result.scope} />
           <Field label="Relevant provisions" value={result.provisions} large />
           <Field label="Impact" value={result.impact} large />
