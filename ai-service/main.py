@@ -97,10 +97,16 @@ def _active_provider_name() -> tuple[str, str | None]:
 
 @app.get("/health")
 def health():
+    """Lightweight liveness + config-name probe.
+
+    `status: "ok"` only confirms RDTII_LLM_PROVIDER resolves to a
+    registered name. It does NOT verify the provider can actually be
+    instantiated (SDK installed, API key set, local model file present);
+    those failure modes only surface on the first /api/extract call.
+    Treat this as a shallow config sanity check, not a full health probe.
+    """
     raw, canonical = _active_provider_name()
     return {
-        # "ok" when the configured provider resolves to a registered one;
-        # "misconfigured" when RDTII_LLM_PROVIDER points at nothing valid.
         "status": "ok" if canonical else "misconfigured",
         "provider_env": raw,
         "active_provider": canonical,  # None on misconfiguration
@@ -116,19 +122,26 @@ def providers_info():
     of `available`. When `RDTII_LLM_PROVIDER` doesn't resolve, `active`
     is null and `active_alias` carries the raw value so operators can see
     what was misconfigured.
+
+    The `name_recognised` field reports ONLY whether the configured name
+    is in the registry. It is deliberately not called "valid" or "ready"
+    because we don't dry-run instantiation — a recognised name with a
+    missing API key / model file will still 500 on the first extract
+    call. (Doing eager instantiation here would have side effects, e.g.
+    loading multi-GB Llama weights at health-check time.)
     """
     raw, canonical = _active_provider_name()
     if canonical is None:
         return {
             "active": None,
             "active_alias": raw,
-            "valid": False,
+            "name_recognised": False,
             "available": list_providers(),
         }
     return {
         "active": canonical,
         "active_alias": raw if raw != canonical else None,
-        "valid": True,
+        "name_recognised": True,
         "available": list_providers(),
     }
 

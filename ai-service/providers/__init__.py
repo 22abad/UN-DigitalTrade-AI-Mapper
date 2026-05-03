@@ -47,10 +47,12 @@ _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
 }
 
 # User-friendly aliases that map onto a canonical key.
+# NOTE: keys here are matched AFTER `_canonicalise` lower-cases, strips,
+# and replaces "_" with "-". So underscore-bearing aliases (e.g.
+# "llama_3_local") would never be reached and must not be added here.
 _ALIASES: dict[str, str] = {
     "llama3": "llama-3-local",
     "llama3-local": "llama-3-local",
-    "llama_3_local": "llama-3-local",
     "llama-3": "llama-3-local",
 }
 

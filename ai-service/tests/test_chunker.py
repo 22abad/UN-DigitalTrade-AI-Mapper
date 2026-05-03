@@ -2,7 +2,9 @@
 
 The chunker's offset contract is load-bearing for the audit-view highlight:
 for every Chunk, `original_text[chunk.start:chunk.end] == chunk.text` must
-hold byte-for-byte.
+hold character-for-character. (Indices are Python str positions, i.e.
+Unicode code points, not UTF-8 bytes — important for ZH / non-ASCII text
+where one character may span multiple bytes.)
 """
 
 from __future__ import annotations

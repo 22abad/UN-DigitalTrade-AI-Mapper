@@ -281,12 +281,16 @@ def test_providers_reports_invalid_with_alias(monkeypatch):
     body = r.json()
     assert body["active"] is None
     assert body["active_alias"] == "gpt-9000"
-    assert body["valid"] is False
+    assert body["name_recognised"] is False
 
 
-def test_providers_active_is_in_available_when_valid(monkeypatch):
-    """The headline contract: when valid, `active` must appear in
-    `available`, even when the user supplied an alias."""
+def test_providers_active_is_in_available_when_recognised(monkeypatch):
+    """The headline contract: when the name is recognised, `active` must
+    appear in `available`, even when the user supplied an alias.
+
+    Note: `name_recognised: True` does NOT promise instantiation will
+    succeed — that's only proven by an actual /api/extract call.
+    """
     from fastapi.testclient import TestClient
 
     import main as main_module
@@ -297,7 +301,7 @@ def test_providers_active_is_in_available_when_valid(monkeypatch):
     r = client.get("/providers")
     assert r.status_code == 200
     body = r.json()
-    assert body["valid"] is True
+    assert body["name_recognised"] is True
     assert body["active"] == "llama-3-local"  # resolved canonical
     assert body["active"] in body["available"]
     assert body["active_alias"] == "llama3"
