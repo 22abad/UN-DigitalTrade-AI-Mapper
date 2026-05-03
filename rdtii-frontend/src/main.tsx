@@ -545,6 +545,11 @@ function MappingCard({
       className={`mapping-card ${active ? "active-mapping" : ""} decision-${decision}`}
       onClick={onSelect}
       onKeyDown={(e) => {
+        // Only handle when the LI itself is focused, not when the event
+        // bubbles up from a nested button / link / show-more control.
+        // Without this guard, keyboard-activating Approve / Reject / Source
+        // also toggles the card selection, which is unexpected.
+        if (e.target !== e.currentTarget) return;
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onSelect();
