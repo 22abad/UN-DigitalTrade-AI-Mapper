@@ -1,15 +1,47 @@
+"""RDTII AI Mapper — FastAPI entry point.
+
+Pipeline:
+    1. Chunk the input text into article-level segments (chunker.regex_legal_chunker).
+    2. For each chunk, classify which indicators it touches (classifier).
+    3. For each (chunk, indicator) pair, ask the LLM provider to extract
+       the structured features defined in features.INDICATOR_FEATURES.
+    4. Verify the LLM's verbatim_quote is a literal substring of the source
+       (verification — anti-hallucination kill switch). Reject otherwise.
+    5. Apply the deterministic scoring rule (scoring.score_indicator).
+    6. Return all surviving mappings + the rejection log.
+
+The provider is selected via env var RDTII_LLM_PROVIDER ('gemini' / 'claude'
+/ 'llama3'). Anywhere `provider` is referenced is the swap point — there is
+zero hardcoded LLM logic outside `providers/`.
+"""
+
+from __future__ import annotations
+
 import os
-import json
-import google.generativeai as genai
+
 from dotenv import load_dotenv
-from chunker import regex_legal_chunker
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import normalize
 
-app = FastAPI()
+from chunker import regex_legal_chunker
+from classifier import classify_indicator
+from features import get_feature_spec
+from providers import get_default_provider, list_providers
+from providers.base import ExtractionError
+from schemas import (
+    ExtractionResponse,
+    IndicatorMapping,
+    RejectedExtraction,
+)
+from scoring import score_indicator
+from verification import find_quote_offsets, verify_quote
+
+load_dotenv()
+
+app = FastAPI(title="RDTII AI Mapper", version="0.2.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173").split(","),
@@ -18,11 +50,47 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Embedding model is kept (used by /embed route + RAG retrieval).
 embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
+# Lazy provider singleton — initialized on first /api/extract call so the
+# app can boot without API keys (useful for /health and /providers).
+_provider = None
+
+
+def _get_provider():
+    global _provider
+    if _provider is None:
+        _provider = get_default_provider()
+    return _provider
+
+
+# ── Request / response models for utility routes ─────────────────────────
 
 
 class TextRequest(BaseModel):
     text: str
+
+
+# ── Routes ───────────────────────────────────────────────────────────────
+
+
+@app.get("/health")
+def health():
+    return {
+        "status": "ok",
+        "provider_env": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "available_providers": list_providers(),
+    }
+
+
+@app.get("/providers")
+def providers_info():
+    """List swappable providers and which one is active."""
+    return {
+        "active": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "available": list_providers(),
+    }
 
 
 @app.post("/embed")
@@ -32,100 +100,94 @@ def embed(req: TextRequest):
     return {"vector": vector[0].tolist()}
 
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+@app.post("/api/extract", response_model=ExtractionResponse)
+def extract(text: str = Form(...), source_url: str = Form("")):
+    """Extract RDTII indicator mappings from a block of legal text.
 
-
-load_dotenv()
-_GEMINI_KEY = os.getenv("GEMINI_API_KEY")
-if _GEMINI_KEY:
-    genai.configure(api_key=_GEMINI_KEY)
-
-
-class RDTII_Extraction(BaseModel):
-    title: str
-    last_update: str
-    url: str
-    scope: str
-    provisions: str
-    impact: str
-    requires_human_review: bool = True
-
-
-def call_gemini_for_chunk(chunk: str):
-    # 🧠 把洗脑指令直接融进 Prompt 的头部，绕过版本兼容性坑
-    prompt = f"""[SYSTEM INSTRUCTION]
-You are a senior UN digital trade policy analyst strictly following the RDTII 2.1 Methodology.
-CRITICAL RULE: Cross-border data flows, data export security assessments, and overseas data transfers MUST ALWAYS be mapped to Pillar 6. NEVER map them to Pillar 4.
-
-[TASK]
-Extract provisions and map to RDTII 2.1.
-Output MUST be valid JSON strictly matching:
-{{
-    "title": "",
-    "last_update": "",
-    "url": "",
-    "scope": "",
-    "provisions": "",
-    "impact": "Detailed analysis. MUST explicitly state 'Pillar 6' if related to cross-border data.",
-    "requires_human_review": false
-}}
-
-Input text: {chunk}"""
-
-    try:
-        # 🔙 恢复最简单、最不容易报错的模型调用方式
-        gemini_model = genai.GenerativeModel('gemini-3.1-pro-preview')
-        
-        safety_settings = [
-            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
-        ]
-        
-        resp = gemini_model.generate_content(
-            prompt, 
-            generation_config=genai.types.GenerationConfig(temperature=0, response_mime_type="application/json"),
-            safety_settings=safety_settings
-        )
-        
-        # 🛡️ 终极 JSON 提取法：不管大模型外面包了什么废话，只暴力掏出大括号里面的内容！
-        text_resp = resp.text
-        start = text_resp.find('{')
-        end = text_resp.rfind('}') + 1
-        if start != -1 and end != 0:
-            clean_json = text_resp[start:end]
-            return json.loads(clean_json)
-        else:
-            raise ValueError("No JSON payload found")
-            
-    except Exception as e:
-        # 这里的报错只有在后台日志里能看见
-        print(f"API Error: {e}")
-        return None
-
-
-@app.post("/api/extract", response_model=RDTII_Extraction)
-def extract_legal_text(text: str = Form(...)):
+    The full pipeline runs per (chunk, indicator) pair. Failed extractions
+    surface in `rejected` rather than aborting the whole request.
+    """
+    provider = _get_provider()
     chunks = regex_legal_chunker(text)
 
+    mappings: list[IndicatorMapping] = []
+    rejected: list[RejectedExtraction] = []
+
     for chunk in chunks:
-        parsed = call_gemini_for_chunk(chunk)
-        if parsed:
-            if isinstance(parsed, list) and len(parsed) > 0:
-                parsed = parsed[0]
-            try:
-                return RDTII_Extraction(**parsed)
-            except Exception:
+        candidate_indicators = classify_indicator(chunk)
+        for indicator_id in candidate_indicators:
+            spec = get_feature_spec(indicator_id)
+            if not spec:
                 continue
-    return RDTII_Extraction(
-        title="N/A",
-        last_update="N/A",
-        url="N/A",
-        scope="N/A",
-        provisions="No provisions found",
-        impact="Failed",
-        requires_human_review=True,
+
+            # 1. Ask the LLM provider for features
+            try:
+                raw = provider.extract_features(chunk, indicator_id, spec)
+            except ExtractionError as e:
+                rejected.append(
+                    RejectedExtraction(
+                        reason=f"provider error: {e}",
+                        chunk_preview=chunk[:200],
+                    )
+                )
+                continue
+
+            # 2. Verify the quote (anti-hallucination kill switch)
+            quote = (raw.get("verbatim_quote") or "").strip()
+            if not quote or not verify_quote(quote, text):
+                rejected.append(
+                    RejectedExtraction(
+                        reason="verbatim_quote not found in source",
+                        chunk_preview=chunk[:200],
+                        raw_output=raw,
+                    )
+                )
+                continue
+
+            # 3. Apply deterministic scoring
+            features = {
+                k: v
+                for k, v in raw.items()
+                if k
+                not in {
+                    "verbatim_quote",
+                    "source_legislation",
+                    "last_update",
+                    "scope",
+                    "impact",
+                    "url",
+                }
+            }
+            try:
+                score = score_indicator(indicator_id, features)
+            except NotImplementedError:
+                # Stub scorer — proceed with placeholder so the pipeline
+                # is debuggable until Commit 2 lands.
+                score = 0.5  # type: ignore[assignment]
+
+            # 4. Compute character offsets for highlight rendering
+            q_start, q_end = find_quote_offsets(quote, text)
+
+            mappings.append(
+                IndicatorMapping(
+                    pillar=int(indicator_id.split(".", 1)[0]),  # type: ignore[arg-type]
+                    indicator=indicator_id,  # type: ignore[arg-type]
+                    score=score,  # type: ignore[arg-type]
+                    verbatim_quote=quote,
+                    quote_start=q_start if q_start >= 0 else 0,
+                    quote_end=q_end if q_end >= 0 else 0,
+                    source_legislation=raw.get("source_legislation", ""),
+                    last_update=raw.get("last_update", ""),
+                    source_url=source_url or raw.get("url", ""),
+                    scope=raw.get("scope", "unknown"),  # type: ignore[arg-type]
+                    features=features,
+                    impact=raw.get("impact", ""),
+                    extraction_provider=provider.name,
+                )
+            )
+
+    return ExtractionResponse(
+        mappings=mappings,
+        rejected=rejected,
+        provider=provider.name,
     )
