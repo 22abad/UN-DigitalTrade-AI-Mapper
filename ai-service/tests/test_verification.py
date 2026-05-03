@@ -2,16 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
-
-# Make `ai-service/` importable when pytest is invoked from repo root or
-# from the ai-service directory itself.
-_AI_SERVICE_DIR = Path(__file__).resolve().parent.parent
-if str(_AI_SERVICE_DIR) not in sys.path:
-    sys.path.insert(0, str(_AI_SERVICE_DIR))
-
-from verification import find_quote_offsets, verify_quote  # noqa: E402
+from verification import find_quote_offsets, verify_quote
 
 
 # ── verify_quote ───────────────────────────────────────────────────

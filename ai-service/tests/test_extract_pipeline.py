@@ -1,10 +1,15 @@
 """Tests for the /api/extract pipeline hardening (PR #8 review fixes).
 
-Covers two failure modes raised in code review:
+Covers failure modes raised in code review:
     - Fuzzy-matched quotes whose exact offsets cannot be recovered must
       be REJECTED (not silently coerced to 0,0).
     - Provider-supplied `scope` values outside the schema literal must
       be sanitized to "unknown" (not raise Pydantic ValidationError).
+    - A quote that exists in the document but NOT in the chunk the LLM
+      was shown must still be rejected (kill switch is chunk-scoped, not
+      document-scoped). Otherwise an LLM can cross-borrow phrases.
+    - Mapping `quote_start`/`quote_end` are absolute document offsets,
+      not chunk-local ones, so the audit UI highlights the right place.
 
 A real LLM call is too expensive for unit tests, so we inject a
 FakeProvider that emits canned outputs.
@@ -12,14 +17,7 @@ FakeProvider that emits canned outputs.
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from typing import Any
-
-# Ensure ai-service modules are importable when pytest runs from anywhere.
-_AI_SERVICE = Path(__file__).resolve().parent.parent
-if str(_AI_SERVICE) not in sys.path:
-    sys.path.insert(0, str(_AI_SERVICE))
 
 import pytest
 
@@ -111,6 +109,94 @@ def test_fuzzy_match_with_unrecoverable_offsets_is_rejected(monkeypatch):
 # ──────────────────────────────────────────────────────────────────────────
 
 
+# ──────────────────────────────────────────────────────────────────────────
+# #5 — Cross-chunk quote leak: an LLM that fabricates a quote which
+# happens to exist in a *different* chunk must still be rejected.
+# ──────────────────────────────────────────────────────────────────────────
+
+
+def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
+    """Verifying against `chunk.text`, not the whole document, prevents an
+    LLM from "borrowing" phrases that exist elsewhere in the source.
+
+    Test design (deliberate): the source is arranged so the *honest* match
+    lives in CHUNK 2, not chunk 1. That forces the test to exercise the
+    chunk-offset translation (`chunk.start + local_start`) — if a future
+    refactor accidentally drops that translation, the absolute offset
+    assertion below will fail, because chunk 2 starts well after byte 0.
+    """
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    # Order matters: article 2 contains the quote the liar will return.
+    # Chunk 2 starts mid-document, so its offsets are non-zero.
+    source = (
+        "Article 1. Companies shall maintain a domestic data centre.\n\n"
+        "Article 2. Personal data shall not be transferred abroad."
+    )
+    quote_from_article_2 = "Personal data shall not be transferred abroad"
+
+    class CrossChunkLyingProvider:
+        """Returns the same Article-2 quote regardless of which chunk it sees.
+
+        On chunk 1: claims a quote that isn't in chunk 1 → MUST be rejected.
+        On chunk 2: legitimately quotes from chunk 2 → should be accepted
+                    AND the absolute offsets must address the original doc.
+        """
+
+        name = "fake-liar"
+
+        def extract_features(self, article_text, indicator_id, feature_spec):
+            return {
+                "verbatim_quote": quote_from_article_2,
+                "personal_data": True,
+                "has_ban": True,
+                "scope": "horizontal",
+            }
+
+    fake = CrossChunkLyingProvider()
+    main_module._provider = fake
+    monkeypatch.setattr(main_module, "_get_provider", lambda: fake)
+    _patch_classifier_to(monkeypatch, ["6.1"])
+
+    client = TestClient(main_module.app)
+    r = client.post("/api/extract", data={"text": source})
+    assert r.status_code == 200
+    data = r.json()
+
+    # Exactly one mapping (the honest extraction from CHUNK 2).
+    assert len(data["mappings"]) == 1, (
+        f"expected 1 honest mapping, got {len(data['mappings'])}: {data}"
+    )
+    m = data["mappings"][0]
+    assert m["verbatim_quote"] == quote_from_article_2
+
+    # Absolute offsets must point at the original document. Crucially,
+    # chunk 2 doesn't start at byte 0 — so an implementation that forgets
+    # to translate (chunk.start + local_start) would set quote_start to a
+    # local-to-chunk offset (~12), not the absolute doc offset (~70+).
+    assert m["quote_start"] > 50, (
+        f"quote_start={m['quote_start']} looks chunk-local; "
+        "the offset translation has regressed"
+    )
+    assert source[m["quote_start"] : m["quote_end"]] == quote_from_article_2, (
+        f"offsets {m['quote_start']}..{m['quote_end']} don't address the original text"
+    )
+
+    # The cross-chunk lie (chunk 1's call) must surface in `rejected[]`.
+    cross_chunk_rejections = [
+        rej
+        for rej in data["rejected"]
+        if "data centre" in rej.get("chunk_preview", "")
+    ]
+    assert cross_chunk_rejections, (
+        "cross-chunk borrowed quote slipped through: "
+        f"{data['rejected']}"
+    )
+    assert "not found in chunk" in cross_chunk_rejections[0]["reason"]
+
+
 @pytest.mark.parametrize(
     "bad_scope",
     ["global", "regional", "national", "", None, "Sectoral ", "HORIZONTAL"],
@@ -151,3 +237,71 @@ def test_invalid_scope_is_sanitized(monkeypatch, bad_scope):
         assert scope == bad_scope.strip().lower()
     else:
         assert scope == "unknown"
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# /health and /providers must surface a misconfigured RDTII_LLM_PROVIDER
+# instead of pretending the invalid name is a valid choice.
+# ──────────────────────────────────────────────────────────────────────────
+
+
+def test_health_reports_misconfigured_when_provider_unknown(monkeypatch):
+    """If RDTII_LLM_PROVIDER doesn't resolve, /health must say so —
+    `active_provider` must be null (not echo the bad value) and `status`
+    must flip to "misconfigured". Otherwise consumers can't tell a typo
+    from a healthy config."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "totally-not-a-provider")
+    client = TestClient(main_module.app)
+
+    r = client.get("/health")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["status"] == "misconfigured"
+    assert body["active_provider"] is None
+    assert body["provider_env"] == "totally-not-a-provider"
+    assert "totally-not-a-provider" not in body["available_providers"]
+
+
+def test_providers_reports_invalid_with_alias(monkeypatch):
+    """Same contract on /providers. `active` must be null; `active_alias`
+    must carry the raw bad value for debugging."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "gpt-9000")
+    client = TestClient(main_module.app)
+
+    r = client.get("/providers")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["active"] is None
+    assert body["active_alias"] == "gpt-9000"
+    assert body["name_recognised"] is False
+
+
+def test_providers_active_is_in_available_when_recognised(monkeypatch):
+    """The headline contract: when the name is recognised, `active` must
+    appear in `available`, even when the user supplied an alias.
+
+    Note: `name_recognised: True` does NOT promise instantiation will
+    succeed — that's only proven by an actual /api/extract call.
+    """
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "llama3")  # alias
+    client = TestClient(main_module.app)
+
+    r = client.get("/providers")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["name_recognised"] is True
+    assert body["active"] == "llama-3-local"  # resolved canonical
+    assert body["active"] in body["available"]
+    assert body["active_alias"] == "llama3"

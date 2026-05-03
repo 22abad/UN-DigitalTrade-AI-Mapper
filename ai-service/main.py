@@ -27,7 +27,7 @@ from pydantic import BaseModel
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
 from features import get_feature_spec
-from providers import get_default_provider, list_providers
+from providers import canonical_name, get_default_provider, list_providers
 from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
@@ -84,20 +84,64 @@ class TextRequest(BaseModel):
 # ── Routes ───────────────────────────────────────────────────────────────
 
 
+def _active_provider_name() -> tuple[str, str | None]:
+    """Return (raw_env, canonical) for the configured provider.
+
+    Canonical is `None` when the env var doesn't resolve to any known
+    provider — endpoints surface that as a misconfiguration rather than
+    pretending the unknown name is a valid choice.
+    """
+    raw = os.getenv("RDTII_LLM_PROVIDER", "gemini")
+    return raw, canonical_name(raw)
+
+
 @app.get("/health")
 def health():
+    """Lightweight liveness + config-name probe.
+
+    `status: "ok"` only confirms RDTII_LLM_PROVIDER resolves to a
+    registered name. It does NOT verify the provider can actually be
+    instantiated (SDK installed, API key set, local model file present);
+    those failure modes only surface on the first /api/extract call.
+    Treat this as a shallow config sanity check, not a full health probe.
+    """
+    raw, canonical = _active_provider_name()
     return {
-        "status": "ok",
-        "provider_env": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "status": "ok" if canonical else "misconfigured",
+        "provider_env": raw,
+        "active_provider": canonical,  # None on misconfiguration
         "available_providers": list_providers(),
     }
 
 
 @app.get("/providers")
 def providers_info():
-    """List swappable providers and which one is active."""
+    """List swappable providers and which one is active.
+
+    Contract: when `active` is non-null, it is guaranteed to be a member
+    of `available`. When `RDTII_LLM_PROVIDER` doesn't resolve, `active`
+    is null and `active_alias` carries the raw value so operators can see
+    what was misconfigured.
+
+    The `name_recognised` field reports ONLY whether the configured name
+    is in the registry. It is deliberately not called "valid" or "ready"
+    because we don't dry-run instantiation — a recognised name with a
+    missing API key / model file will still 500 on the first extract
+    call. (Doing eager instantiation here would have side effects, e.g.
+    loading multi-GB Llama weights at health-check time.)
+    """
+    raw, canonical = _active_provider_name()
+    if canonical is None:
+        return {
+            "active": None,
+            "active_alias": raw,
+            "name_recognised": False,
+            "available": list_providers(),
+        }
     return {
-        "active": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "active": canonical,
+        "active_alias": raw if raw != canonical else None,
+        "name_recognised": True,
         "available": list_providers(),
     }
 
@@ -125,67 +169,56 @@ def extract(text: str = Form(...), source_url: str = Form("")):
     rejected: list[RejectedExtraction] = []
 
     for chunk in chunks:
-        candidate_indicators = classify_indicator(chunk)
+        candidate_indicators = classify_indicator(chunk.text)
         for indicator_id in candidate_indicators:
             spec = get_feature_spec(indicator_id)
             if not spec:
                 continue
 
-            # 1. Ask the LLM provider for features
+            # 1. Ask the LLM provider for features (LLM only sees chunk.text)
             try:
-                raw = provider.extract_features(chunk, indicator_id, spec)
+                raw = provider.extract_features(chunk.text, indicator_id, spec)
             except ExtractionError as e:
                 rejected.append(
                     RejectedExtraction(
                         reason=f"provider error: {e}",
-                        chunk_preview=chunk[:200],
+                        chunk_preview=chunk.text[:200],
                     )
                 )
                 continue
 
-            # 2. Verify the quote (anti-hallucination kill switch).
-            # Two-stage gate: (a) the quote must match (allowing fuzzy for
-            # OCR/whitespace tolerance) AND (b) we must be able to recover
-            # exact offsets — otherwise the audit UI's highlight would point
-            # nowhere, breaking the kill-switch contract.
+            # 2. Verify the quote against the SAME chunk the LLM was given
+            # (anti-hallucination kill switch). Verifying against the full
+            # document would let an LLM "borrow" a phrase that exists
+            # somewhere else, defeating the source-grounding contract.
             quote = (raw.get("verbatim_quote") or "").strip()
-            if not quote or not verify_quote(quote, text):
+            if not quote or not verify_quote(quote, chunk.text):
                 rejected.append(
                     RejectedExtraction(
-                        reason="verbatim_quote not found in source",
-                        chunk_preview=chunk[:200],
+                        reason="verbatim_quote not found in chunk shown to LLM",
+                        chunk_preview=chunk.text[:200],
                         raw_output=raw,
                     )
                 )
                 continue
 
-            q_start, q_end = find_quote_offsets(quote, text)
-            if q_start < 0 or q_end <= q_start:
-                # Fuzzy-passed but offsets unrecoverable: reject rather than
-                # render a (0, 0) highlight. Surfaces in the audit log.
+            local_start, local_end = find_quote_offsets(quote, chunk.text)
+            if local_start < 0 or local_end <= local_start:
                 rejected.append(
                     RejectedExtraction(
                         reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
-                        chunk_preview=chunk[:200],
+                        chunk_preview=chunk.text[:200],
                         raw_output=raw,
                     )
                 )
                 continue
+            # Translate chunk-local offsets to absolute document offsets.
+            q_start = chunk.start + local_start
+            q_end = chunk.start + local_end
 
-            # 3. Apply deterministic scoring
-            features = {
-                k: v
-                for k, v in raw.items()
-                if k
-                not in {
-                    "verbatim_quote",
-                    "source_legislation",
-                    "last_update",
-                    "scope",
-                    "impact",
-                    "url",
-                }
-            }
+            # 3. Apply deterministic scoring (whitelist to declared spec keys
+            # so stray provider output never leaks into the scorer).
+            features = {k: raw[k] for k in spec.keys() if k in raw}
             try:
                 score = score_indicator(indicator_id, features)
             except NotImplementedError:
