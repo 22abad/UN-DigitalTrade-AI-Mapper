@@ -110,6 +110,32 @@ class TestIndicator6_1:
     def test_empty_features_scores_zero(self):
         assert score_6_1({}) == 0.0
 
+    def test_non_integer_num_economies_does_not_crash(self):
+        # LLMs occasionally emit non-numeric strings for count fields.
+        # The scorer should default to 0, not raise ValueError.
+        for garbage in ("2+", "unknown", "", None, "many", "N/A"):
+            assert (
+                score_6_1(
+                    {
+                        "has_ban": True,
+                        "num_economies_affected": garbage,
+                    }
+                )
+                == 0.5
+            ), f"Failed on num_economies_affected={garbage!r}"
+
+    def test_string_integer_num_economies_parsed(self):
+        # JSON sometimes carries integers as strings; honor them.
+        assert (
+            score_6_1(
+                {
+                    "has_ban": True,
+                    "num_economies_affected": "3",
+                }
+            )
+            == 1.0
+        )
+
 
 class TestIndicator6_2:
     """Local storage requirements."""

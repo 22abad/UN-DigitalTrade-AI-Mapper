@@ -23,8 +23,6 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from sentence_transformers import SentenceTransformer
-from sklearn.preprocessing import normalize
 
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
@@ -50,8 +48,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Embedding model is kept (used by /embed route + RAG retrieval).
-embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+# Lazy embedding model — loaded on first /embed call so the app can boot
+# without downloading 100MB+ of weights and to keep test imports fast.
+_embed_model = None
+
+
+def _get_embed_model():
+    global _embed_model
+    if _embed_model is None:
+        from sentence_transformers import SentenceTransformer
+
+        _embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+    return _embed_model
+
 
 # Lazy provider singleton — initialized on first /api/extract call so the
 # app can boot without API keys (useful for /health and /providers).
@@ -95,7 +104,9 @@ def providers_info():
 
 @app.post("/embed")
 def embed(req: TextRequest):
-    vector = embed_model.encode([req.text])
+    from sklearn.preprocessing import normalize
+
+    vector = _get_embed_model().encode([req.text])
     vector = normalize(vector)
     return {"vector": vector[0].tolist()}
 
@@ -132,12 +143,29 @@ def extract(text: str = Form(...), source_url: str = Form("")):
                 )
                 continue
 
-            # 2. Verify the quote (anti-hallucination kill switch)
+            # 2. Verify the quote (anti-hallucination kill switch).
+            # Two-stage gate: (a) the quote must match (allowing fuzzy for
+            # OCR/whitespace tolerance) AND (b) we must be able to recover
+            # exact offsets — otherwise the audit UI's highlight would point
+            # nowhere, breaking the kill-switch contract.
             quote = (raw.get("verbatim_quote") or "").strip()
             if not quote or not verify_quote(quote, text):
                 rejected.append(
                     RejectedExtraction(
                         reason="verbatim_quote not found in source",
+                        chunk_preview=chunk[:200],
+                        raw_output=raw,
+                    )
+                )
+                continue
+
+            q_start, q_end = find_quote_offsets(quote, text)
+            if q_start < 0 or q_end <= q_start:
+                # Fuzzy-passed but offsets unrecoverable: reject rather than
+                # render a (0, 0) highlight. Surfaces in the audit log.
+                rejected.append(
+                    RejectedExtraction(
+                        reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
                         chunk_preview=chunk[:200],
                         raw_output=raw,
                     )
@@ -165,8 +193,10 @@ def extract(text: str = Form(...), source_url: str = Form("")):
                 # is debuggable until Commit 2 lands.
                 score = 0.5  # type: ignore[assignment]
 
-            # 4. Compute character offsets for highlight rendering
-            q_start, q_end = find_quote_offsets(quote, text)
+            # 4. Sanitize provider-supplied scope: schema requires a Literal
+            # value, an unknown string would crash Pydantic construction.
+            raw_scope = (raw.get("scope") or "").strip().lower()
+            scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
             mappings.append(
                 IndicatorMapping(
@@ -174,12 +204,12 @@ def extract(text: str = Form(...), source_url: str = Form("")):
                     indicator=indicator_id,  # type: ignore[arg-type]
                     score=score,  # type: ignore[arg-type]
                     verbatim_quote=quote,
-                    quote_start=q_start if q_start >= 0 else 0,
-                    quote_end=q_end if q_end >= 0 else 0,
+                    quote_start=q_start,
+                    quote_end=q_end,
                     source_legislation=raw.get("source_legislation", ""),
                     last_update=raw.get("last_update", ""),
                     source_url=source_url or raw.get("url", ""),
-                    scope=raw.get("scope", "unknown"),  # type: ignore[arg-type]
+                    scope=scope_value,  # type: ignore[arg-type]
                     features=features,
                     impact=raw.get("impact", ""),
                     extraction_provider=provider.name,

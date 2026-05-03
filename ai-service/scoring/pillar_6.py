@@ -29,6 +29,28 @@ def _excluded_if_gov_only(features: dict) -> bool:
     return bool(features.get("applies_to_government_data_only"))
 
 
+def _safe_int(value: object, default: int = 0) -> int:
+    """Coerce an LLM-supplied feature to int, defaulting on garbage.
+
+    LLMs occasionally emit non-numeric strings ("2+", "many", "unknown")
+    where a count was requested. Crashing the whole extraction on that
+    isn't worth it — silently default to 0 so the indicator under-fires
+    rather than 500s.
+    """
+    if value is None:
+        return default
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, (int, float)):
+        return int(value)
+    if isinstance(value, str):
+        try:
+            return int(value.strip())
+        except (ValueError, AttributeError):
+            return default
+    return default
+
+
 # ── 6.1 Ban & local processing requirements ────────────────────────────────
 def score_6_1(features: dict) -> Score:
     """Ban on data transfer and/or local processing requirement.
@@ -58,7 +80,7 @@ def score_6_1(features: dict) -> Score:
 
     personal = bool(features.get("personal_data"))
     horizontal = bool(features.get("horizontal_scope"))
-    num_economies = int(features.get("num_economies_affected") or 0)
+    num_economies = _safe_int(features.get("num_economies_affected"))
     if personal or horizontal or num_economies >= 2:
         return 1.0
 
