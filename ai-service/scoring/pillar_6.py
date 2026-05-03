@@ -33,18 +33,27 @@ def _excluded_if_gov_only(features: dict) -> bool:
 def score_6_1(features: dict) -> Score:
     """Ban on data transfer and/or local processing requirement.
 
-    Per spec, the high-score conditions (personal data / horizontal /
-    2+ economies) take precedence — if any of those flags is set, the
-    score is 1 even when the explicit ban / local-processing flags are
-    absent. The 0.5 tier requires a ban or local-processing flag.
+    Per the RDTII 2.1 guide (pp. 50-51), this indicator scores the cost
+    of ban / local-processing measures. If neither flag is set, the
+    indicator does not fire — a pure privacy law that talks about
+    personal data but imposes no cross-border restriction must score 0.
 
-    Score 1: covers personal data OR is horizontal OR affects 2+ economies.
-    Score 0.5: ban or local processing requirement on non-personal/specific
-        data, single economy.
-    Score 0: no requirement (data permitted to flow freely).
-    Excluded (0): measure applies to government data only.
+    Decision tree:
+        1. Government-data-only measures are excluded -> 0.
+        2. If neither has_ban nor has_local_processing is set -> 0.
+        3. With a requirement, the upper tier (1.0) fires when it covers
+           personal data OR is horizontal across sectors OR applies to
+           2+ economies.
+        4. Otherwise the requirement is sectoral / single-economy / non-
+           personal -> 0.5.
     """
     if _excluded_if_gov_only(features):
+        return 0.0
+
+    has_requirement = bool(features.get("has_ban")) or bool(
+        features.get("has_local_processing")
+    )
+    if not has_requirement:
         return 0.0
 
     personal = bool(features.get("personal_data"))
@@ -53,12 +62,7 @@ def score_6_1(features: dict) -> Score:
     if personal or horizontal or num_economies >= 2:
         return 1.0
 
-    has_requirement = bool(features.get("has_ban")) or bool(
-        features.get("has_local_processing")
-    )
-    if has_requirement:
-        return 0.5
-    return 0.0
+    return 0.5
 
 
 # ── 6.2 Local storage requirements ─────────────────────────────────────────

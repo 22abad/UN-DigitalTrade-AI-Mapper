@@ -39,14 +39,24 @@ from scoring.pillar_7 import (
 class TestIndicator6_1:
     """Ban & local processing requirements."""
 
-    def test_personal_data_alone_scores_1(self):
-        # Locks in the verification command behaviour: personal_data=True
-        # alone is enough for score 1, even without an explicit ban /
-        # local-processing flag.
-        assert score_6_1({"personal_data": True}) == 1.0
+    def test_personal_data_without_requirement_scores_zero(self):
+        # A pure privacy law that mentions personal data but imposes no
+        # ban / local-processing requirement must NOT trigger 6.1.
+        # Per RDTII 2.1 guide: "score 0 when the data is permitted to be
+        # transferred freely without any requirement."
+        assert score_6_1({"personal_data": True}) == 0.0
 
     def test_personal_data_with_ban_scores_1(self):
         assert score_6_1({"personal_data": True, "has_ban": True}) == 1.0
+
+    def test_personal_data_with_local_processing_scores_1(self):
+        assert (
+            score_6_1({"personal_data": True, "has_local_processing": True}) == 1.0
+        )
+
+    def test_horizontal_scope_without_requirement_scores_zero(self):
+        # Same gate logic as personal_data: no ban + no local processing -> 0.
+        assert score_6_1({"horizontal_scope": True}) == 0.0
 
     def test_horizontal_scope_with_local_processing_scores_1(self):
         assert (
