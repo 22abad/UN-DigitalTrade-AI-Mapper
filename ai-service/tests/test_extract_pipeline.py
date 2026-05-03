@@ -1,10 +1,15 @@
 """Tests for the /api/extract pipeline hardening (PR #8 review fixes).
 
-Covers two failure modes raised in code review:
+Covers failure modes raised in code review:
     - Fuzzy-matched quotes whose exact offsets cannot be recovered must
       be REJECTED (not silently coerced to 0,0).
     - Provider-supplied `scope` values outside the schema literal must
       be sanitized to "unknown" (not raise Pydantic ValidationError).
+    - A quote that exists in the document but NOT in the chunk the LLM
+      was shown must still be rejected (kill switch is chunk-scoped, not
+      document-scoped). Otherwise an LLM can cross-borrow phrases.
+    - Mapping `quote_start`/`quote_end` are absolute document offsets,
+      not chunk-local ones, so the audit UI highlights the right place.
 
 A real LLM call is too expensive for unit tests, so we inject a
 FakeProvider that emits canned outputs.
@@ -109,6 +114,78 @@ def test_fuzzy_match_with_unrecoverable_offsets_is_rejected(monkeypatch):
 # ──────────────────────────────────────────────────────────────────────────
 # #4 — Invalid `scope` literal must be sanitized, not crash Pydantic.
 # ──────────────────────────────────────────────────────────────────────────
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# #5 — Cross-chunk quote leak: an LLM that fabricates a quote which
+# happens to exist in a *different* chunk must still be rejected.
+# ──────────────────────────────────────────────────────────────────────────
+
+
+def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
+    """Verifying against `chunk.text`, not the whole document, prevents an
+    LLM from "borrowing" phrases that exist elsewhere in the source."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    # Two distinct articles. The LLM is shown each article in turn.
+    source = (
+        "Article 1. Personal data shall not be transferred abroad.\n\n"
+        "Article 2. Companies shall maintain a domestic data centre."
+    )
+    quote_from_article_1 = "Personal data shall not be transferred abroad"
+
+    class CrossChunkLyingProvider:
+        """Returns the same Article-1 quote regardless of which chunk it sees.
+
+        On chunk 1: legitimately quotes from chunk 1 → should be accepted.
+        On chunk 2: claims a quote that isn't in chunk 2 → MUST be rejected.
+        """
+
+        name = "fake-liar"
+
+        def extract_features(self, article_text, indicator_id, feature_spec):
+            return {
+                "verbatim_quote": quote_from_article_1,
+                "personal_data": True,
+                "has_ban": True,
+                "scope": "horizontal",
+            }
+
+    fake = CrossChunkLyingProvider()
+    main_module._provider = fake
+    monkeypatch.setattr(main_module, "_get_provider", lambda: fake)
+    _patch_classifier_to(monkeypatch, ["6.1"])
+
+    client = TestClient(main_module.app)
+    r = client.post("/api/extract", data={"text": source})
+    assert r.status_code == 200
+    data = r.json()
+
+    # Exactly one mapping (the honest extraction from chunk 1).
+    assert len(data["mappings"]) == 1, (
+        f"expected 1 honest mapping, got {len(data['mappings'])}: {data}"
+    )
+    m = data["mappings"][0]
+    assert m["verbatim_quote"] == quote_from_article_1
+
+    # Absolute offsets must point at the original document, not chunk-local.
+    assert source[m["quote_start"] : m["quote_end"]] == quote_from_article_1, (
+        f"offsets {m['quote_start']}..{m['quote_end']} don't address the original text"
+    )
+
+    # The cross-chunk lie (chunk 2's call) must surface in `rejected[]`.
+    cross_chunk_rejections = [
+        rej
+        for rej in data["rejected"]
+        if "data centre" in rej.get("chunk_preview", "")
+    ]
+    assert cross_chunk_rejections, (
+        "cross-chunk borrowed quote slipped through: "
+        f"{data['rejected']}"
+    )
+    assert "not found in chunk" in cross_chunk_rejections[0]["reason"]
 
 
 @pytest.mark.parametrize(
