@@ -22,7 +22,7 @@ To eliminate LLM "hallucinations" in legal contexts, we employ a deterministic +
 We are a cross-disciplinary strike team from Maynooth University:
 - **Dong Li** (Project Manager & Legal Architect): 20+ years of legal practice. Bridges legal logic and coding algorithms.
 - **Rujing Xu** (Policy Analyst & Narrative Lead): Economics & Trade expert. Defines business value and policy mapping.
-- **Jie Xu** (Tech Lead & Backend Engine): Java/Python developer. Architect of the text-to-data extraction MVP.
+- **Jie Xu** (Tech Lead & Backend Engine): Python developer. Architect of the text-to-data extraction MVP (FastAPI).
 - **Chenming Tao** (UX/UI & AI Video Lead): Design expert. Crafts the Audit View UI and cinematic concept presentation.
 
 ## 📅 15-Day Agile Sprint
