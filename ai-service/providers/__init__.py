@@ -27,11 +27,15 @@ from .base import LLMProvider
 
 # Module-path / class-name pairs — loaded lazily so importing this package
 # doesn't require every provider's SDK to be installed.
+#
+# The keys here are the CANONICAL names returned by `list_providers()` and
+# shown via `/providers`. Aliases (different spellings of the same name)
+# are normalised in `_canonicalise()`, so the public list stays
+# unambiguous (no duplicate llama3 entries).
 _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
     # Native SDKs
     "gemini": (".gemini", "GeminiProvider"),
     "claude": (".claude", "ClaudeProvider"),
-    "llama3-local": (".llama_local", "Llama3LocalProvider"),
     "llama-3-local": (".llama_local", "Llama3LocalProvider"),
     # OpenAI-compatible (single SDK, many vendors via base_url)
     "openai": (".openai_compatible", "OpenAIProvider"),
@@ -42,12 +46,26 @@ _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
     "mistral": (".openai_compatible", "MistralProvider"),
 }
 
+# User-friendly aliases that map onto a canonical key.
+_ALIASES: dict[str, str] = {
+    "llama3": "llama-3-local",
+    "llama3-local": "llama-3-local",
+    "llama_3_local": "llama-3-local",
+    "llama-3": "llama-3-local",
+}
+
+
+def _canonicalise(name: str) -> str:
+    norm = name.lower().strip().replace("_", "-")
+    return _ALIASES.get(norm, norm)
+
 
 def _load_class(name: str) -> Type[LLMProvider]:
-    if name not in _LAZY_REGISTRY:
+    canonical = _canonicalise(name)
+    if canonical not in _LAZY_REGISTRY:
         available = ", ".join(sorted(_LAZY_REGISTRY.keys()))
         raise ValueError(f"Unknown provider '{name}'. Available: {available}")
-    module_path, class_name = _LAZY_REGISTRY[name]
+    module_path, class_name = _LAZY_REGISTRY[canonical]
     module = importlib.import_module(module_path, package=__name__)
     return getattr(module, class_name)
 
@@ -55,10 +73,12 @@ def _load_class(name: str) -> Type[LLMProvider]:
 def get_provider(name: str) -> LLMProvider:
     """Return an instance of the named provider.
 
+    Names are case-insensitive and tolerant of aliases (e.g. `llama3` and
+    `llama-3-local` both resolve to the local Llama 3 provider).
     Raises ValueError for unknown names; ExtractionError if the SDK or API
     key for the chosen provider is missing.
     """
-    cls = _load_class(name.lower().strip())
+    cls = _load_class(name)
     return cls()
 
 

@@ -2,14 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
-
-_AI_SERVICE_DIR = Path(__file__).resolve().parent.parent
-if str(_AI_SERVICE_DIR) not in sys.path:
-    sys.path.insert(0, str(_AI_SERVICE_DIR))
-
-from classifier import classify_indicator  # noqa: E402
+from classifier import classify_indicator
 
 
 # ── Pillar 6 ────────────────────────────────────────────────────

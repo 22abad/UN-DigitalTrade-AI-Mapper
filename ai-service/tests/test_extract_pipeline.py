@@ -17,14 +17,7 @@ FakeProvider that emits canned outputs.
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from typing import Any
-
-# Ensure ai-service modules are importable when pytest runs from anywhere.
-_AI_SERVICE = Path(__file__).resolve().parent.parent
-if str(_AI_SERVICE) not in sys.path:
-    sys.path.insert(0, str(_AI_SERVICE))
 
 import pytest
 
