@@ -16,3 +16,11 @@ venv/
 # IDE
 .vscode/
 .idea/
+
+# Frontend build artefacts
+node_modules/
+rdtii-frontend/dist/
+*.tsbuildinfo
+
+# pytest
+.pytest_cache/
