@@ -15,7 +15,7 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./rdtii-database/db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   redis:
     image: redis:7-alpine
@@ -48,22 +48,7 @@ services:
       - "5173:80"
     depends_on:
       - ai-service
-  
-  backend:
-    build:
-      context: ./rdtii-backend/RDTII
-      dockerfile: Dockerfile
-    container_name: rdtii-backend
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rdtii
-      SPRING_DATASOURCE_USERNAME: rdtii_user
-      SPRING_DATASOURCE_PASSWORD: rdtii_password
-    depends_on:
-      - postgres
-    restart: on-failure
-      
+
 volumes:
   redis-data:
   postgres_data:

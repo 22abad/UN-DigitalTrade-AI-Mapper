@@ -1,9 +1,17 @@
 fastapi
 uvicorn
-pydantic
+pydantic>=2.0
 sentence-transformers
 scikit-learn
 psycopg2-binary
-google-generativeai
 python-dotenv
 python-multipart
+
+# LLM providers (swappable)
+google-generativeai          # gemini
+anthropic>=0.40.0            # claude
+openai>=1.40.0               # openai + deepseek/groq/together/openrouter/mistral via base_url
+# llama-cpp-python>=0.3.0    # uncomment for local Llama 3 (needs build tools)
+
+# Verbatim-quote verification (Commit 3)
+rapidfuzz>=3.0
