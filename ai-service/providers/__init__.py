@@ -28,10 +28,18 @@ from .base import LLMProvider
 # Module-path / class-name pairs — loaded lazily so importing this package
 # doesn't require every provider's SDK to be installed.
 _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
+    # Native SDKs
     "gemini": (".gemini", "GeminiProvider"),
     "claude": (".claude", "ClaudeProvider"),
-    "llama3": (".llama_local", "Llama3LocalProvider"),
+    "llama3-local": (".llama_local", "Llama3LocalProvider"),
     "llama-3-local": (".llama_local", "Llama3LocalProvider"),
+    # OpenAI-compatible (single SDK, many vendors via base_url)
+    "openai": (".openai_compatible", "OpenAIProvider"),
+    "deepseek": (".openai_compatible", "DeepSeekProvider"),
+    "groq": (".openai_compatible", "GroqProvider"),
+    "together": (".openai_compatible", "TogetherProvider"),
+    "openrouter": (".openai_compatible", "OpenRouterProvider"),
+    "mistral": (".openai_compatible", "MistralProvider"),
 }
 
 
