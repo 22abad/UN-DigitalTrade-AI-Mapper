@@ -60,16 +60,23 @@ def _canonicalise(name: str) -> str:
     return _ALIASES.get(norm, norm)
 
 
-def canonical_name(name: str) -> str:
+def canonical_name(name: str) -> str | None:
     """Public alias normaliser — returns the canonical key for `name`.
 
-    Useful for status endpoints that want to display the resolved provider
-    rather than the user-supplied alias. If `name` doesn't resolve to any
-    known provider, the input is returned unchanged so callers can decide
-    how to surface the mismatch.
+    Returns `None` when `name` does not resolve to any registered provider.
+    Returning `None` (rather than echoing the raw input) lets status
+    endpoints surface misconfiguration explicitly: with the previous
+    behaviour, an invalid `RDTII_LLM_PROVIDER=foo` looked like a healthy
+    `active=foo` even though `foo` was absent from `available_providers`,
+    breaking the "active is one of available" contract.
     """
     canonical = _canonicalise(name)
-    return canonical if canonical in _LAZY_REGISTRY else name
+    return canonical if canonical in _LAZY_REGISTRY else None
+
+
+def is_recognised(name: str) -> bool:
+    """Return True if `name` (or any alias of it) maps to a registered provider."""
+    return canonical_name(name) is not None
 
 
 def _load_class(name: str) -> Type[LLMProvider]:
@@ -113,5 +120,6 @@ __all__ = [
     "canonical_name",
     "get_provider",
     "get_default_provider",
+    "is_recognised",
     "list_providers",
 ]

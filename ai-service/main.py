@@ -84,12 +84,12 @@ class TextRequest(BaseModel):
 # ── Routes ───────────────────────────────────────────────────────────────
 
 
-def _active_provider_name() -> tuple[str, str]:
+def _active_provider_name() -> tuple[str, str | None]:
     """Return (raw_env, canonical) for the configured provider.
 
-    `canonical` is guaranteed to appear in `list_providers()` so clients
-    can rely on `active == one of available` even when an alias was used
-    (e.g. `RDTII_LLM_PROVIDER=llama3` → canonical=`llama-3-local`).
+    Canonical is `None` when the env var doesn't resolve to any known
+    provider — endpoints surface that as a misconfiguration rather than
+    pretending the unknown name is a valid choice.
     """
     raw = os.getenv("RDTII_LLM_PROVIDER", "gemini")
     return raw, canonical_name(raw)
@@ -99,20 +99,36 @@ def _active_provider_name() -> tuple[str, str]:
 def health():
     raw, canonical = _active_provider_name()
     return {
-        "status": "ok",
+        # "ok" when the configured provider resolves to a registered one;
+        # "misconfigured" when RDTII_LLM_PROVIDER points at nothing valid.
+        "status": "ok" if canonical else "misconfigured",
         "provider_env": raw,
-        "active_provider": canonical,
+        "active_provider": canonical,  # None on misconfiguration
         "available_providers": list_providers(),
     }
 
 
 @app.get("/providers")
 def providers_info():
-    """List swappable providers and which one is active."""
+    """List swappable providers and which one is active.
+
+    Contract: when `active` is non-null, it is guaranteed to be a member
+    of `available`. When `RDTII_LLM_PROVIDER` doesn't resolve, `active`
+    is null and `active_alias` carries the raw value so operators can see
+    what was misconfigured.
+    """
     raw, canonical = _active_provider_name()
+    if canonical is None:
+        return {
+            "active": None,
+            "active_alias": raw,
+            "valid": False,
+            "available": list_providers(),
+        }
     return {
         "active": canonical,
         "active_alias": raw if raw != canonical else None,
+        "valid": True,
         "available": list_providers(),
     }
 

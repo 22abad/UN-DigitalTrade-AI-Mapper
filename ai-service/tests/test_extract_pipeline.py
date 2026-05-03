@@ -237,3 +237,67 @@ def test_invalid_scope_is_sanitized(monkeypatch, bad_scope):
         assert scope == bad_scope.strip().lower()
     else:
         assert scope == "unknown"
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# /health and /providers must surface a misconfigured RDTII_LLM_PROVIDER
+# instead of pretending the invalid name is a valid choice.
+# ──────────────────────────────────────────────────────────────────────────
+
+
+def test_health_reports_misconfigured_when_provider_unknown(monkeypatch):
+    """If RDTII_LLM_PROVIDER doesn't resolve, /health must say so —
+    `active_provider` must be null (not echo the bad value) and `status`
+    must flip to "misconfigured". Otherwise consumers can't tell a typo
+    from a healthy config."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "totally-not-a-provider")
+    client = TestClient(main_module.app)
+
+    r = client.get("/health")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["status"] == "misconfigured"
+    assert body["active_provider"] is None
+    assert body["provider_env"] == "totally-not-a-provider"
+    assert "totally-not-a-provider" not in body["available_providers"]
+
+
+def test_providers_reports_invalid_with_alias(monkeypatch):
+    """Same contract on /providers. `active` must be null; `active_alias`
+    must carry the raw bad value for debugging."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "gpt-9000")
+    client = TestClient(main_module.app)
+
+    r = client.get("/providers")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["active"] is None
+    assert body["active_alias"] == "gpt-9000"
+    assert body["valid"] is False
+
+
+def test_providers_active_is_in_available_when_valid(monkeypatch):
+    """The headline contract: when valid, `active` must appear in
+    `available`, even when the user supplied an alias."""
+    from fastapi.testclient import TestClient
+
+    import main as main_module
+
+    monkeypatch.setenv("RDTII_LLM_PROVIDER", "llama3")  # alias
+    client = TestClient(main_module.app)
+
+    r = client.get("/providers")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["valid"] is True
+    assert body["active"] == "llama-3-local"  # resolved canonical
+    assert body["active"] in body["available"]
+    assert body["active_alias"] == "llama3"

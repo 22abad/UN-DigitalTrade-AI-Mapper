@@ -1,4 +1,8 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
+# 3.11 matches the Python version requirements.txt was pip-compile'd
+# against. If you change the Python version here, also regenerate the
+# lockfile via `cd ai-service && pip-compile requirements.in -o requirements.txt`
+# under that same Python version, otherwise the pins may not be installable.
 
 WORKDIR /app
 
