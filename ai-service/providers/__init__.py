@@ -60,6 +60,18 @@ def _canonicalise(name: str) -> str:
     return _ALIASES.get(norm, norm)
 
 
+def canonical_name(name: str) -> str:
+    """Public alias normaliser — returns the canonical key for `name`.
+
+    Useful for status endpoints that want to display the resolved provider
+    rather than the user-supplied alias. If `name` doesn't resolve to any
+    known provider, the input is returned unchanged so callers can decide
+    how to surface the mismatch.
+    """
+    canonical = _canonicalise(name)
+    return canonical if canonical in _LAZY_REGISTRY else name
+
+
 def _load_class(name: str) -> Type[LLMProvider]:
     canonical = _canonicalise(name)
     if canonical not in _LAZY_REGISTRY:
@@ -98,6 +110,7 @@ def list_providers() -> list[str]:
 
 __all__ = [
     "LLMProvider",
+    "canonical_name",
     "get_provider",
     "get_default_provider",
     "list_providers",

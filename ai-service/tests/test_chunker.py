@@ -53,9 +53,25 @@ def test_no_heading_falls_back_to_whole_document():
 
 
 def test_chinese_article_marker_is_chunked():
-    text = "第一条 个人信息处理者向境外提供个人信息的，应当符合下列条件之一。\n\n第二条 处理敏感个人信息应当具有特定的目的。"
+    """Real chunking, not the whole-doc fallback. Asserts each `第X条`
+    becomes its own chunk so the test would fail if the regex regressed
+    to the no-heading fallback."""
+    text = (
+        "第一条 个人信息处理者向境外提供个人信息的，应当符合下列条件之一。\n\n"
+        "第二条 处理敏感个人信息应当具有特定的目的。"
+    )
     chunks = regex_legal_chunker(text)
-    assert len(chunks) >= 1
+    assert len(chunks) == 2, (
+        f"expected ZH headings to split into 2 chunks, got {len(chunks)} "
+        "(chunker may have regressed to whole-document fallback)"
+    )
+    assert chunks[0].text.startswith("第一条"), (
+        f"chunk 0 doesn't start with 第一条: {chunks[0].text[:30]!r}"
+    )
+    assert chunks[1].text.startswith("第二条"), (
+        f"chunk 1 doesn't start with 第二条: {chunks[1].text[:30]!r}"
+    )
+    # And the offset contract must still hold for both.
     for c in chunks:
         assert text[c.start : c.end] == c.text
 

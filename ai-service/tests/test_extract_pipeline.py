@@ -117,30 +117,39 @@ def test_fuzzy_match_with_unrecoverable_offsets_is_rejected(monkeypatch):
 
 def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
     """Verifying against `chunk.text`, not the whole document, prevents an
-    LLM from "borrowing" phrases that exist elsewhere in the source."""
+    LLM from "borrowing" phrases that exist elsewhere in the source.
+
+    Test design (deliberate): the source is arranged so the *honest* match
+    lives in CHUNK 2, not chunk 1. That forces the test to exercise the
+    chunk-offset translation (`chunk.start + local_start`) — if a future
+    refactor accidentally drops that translation, the absolute offset
+    assertion below will fail, because chunk 2 starts well after byte 0.
+    """
     from fastapi.testclient import TestClient
 
     import main as main_module
 
-    # Two distinct articles. The LLM is shown each article in turn.
+    # Order matters: article 2 contains the quote the liar will return.
+    # Chunk 2 starts mid-document, so its offsets are non-zero.
     source = (
-        "Article 1. Personal data shall not be transferred abroad.\n\n"
-        "Article 2. Companies shall maintain a domestic data centre."
+        "Article 1. Companies shall maintain a domestic data centre.\n\n"
+        "Article 2. Personal data shall not be transferred abroad."
     )
-    quote_from_article_1 = "Personal data shall not be transferred abroad"
+    quote_from_article_2 = "Personal data shall not be transferred abroad"
 
     class CrossChunkLyingProvider:
-        """Returns the same Article-1 quote regardless of which chunk it sees.
+        """Returns the same Article-2 quote regardless of which chunk it sees.
 
-        On chunk 1: legitimately quotes from chunk 1 → should be accepted.
-        On chunk 2: claims a quote that isn't in chunk 2 → MUST be rejected.
+        On chunk 1: claims a quote that isn't in chunk 1 → MUST be rejected.
+        On chunk 2: legitimately quotes from chunk 2 → should be accepted
+                    AND the absolute offsets must address the original doc.
         """
 
         name = "fake-liar"
 
         def extract_features(self, article_text, indicator_id, feature_spec):
             return {
-                "verbatim_quote": quote_from_article_1,
+                "verbatim_quote": quote_from_article_2,
                 "personal_data": True,
                 "has_ban": True,
                 "scope": "horizontal",
@@ -156,19 +165,26 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
     assert r.status_code == 200
     data = r.json()
 
-    # Exactly one mapping (the honest extraction from chunk 1).
+    # Exactly one mapping (the honest extraction from CHUNK 2).
     assert len(data["mappings"]) == 1, (
         f"expected 1 honest mapping, got {len(data['mappings'])}: {data}"
     )
     m = data["mappings"][0]
-    assert m["verbatim_quote"] == quote_from_article_1
+    assert m["verbatim_quote"] == quote_from_article_2
 
-    # Absolute offsets must point at the original document, not chunk-local.
-    assert source[m["quote_start"] : m["quote_end"]] == quote_from_article_1, (
+    # Absolute offsets must point at the original document. Crucially,
+    # chunk 2 doesn't start at byte 0 — so an implementation that forgets
+    # to translate (chunk.start + local_start) would set quote_start to a
+    # local-to-chunk offset (~12), not the absolute doc offset (~70+).
+    assert m["quote_start"] > 50, (
+        f"quote_start={m['quote_start']} looks chunk-local; "
+        "the offset translation has regressed"
+    )
+    assert source[m["quote_start"] : m["quote_end"]] == quote_from_article_2, (
         f"offsets {m['quote_start']}..{m['quote_end']} don't address the original text"
     )
 
-    # The cross-chunk lie (chunk 2's call) must surface in `rejected[]`.
+    # The cross-chunk lie (chunk 1's call) must surface in `rejected[]`.
     cross_chunk_rejections = [
         rej
         for rej in data["rejected"]

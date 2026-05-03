@@ -27,7 +27,7 @@ from pydantic import BaseModel
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
 from features import get_feature_spec
-from providers import get_default_provider, list_providers
+from providers import canonical_name, get_default_provider, list_providers
 from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
@@ -84,11 +84,24 @@ class TextRequest(BaseModel):
 # ── Routes ───────────────────────────────────────────────────────────────
 
 
+def _active_provider_name() -> tuple[str, str]:
+    """Return (raw_env, canonical) for the configured provider.
+
+    `canonical` is guaranteed to appear in `list_providers()` so clients
+    can rely on `active == one of available` even when an alias was used
+    (e.g. `RDTII_LLM_PROVIDER=llama3` → canonical=`llama-3-local`).
+    """
+    raw = os.getenv("RDTII_LLM_PROVIDER", "gemini")
+    return raw, canonical_name(raw)
+
+
 @app.get("/health")
 def health():
+    raw, canonical = _active_provider_name()
     return {
         "status": "ok",
-        "provider_env": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "provider_env": raw,
+        "active_provider": canonical,
         "available_providers": list_providers(),
     }
 
@@ -96,8 +109,10 @@ def health():
 @app.get("/providers")
 def providers_info():
     """List swappable providers and which one is active."""
+    raw, canonical = _active_provider_name()
     return {
-        "active": os.getenv("RDTII_LLM_PROVIDER", "gemini"),
+        "active": canonical,
+        "active_alias": raw if raw != canonical else None,
         "available": list_providers(),
     }
 
