@@ -1,1 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Playwright
+/crawler/downloads/
+/crawler/inspect_site.py
+
+# OS
+.DS_Store
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# Frontend build artefacts
+node_modules/
+rdtii-frontend/dist/
+*.tsbuildinfo
+
+# pytest
+.pytest_cache/

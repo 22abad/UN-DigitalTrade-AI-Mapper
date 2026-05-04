@@ -1,4 +1,8 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
+# 3.11 matches the Python version requirements.txt was pip-compile'd
+# against. If you change the Python version here, also regenerate the
+# lockfile via `cd ai-service && pip-compile requirements.in -o requirements.txt`
+# under that same Python version, otherwise the pins may not be installable.
 
 WORKDIR /app
 
@@ -10,11 +14,3 @@ COPY . .
 EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-Run locally without Docker:
-    
-    cd python-ai-service
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    uvicorn main:app --reload --host 0.0.0.0 --port 8000

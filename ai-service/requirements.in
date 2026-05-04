@@ -1,0 +1,23 @@
+# Source-of-truth dependency constraints. Edit this file, then regenerate
+# the pinned lockfile via:
+#     cd ai-service && pip-compile requirements.in -o requirements.txt
+# Both files are checked in; Docker / CI install from requirements.txt
+# (the lockfile) for reproducibility.
+
+fastapi>=0.110,<1.0          # 0.110+ supports Pydantic v2
+uvicorn>=0.27
+pydantic>=2.0,<3.0
+sentence-transformers>=2.5
+scikit-learn>=1.3
+psycopg2-binary>=2.9
+python-dotenv>=1.0
+python-multipart>=0.0.9
+
+# LLM providers (swappable)
+google-generativeai          # gemini
+anthropic>=0.40.0            # claude
+openai>=1.40.0               # openai + deepseek/groq/together/openrouter/mistral via base_url
+# llama-cpp-python>=0.3.0    # uncomment for local Llama 3 (needs build tools)
+
+# Verbatim-quote verification (Commit 3)
+rapidfuzz>=3.0

@@ -12,10 +12,10 @@ services:
       POSTGRES_USER: rdtii_user
       POSTGRES_PASSWORD: rdtii_password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./rdtii-database/db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   redis:
     image: redis:7-alpine
@@ -25,22 +25,30 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - redis-data:/data
-  
-  backend:
+
+  ai-service:
     build:
-      context: ./rdtii-backend/RDTII
+      context: ./ai-service
       dockerfile: Dockerfile
-    container_name: rdtii-backend
+    container_name: rdtii-ai-service
     ports:
-      - "8080:8080"
+      - "8000:8000"
+    env_file:
+      - .env
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rdtii
-      SPRING_DATASOURCE_USERNAME: rdtii_user
-      SPRING_DATASOURCE_PASSWORD: rdtii_password
-    depends_on:
-      - postgres
+      CORS_ALLOW_ORIGINS: http://localhost:5173,http://localhost:3000
     restart: on-failure
-      
+
+  frontend:
+    build:
+      context: ./rdtii-frontend
+      dockerfile: Dockerfile
+    container_name: rdtii-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - ai-service
+
 volumes:
   redis-data:
   postgres_data:
