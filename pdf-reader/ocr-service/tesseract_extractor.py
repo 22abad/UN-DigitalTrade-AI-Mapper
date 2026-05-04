@@ -20,7 +20,7 @@ def render_pages(filepath: str, dpi: int = 300) -> list[Path]:
     return [Path(img.filename) for img in images]
 
 
-def preprocess_image(image_path: Path) -> str:
+def preprocess_image(image_path: Path, langs: str = "eng+tha+chi_sim+vie+ind") -> str:
     """Preprocess an image and run Tesseract OCR.
 
     Steps: grayscale → threshold → denoise → OCR
@@ -30,16 +30,16 @@ def preprocess_image(image_path: Path) -> str:
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     denoised = cv2.fastNlMeansDenoising(thresh)
 
-    text = pytesseract.image_to_string(denoised, lang="eng", config="--psm 3")
+    text = pytesseract.image_to_string(denoised, lang=langs, config="--psm 3")
     return text.strip()
 
 
-def ocr_with_fallback(image_path: Path, min_chars: int = 50) -> tuple[str, str]:
+def ocr_with_fallback(image_path: Path, min_chars: int = 50, langs: str = "eng+tha+chi_sim+vie+ind") -> tuple[str, str]:
     """Run Tesseract first; fall back to OpenAI Vision if insufficient.
 
     Returns (text, source) where source is 'tesseract' or 'openai'.
     """
-    text = preprocess_image(image_path)
+    text = preprocess_image(image_path, langs=langs)
     if len(text) > min_chars:
         return text, "tesseract"
 
@@ -51,7 +51,7 @@ def ocr_with_fallback(image_path: Path, min_chars: int = 50) -> tuple[str, str]:
     return "", "none"
 
 
-def extract_text_ocr(filepath: str) -> list[str]:
+def extract_text_ocr(filepath: str, langs: str = "eng+tha+chi_sim+vie+ind") -> list[str]:
     """Extract text from a scanned PDF using pdf2pym + Tesseract (→ OpenAI fallback).
 
     Returns a list of page strings.
@@ -59,7 +59,7 @@ def extract_text_ocr(filepath: str) -> list[str]:
     images = render_pages(filepath)
     pages = []
     for img_path in images:
-        text, _ = ocr_with_fallback(img_path)
+        text, _ = ocr_with_fallback(img_path, langs=langs)
         pages.append(text)
     # Cleanup temp images
     for img in images:
@@ -67,7 +67,7 @@ def extract_text_ocr(filepath: str) -> list[str]:
     return pages
 
 
-def extract_sections_ocr(filepath: str, min_section_chars: int = 100) -> list[dict]:
+def extract_sections_ocr(filepath: str, min_section_chars: int = 100, langs: str = "eng+tha+chi_sim+vie+ind") -> list[dict]:
     """Extract text per page and return section metadata.
 
     Each section: {page, text, source}
@@ -75,7 +75,7 @@ def extract_sections_ocr(filepath: str, min_section_chars: int = 100) -> list[di
     images = render_pages(filepath)
     sections = []
     for i, img_path in enumerate(images):
-        text, source = ocr_with_fallback(img_path, min_chars=min_section_chars)
+        text, source = ocr_with_fallback(img_path, min_chars=min_section_chars, langs=langs)
         if len(text) < min_section_chars:
             continue
         sections.append({
