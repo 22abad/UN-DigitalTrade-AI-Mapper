@@ -100,6 +100,14 @@ class ExtractionResponse(BaseModel):
     provider: str = Field(default="unknown")
 
 
+class ReviewRequest(BaseModel):
+    """Request schema for /api/mappings/review."""
+
+    decision: Literal["approved", "rejected"]
+    country_code: str
+    mapping: IndicatorMapping
+
+
 class ExtractionRequest(BaseModel):
     """Optional structured request (the form-encoded path is also supported)."""
 
