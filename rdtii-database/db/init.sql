@@ -19,12 +19,45 @@ CREATE TABLE countries (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Comprehensive list of ESCAP members
 INSERT INTO countries (code, name, region) VALUES 
-('CHN', 'China', 'East Asia'),
-('IND', 'India', 'South Asia'),
-('SGP', 'Singapore', 'Southeast Asia'),
+('AFG', 'Afghanistan', 'Central Asia'),
+('ARM', 'Armenia', 'Central Asia'),
+('AZE', 'Azerbaijan', 'Central Asia'),
 ('AUS', 'Australia', 'Oceania'),
-('PHL', 'Philippines', 'Southeast Asia')
+('BGD', 'Bangladesh', 'South Asia'),
+('BTN', 'Bhutan', 'South Asia'),
+('BRU', 'Brunei', 'Southeast Asia'),
+('KHM', 'Cambodia', 'Southeast Asia'),
+('CHN', 'China', 'East Asia'),
+('FJI', 'Fiji', 'Oceania'),
+('GEO', 'Georgia', 'Central Asia'),
+('IND', 'India', 'South Asia'),
+('IDN', 'Indonesia', 'Southeast Asia'),
+('IRN', 'Iran', 'South Asia'),
+('JPN', 'Japan', 'East Asia'),
+('KAZ', 'Kazakhstan', 'Central Asia'),
+('KGZ', 'Kyrgyzstan', 'Central Asia'),
+('LAO', 'Laos', 'Southeast Asia'),
+('MYS', 'Malaysia', 'Southeast Asia'),
+('MDV', 'Maldives', 'South Asia'),
+('MNG', 'Mongolia', 'East Asia'),
+('MMR', 'Myanmar', 'Southeast Asia'),
+('NPL', 'Nepal', 'South Asia'),
+('NZL', 'New Zealand', 'Oceania'),
+('PAK', 'Pakistan', 'South Asia'),
+('PHL', 'Philippines', 'Southeast Asia'),
+('KOR', 'Republic of Korea', 'East Asia'),
+('RUS', 'Russian Federation', 'North Asia'),
+('WSM', 'Samoa', 'Oceania'),
+('SGP', 'Singapore', 'Southeast Asia'),
+('LKA', 'Sri Lanka', 'South Asia'),
+('TJK', 'Tajikistan', 'Central Asia'),
+('THA', 'Thailand', 'Southeast Asia'),
+('TUR', 'Turkey', 'Central Asia'),
+('TKM', 'Turkmenistan', 'Central Asia'),
+('UZB', 'Uzbekistan', 'Central Asia'),
+('VNM', 'Vietnam', 'Southeast Asia')
 ON CONFLICT (code) DO NOTHING;
 
 CREATE TABLE rdtii_pillars (

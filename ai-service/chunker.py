@@ -33,12 +33,14 @@ class Chunk:
 
 _HEADING_TOKENS = (
     r"Article|Section|Clause|Art\.?|Sec\.?|Paragraph|Para\.?|Chapter"
-    r"|第\s*[\d一二三四五六七八九十百千]+\s*条"
+    r"|第\s*[\d一二三四五六七八九十百千]+\s*条" # 中文
+    r"|มาตรา\s*\d+"                            # 泰语 (มาตรา = Article)
+    r"|Pasal\s*\d+"                            # 印尼语 (Pasal = Article)
+    r"|Điều\s*\d+"                             # 越南语 (Điều = Article)
 )
 _CHUNK_PATTERN = re.compile(
-    rf"(?m)(^\s*(?:{_HEADING_TOKENS})\s*[\w\.\-]*\b[\s\S]*?)"
-    rf"(?=^\s*(?:{_HEADING_TOKENS})\s*[\w\.\-]*\b|\Z)",
-    re.IGNORECASE,
+    rf"(?m)(^\s*(?:{_HEADING_TOKENS}).*?(?:\n(?:(?!\s*(?:{_HEADING_TOKENS})).)*)*)",
+    re.IGNORECASE | re.DOTALL
 )
 
 
@@ -62,15 +64,21 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
     if not text:
         return []
 
+    # Lookahead split to keep the heading as part of the chunk
+    pattern = rf"(?=^\s*(?:{_HEADING_TOKENS}))"
+    parts = re.split(pattern, text, flags=re.MULTILINE)
+    
     chunks: list[Chunk] = []
-    for match in _CHUNK_PATTERN.finditer(text):
-        raw = match.group(1)
-        c = _strip_with_offset(raw, match.start(1))
+    current_pos = 0
+    
+    for part in parts:
+        if not part.strip():
+            current_pos += len(part)
+            continue
+            
+        c = _strip_with_offset(part, current_pos)
         if c is not None:
             chunks.append(c)
+        current_pos += len(part)
 
-    if chunks:
-        return chunks
-
-    fallback = _strip_with_offset(text, 0)
-    return [fallback] if fallback else []
+    return chunks if chunks else [_strip_with_offset(text, 0)] if text.strip() else []
