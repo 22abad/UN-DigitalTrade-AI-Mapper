@@ -101,7 +101,6 @@ class LLMProvider(ABC):
             "source_legislation",
             "last_update",
             "scope",
-            "impact",
         ]
         schema_lines = ",\n".join(f'  "{k}": ...' for k in schema_keys)
 
