@@ -19,20 +19,24 @@ from __future__ import annotations
 
 import os
 
+import psycopg2
 from dotenv import load_dotenv
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
+from crawler import fetch_legal_content
 from features import get_feature_spec
+from pdf_reader import read_pdf
 from providers import canonical_name, get_default_provider, list_providers
 from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
     IndicatorMapping,
     RejectedExtraction,
+    ReviewRequest,
 )
 from scoring import score_indicator
 from verification import find_quote_offsets, verify_quote
@@ -156,12 +160,30 @@ def embed(req: TextRequest):
 
 
 @app.post("/api/extract", response_model=ExtractionResponse)
-def extract(text: str = Form(...), source_url: str = Form("")):
+async def extract(text: str = Form(""), source_url: str = Form("")):
     """Extract RDTII indicator mappings from a block of legal text.
 
-    The full pipeline runs per (chunk, indicator) pair. Failed extractions
-    surface in `rejected` rather than aborting the whole request.
+    If text is empty but source_url is provided, it crawls the URL first.
+    提取法律文本中的 RDTII 指标映射。如果文本为空但提供了 URL，则先抓取。
     """
+    if not text.strip() and source_url.strip():
+        # Task 2: Backend Crawler Linkage | 任务 2：后端爬虫联动
+        crawl_result = await fetch_legal_content(source_url)
+        if crawl_result["type"] == "error":
+            raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
+        
+        if crawl_result["type"] == "text":
+            text = crawl_result["text"]
+        elif crawl_result["type"] == "pdf":
+            try:
+                pages = read_pdf(crawl_result["pdf_path"])
+                text = "\n".join(pages)
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+
+    if not text.strip():
+        raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
+
     provider = _get_provider()
     chunks = regex_legal_chunker(text)
 
@@ -187,10 +209,7 @@ def extract(text: str = Form(...), source_url: str = Form("")):
                 )
                 continue
 
-            # 2. Verify the quote against the SAME chunk the LLM was given
-            # (anti-hallucination kill switch). Verifying against the full
-            # document would let an LLM "borrow" a phrase that exists
-            # somewhere else, defeating the source-grounding contract.
+            # 2. Verify the quote against the SAME chunk the LLM was given (anti-hallucination)
             quote = (raw.get("verbatim_quote") or "").strip()
             if not quote or not verify_quote(quote, chunk.text):
                 rejected.append(
@@ -212,22 +231,19 @@ def extract(text: str = Form(...), source_url: str = Form("")):
                     )
                 )
                 continue
+            
             # Translate chunk-local offsets to absolute document offsets.
             q_start = chunk.start + local_start
             q_end = chunk.start + local_end
 
-            # 3. Apply deterministic scoring (whitelist to declared spec keys
-            # so stray provider output never leaks into the scorer).
+            # 3. Apply deterministic scoring
             features = {k: raw[k] for k in spec.keys() if k in raw}
             try:
                 score = score_indicator(indicator_id, features)
             except NotImplementedError:
-                # Stub scorer — proceed with placeholder so the pipeline
-                # is debuggable until Commit 2 lands.
                 score = 0.5  # type: ignore[assignment]
 
-            # 4. Sanitize provider-supplied scope: schema requires a Literal
-            # value, an unknown string would crash Pydantic construction.
+            # 4. Sanitize scope
             raw_scope = (raw.get("scope") or "").strip().lower()
             scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
@@ -254,3 +270,96 @@ def extract(text: str = Form(...), source_url: str = Form("")):
         rejected=rejected,
         provider=provider.name,
     )
+
+
+@app.post("/api/mappings/review")
+def review_mapping(req: ReviewRequest):
+    """Task 3: Backend Database Review Interface | 任务 3：后端数据库落盘接口
+    
+    Persists human review decisions into PostgreSQL across 3 tables.
+    将人工审核决定持久化到 PostgreSQL 的三张表中。
+    """
+    db_config = {
+        "dbname": os.getenv("POSTGRES_DB", "rdtii"),
+        "user": os.getenv("POSTGRES_USER", "rdtii_user"),
+        "password": os.getenv("POSTGRES_PASSWORD", "rdtii_password"),
+        "host": os.getenv("POSTGRES_HOST", "postgres"),
+        "port": os.getenv("POSTGRES_PORT", "5432"),
+    }
+    
+    conn = None
+    try:
+        conn = psycopg2.connect(**db_config)
+        cur = conn.cursor()
+        
+        # 0. Ensure country exists | 确保国家代码存在
+        cur.execute(
+            "INSERT INTO countries (code, name) VALUES (%s, %s) ON CONFLICT (code) DO NOTHING",
+            (req.country_code, req.country_code)
+        )
+        
+        # 1. Ensure document and section exist | 确保文档和章节存在
+        filename = req.mapping.source_legislation or "Web Extraction"
+        source_url = req.mapping.source_url or "Unknown"
+        
+        cur.execute(
+            "INSERT INTO documents (filename, source_url, country_code, status, file_path) "
+            "VALUES (%s, %s, %s, 'processed', 'N/A') "
+            "ON CONFLICT (source_url) DO NOTHING RETURNING id",
+            (filename, source_url, req.country_code)
+        )
+        doc_res = cur.fetchone()
+        if not doc_res:
+            cur.execute("SELECT id FROM documents WHERE source_url = %s", (source_url,))
+            doc_id = cur.fetchone()[0]
+        else:
+            doc_id = doc_res[0]
+            
+        cur.execute(
+            "INSERT INTO document_sections (document_id, raw_text) VALUES (%s, %s) RETURNING id",
+            (doc_id, req.mapping.verbatim_quote)
+        )
+        section_id = cur.fetchone()[0]
+
+        cur.execute("SELECT pillar_id FROM rdtii_pillars WHERE indicator_id = %s LIMIT 1", (req.mapping.indicator,))
+        pillar_row = cur.fetchone()
+        if not pillar_row:
+            cur.execute(
+                "INSERT INTO rdtii_pillars (pillar_number, pillar_name, indicator_id, criterion_id, criterion_name) "
+                "VALUES (%s, %s, %s, 'AUTO', 'Auto-generated') RETURNING pillar_id",
+                (req.mapping.pillar, f"Pillar {req.mapping.pillar}", req.mapping.indicator)
+            )
+            pillar_uuid = cur.fetchone()[0]
+        else:
+            pillar_uuid = pillar_row[0]
+
+        cur.execute(
+            "INSERT INTO extracted_obligations (section_id, extracted_text, status) "
+            "VALUES (%s, %s, %s) RETURNING id",
+            (section_id, req.mapping.verbatim_quote, "reviewed" if req.decision == "approved" else "rejected")
+        )
+        obligation_id = cur.fetchone()[0]
+
+        cur.execute(
+            "INSERT INTO regulation_mappings (obligation_id, pillar_id, compliance_status) "
+            "VALUES (%s, %s, %s) RETURNING id",
+            (obligation_id, pillar_uuid, "compliant" if req.decision == "approved" else "non-compliant")
+        )
+        mapping_id = cur.fetchone()[0]
+
+        cur.execute(
+            "INSERT INTO audit_trail (mapping_id, source_section_id, highlight_start, highlight_end) "
+            "VALUES (%s, %s, %s, %s)",
+            (mapping_id, section_id, req.mapping.quote_start, req.mapping.quote_end)
+        )
+
+        conn.commit()
+        cur.close()
+        return {"status": "success", "mapping_id": str(mapping_id)}
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database transaction failed: {str(e)}")
+    finally:
+        if conn:
+            conn.close()

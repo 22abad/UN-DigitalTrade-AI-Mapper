@@ -19,6 +19,14 @@ CREATE TABLE countries (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO countries (code, name, region) VALUES 
+('CHN', 'China', 'East Asia'),
+('IND', 'India', 'South Asia'),
+('SGP', 'Singapore', 'Southeast Asia'),
+('AUS', 'Australia', 'Oceania'),
+('PHL', 'Philippines', 'Southeast Asia')
+ON CONFLICT (code) DO NOTHING;
+
 CREATE TABLE rdtii_pillars (
     pillar_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     pillar_number INTEGER NOT NULL,
@@ -43,7 +51,7 @@ CREATE TABLE documents (
     filename VARCHAR(500) NOT NULL,
     file_path VARCHAR(1000) NOT NULL,
     country_code VARCHAR(3) REFERENCES countries(code),
-    source_url VARCHAR(2000),
+    source_url VARCHAR(2000) UNIQUE,
     upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'downloaded', 'processing', 'processed', 'failed')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

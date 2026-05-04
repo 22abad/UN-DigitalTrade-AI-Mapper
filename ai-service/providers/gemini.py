@@ -27,7 +27,7 @@ class GeminiProvider(LLMProvider):
                 "GEMINI_API_KEY is not set. Set it in env or .env file."
             )
         genai.configure(api_key=api_key)
-        self.model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        self.model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
         self.name = self.model_name
         self._model = genai.GenerativeModel(self.model_name)
 

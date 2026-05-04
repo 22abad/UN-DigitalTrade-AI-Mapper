@@ -44,6 +44,9 @@ type Status = "idle" | "loading" | "ready" | "error";
 const API_URL =
   import.meta.env.VITE_EXTRACT_API_URL ?? "http://localhost:8000/api/extract";
 
+const REVIEW_API_URL =
+  import.meta.env.VITE_REVIEW_API_URL ?? "http://localhost:8000/api/mappings/review";
+
 const QUOTE_TRUNCATE = 280;
 
 const sampleText = `Article 22. Personal information processors may provide personal information outside the territory only where the conditions prescribed by law are satisfied.
@@ -81,7 +84,6 @@ function App() {
   const [pillarFilter, setPillarFilter] = React.useState("all");
   const [sourceUrl, setSourceUrl] = React.useState("");
   const [text, setText] = React.useState(sampleText);
-  const [editing, setEditing] = React.useState(false);
   const [status, setStatus] = React.useState<Status>("idle");
   const [error, setError] = React.useState("");
   const [response, setResponse] = React.useState<ExtractionResponse | null>(
@@ -122,15 +124,35 @@ function App() {
       const res = await fetch(API_URL, { method: "POST", body: form });
 
       if (!res.ok) {
-        throw new Error(`Extraction failed with status ${res.status}`);
+        const errorData = await res.json();
+        throw new Error(errorData.detail || `Extraction failed with status ${res.status}`);
       }
 
       const data = (await res.json()) as ExtractionResponse;
+
+      // Task 1: metadata fallback (anti-hallucination) | 任务 1：元数据兜底（防幻觉）
+      data.mappings = data.mappings.map((m) => {
+        const isHallucinatedUrl =
+          !m.source_url ||
+          m.source_url.toLowerCase().includes("n/a") ||
+          m.source_url.toLowerCase().includes("not specified");
+        const isHallucinatedDate =
+          !m.last_update ||
+          m.last_update.toLowerCase().includes("n/a") ||
+          m.last_update.toLowerCase().includes("not specified");
+
+        return {
+          ...m,
+          source_url: isHallucinatedUrl ? sourceUrl : m.source_url,
+          last_update: isHallucinatedDate
+            ? new Date().toISOString().split("T")[0]
+            : m.last_update,
+        };
+      });
+
       setResponse(data);
-      // Reset interaction state so stale highlight doesn't leak across runs.
       setActiveKey(null);
       setDecisions({});
-      setEditing(false);
       setStatus("ready");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Extraction failed");
@@ -141,7 +163,6 @@ function App() {
 
   function onTextChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setText(e.target.value);
-    // Editing invalidates the existing audit — force a re-extract.
     if (response) {
       setResponse(null);
       setActiveKey(null);
@@ -153,8 +174,36 @@ function App() {
     setActiveKey((prev) => (prev === key ? null : key));
   }
 
-  function setDecision(key: string, d: ReviewDecision) {
+  async function setDecision(key: string, d: ReviewDecision) {
+    const mapping = mappings.find((m) => mappingKey(m) === key);
+    if (!mapping) return;
+
+    // Optimistically update UI | 乐观更新 UI
     setDecisions((prev) => ({ ...prev, [key]: d }));
+
+    if (d === "pending") return;
+
+    // Task 1: Sync to Backend | 任务 1：同步到后端
+    try {
+      const res = await fetch(REVIEW_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          decision: d,
+          country_code: country,
+          mapping: mapping,
+        }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.detail || "Review failed to save to database");
+      }
+      console.log(`[DB Sync] ${d} decision persisted for ${key}`);
+    } catch (err) {
+      console.error("Database sync error:", err);
+      setError(err instanceof Error ? err.message : "Failed to sync to DB");
+    }
   }
 
   const visibleMappings = mappings.filter((m) =>
@@ -166,7 +215,7 @@ function App() {
   ).length;
   const headerStatus =
     status === "loading"
-      ? "Extracting…"
+      ? (sourceUrl && !text.trim() ? "Crawling..." : "Extracting…")
       : status === "error"
         ? "Error"
         : status === "ready"
@@ -199,10 +248,9 @@ function App() {
           sourceUrl={sourceUrl}
           setSourceUrl={setSourceUrl}
           text={text}
-          editing={editing}
-          setEditing={setEditing}
           onTextChange={onTextChange}
           activeMapping={activeMapping}
+          setActiveKey={setActiveKey}
           extract={extract}
           status={status}
           error={error}
@@ -236,10 +284,9 @@ type SourcePanelProps = {
   sourceUrl: string;
   setSourceUrl: (v: string) => void;
   text: string;
-  editing: boolean;
-  setEditing: (v: boolean) => void;
   onTextChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   activeMapping: IndicatorMapping | null;
+  setActiveKey: (key: string | null) => void;
   extract: () => void;
   status: Status;
   error: string;
@@ -255,10 +302,9 @@ function SourcePanel(props: SourcePanelProps) {
     sourceUrl,
     setSourceUrl,
     text,
-    editing,
-    setEditing,
     onTextChange,
     activeMapping,
+    setActiveKey,
     extract,
     status,
     error,
@@ -273,9 +319,13 @@ function SourcePanel(props: SourcePanelProps) {
         </div>
         <button
           onClick={extract}
-          disabled={status === "loading" || !text.trim()}
+          disabled={status === "loading" || (!text.trim() && !sourceUrl.trim())}
         >
-          {status === "loading" ? "Extracting..." : "Run Extraction"}
+          {status === "loading" ? (
+            sourceUrl && !text.trim() ? "Crawling & Extracting..." : "Extracting..."
+          ) : (
+            "Run Extraction"
+          )}
         </button>
       </div>
 
@@ -314,23 +364,21 @@ function SourcePanel(props: SourcePanelProps) {
 
       <div className="stacked text-area-label">
         <div className="source-bar">
-          <span>Extracted legal text</span>
-          <button
-            type="button"
-            className="secondary small"
-            onClick={() => setEditing(!editing)}
-          >
-            {editing ? "Done editing" : "Edit text"}
-          </button>
+          <span>{activeMapping ? "Audit Highlight (Click to edit text)" : "Source text (Editable)"}</span>
         </div>
-
-        {editing ? (
-          <textarea value={text} onChange={onTextChange} />
-        ) : (
+        
+        {activeMapping ? (
           <SourceView
             text={text}
             activeMapping={activeMapping}
             sourceRef={sourceRef}
+            onClick={() => setActiveKey(null)}
+          />
+        ) : (
+          <textarea 
+            value={text} 
+            onChange={onTextChange} 
+            placeholder="Paste or crawl legal text to begin..."
           />
         )}
       </div>
@@ -344,14 +392,21 @@ function SourceView({
   text,
   activeMapping,
   sourceRef,
+  onClick,
 }: {
   text: string;
   activeMapping: IndicatorMapping | null;
   sourceRef: React.RefObject<HTMLDivElement>;
+  onClick?: () => void;
 }) {
   if (!activeMapping) {
     return (
-      <div ref={sourceRef} className="source-view" tabIndex={0}>
+      <div 
+        ref={sourceRef} 
+        className="source-view" 
+        tabIndex={0}
+        onClick={onClick}
+      >
         {text}
       </div>
     );
@@ -364,7 +419,12 @@ function SourceView({
   // current text (e.g. the user edited), fall back to plain text.
   if (start === end) {
     return (
-      <div ref={sourceRef} className="source-view" tabIndex={0}>
+      <div 
+        ref={sourceRef} 
+        className="source-view" 
+        tabIndex={0}
+        onClick={onClick}
+      >
         {text}
       </div>
     );
@@ -375,7 +435,13 @@ function SourceView({
   const after = text.slice(end);
 
   return (
-    <div ref={sourceRef} className="source-view" tabIndex={0}>
+    <div 
+      ref={sourceRef} 
+      className="source-view active-highlight" 
+      tabIndex={0}
+      onClick={onClick}
+      title="Click to switch back to edit mode"
+    >
       {before}
       <mark className={`mark ${scoreClass(activeMapping.score)}-mark`}>
         {middle}
