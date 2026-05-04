@@ -21,9 +21,12 @@ from typing import Literal
 Score = Literal[0.0, 0.25, 0.5, 1.0]
 
 
-def score_indicator(indicator_id: str, features: dict) -> Score:
+def score_indicator(indicator_id: str, features: dict) -> tuple[Score, str]:
     """Dispatch to the correct per-indicator scorer.
 
+    Returns:
+        A tuple of (score, justification_string).
+        
     Raises NotImplementedError for unsupported indicators.
     """
     # Imported lazily so subagent can fill in pillar_6.py / pillar_7.py without

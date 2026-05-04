@@ -671,7 +671,7 @@ function MappingCard({
         </div>
       ) : null}
 
-      {mapping.impact ? <p className="impact">{mapping.impact}</p> : null}
+      {mapping.impact ? <p className="impact"><strong>Scoring Reason:</strong> {mapping.impact}</p> : null}
 
       <div className="card-footer">
         <div className="card-footer-left">

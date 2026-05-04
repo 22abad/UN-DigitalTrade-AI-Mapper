@@ -239,9 +239,12 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
             # 3. Apply deterministic scoring
             features = {k: raw[k] for k in spec.keys() if k in raw}
             try:
-                score = score_indicator(indicator_id, features)
+                score, justification = score_indicator(indicator_id, features)
             except NotImplementedError:
-                score = 0.5  # type: ignore[assignment]
+                score, justification = 0.5, "Scoring rules not implemented."  # type: ignore[assignment]
+
+            # Replace the LLM's raw impact with our deterministic justification
+            impact_text = justification
 
             # 4. Sanitize scope
             raw_scope = (raw.get("scope") or "").strip().lower()
@@ -250,17 +253,18 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
             mappings.append(
                 IndicatorMapping(
                     pillar=int(indicator_id.split(".", 1)[0]),  # type: ignore[arg-type]
-                    indicator=indicator_id,  # type: ignore[arg-type]
-                    score=score,  # type: ignore[arg-type]
-                    verbatim_quote=quote,
+                    indicator=indicator_id,
+                    score=score,
+                    verbatim_quote=raw["verbatim_quote"],
                     quote_start=q_start,
                     quote_end=q_end,
                     source_legislation=raw.get("source_legislation", ""),
                     last_update=raw.get("last_update", ""),
-                    source_url=source_url or raw.get("url", ""),
+                    source_url=raw.get("source_url", ""),
                     scope=scope_value,  # type: ignore[arg-type]
                     features=features,
-                    impact=raw.get("impact", ""),
+                    impact=impact_text,
+                    requires_human_review=False,
                     extraction_provider=provider.name,
                 )
             )
