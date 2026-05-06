@@ -5,7 +5,18 @@ from __future__ import annotations
 # Unified dictionary for all supported languages
 _INDICATOR_PHRASES: dict[str, list[str]] = {
     "6.1": [
-        "transfer abroad", "transferred abroad", "transferring abroad", "ban on transfer",
+        # Direct ban / outbound-transfer phrasings. Legal text varies a lot:
+        # "transferring [personal] data abroad", "providing [personal]
+        # information abroad", "outbound transfer", etc. We keep this list
+        # generous — false positives only cost an extra LLM call (the model
+        # then says no), but a miss drops the indicator entirely.
+        "transfer abroad", "transferred abroad", "transferring abroad",
+        "transfer data abroad", "transferred data abroad",
+        "transferring data abroad", "transferring personal data abroad",
+        "transferring personal information abroad",
+        "providing personal information abroad",
+        "outbound transfer", "cross-border transfer",
+        "ban on transfer", "shall not transfer",
         "process locally", "data localization", "data localisation",
         "xử lý tại chỗ", "pemrosesan", "proses", "ห้ามโอนย้ายไปต่างประเทศ",
         "出境", "境内处理", "禁止传输", "本地处理"

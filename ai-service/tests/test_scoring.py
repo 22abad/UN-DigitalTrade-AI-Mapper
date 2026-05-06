@@ -14,21 +14,46 @@ from __future__ import annotations
 
 import pytest
 
-from scoring import score_indicator
+from scoring import score_indicator as _score_indicator
 from scoring.pillar_6 import (
-    score_6_1,
-    score_6_2,
-    score_6_3,
-    score_6_4,
-    score_6_5,
+    score_6_1 as _score_6_1,
+    score_6_2 as _score_6_2,
+    score_6_3 as _score_6_3,
+    score_6_4 as _score_6_4,
+    score_6_5 as _score_6_5,
 )
 from scoring.pillar_7 import (
-    score_7_1,
-    score_7_2,
-    score_7_3,
-    score_7_4,
-    score_7_5,
+    score_7_1 as _score_7_1,
+    score_7_2 as _score_7_2,
+    score_7_3 as _score_7_3,
+    score_7_4 as _score_7_4,
+    score_7_5 as _score_7_5,
 )
+
+
+# Score-only adapters. Commit 1394980 changed every per-indicator scorer
+# to return (Score, justification: str) so the deterministic
+# rule-explanation could replace the LLM-hallucinated "impact" field in
+# /api/extract output. The numeric assertions below pre-date that change
+# and only care about the score; we strip the justification here so the
+# whole suite stays one-liners. Tests that want to lock the
+# justification text should call the underlying _score_X_Y functions
+# directly.
+def _strip(fn):
+    return lambda features: fn(features)[0]
+
+
+score_indicator = lambda iid, f: _score_indicator(iid, f)[0]
+score_6_1 = _strip(_score_6_1)
+score_6_2 = _strip(_score_6_2)
+score_6_3 = _strip(_score_6_3)
+score_6_4 = _strip(_score_6_4)
+score_6_5 = _strip(_score_6_5)
+score_7_1 = _strip(_score_7_1)
+score_7_2 = _strip(_score_7_2)
+score_7_3 = _strip(_score_7_3)
+score_7_4 = _strip(_score_7_4)
+score_7_5 = _strip(_score_7_5)
 
 
 # ──────────────────────────────────────────────────────────────────────────

@@ -19,18 +19,25 @@ from __future__ import annotations
 
 import os
 
-import psycopg2
 from dotenv import load_dotenv
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+# psycopg2 is imported lazily inside the persistence handler so that
+# importing `main` (e.g. for tests, or for /health on a stripped image)
+# doesn't require the Postgres driver to be installed.
+
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
-from crawler import fetch_legal_content
 from features import get_feature_spec
-from pdf_reader import read_pdf
 from providers import canonical_name, get_default_provider, list_providers
+
+# crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
+# Both are heavy and only needed for the URL-ingestion path, so import
+# them lazily inside the request handler. Keeping main importable
+# without these makes /health, /providers and the unit-test suite work
+# in environments where the crawl/OCR stack isn't installed.
 from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
@@ -168,10 +175,14 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
     """
     if not text.strip() and source_url.strip():
         # Task 2: Backend Crawler Linkage | 任务 2：后端爬虫联动
+        # Lazy imports — see top-of-file note.
+        from crawler import fetch_legal_content
+        from pdf_reader import read_pdf
+
         crawl_result = await fetch_legal_content(source_url)
         if crawl_result["type"] == "error":
             raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
-        
+
         if crawl_result["type"] == "text":
             text = crawl_result["text"]
         elif crawl_result["type"] == "pdf":
@@ -291,6 +302,8 @@ def review_mapping(req: ReviewRequest):
         "port": os.getenv("POSTGRES_PORT", "5432"),
     }
     
+    import psycopg2  # lazy: see top-of-file note
+
     conn = None
     try:
         conn = psycopg2.connect(**db_config)
