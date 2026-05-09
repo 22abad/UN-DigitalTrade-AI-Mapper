@@ -200,55 +200,85 @@ Input article:
         """Robustly extract a JSON object from an LLM response.
 
         Handles:
-            - Bare JSON
-            - JSON wrapped in ```json fences
-            - JSON with leading prose ("Here is the result: {...}")
-            - Truncated JSON (max_tokens hit) — auto-repairs by closing braces
+            - Bare JSON / code fences / leading prose
+            - Truncated JSON (max_tokens) — closes braces
+            - Missing commas between key-value pairs
+            - Trailing commas
         """
         if not raw_text:
             raise ExtractionError("Empty response from LLM")
 
-        # Strip code fences
         stripped = raw_text.strip()
         stripped = re.sub(r"^```(?:json)?\s*", "", stripped, flags=re.IGNORECASE)
         stripped = re.sub(r"\s*```\s*$", "", stripped)
 
-        # Locate first { and last } (most permissive)
         start = stripped.find("{")
         end = stripped.rfind("}")
         if start == -1:
             raise ExtractionError(f"No JSON object found in: {raw_text[:200]}")
 
-        # First attempt: parse as-is
         if end >= start:
-            try:
-                return json.loads(stripped[start : end + 1])
-            except json.JSONDecodeError:
-                pass
+            json_candidate = stripped[start : end + 1]
+        else:
+            json_candidate = stripped[start:]
 
-        # Second attempt: auto-repair truncated JSON
-        # The LLM hit max_tokens mid-output — try to salvage by closing braces
+        # Attempt 1: parse as-is
         try:
-            body = stripped[start:]
-            # Remove trailing incomplete key-value pair (e.g. "key": fals)
+            return json.loads(json_candidate)
+        except json.JSONDecodeError:
+            pass
+
+        # Attempt 2: common LLM JSON repairs
+        repairs = [
+            # Remove trailing commas before } or ]
+            (r",\s*(\}|\])", r"\1"),
+            # Insert missing commas: value followed by new key
+            (r'(true|false|null|\d+|"[^"]*"|\}|\])\s+"', r'\1, "'),
+            # Fix bare-word values that should be quoted (LLM shorthand)
+            (r':\s+(true|false|null|"[^"]*")(\s*[,\}])', r': \1\2'),
+        ]
+        for pattern, replacement in repairs:
+            repaired = re.sub(pattern, replacement, json_candidate)
+            try:
+                return json.loads(repaired)
+            except json.JSONDecodeError:
+                continue
+
+        # Attempt 3: truncation repair — strip incomplete tail, close braces
+        try:
+            body = json_candidate
             last_comma = body.rfind(',"')
             if last_comma > 0:
-                # Find the matching opening brace after the comma
                 prefix = body[:last_comma]
             else:
                 prefix = body
-
-            # Count open/close braces and auto-close
             depth = prefix.count("{") - prefix.count("}")
             if depth > 0:
                 prefix += "}" * depth
-
-            # Find the first `{`
             s = prefix.find("{")
             e = prefix.rfind("}")
             if s != -1 and e > s:
                 return json.loads(prefix[s : e + 1])
-        except (json.JSONDecodeError, Exception):
+        except json.JSONDecodeError:
             pass
 
-        raise ExtractionError(f"Invalid JSON: {raw_text[:200]}")
+        # Attempt 4: last resort — extract each indicator object individually
+        try:
+            result: dict[str, Any] = {}
+            # Match top-level keys like "6.1" with their object values
+            blocks = re.findall(
+                r'"(\d+\.\d+)"\s*:\s*'
+                r'(\{(?:[^{}]|\{[^{}]*\})*\})',
+                json_candidate,
+            )
+            for key, block in blocks:
+                try:
+                    result[key] = json.loads(block)
+                except json.JSONDecodeError:
+                    continue
+            if result:
+                return result
+        except Exception:
+            pass
+
+        raise ExtractionError(f"Unrepairable JSON: {raw_text[:300]}")
