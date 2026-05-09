@@ -217,6 +217,25 @@ Input article:
         if start == -1:
             raise ExtractionError(f"No JSON object found in: {raw_text[:200]}")
 
+        def _last_comma_outside_string(value: str) -> int:
+            """Return the last comma not enclosed in a JSON string."""
+            in_string = False
+            escaped = False
+            last = -1
+            for i, ch in enumerate(value):
+                if escaped:
+                    escaped = False
+                    continue
+                if ch == "\\":
+                    escaped = True
+                    continue
+                if ch == '"':
+                    in_string = not in_string
+                    continue
+                if ch == "," and not in_string:
+                    last = i
+            return last
+
         if end >= start:
             json_candidate = stripped[start : end + 1]
         else:
@@ -247,7 +266,7 @@ Input article:
         # Attempt 3: truncation repair — strip incomplete tail, close braces
         try:
             body = json_candidate
-            last_comma = body.rfind(',"')
+            last_comma = _last_comma_outside_string(body)
             if last_comma > 0:
                 prefix = body[:last_comma]
             else:
