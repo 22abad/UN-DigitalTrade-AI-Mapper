@@ -119,7 +119,7 @@ class OpenAICompatibleProvider(LLMProvider):
         """
         from .base import LLMProvider as _Base
         prompt = _Base.build_batch_prompt(article_text, indicators)
-        raw = self._call_llm(prompt, max_tokens=4096)
+        raw = self._call_llm(prompt, max_tokens=16384)
         # raw is {"6.1": {...}, "6.4": {...}, ...}
         result: dict[str, dict[str, Any]] = {}
         for indicator_id, _spec in indicators:
@@ -127,7 +127,7 @@ class OpenAICompatibleProvider(LLMProvider):
                 result[indicator_id] = raw[indicator_id]
         return result
 
-    def _call_llm(self, prompt: str, max_tokens: int = 2048) -> dict[str, Any]:
+    def _call_llm(self, prompt: str, max_tokens: int = 4096) -> dict[str, Any]:
         usage = ExtractionUsage()
         t0 = time.perf_counter()
         try:

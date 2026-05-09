@@ -203,6 +203,7 @@ Input article:
             - Bare JSON
             - JSON wrapped in ```json fences
             - JSON with leading prose ("Here is the result: {...}")
+            - Truncated JSON (max_tokens hit) — auto-repairs by closing braces
         """
         if not raw_text:
             raise ExtractionError("Empty response from LLM")
@@ -215,10 +216,39 @@ Input article:
         # Locate first { and last } (most permissive)
         start = stripped.find("{")
         end = stripped.rfind("}")
-        if start == -1 or end == -1 or end <= start:
+        if start == -1:
             raise ExtractionError(f"No JSON object found in: {raw_text[:200]}")
 
+        # First attempt: parse as-is
+        if end >= start:
+            try:
+                return json.loads(stripped[start : end + 1])
+            except json.JSONDecodeError:
+                pass
+
+        # Second attempt: auto-repair truncated JSON
+        # The LLM hit max_tokens mid-output — try to salvage by closing braces
         try:
-            return json.loads(stripped[start : end + 1])
-        except json.JSONDecodeError as e:
-            raise ExtractionError(f"Invalid JSON: {e}; raw: {raw_text[:200]}")
+            body = stripped[start:]
+            # Remove trailing incomplete key-value pair (e.g. "key": fals)
+            last_comma = body.rfind(',"')
+            if last_comma > 0:
+                # Find the matching opening brace after the comma
+                prefix = body[:last_comma]
+            else:
+                prefix = body
+
+            # Count open/close braces and auto-close
+            depth = prefix.count("{") - prefix.count("}")
+            if depth > 0:
+                prefix += "}" * depth
+
+            # Find the first `{`
+            s = prefix.find("{")
+            e = prefix.rfind("}")
+            if s != -1 and e > s:
+                return json.loads(prefix[s : e + 1])
+        except (json.JSONDecodeError, Exception):
+            pass
+
+        raise ExtractionError(f"Invalid JSON: {raw_text[:200]}")
