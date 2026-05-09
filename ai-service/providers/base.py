@@ -72,6 +72,24 @@ class LLMProvider(ABC):
         """
         ...
 
+    def extract_batch(
+        self,
+        chunk_text: str,
+        indicators: list[tuple[str, dict[str, dict[str, str]]]],
+    ) -> dict[str, dict[str, Any]]:
+        """Default batch extraction — loops over extract_features.
+
+        Concrete providers that support true batching (single LLM call per
+        chunk) should override this for performance. The default keeps the
+        old per-indicator calling convention working for all providers.
+        """
+        result: dict[str, dict[str, Any]] = {}
+        for indicator_id, feature_spec in indicators:
+            result[indicator_id] = self.extract_features(
+                chunk_text, indicator_id, feature_spec,
+            )
+        return result
+
     def estimate_cost_usd(self, input_tokens: int, output_tokens: int) -> float:
         """Subclasses should override with provider-specific pricing."""
         return 0.0
@@ -143,14 +161,14 @@ Input article:
             for fname, fmeta in feature_spec.items():
                 parts.append(f'  - "{fname}" ({fmeta.get("type", "bool")}): {fmeta.get("description", "")}')
 
+            fnames = list(feature_spec.keys())
+            fields = [f'    "verbatim_quote": "exact substring",']
+            for fname in fnames:
+                fields.append(f'    "{fname}": ...,')
+            fields.append('    "scope": "horizontal|sectoral|unknown"')
             schema_parts.append(f'  "{indicator_id}": {{')
-            schema_parts.append(f'    "verbatim_quote": "exact substring",')
-            for fname in feature_spec.keys():
-                schema_parts.append(f'    "{fname}": ...,')
-            schema_parts.append(f'    "source_legislation": "...",')
-            schema_parts.append(f'    "last_update": "...",')
-            schema_parts.append(f'    "scope": "horizontal|sectoral|unknown"')
-            schema_parts.append('  },')
+            schema_parts.extend(fields)
+            schema_parts.append('  }')
 
         return f"""You are a UN ESCAP digital trade policy analyst extracting structured
 data from legal text for the RDTII 2.1 framework.
@@ -182,25 +200,104 @@ Input article:
         """Robustly extract a JSON object from an LLM response.
 
         Handles:
-            - Bare JSON
-            - JSON wrapped in ```json fences
-            - JSON with leading prose ("Here is the result: {...}")
+            - Bare JSON / code fences / leading prose
+            - Truncated JSON (max_tokens) — closes braces
+            - Missing commas between key-value pairs
+            - Trailing commas
         """
         if not raw_text:
             raise ExtractionError("Empty response from LLM")
 
-        # Strip code fences
         stripped = raw_text.strip()
         stripped = re.sub(r"^```(?:json)?\s*", "", stripped, flags=re.IGNORECASE)
         stripped = re.sub(r"\s*```\s*$", "", stripped)
 
-        # Locate first { and last } (most permissive)
         start = stripped.find("{")
         end = stripped.rfind("}")
-        if start == -1 or end == -1 or end <= start:
+        if start == -1:
             raise ExtractionError(f"No JSON object found in: {raw_text[:200]}")
 
+        def _last_comma_outside_string(value: str) -> int:
+            """Return the last comma not enclosed in a JSON string."""
+            in_string = False
+            escaped = False
+            last = -1
+            for i, ch in enumerate(value):
+                if escaped:
+                    escaped = False
+                    continue
+                if ch == "\\":
+                    escaped = True
+                    continue
+                if ch == '"':
+                    in_string = not in_string
+                    continue
+                if ch == "," and not in_string:
+                    last = i
+            return last
+
+        if end >= start:
+            json_candidate = stripped[start : end + 1]
+        else:
+            json_candidate = stripped[start:]
+
+        # Attempt 1: parse as-is
         try:
-            return json.loads(stripped[start : end + 1])
-        except json.JSONDecodeError as e:
-            raise ExtractionError(f"Invalid JSON: {e}; raw: {raw_text[:200]}")
+            return json.loads(json_candidate)
+        except json.JSONDecodeError:
+            pass
+
+        # Attempt 2: common LLM JSON repairs
+        repairs = [
+            # Remove trailing commas before } or ]
+            (r",\s*(\}|\])", r"\1"),
+            # Insert missing commas: value followed by new key
+            (r'(true|false|null|\d+|"[^"]*"|\}|\])\s+"', r'\1, "'),
+            # Fix bare-word values that should be quoted (LLM shorthand)
+            (r':\s+(true|false|null|"[^"]*")(\s*[,\}])', r': \1\2'),
+        ]
+        for pattern, replacement in repairs:
+            repaired = re.sub(pattern, replacement, json_candidate)
+            try:
+                return json.loads(repaired)
+            except json.JSONDecodeError:
+                continue
+
+        # Attempt 3: truncation repair — strip incomplete tail, close braces
+        try:
+            body = json_candidate
+            last_comma = _last_comma_outside_string(body)
+            if last_comma > 0:
+                prefix = body[:last_comma]
+            else:
+                prefix = body
+            depth = prefix.count("{") - prefix.count("}")
+            if depth > 0:
+                prefix += "}" * depth
+            s = prefix.find("{")
+            e = prefix.rfind("}")
+            if s != -1 and e > s:
+                return json.loads(prefix[s : e + 1])
+        except json.JSONDecodeError:
+            pass
+
+        # Attempt 4: last resort — extract each indicator object individually
+        try:
+            result: dict[str, Any] = {}
+            # Match top-level keys like "6.1" with their object values
+            blocks = re.findall(
+                r'"(\d+\.\d+)"\s*:\s*'
+                r'(\{(?:[^{}]|\{[^{}]*\})*\})',
+                json_candidate,
+            )
+            for key, block in blocks:
+                try:
+                    result[key] = json.loads(block)
+                except json.JSONDecodeError:
+                    continue
+            if result:
+                return result
+        except Exception:
+            pass
+
+        raise ExtractionError(f"Unrepairable JSON: {raw_text[:300]}")

@@ -18,6 +18,7 @@ zero hardcoded LLM logic outside `providers/`.
 from __future__ import annotations
 
 import asyncio
+import logging
 import os
 from pathlib import Path
 
@@ -25,6 +26,8 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 # psycopg2 is imported lazily inside the persistence handler so that
 # importing `main` (e.g. for tests, or for /health on a stripped image)
@@ -52,12 +55,12 @@ from verification import find_quote_offsets, verify_quote
 
 _env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(_env_path)  # prefer root .env regardless of CWD
-load_dotenv()           # fallback to CWD .env (local overrides)
+load_dotenv(override=True)           # CWD .env overrides root for local dev
 
 app = FastAPI(title="RDTII AI Mapper", version="0.2.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173").split(","),
+    allow_origins=[o.strip() for o in os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173").split(",") if o.strip()],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -221,42 +224,49 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
         if indicators:
             chunk_groups.append((chunk, indicators))
 
-    print(f"[TIMING] {len(chunk_groups)} chunks, concurrency=5")
+    logger.debug("[TIMING] %d chunks, concurrency=5", len(chunk_groups))
 
     semaphore = asyncio.Semaphore(5)
 
     async def _extract_chunk(chunk, indicators):
         _ct = _time.time()
         async with semaphore:
-            _cw = _time.time()
             try:
                 batch = await asyncio.to_thread(
                     provider.extract_batch, chunk.text, indicators,
                 )
             except ExtractionError as e:
-                rej = [(
-                    None,
-                    RejectedExtraction(
-                        reason=f"provider error: {e}",
-                        chunk_preview=chunk.text[:200],
-                    )
-                ) for _ in indicators]
-                return rej, _time.time() - _ct
+                # Batch failed (truncation etc.) — fall back to per-indicator
+                logger.warning("batch failed, falling back per-indicator: %s", e)
+                results: list = []
+                for ind_id, spec in indicators:
+                    try:
+                        data = await asyncio.to_thread(
+                            provider.extract_features, chunk.text, ind_id, spec,
+                        )
+                        results.append((ind_id, spec, data))
+                    except ExtractionError:
+                        results.append((ind_id, spec, None))
+            else:
+                # Convert batch dict → list of (ind_id, spec, data)
+                results = []
+                for ind_id, spec in indicators:
+                    data = batch.get(ind_id) if isinstance(batch, dict) else None
+                    results.append((ind_id, spec, data))
 
-            results: list[tuple[IndicatorMapping | None, RejectedExtraction | None]] = []
-            for ind_id, spec in indicators:
-                if ind_id not in batch:
-                    results.append((None, RejectedExtraction(
-                        reason=f"missing indicator {ind_id} in batch response",
+            # Shared per-indicator processing
+            mapped: list[tuple] = []
+            for ind_id, spec, data in results:
+                if data is None:
+                    mapped.append((None, RejectedExtraction(
+                        reason="missing indicator in batch/fallback response",
                         chunk_preview=chunk.text[:200],
-                        raw_output=batch,
                     )))
                     continue
 
-                data = batch[ind_id]
                 quote = (data.get("verbatim_quote") or "").strip()
                 if not quote or not verify_quote(quote, chunk.text):
-                    results.append((None, RejectedExtraction(
+                    mapped.append((None, RejectedExtraction(
                         reason="verbatim_quote not found in chunk shown to LLM",
                         chunk_preview=chunk.text[:200],
                         raw_output=data,
@@ -265,7 +275,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
 
                 local_start, local_end = find_quote_offsets(quote, chunk.text)
                 if local_start < 0 or local_end <= local_start:
-                    results.append((None, RejectedExtraction(
+                    mapped.append((None, RejectedExtraction(
                         reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
                         chunk_preview=chunk.text[:200],
                         raw_output=data,
@@ -281,7 +291,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                 raw_scope = (data.get("scope") or "").strip().lower()
                 scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
-                results.append((IndicatorMapping(
+                mapped.append((IndicatorMapping(
                     pillar=int(ind_id.split(".", 1)[0]),
                     indicator=ind_id,
                     score=score,
@@ -298,12 +308,12 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                     extraction_provider=provider.name,
                 ), None))
 
-            print(f"[TIMING] chunk [{','.join(i for i,_ in indicators)}] {_time.time()-_ct:.1f}s")
-            return results, _time.time() - _ct
+            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
+            return mapped, _time.time() - _ct
 
     all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
 
-    print(f"[TIMING] total={_time.time()-_t0:.1f}s")
+    logger.debug("[TIMING] total=%.1fs", _time.time()-_t0)
 
     mappings: list[IndicatorMapping] = []
     rejected: list[RejectedExtraction] = []
