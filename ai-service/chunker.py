@@ -81,4 +81,24 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
             chunks.append(c)
         current_pos += len(part)
 
-    return chunks if chunks else [_strip_with_offset(text, 0)] if text.strip() else []
+    if not chunks:
+        if text.strip():
+            return [_strip_with_offset(text, 0)]
+        return []
+
+    # Merge small chunks to avoid too many LLM calls
+    if len(chunks) > 6:
+        merged: list[Chunk] = []
+        per = len(chunks) / 6
+        for i in range(6):
+            lo = round(i * per)
+            hi = round((i + 1) * per)
+            batch = chunks[lo:hi]
+            merged.append(Chunk(
+                text="\n".join(c.text for c in batch),
+                start=batch[0].start,
+                end=batch[-1].end,
+            ))
+        return merged
+
+    return chunks

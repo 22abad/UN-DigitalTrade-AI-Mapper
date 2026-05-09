@@ -131,6 +131,53 @@ Input article:
 """
 
     @staticmethod
+    def build_batch_prompt(
+        article_text: str,
+        indicators: list[tuple[str, dict[str, dict[str, str]]]],
+    ) -> str:
+        """Construct a batch prompt extracting ALL indicators in one LLM call."""
+        parts: list[str] = []
+        schema_parts: list[str] = []
+        for indicator_id, feature_spec in indicators:
+            parts.append(f"\nIndicator {indicator_id}:")
+            for fname, fmeta in feature_spec.items():
+                parts.append(f'  - "{fname}" ({fmeta.get("type", "bool")}): {fmeta.get("description", "")}')
+
+            schema_parts.append(f'  "{indicator_id}": {{')
+            schema_parts.append(f'    "verbatim_quote": "exact substring",')
+            for fname in feature_spec.keys():
+                schema_parts.append(f'    "{fname}": ...,')
+            schema_parts.append(f'    "source_legislation": "...",')
+            schema_parts.append(f'    "last_update": "...",')
+            schema_parts.append(f'    "scope": "horizontal|sectoral|unknown"')
+            schema_parts.append('  },')
+
+        return f"""You are a UN ESCAP digital trade policy analyst extracting structured
+data from legal text for the RDTII 2.1 framework.
+
+Evaluate ALL of these indicators from the same article below:
+
+{chr(10).join(parts)}
+
+ABSOLUTE RULES:
+- Output ONLY valid JSON. No prose, no markdown fences, no explanations.
+- Each indicator MUST have a "verbatim_quote" that is an EXACT substring of the input — do NOT paraphrase.
+- If a feature cannot be determined, set to its type default (false / 0 / "").
+- "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
+- Do NOT include scores — only features.
+
+Return JSON:
+{{
+{chr(10).join(schema_parts)}
+}}
+
+Input article:
+\"\"\"
+{article_text}
+\"\"\"
+"""
+
+    @staticmethod
     def parse_json_response(raw_text: str) -> dict[str, Any]:
         """Robustly extract a JSON object from an LLM response.
 

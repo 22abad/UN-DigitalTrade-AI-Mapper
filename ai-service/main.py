@@ -17,7 +17,9 @@ zero hardcoded LLM logic outside `providers/`.
 
 from __future__ import annotations
 
+import asyncio
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Form, HTTPException
@@ -48,12 +50,14 @@ from schemas import (
 from scoring import score_indicator
 from verification import find_quote_offsets, verify_quote
 
-load_dotenv()
+_env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(_env_path)  # prefer root .env regardless of CWD
+load_dotenv()           # fallback to CWD .env (local overrides)
 
 app = FastAPI(title="RDTII AI Mapper", version="0.2.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173").split(","),
+    allow_origins=os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173").split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -81,7 +85,13 @@ _provider = None
 def _get_provider():
     global _provider
     if _provider is None:
-        _provider = get_default_provider()
+        try:
+            _provider = get_default_provider()
+        except ExtractionError as e:
+            raise HTTPException(
+                status_code=503,
+                detail=f"Provider unavailable: {e}. Check .env for API keys.",
+            )
     return _provider
 
 
@@ -195,90 +205,114 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
 
+    import time as _time
+    _t0 = _time.time()
     provider = _get_provider()
     chunks = regex_legal_chunker(text)
 
-    mappings: list[IndicatorMapping] = []
-    rejected: list[RejectedExtraction] = []
-
+    # Group indicators by chunk — one LLM call per chunk
+    chunk_groups: list[tuple] = []
     for chunk in chunks:
-        candidate_indicators = classify_indicator(chunk.text)
-        for indicator_id in candidate_indicators:
+        indicators: list[tuple[str, dict]] = []
+        for indicator_id in classify_indicator(chunk.text):
             spec = get_feature_spec(indicator_id)
-            if not spec:
-                continue
+            if spec:
+                indicators.append((indicator_id, spec))
+        if indicators:
+            chunk_groups.append((chunk, indicators))
 
-            # 1. Ask the LLM provider for features (LLM only sees chunk.text)
+    print(f"[TIMING] {len(chunk_groups)} chunks, concurrency=5")
+
+    semaphore = asyncio.Semaphore(5)
+
+    async def _extract_chunk(chunk, indicators):
+        _ct = _time.time()
+        async with semaphore:
+            _cw = _time.time()
             try:
-                raw = provider.extract_features(chunk.text, indicator_id, spec)
+                batch = await asyncio.to_thread(
+                    provider.extract_batch, chunk.text, indicators,
+                )
             except ExtractionError as e:
-                rejected.append(
+                rej = [(
+                    None,
                     RejectedExtraction(
                         reason=f"provider error: {e}",
                         chunk_preview=chunk.text[:200],
                     )
-                )
-                continue
+                ) for _ in indicators]
+                return rej, _time.time() - _ct
 
-            # 2. Verify the quote against the SAME chunk the LLM was given (anti-hallucination)
-            quote = (raw.get("verbatim_quote") or "").strip()
-            if not quote or not verify_quote(quote, chunk.text):
-                rejected.append(
-                    RejectedExtraction(
+            results: list[tuple[IndicatorMapping | None, RejectedExtraction | None]] = []
+            for ind_id, spec in indicators:
+                if ind_id not in batch:
+                    results.append((None, RejectedExtraction(
+                        reason=f"missing indicator {ind_id} in batch response",
+                        chunk_preview=chunk.text[:200],
+                        raw_output=batch,
+                    )))
+                    continue
+
+                data = batch[ind_id]
+                quote = (data.get("verbatim_quote") or "").strip()
+                if not quote or not verify_quote(quote, chunk.text):
+                    results.append((None, RejectedExtraction(
                         reason="verbatim_quote not found in chunk shown to LLM",
                         chunk_preview=chunk.text[:200],
-                        raw_output=raw,
-                    )
-                )
-                continue
+                        raw_output=data,
+                    )))
+                    continue
 
-            local_start, local_end = find_quote_offsets(quote, chunk.text)
-            if local_start < 0 or local_end <= local_start:
-                rejected.append(
-                    RejectedExtraction(
+                local_start, local_end = find_quote_offsets(quote, chunk.text)
+                if local_start < 0 or local_end <= local_start:
+                    results.append((None, RejectedExtraction(
                         reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
                         chunk_preview=chunk.text[:200],
-                        raw_output=raw,
-                    )
-                )
-                continue
-            
-            # Translate chunk-local offsets to absolute document offsets.
-            q_start = chunk.start + local_start
-            q_end = chunk.start + local_end
+                        raw_output=data,
+                    )))
+                    continue
 
-            # 3. Apply deterministic scoring
-            features = {k: raw[k] for k in spec.keys() if k in raw}
-            try:
-                score, justification = score_indicator(indicator_id, features)
-            except NotImplementedError:
-                score, justification = 0.5, "Scoring rules not implemented."  # type: ignore[assignment]
+                features = {k: data[k] for k in spec.keys() if k in data}
+                try:
+                    score, justification = score_indicator(ind_id, features)
+                except NotImplementedError:
+                    score, justification = 0.5, "Scoring rules not implemented."
 
-            # Replace the LLM's raw impact with our deterministic justification
-            impact_text = justification
+                raw_scope = (data.get("scope") or "").strip().lower()
+                scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
-            # 4. Sanitize scope
-            raw_scope = (raw.get("scope") or "").strip().lower()
-            scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
-
-            mappings.append(
-                IndicatorMapping(
-                    pillar=int(indicator_id.split(".", 1)[0]),  # type: ignore[arg-type]
-                    indicator=indicator_id,
+                results.append((IndicatorMapping(
+                    pillar=int(ind_id.split(".", 1)[0]),
+                    indicator=ind_id,
                     score=score,
-                    verbatim_quote=raw["verbatim_quote"],
-                    quote_start=q_start,
-                    quote_end=q_end,
-                    source_legislation=raw.get("source_legislation", ""),
-                    last_update=raw.get("last_update", ""),
-                    source_url=raw.get("source_url", ""),
-                    scope=scope_value,  # type: ignore[arg-type]
+                    verbatim_quote=data["verbatim_quote"],
+                    quote_start=chunk.start + local_start,
+                    quote_end=chunk.start + local_end,
+                    source_legislation=data.get("source_legislation", ""),
+                    last_update=data.get("last_update", ""),
+                    source_url=data.get("source_url", ""),
+                    scope=scope_value,
                     features=features,
-                    impact=impact_text,
+                    impact=justification,
                     requires_human_review=False,
                     extraction_provider=provider.name,
-                )
-            )
+                ), None))
+
+            print(f"[TIMING] chunk [{','.join(i for i,_ in indicators)}] {_time.time()-_ct:.1f}s")
+            return results, _time.time() - _ct
+
+    all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
+
+    print(f"[TIMING] total={_time.time()-_t0:.1f}s")
+
+    mappings: list[IndicatorMapping] = []
+    rejected: list[RejectedExtraction] = []
+    for chunk_results, _dur in all_results:
+        for mapping, rej in chunk_results:
+            if mapping:
+                mappings.append(mapping)
+            elif rej:
+                rejected.append(rej)
 
     return ExtractionResponse(
         mappings=mappings,
