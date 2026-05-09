@@ -18,6 +18,11 @@ from __future__ import annotations
 # Each indicator's spec maps feature_name -> (type_hint, description)
 INDICATOR_FEATURES: dict[str, dict[str, dict[str, str]]] = {
     # ── Pillar 6: Cross-border data policies ─────────────────────────
+    "1.1": {"tariff_rate": {"type": "float", "description": "Applicable tariff rate"}},
+    "2.1": {"procurement_preference": {"type": "bool", "description": "Local preference in procurement?"}},
+    "3.1": {"foreign_equity_limit": {"type": "float", "description": "FDI equity limit"}},
+    "4.1": {"ip_protection_level": {"type": "str", "description": "IP protection level"}},
+    "5.1": {"telecom_competition": {"type": "bool", "description": "Telecom market competition"}},
     "6.1": {
         "personal_data": {
             "type": "bool",
@@ -74,7 +79,6 @@ INDICATOR_FEATURES: dict[str, dict[str, dict[str, str]]] = {
             "description": "Is the country signatory to a binding agreement on cross-border data flows (CPTPP, DEPA, RCEP Art. 12.15, etc.)?",
         },
     },
-    # ── Pillar 7: Domestic data protection & privacy ─────────────────
     "7.1": {
         "has_comprehensive_framework": {
             "type": "bool",
@@ -119,6 +123,11 @@ INDICATOR_FEATURES: dict[str, dict[str, dict[str, str]]] = {
             "description": "Allows government access to personal data without judicial warrant / independent oversight?",
         },
     },
+    "8.1": {"intermediary_liability": {"type": "str", "description": "Liability of intermediaries"}},
+    "9.1": {"content_restriction": {"type": "str", "description": "Restriction on content"}},
+    "10.1": {"non_tariff_measure": {"type": "str", "description": "Non-tariff measure type"}},
+    "11.1": {"standards_interoperability": {"type": "bool", "description": "Standards interoperability"}},
+    "12.1": {"e_signature_validity": {"type": "bool", "description": "E-signature validity"}}
 }
 
 

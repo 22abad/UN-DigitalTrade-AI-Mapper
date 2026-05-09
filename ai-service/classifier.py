@@ -2,18 +2,18 @@
 
 from __future__ import annotations
 
-# Unified dictionary for all supported languages
-_INDICATOR_PHRASES: dict[str, list[str]] = {
+# Unified dictionary for all 12 supported RDTII indicators
+_INDICATOR_PHRASES = {
+    "1.1": ["tariff", "customs duty", "tax", "关税", "贸易防御"],
+    "2.1": ["public procurement", "government tender", "政府采购", "招投标"],
+    "3.1": [
+        "foreign direct investment", "FDI", "foreign ownership",
+        "外商投资", "外资", "外商投资法"
+    ],
+    "4.1": ["intellectual property", "patent", "copyright", "知识产权", "专利", "著作权"],
+    "5.1": ["telecom", "broadband", "frequency", "电信", "宽带"],
     "6.1": [
-        "transfer abroad", "transferred abroad", "transferring abroad",
-        "transfer data abroad", "transferred data abroad",
-        "transferring data abroad", "transferring personal data abroad",
-        "transferring personal information abroad",
-        "providing personal information abroad",
-        "provide personal information outside",
-        "provided outside the territory",
-        "outbound transfer", "cross-border transfer",
-        "ban on transfer", "shall not transfer",
+        "transfer abroad", "transferred abroad", "transferring abroad", "ban on transfer",
         "process locally", "data localization", "data localisation",
         "xử lý tại chỗ", "pemrosesan", "proses", "ห้ามโอนย้ายไปต่างประเทศ",
         "出境", "境外", "境内处理", "禁止传输", "本地处理"
@@ -58,6 +58,11 @@ _INDICATOR_PHRASES: dict[str, list[str]] = {
         "law enforcement access", "without warrant", "surveillance",
         "执法", "国家安全", "监视"
     ],
+    "8.1": ["intermediary liability", "safe harbor", "互联网平台责任", "责任承担"],
+    "9.1": ["online content", "illegal content", "在线内容", "违法内容"],
+    "10.1": ["non-tariff measure", "trade restriction", "非关税措施", "贸易限制"],
+    "11.1": ["standards", "conformity assessment", "技术标准", "合格评定"],
+    "12.1": ["online sales", "e-signature", "在线销售", "电子签名"]
 }
 
 def classify_indicator(article_text: str) -> list[str]:
@@ -69,6 +74,8 @@ def classify_indicator(article_text: str) -> list[str]:
 
     for indicator, phrases in _INDICATOR_PHRASES.items():
         for phrase in phrases:
+            # For Chinese and Thai, simple case check suffices; 
+            # for English, lower() ensures robustness.
             if phrase.lower() in lowered:
                 matched.add(indicator)
                 break

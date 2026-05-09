@@ -3,18 +3,16 @@
 dev:
 	@echo "Starting backend and frontend..."
 	@trap 'kill 0' EXIT; \
-		uvicorn main:app --reload --port 8000 --app-dir ai-service & \
+		python3 -m uvicorn main:app --reload --port 8000 --app-dir ai-service & \
 		cd rdtii-frontend && npx vite --host 0.0.0.0 & \
 		wait
 
 dev-backend:
-	uvicorn main:app --reload --port 8000 --app-dir ai-service
-
-dev-frontend:
-	cd rdtii-frontend && npx vite --host 0.0.0.0
+	python3 -m uvicorn main:app --reload --port 8000 --app-dir ai-service
 
 install:
-	cd ai-service && pip install -r requirements.txt && playwright install chromium
+	cd ai-service && pip3 install -r requirements.txt && playwright install chromium
+
 
 install-frontend:
 	cd rdtii-frontend && npm install

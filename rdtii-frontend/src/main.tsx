@@ -95,6 +95,23 @@ function App() {
   >({});
   const [showRejected, setShowRejected] = React.useState(false);
 
+  const [availableProviders, setAvailableProviders] = React.useState<string[]>([]);
+  const [selectedProvider, setSelectedProvider] = React.useState<string>("gemini");
+
+  React.useEffect(() => {
+    fetch(API_URL.replace("/api/extract", "/health"))
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.available_providers) {
+          setAvailableProviders(data.available_providers);
+        }
+        if (data.active_provider) {
+          setSelectedProvider(data.active_provider);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch health/providers", err));
+  }, []);
+
   const sourceRef = React.useRef<HTMLDivElement>(null);
 
   const mappings = response?.mappings ?? [];
@@ -120,6 +137,7 @@ function App() {
       const form = new FormData();
       form.append("text", text);
       if (sourceUrl.trim()) form.append("source_url", sourceUrl.trim());
+      form.append("provider", selectedProvider);
 
       const res = await fetch(API_URL, { method: "POST", body: form });
 
@@ -231,7 +249,9 @@ function App() {
         </div>
         <div className="status-strip">
           <span>Country {country}</span>
-          <span>Provider {provider}</span>
+          <select value={selectedProvider} onChange={(e) => setSelectedProvider(e.target.value)}>
+            {availableProviders.map(p => <option key={p} value={p}>{p}</option>)}
+          </select>
           <span className={status === "error" ? "warn" : "ok"}>
             {headerStatus}
           </span>
@@ -347,8 +367,18 @@ function SourcePanel(props: SourcePanelProps) {
             onChange={(e) => setPillarFilter(e.target.value)}
           >
             <option value="all">All pillars</option>
+            <option value="1">Pillar 1: Tariffs and trade defence</option>
+            <option value="2">Pillar 2: Public procurement</option>
+            <option value="3">Pillar 3: Foreign direct investment</option>
+            <option value="4">Pillar 4: Intellectual property rights</option>
+            <option value="5">Pillar 5: Telecommunications</option>
             <option value="6">Pillar 6: Cross-border data flows</option>
             <option value="7">Pillar 7: Domestic data protection</option>
+            <option value="8">Pillar 8: Internet intermediary liability</option>
+            <option value="9">Pillar 9: Online content access</option>
+            <option value="10">Pillar 10: Non-technical NTMs</option>
+            <option value="11">Pillar 11: Standards and procedures</option>
+            <option value="12">Pillar 12: Online sales and transactions</option>
           </select>
         </label>
       </div>

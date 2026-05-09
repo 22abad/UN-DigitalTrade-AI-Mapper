@@ -30,6 +30,8 @@ services:
     build:
       context: ./ai-service
       dockerfile: Dockerfile
+    volumes:
+      - ./ai-service:/app
     container_name: rdtii-ai-service
     ports:
       - "8000:8000"

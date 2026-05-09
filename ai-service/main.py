@@ -36,7 +36,8 @@ logger = logging.getLogger(__name__)
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
 from features import get_feature_spec
-from providers import canonical_name, get_default_provider, list_providers
+from providers import canonical_name, get_default_provider, list_providers, get_provider
+from providers.base import ExtractionError
 
 # crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
 # Both are heavy and only needed for the URL-ingestion path, so import
@@ -180,7 +181,7 @@ def embed(req: TextRequest):
 
 
 @app.post("/api/extract", response_model=ExtractionResponse)
-async def extract(text: str = Form(""), source_url: str = Form("")):
+async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
     """Extract RDTII indicator mappings from a block of legal text.
 
     If text is empty but source_url is provided, it crawls the URL first.
@@ -210,7 +211,17 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
 
     import time as _time
     _t0 = _time.time()
-    provider = _get_provider()
+    
+    if provider:
+        try:
+            llm_provider = get_provider(provider)
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+        except ExtractionError as e:
+            raise HTTPException(status_code=503, detail=str(e))
+    else:
+        llm_provider = _get_provider()
+        
     chunks = regex_legal_chunker(text)
 
     # Group indicators by chunk — one LLM call per chunk
@@ -233,7 +244,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
         async with semaphore:
             try:
                 batch = await asyncio.to_thread(
-                    provider.extract_batch, chunk.text, indicators,
+                    llm_provider.extract_batch, chunk.text, indicators,
                 )
             except ExtractionError as e:
                 # Batch failed (truncation etc.) — fall back to per-indicator
@@ -242,7 +253,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                 for ind_id, spec in indicators:
                     try:
                         data = await asyncio.to_thread(
-                            provider.extract_features, chunk.text, ind_id, spec,
+                            llm_provider.extract_features, chunk.text, ind_id, spec,
                         )
                         results.append((ind_id, spec, data))
                     except ExtractionError:
@@ -305,7 +316,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                     features=features,
                     impact=justification,
                     requires_human_review=False,
-                    extraction_provider=provider.name,
+                    extraction_provider=llm_provider.name,
                 ), None))
 
             logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
@@ -327,7 +338,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
     return ExtractionResponse(
         mappings=mappings,
         rejected=rejected,
-        provider=provider.name,
+        provider=llm_provider.name,
     )
 
 
