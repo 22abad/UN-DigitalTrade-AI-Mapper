@@ -101,6 +101,33 @@ class OpenAICompatibleProvider(LLMProvider):
         feature_spec: dict[str, dict[str, str]],
     ) -> dict[str, Any]:
         prompt = self.build_prompt(article_text, indicator_id, feature_spec)
+        return self._call_llm(prompt)
+
+    def extract_batch(
+        self,
+        article_text: str,
+        indicators: list[tuple[str, dict[str, dict[str, str]]]],
+    ) -> dict[str, dict[str, Any]]:
+        """One LLM call extracts ALL indicators from the same chunk.
+        
+        Args:
+            article_text: The legal text chunk.
+            indicators: List of (indicator_id, feature_spec) pairs.
+        
+        Returns:
+            dict mapping indicator_id -> extracted features dict.
+        """
+        from .base import LLMProvider as _Base
+        prompt = _Base.build_batch_prompt(article_text, indicators)
+        raw = self._call_llm(prompt, max_tokens=4096)
+        # raw is {"6.1": {...}, "6.4": {...}, ...}
+        result: dict[str, dict[str, Any]] = {}
+        for indicator_id, _spec in indicators:
+            if indicator_id in raw:
+                result[indicator_id] = raw[indicator_id]
+        return result
+
+    def _call_llm(self, prompt: str, max_tokens: int = 2048) -> dict[str, Any]:
         usage = ExtractionUsage()
         t0 = time.perf_counter()
         try:
@@ -114,7 +141,7 @@ class OpenAICompatibleProvider(LLMProvider):
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0,
-                max_tokens=2048,
+                max_tokens=max_tokens,
                 response_format={"type": "json_object"},
             )
         except Exception as e:
