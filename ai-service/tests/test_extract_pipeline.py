@@ -38,6 +38,13 @@ class FakeProvider:
     ) -> dict[str, Any]:
         return dict(self._response)
 
+    def extract_batch(
+        self,
+        chunk_text: str,
+        indicators: list[tuple[str, dict]],
+    ) -> dict[str, dict[str, Any]]:
+        return {ind_id: dict(self._response) for ind_id, _ in indicators}
+
 
 def _patch_provider(monkeypatch, response: dict[str, Any]) -> None:
     """Force /api/extract to use FakeProvider and re-import."""
@@ -153,6 +160,21 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
                 "personal_data": True,
                 "has_ban": True,
                 "scope": "horizontal",
+            }
+
+        def extract_batch(
+            self,
+            chunk_text: str,
+            indicators: list[tuple[str, dict]],
+        ) -> dict[str, dict]:
+            return {
+                ind_id: {
+                    "verbatim_quote": quote_from_article_2,
+                    "personal_data": True,
+                    "has_ban": True,
+                    "scope": "horizontal",
+                }
+                for ind_id, _ in indicators
             }
 
     fake = CrossChunkLyingProvider()
