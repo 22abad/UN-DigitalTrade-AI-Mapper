@@ -72,6 +72,24 @@ class LLMProvider(ABC):
         """
         ...
 
+    def extract_batch(
+        self,
+        chunk_text: str,
+        indicators: list[tuple[str, dict[str, dict[str, str]]]],
+    ) -> dict[str, dict[str, Any]]:
+        """Default batch extraction — loops over extract_features.
+
+        Concrete providers that support true batching (single LLM call per
+        chunk) should override this for performance. The default keeps the
+        old per-indicator calling convention working for all providers.
+        """
+        result: dict[str, dict[str, Any]] = {}
+        for indicator_id, feature_spec in indicators:
+            result[indicator_id] = self.extract_features(
+                chunk_text, indicator_id, feature_spec,
+            )
+        return result
+
     def estimate_cost_usd(self, input_tokens: int, output_tokens: int) -> float:
         """Subclasses should override with provider-specific pricing."""
         return 0.0
@@ -143,14 +161,14 @@ Input article:
             for fname, fmeta in feature_spec.items():
                 parts.append(f'  - "{fname}" ({fmeta.get("type", "bool")}): {fmeta.get("description", "")}')
 
+            fnames = list(feature_spec.keys())
+            fields = [f'    "verbatim_quote": "exact substring",']
+            for fname in fnames:
+                fields.append(f'    "{fname}": ...,')
+            fields.append('    "scope": "horizontal|sectoral|unknown"')
             schema_parts.append(f'  "{indicator_id}": {{')
-            schema_parts.append(f'    "verbatim_quote": "exact substring",')
-            for fname in feature_spec.keys():
-                schema_parts.append(f'    "{fname}": ...,')
-            schema_parts.append(f'    "source_legislation": "...",')
-            schema_parts.append(f'    "last_update": "...",')
-            schema_parts.append(f'    "scope": "horizontal|sectoral|unknown"')
-            schema_parts.append('  },')
+            schema_parts.extend(fields)
+            schema_parts.append('  }')
 
         return f"""You are a UN ESCAP digital trade policy analyst extracting structured
 data from legal text for the RDTII 2.1 framework.

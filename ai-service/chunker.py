@@ -86,7 +86,9 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
             return [_strip_with_offset(text, 0)]
         return []
 
-    # Merge small chunks to avoid too many LLM calls
+    # Merge small chunks to avoid too many LLM calls.
+    # Build merged chunks from the ORIGINAL document slice so that
+    # Chunk.start/end still satisfy original_text[start:end] == chunk.text.
     if len(chunks) > 6:
         merged: list[Chunk] = []
         per = len(chunks) / 6
@@ -95,7 +97,7 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
             hi = round((i + 1) * per)
             batch = chunks[lo:hi]
             merged.append(Chunk(
-                text="\n".join(c.text for c in batch),
+                text=text[batch[0].start : batch[-1].end],
                 start=batch[0].start,
                 end=batch[-1].end,
             ))
