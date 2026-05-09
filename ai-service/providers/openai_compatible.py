@@ -119,7 +119,7 @@ class OpenAICompatibleProvider(LLMProvider):
         """
         from .base import LLMProvider as _Base
         prompt = _Base.build_batch_prompt(article_text, indicators)
-        raw = self._call_llm(prompt, max_tokens=16384)
+        raw = self._call_llm(prompt, max_tokens=8192)
         # raw is {"6.1": {...}, "6.4": {...}, ...}
         result: dict[str, dict[str, Any]] = {}
         for indicator_id, _spec in indicators:

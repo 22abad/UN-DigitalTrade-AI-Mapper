@@ -236,29 +236,37 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                     provider.extract_batch, chunk.text, indicators,
                 )
             except ExtractionError as e:
-                rej = [(
-                    None,
-                    RejectedExtraction(
-                        reason=f"provider error: {e}",
-                        chunk_preview=chunk.text[:200],
-                    )
-                ) for _ in indicators]
-                return rej, _time.time() - _ct
+                # Batch failed (truncation etc.) — fall back to per-indicator
+                logger.warning("batch failed, falling back per-indicator: %s", e)
+                results: list = []
+                for ind_id, spec in indicators:
+                    try:
+                        data = await asyncio.to_thread(
+                            provider.extract_features, chunk.text, ind_id, spec,
+                        )
+                        results.append((ind_id, spec, data))
+                    except ExtractionError:
+                        results.append((ind_id, spec, None))
+            else:
+                # Convert batch dict → list of (ind_id, spec, data)
+                results = []
+                for ind_id, spec in indicators:
+                    data = batch.get(ind_id) if isinstance(batch, dict) else None
+                    results.append((ind_id, spec, data))
 
-            results: list[tuple[IndicatorMapping | None, RejectedExtraction | None]] = []
-            for ind_id, spec in indicators:
-                if ind_id not in batch:
-                    results.append((None, RejectedExtraction(
-                        reason=f"missing indicator {ind_id} in batch response",
+            # Shared per-indicator processing
+            mapped: list[tuple] = []
+            for ind_id, spec, data in results:
+                if data is None:
+                    mapped.append((None, RejectedExtraction(
+                        reason="missing indicator in batch/fallback response",
                         chunk_preview=chunk.text[:200],
-                        raw_output=batch,
                     )))
                     continue
 
-                data = batch[ind_id]
                 quote = (data.get("verbatim_quote") or "").strip()
                 if not quote or not verify_quote(quote, chunk.text):
-                    results.append((None, RejectedExtraction(
+                    mapped.append((None, RejectedExtraction(
                         reason="verbatim_quote not found in chunk shown to LLM",
                         chunk_preview=chunk.text[:200],
                         raw_output=data,
@@ -267,7 +275,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
 
                 local_start, local_end = find_quote_offsets(quote, chunk.text)
                 if local_start < 0 or local_end <= local_start:
-                    results.append((None, RejectedExtraction(
+                    mapped.append((None, RejectedExtraction(
                         reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
                         chunk_preview=chunk.text[:200],
                         raw_output=data,
@@ -283,7 +291,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                 raw_scope = (data.get("scope") or "").strip().lower()
                 scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
-                results.append((IndicatorMapping(
+                mapped.append((IndicatorMapping(
                     pillar=int(ind_id.split(".", 1)[0]),
                     indicator=ind_id,
                     score=score,
@@ -301,7 +309,7 @@ async def extract(text: str = Form(""), source_url: str = Form("")):
                 ), None))
 
             logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
-            return results, _time.time() - _ct
+            return mapped, _time.time() - _ct
 
     all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
 
