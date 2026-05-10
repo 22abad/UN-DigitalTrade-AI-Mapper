@@ -56,7 +56,7 @@ function HoverFooter() {
             <p className="text-sm leading-relaxed">
               <span className="italic">"Where Code Meets Law."</span>
               <br />
-              Secure Evidence-based Network for Trade &amp; International Law — built for the UN ESCAP RDTII 2.1 framework.
+              System for Evaluating National Trade Indicators & Normative Evidence in Law.
             </p>
             <p className="text-xs opacity-50 leading-relaxed">
               Open-source prototype · Maynooth University

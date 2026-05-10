@@ -132,7 +132,8 @@ You MUST extract the following features by reading the article below:
 
 ABSOLUTE RULES:
 - Output ONLY valid JSON. No prose, no markdown fences, no explanations.
-- "verbatim_quote" MUST be an EXACT substring of the input text — do NOT paraphrase, summarize, translate, or rephrase.
+- "verbatim_quote" MUST be an EXACT substring of the input text.
+  - FOR NON-ENGLISH TEXTS: Copy the text character-for-character including all spaces and special characters. DO NOT attempt to normalize or reformat.
 - If a feature cannot be determined from the text, set it to its type's default (false / 0 / "").
 - "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
 - Do NOT include a score or any RDTII pillar/indicator number — only features.

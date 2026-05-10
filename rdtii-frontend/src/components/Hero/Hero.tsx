@@ -23,8 +23,7 @@ export function Hero() {
           SENTINEL
         </h1>
         <p className="mt-6 text-lg md:text-xl text-white max-w-2xl drop-shadow">
-          Empowering policymakers with AI-driven insights for informed
-          decision-making in digital trade.
+          Automated RDTII grading system for UN ESCAP researchers to map legal evidence across all 12 pillars.
         </p>
         <a
           href="/workbench"

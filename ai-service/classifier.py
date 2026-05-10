@@ -5,7 +5,11 @@ from __future__ import annotations
 # Unified dictionary for all 12 supported RDTII indicators
 _INDICATOR_PHRASES = {
     "1.1": ["tariff", "customs duty", "tax", "关税", "贸易防御"],
-    "2.1": ["public procurement", "government tender", "政府采购", "招投标"],
+    "2.1": [
+        "public procurement", "government tender", 
+        "การจัดซื้อจัดจ้าง", "พัสดุ", "คณะกรรมการ", 
+        "政府采购", "招投标"
+    ],
     "3.1": [
         "foreign direct investment", "FDI", "foreign ownership",
         "外商投资", "外资", "外商投资法"
@@ -74,8 +78,6 @@ def classify_indicator(article_text: str) -> list[str]:
 
     for indicator, phrases in _INDICATOR_PHRASES.items():
         for phrase in phrases:
-            # For Chinese and Thai, simple case check suffices; 
-            # for English, lower() ensures robustness.
             if phrase.lower() in lowered:
                 matched.add(indicator)
                 break

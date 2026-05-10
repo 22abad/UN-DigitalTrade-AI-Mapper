@@ -3,43 +3,45 @@ import ColorBends from "@/components/ColorBends/ColorBends";
 
 const team = [
   {
-    name: "Dong Li",
-    role: "Project Manager & Legal Architect",
-    desc: "20+ years of legal practice. Bridges legal logic and coding algorithms.",
+    name: "Dong",
+    role: "Tech Leader & Architect",
+    desc: "Orchestrated the foundational system framework and end-to-end development workflow, providing critical cross-disciplinary guidance bridging legal compliance and technical execution.",
   },
   {
     name: "Katie",
     role: "Legal Leader",
-    desc: "Legal scholar with native-level English and Chinese proficiency. Directs regulatory logic, resolves linguistic conflicts, and ensures PDPA compliance.",
+    desc: "A legal scholar with native-level proficiency in both English and Chinese. Serves as the ultimate legal authority, directing regulatory logic, resolving linguistic conflicts, and ensuring PDPA compliance.",
   },
   {
-    name: "Rujing Xu",
-    role: "Policy Analyst & Narrative Lead",
-    desc: "Economics & Trade expert. Defines business value and policy mapping.",
+    name: "Chenming",
+    role: "Full-Stack & AI Engineer",
+    desc: "Spearheaded the stunning frontend UI design, while deeply integrating the RAG pipeline, LLM interactions, and PostgreSQL database workflows.",
   },
   {
-    name: "Jie Xu",
-    role: "Tech Lead & Backend Engine",
-    desc: "Python developer. Architect of the text-to-data extraction MVP (FastAPI).",
+    name: "Abel",
+    role: "Backend Engineer",
+    desc: "Lead developer for the robust backend infrastructure, building the core Python extraction pipelines and anti-bot crawler engine.",
   },
   {
-    name: "Chenming Tao",
-    role: "UX/UI & AI Video Lead",
-    desc: "Design expert. Crafts the Audit View UI and cinematic concept presentation.",
+    name: "Rujing",
+    role: "Project Coordinator",
+    desc: "Manages cross-functional liaison, external communications, and technical documentation, ensuring seamless project execution.",
   },
 ];
 
 const pillars = [
-  {
-    number: "6",
-    title: "Cross-border Data Policies",
-    desc: "Data localisation rules, Standard Contractual Clauses, and adequacy decisions across APAC jurisdictions.",
-  },
-  {
-    number: "7",
-    title: "Domestic Data Protection & Privacy",
-    desc: "National privacy frameworks, consent obligations, and breach notification requirements.",
-  },
+  { number: "1", title: "Tariffs and trade defence", desc: "Covers tariffs and trade defence measures applied to intraregional imports of ICT goods." },
+  { number: "2", title: "Public procurement", desc: "Policies governing participation in public procurement of ICT goods and digital services." },
+  { number: "3", title: "Foreign direct investment", desc: "Policies regulating foreign direct investment in sectors related to digital trade." },
+  { number: "4", title: "Intellectual property rights", desc: "IPRs frameworks, including provisions for protection and innovation." },
+  { number: "5", title: "Telecommunications", desc: "Policies related to telecommunications infrastructure and market competition." },
+  { number: "6", title: "Cross-border data policies", desc: "Data localization rules, Standard Contractual Clauses, and adequacy decisions across APAC jurisdictions." },
+  { number: "7", title: "Domestic data protection & Privacy", desc: "National privacy frameworks, consent obligations, and breach notification requirements." },
+  { number: "8", title: "Internet intermediary liability", desc: "Legal frameworks for internet intermediary liability." },
+  { number: "9", title: "Content access", desc: "Regulations on access to online content and measures related to illegal content." },
+  { number: "10", title: "Non-technical NTMs", desc: "Non-technical non-tariff measures (NTMs) affecting trade in ICT goods and digital trade." },
+  { number: "11", title: "Standards and procedures", desc: "Technical standards and conformity assessment procedures relevant to digital trade." },
+  { number: "12", title: "Online sales and transactions", desc: "Regulations related to online sales and transactions, including electronic signatures." },
 ];
 
 const architecture = [
@@ -88,7 +90,7 @@ export function AboutPage() {
           <span className="text-[#10B981]">SENTINEL</span>
         </h1>
         <p className="relative z-10 text-lg md:text-xl opacity-70 max-w-2xl mx-auto leading-relaxed pb-20">
-          Secure Evidence-based Network for Trade &amp; International Law.
+          Automated Workflow for ESCAP Researchers to grade RDTII Indicators.
           <br />
           <span className="italic">"Where Code Meets Law."</span>
         </p>
@@ -130,20 +132,10 @@ export function AboutPage() {
           {/* Mission */}
           <section id="mission">
             <h2 className="text-2xl md:text-3xl font-semibold mb-6 mt-10 sticky top-0 py-3 backdrop-blur-md bg-background/80 z-20">The Mission</h2>
-            <p className="opacity-70 leading-relaxed text-lg">
-              Global digital trade is hindered by fragmented data localisation and privacy laws.
-              Traditional manual legal review is no longer scalable. <strong>Sentinel</strong> is a
-              hybrid extraction engine designed to automatically discover, extract, and map complex
-              digital trade regulations against the{" "}
-              <a
-                href="https://www.unescap.org"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#10B981] hover:underline"
-              >
-                UNESCAP Regional Digital Trade Integration Index (RDTII 2.1)
-              </a>
-              .
+          <p className="opacity-70 leading-relaxed text-lg">
+              Sentinel is an automated workflow engine designed for UN ESCAP researchers to map legal evidence 
+              against all 12 RDTII pillars. It automates the discovery, extraction, and mapping of complex 
+              digital trade regulations, transforming raw legislation into structured, evidence-based policy insights.
             </p>
           </section>
 

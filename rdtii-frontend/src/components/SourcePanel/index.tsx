@@ -137,6 +137,7 @@ export function SourcePanel({
               <SelectItem value="CHN">China</SelectItem>
               <SelectItem value="IND">India</SelectItem>
               <SelectItem value="SGP">Singapore</SelectItem>
+              <SelectItem value="THA">Thailand</SelectItem>
               <SelectItem value="AUS">Australia</SelectItem>
               <SelectItem value="PHL">Philippines</SelectItem>
             </SelectContent>

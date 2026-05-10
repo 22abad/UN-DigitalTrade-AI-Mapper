@@ -1,16 +1,7 @@
-FROM node:20-alpine AS build
-
-WORKDIR /app
-
-COPY package.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
 FROM nginx:1.27-alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
+# 直接复制本地构建好的 dist 到 nginx 目录，跳过容器内构建
+COPY ./dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

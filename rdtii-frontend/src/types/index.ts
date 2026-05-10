@@ -1,4 +1,4 @@
-export type Pillar = 6 | 7;
+export type Pillar = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type Score = 0 | 0.25 | 0.5 | 1;
 export type Scope = "horizontal" | "sectoral" | "unknown";
 

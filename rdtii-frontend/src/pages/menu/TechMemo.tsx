@@ -27,14 +27,14 @@ const layers = [
     label: "Layer III",
     title: "Reasoning & Mapping",
     subtitle: "Vector-Relational Hybrid",
-    body: "We utilise a PostgreSQL + pgvector architecture. Legal clauses are converted into high-dimensional embeddings stored alongside relational metadata, enabling semantic search and multi-pillar mapping via Gemini 1.5 Pro and Claude 3.5 Sonnet across all 11 RDTII pillars simultaneously.",
+    body: "We utilise a PostgreSQL + pgvector architecture. Legal clauses are converted into high-dimensional embeddings stored alongside relational metadata, enabling semantic search and multi-pillar mapping via Gemini 1.5 Pro and Claude 3.5 Sonnet across all 12 RDTII pillars simultaneously.",
   },
   {
     id: "layer-4",
     label: "Layer IV",
     title: "Verification & Audit",
-    subtitle: "Expert Review Interface",
-    body: "Every AI-generated mapping is linked to exact source coordinates. The Workbench UI allows legal experts to review, approve, or reject mappings. Approved decisions are persisted directly into the database, generating a verified audit trail for UN submission.",
+    subtitle: "Human-in-the-Loop Architecture",
+    body: "To be trusted by the UN, a system cannot just extract random sentences. It must empower human legal experts. When a researcher reviews AI output, our Workbench instantly highlights the exact source text coordinates. By clicking 'Approve', decisions are persisted into our PostgreSQL database, creating a 100% verified, hallucination-free audit trail.",
   },
 ];
 
@@ -78,7 +78,6 @@ export function TechMemoPage() {
           muted
           playsInline
         >
-          {/* Drop a video file at /public/tech-memo-bg.mp4 to activate */}
           <source src="/vid.mp4" type="video/mp4" />
         </video>
 
@@ -115,7 +114,7 @@ export function TechMemoPage() {
           <p className="text-xs font-semibold uppercase tracking-widest opacity-40 mb-2 mt-10">On this page</p>
           {[
             { href: "#summary", label: "Summary" },
-            { href: "#pipeline", label: "Four-Layer Pipeline" },
+            { href: "#pipeline", label: "The AI Pipeline" },
             { href: "#sustainability", label: "Sustainability" },
             { href: "#team", label: "Team Expertise" },
           ].map((link) => (
@@ -135,31 +134,35 @@ export function TechMemoPage() {
         {/* Content */}
         <div className="flex-1 min-w-0 space-y-16">
 
-          {/* Executive Summary */}
+          {/* The Bottleneck */}
           <section id="summary">
             <h2 className="text-2xl md:text-3xl font-semibold mb-6 mt-10 sticky top-0 py-3 backdrop-blur-md bg-white/80 z-20">
-              Summary
+              The Bottleneck: Why Manual Mapping Fails
             </h2>
-            <p className="opacity-70 leading-relaxed text-lg">
-              Team <strong>SENTINEL</strong> presents an industrial-grade, end-to-end pipeline that transforms
-              fragmented legal documents into structured, evidence-based insights across all 12 RDTII Pillars.
-              By combining advanced automation with a <em>Human-in-the-Loop</em> verification mechanism, we
-              ensure 100% auditable and hallucination-free regulatory analysis.
-            </p>
+            <div className="p-8 rounded-lg">
+              <h3 className="text-xl font-bold text-[#1f2933] mb-4">The Complexity Surge</h3>
+              <p className="opacity-80 leading-relaxed text-lg mb-4 text-[#1f2933]">
+                As digital economy growth accelerates, emerging regulations have increased in volume and complexity. Traditional manual mapping is a labor-intensive bottleneck that hinders policy responsiveness and creates high operational costs.
+              </p>
+              <p className="opacity-80 leading-relaxed text-lg text-[#1f2933]">
+                <strong>The Problem:</strong> Mapping domestic laws to international standards is manual and error-prone. 
+                <br />
+                <strong>The Need:</strong> An automated AI framework for inclusive digital trade that bridges the gap between fragmented law and actionable evidence.
+              </p>
+            </div>
           </section>
 
           <div className="h-px w-[calc(100%+3rem)] -ml-6 bg-[#10B981]/40" />
 
-          {/* Four-Layer Pipeline */}
+          {/* The AI Pipeline */}
           <section id="pipeline">
             <h2 className="text-2xl md:text-3xl font-semibold mb-10 sticky top-0 py-3 backdrop-blur-md bg-white/80 z-20">
-              4 Layer Pipeline
+              The AI Pipeline: Technical Architecture
             </h2>
             <div className="space-y-10">
               {layers.map((layer) => (
                 <div key={layer.id}>
                   <div className="relative border border-[#10B981]/20 p-8 hover:border-[#10B981]/50 transition-colors">
-                    {/* Gradient number tag — top right */}
                     <span className="absolute top-6 right-6 text-2xl font-black bg-gradient-to-br from-[#10B981] to-[#059669] bg-clip-text text-transparent select-none">
                       {layer.label.replace("Layer ", "")}
                     </span>
@@ -184,7 +187,6 @@ export function TechMemoPage() {
                   </div>
                 </div>
               ))}
-
             </div>
           </section>
 
@@ -206,7 +208,7 @@ export function TechMemoPage() {
           </section>
 
           <div className="h-px w-[calc(100%+3rem)] -ml-6 bg-[#10B981]/40" />
-
+          
           <p className="text-xs opacity-40 italic pb-8 mb-10">
             This memo is submitted to the UN Global Hackathon Committee on behalf of Team SENTINEL.
             All technical details reflect the prototype built during the hackathon period.
@@ -218,7 +220,7 @@ export function TechMemoPage() {
         <div className="hidden md:block w-px self-stretch bg-[#10B981]/40" />
 
       </div>
-      </div>{/* end gradient wrapper */}
+      </div>
 
       <div className="h-px w-full bg-[#10B981]/40" />
 
