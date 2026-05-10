@@ -1,7 +1,7 @@
-import ColorBends from "@/components/ColorBends/ColorBends";
 import Footer from "@/components/Footer/Footer";
 import { Hero } from "@/components/Hero/Hero";
 import { Label } from "@/components/Label/Label";
+import { Description } from "@/components/Description/Description";
 
 
 export function LandingPage() {
@@ -10,7 +10,7 @@ export function LandingPage() {
         <div className="relative">
             <Hero/>
             <Label/>
-            {/* <Description /> */}
+            <Description />
             <Footer/>
         </div>
     </main>

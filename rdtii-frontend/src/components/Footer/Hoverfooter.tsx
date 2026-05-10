@@ -16,21 +16,37 @@ export const TextHoverEffect = ({
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const [isTouch, setIsTouch] = useState(false);
 
-  // Trigger the draw animation only when scrolled into view.
   const inView = useInView(svgRef, { once: true, margin: "0px 0px -80px 0px" });
 
   useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none)").matches);
+  }, []);
+
+  // Auto-animate mask on touch devices
+  useEffect(() => {
+    if (!isTouch || !inView) return;
+    setHovered(true);
+    let t = 0;
+    const id = setInterval(() => {
+      t += 0.04;
+      const cx = 50 + 40 * Math.cos(t);
+      const cy = 50 + 30 * Math.sin(t * 1.3);
+      setMaskPosition({ cx: `${cx}%`, cy: `${cy}%` });
+    }, 50);
+    return () => clearInterval(id);
+  }, [isTouch, inView]);
+
+  useEffect(() => {
+    if (isTouch) return;
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
       const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
-        cx: `${cxPercentage}%`,
-        cy: `${cyPercentage}%`,
-      });
+      setMaskPosition({ cx: `${cxPercentage}%`, cy: `${cyPercentage}%` });
     }
-  }, [cursor]);
+  }, [cursor, isTouch]);
 
   return (
     <motion.svg

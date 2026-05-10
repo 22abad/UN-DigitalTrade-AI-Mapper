@@ -14,12 +14,15 @@ export function Hero() {
         />
       </div>
 
+      {/* Shader overlay */}
+      <div className="absolute inset-0 z-10 bg-black/10" />
+
       {/* Overlay content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
         <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
           SENTINEL
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-black/10 max-w-2xl drop-shadow">
+        <p className="mt-6 text-lg md:text-xl text-white max-w-2xl drop-shadow">
           Empowering policymakers with AI-driven insights for informed
           decision-making in digital trade.
         </p>

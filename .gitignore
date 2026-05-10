@@ -20,7 +20,12 @@ venv/
 # Frontend build artefacts
 node_modules/
 rdtii-frontend/dist/
+rdtii-frontend/public/vids
 *.tsbuildinfo
 
 # pytest
 .pytest_cache/
+
+# Draft ./
+PR_REPORT.md
+

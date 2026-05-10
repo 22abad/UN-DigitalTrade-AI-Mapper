@@ -28,8 +28,8 @@ export function AuditPanel({
   setShowRejected,
 }: AuditPanelProps) {
   return (
-    <section className="review-panel" aria-label="Audit view">
-      <div className="panel-header">
+    <section className="review-panel self-start flex flex-col max-h-[calc(100vh-40px)]" aria-label="Audit view">
+      <div className="panel-header shrink-0">
         <div>
           <h2>Audit</h2>
           <p>
@@ -39,23 +39,25 @@ export function AuditPanel({
         </div>
       </div>
 
-      <AuditBody
-        status={status}
-        mappings={mappings}
-        totalMappings={totalMappings}
-        activeKey={activeKey}
-        decisions={decisions}
-        selectMapping={selectMapping}
-        setDecision={setDecision}
-      />
-
-      {rejected.length > 0 && (
-        <RejectedPanel
-          rejected={rejected}
-          open={showRejected}
-          setOpen={setShowRejected}
+      <div className="flex-1 overflow-y-auto min-h-0">
+        <AuditBody
+          status={status}
+          mappings={mappings}
+          totalMappings={totalMappings}
+          activeKey={activeKey}
+          decisions={decisions}
+          selectMapping={selectMapping}
+          setDecision={setDecision}
         />
-      )}
+
+        {rejected.length > 0 && (
+          <RejectedPanel
+            rejected={rejected}
+            open={showRejected}
+            setOpen={setShowRejected}
+          />
+        )}
+      </div>
     </section>
   );
 }

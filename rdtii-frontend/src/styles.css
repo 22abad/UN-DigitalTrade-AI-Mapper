@@ -35,7 +35,7 @@ textarea {
 button {
   min-height: 40px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 0 16px;
   background: #0f766e;
   color: #ffffff;
@@ -152,8 +152,9 @@ h3 {
 .review-panel {
   min-width: 0;
   border: 1px solid #d8e0e5;
-  border-radius: 8px;
+  border-radius: 32px;
   background: #ffffff;
+  overflow: hidden;
 }
 
 .panel-header {
@@ -163,6 +164,13 @@ h3 {
   align-items: flex-start;
   padding: 18px;
   border-bottom: 1px solid #e4eaee;
+}
+
+.panel-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #1f2933;
 }
 
 .panel-header p {
@@ -191,15 +199,27 @@ select,
 textarea {
   width: 100%;
   border: 1px solid #cfd8df;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 10px 11px;
   background: #ffffff;
   color: #1f2933;
+  outline: none;
+  font-weight: normal;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
 }
 
 textarea {
-  min-height: 430px;
-  resize: vertical;
+  min-height: 120px;
+  max-height: calc(100vh - 380px);
+  overflow-y: auto;
+  resize: none;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.92rem;
 }
@@ -227,7 +247,7 @@ textarea {
   max-height: 520px;
   overflow-y: auto;
   border: 1px solid #cfd8df;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 12px 14px;
   background: #fbfcfc;
   color: #1f2933;
@@ -269,7 +289,7 @@ textarea {
 .error {
   margin: 0 18px 18px;
   border: 1px solid #efb0a8;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 10px 12px;
   background: #fff0ee;
   color: #9f2d20;
@@ -280,7 +300,7 @@ textarea {
   margin: 18px;
   padding: 36px 18px;
   border: 1px dashed #cfd8df;
-  border-radius: 6px;
+  border-radius: 12px;
   background: #fbfcfc;
   color: #667085;
   font-size: 0.92rem;
@@ -306,7 +326,7 @@ textarea {
   gap: 10px;
   border: 1px solid #d8e0e5;
   border-left: 4px solid #d8e0e5;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 14px 16px;
   background: #ffffff;
   cursor: pointer;
@@ -351,7 +371,7 @@ textarea {
 
 .indicator-badge {
   border: 1px solid #c7d0d6;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 3px 8px;
   background: #f3f6f7;
   color: #334155;
@@ -513,7 +533,7 @@ textarea {
 .rejected-panel {
   margin: 0 18px 18px;
   border: 1px solid #e4eaee;
-  border-radius: 6px;
+  border-radius: 12px;
   background: #fbfcfc;
   color: #475467;
 }
@@ -544,7 +564,7 @@ textarea {
   gap: 6px;
   padding: 10px;
   border: 1px solid #efb0a8;
-  border-radius: 6px;
+  border-radius: 12px;
   background: #fff7f5;
   color: #7a4d00;
 }
@@ -558,7 +578,7 @@ textarea {
 .rejected-preview {
   margin: 0;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #ffffff;
   color: #334155;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -598,5 +618,29 @@ textarea {
 
   .card-actions button {
     flex: 1;
+  }
+}
+
+@theme inline {
+  @keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+    }
+  }
+  @keyframes slideRightIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0px);
+    }
+  }
+  @keyframes testimonialIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px) scale(1);
+    }
   }
 }

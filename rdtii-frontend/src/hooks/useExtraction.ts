@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { API_URL, REVIEW_API_URL, sampleText } from "../lib/constants";
 import { mappingKey } from "../lib/utils";
 import type {
@@ -19,6 +19,18 @@ export function useExtraction() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [decisions, setDecisions] = useState<Record<string, ReviewDecision>>({});
   const [showRejected, setShowRejected] = useState(false);
+  const [availableProviders, setAvailableProviders] = useState<string[]>([]);
+  const [selectedProvider, setSelectedProvider] = useState("gemini");
+
+  useEffect(() => {
+    fetch(API_URL.replace("/api/extract", "/health"))
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.available_providers) setAvailableProviders(data.available_providers);
+        if (data.active_provider) setSelectedProvider(data.active_provider);
+      })
+      .catch(() => {});
+  }, []);
 
   const mappings = response?.mappings ?? [];
   const rejected = response?.rejected ?? [];
@@ -41,6 +53,7 @@ export function useExtraction() {
       const form = new FormData();
       form.append("text", text);
       if (sourceUrl.trim()) form.append("source_url", sourceUrl.trim());
+      form.append("provider", selectedProvider);
 
       const res = await fetch(API_URL, { method: "POST", body: form });
 
@@ -140,6 +153,8 @@ export function useExtraction() {
     decisions,
     pendingCount,
     showRejected, setShowRejected,
+    availableProviders,
+    selectedProvider, setSelectedProvider,
     extract,
     selectMapping,
     setDecision,

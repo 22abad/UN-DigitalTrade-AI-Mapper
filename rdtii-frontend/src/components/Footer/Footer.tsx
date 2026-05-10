@@ -9,18 +9,17 @@ function HoverFooter() {
     {
       title: "About",
       links: [
-        { label: "Our Solution", href: "/workbench" },
         { label: "About Us", href: "/about" },
-        { label: "Classification Logic", href: "#" },
+        { label: "Classification", href: "/tech_memo" },
         { label: "API Docs", href: "#" },
       ],
     },
     {
-      title: "Account",
+      title: "Product",
       links: [
+        { label: "Our Solution", href: "/workbench" },
         { label: "Sign In", href: "/login" },
         { label: "Register", href: "/register" },
-        { label: "Live Status", href: "#", pulse: true },
       ],
     },
   ];
@@ -43,7 +42,7 @@ function HoverFooter() {
   ];
 
   return (
-    <footer className="relative h-fit rounded-3xl overflow-hidden w-full">
+    <footer className="relative h-fit overflow-hidden w-full bg-white">
       
       {/* separator */}
       <div className="mt-12 h-px w-full bg-[#10B981]/40" />
@@ -76,9 +75,6 @@ function HoverFooter() {
                     <a href={link.href} className="hover:text-ink transition-colors">
                       {link.label}
                     </a>
-                    {link.pulse && (
-                      <span className="absolute top-0 right-[-10px] w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                    )}
                   </li>
                 ))}
               </ul>
@@ -126,7 +122,7 @@ function HoverFooter() {
       </div>
 
       {/* Text hover effect — full width, pushed down so only top edge is visible */}
-      <div className="lg:flex hidden h-[25rem] -mt-82 -mb-28">
+      <div className="flex h-[14rem] lg:h-[25rem] -mt-70 lg:-mt-82 -mb-16 lg:-mb-28">
         <TextHoverEffect text="SENTINEL" className="z-50 w-full" />
       </div>
 
