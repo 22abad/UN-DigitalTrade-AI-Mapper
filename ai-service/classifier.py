@@ -17,7 +17,7 @@ _INDICATOR_PHRASES = {
     "4.1": ["intellectual property", "patent", "copyright", "知识产权", "专利", "著作权"],
     "5.1": ["telecom", "broadband", "frequency", "电信", "宽带"],
     "6.1": [
-        "transfer abroad", "transferred abroad", "transferring abroad", "ban on transfer",
+        "transfer abroad", "transferred abroad", "transferring abroad", "transferring data abroad", "ban on transfer",
         "process locally", "data localization", "data localisation",
         "xử lý tại chỗ", "pemrosesan", "proses", "ห้ามโอนย้ายไปต่างประเทศ",
         "出境", "境外", "境内处理", "禁止传输", "本地处理"
