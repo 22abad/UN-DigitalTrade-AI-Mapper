@@ -20,10 +20,11 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import tempfile
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, Form, HTTPException
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -106,6 +107,129 @@ class TextRequest(BaseModel):
     text: str
 
 
+# ── Shared extraction pipeline (used by /api/extract and /api/upload) ────
+
+
+async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
+    import time as _time
+    _t0 = _time.time()
+
+    chunks = regex_legal_chunker(text)
+
+    chunk_groups: list[tuple] = []
+    for chunk in chunks:
+        indicators: list[tuple[str, dict]] = []
+        for indicator_id in classify_indicator(chunk.text):
+            spec = get_feature_spec(indicator_id)
+            if spec:
+                indicators.append((indicator_id, spec))
+        if indicators:
+            chunk_groups.append((chunk, indicators))
+
+    logger.debug("[TIMING] %d chunks, concurrency=5", len(chunk_groups))
+
+    semaphore = asyncio.Semaphore(5)
+
+    async def _extract_chunk(chunk, indicators):
+        _ct = _time.time()
+        async with semaphore:
+            try:
+                batch = await asyncio.to_thread(
+                    llm_provider.extract_batch, chunk.text, indicators,
+                )
+            except ExtractionError as e:
+                logger.warning("batch failed, falling back per-indicator: %s", e)
+                results: list = []
+                for ind_id, spec in indicators:
+                    try:
+                        data = await asyncio.to_thread(
+                            llm_provider.extract_features, chunk.text, ind_id, spec,
+                        )
+                        results.append((ind_id, spec, data))
+                    except ExtractionError:
+                        results.append((ind_id, spec, None))
+            else:
+                results = []
+                for ind_id, spec in indicators:
+                    data = batch.get(ind_id) if isinstance(batch, dict) else None
+                    results.append((ind_id, spec, data))
+
+            mapped: list[tuple] = []
+            for ind_id, spec, data in results:
+                if data is None:
+                    mapped.append((None, RejectedExtraction(
+                        reason="missing indicator in batch/fallback response",
+                        chunk_preview=chunk.text[:200],
+                    )))
+                    continue
+
+                quote = (data.get("verbatim_quote") or "").strip()
+                if not quote or not verify_quote(quote, chunk.text):
+                    mapped.append((None, RejectedExtraction(
+                        reason="verbatim_quote not found in chunk shown to LLM",
+                        chunk_preview=chunk.text[:200],
+                        raw_output=data,
+                    )))
+                    continue
+
+                local_start, local_end = find_quote_offsets(quote, chunk.text)
+                if local_start < 0 or local_end <= local_start:
+                    mapped.append((None, RejectedExtraction(
+                        reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
+                        chunk_preview=chunk.text[:200],
+                        raw_output=data,
+                    )))
+                    continue
+
+                features = {k: data[k] for k in spec.keys() if k in data}
+                try:
+                    score, justification = score_indicator(ind_id, features)
+                except NotImplementedError:
+                    score, justification = 0.5, "Scoring rules not implemented."
+
+                raw_scope = (data.get("scope") or "").strip().lower()
+                scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
+
+                mapped.append((IndicatorMapping(
+                    pillar=int(ind_id.split(".", 1)[0]),
+                    indicator=ind_id,
+                    score=score,
+                    verbatim_quote=data["verbatim_quote"],
+                    quote_start=chunk.start + local_start,
+                    quote_end=chunk.start + local_end,
+                    source_legislation=data.get("source_legislation", ""),
+                    last_update=data.get("last_update", ""),
+                    source_url=data.get("source_url", ""),
+                    scope=scope_value,
+                    features=features,
+                    impact=justification,
+                    requires_human_review=False,
+                    extraction_provider=llm_provider.name,
+                ), None))
+
+            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
+            return mapped, _time.time() - _ct
+
+    all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
+
+    logger.debug("[TIMING] total=%.1fs", _time.time()-_t0)
+
+    mappings: list[IndicatorMapping] = []
+    rejected: list[RejectedExtraction] = []
+    for chunk_results, _dur in all_results:
+        for mapping, rej in chunk_results:
+            if mapping:
+                mappings.append(mapping)
+            elif rej:
+                rejected.append(rej)
+
+    return ExtractionResponse(
+        mappings=mappings,
+        rejected=rejected,
+        provider=llm_provider.name,
+    )
+
+
 # ── Routes ───────────────────────────────────────────────────────────────
 
 
@@ -185,11 +309,8 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     """Extract RDTII indicator mappings from a block of legal text.
 
     If text is empty but source_url is provided, it crawls the URL first.
-    提取法律文本中的 RDTII 指标映射。如果文本为空但提供了 URL，则先抓取。
     """
     if not text.strip() and source_url.strip():
-        # Task 2: Backend Crawler Linkage | 任务 2：后端爬虫联动
-        # Lazy imports — see top-of-file note.
         from crawler import fetch_legal_content
         from pdf_reader import read_pdf
 
@@ -209,9 +330,6 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
 
-    import time as _time
-    _t0 = _time.time()
-    
     if provider:
         try:
             llm_provider = get_provider(provider)
@@ -221,125 +339,45 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
             raise HTTPException(status_code=503, detail=str(e))
     else:
         llm_provider = _get_provider()
-        
-    chunks = regex_legal_chunker(text)
 
-    # Group indicators by chunk — one LLM call per chunk
-    chunk_groups: list[tuple] = []
-    for chunk in chunks:
-        indicators: list[tuple[str, dict]] = []
-        for indicator_id in classify_indicator(chunk.text):
-            spec = get_feature_spec(indicator_id)
-            if spec:
-                indicators.append((indicator_id, spec))
-        if indicators:
-            chunk_groups.append((chunk, indicators))
+    return await _run_extraction(text, llm_provider)
 
-    logger.debug("[TIMING] %d chunks, concurrency=5", len(chunk_groups))
 
-    semaphore = asyncio.Semaphore(5)
+@app.post("/api/upload", response_model=ExtractionResponse)
+async def upload(file: UploadFile = File(...), provider: str = Form(None)):
+    """Upload a PDF file and extract RDTII indicator mappings from it."""
+    if not file.filename or not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
-    async def _extract_chunk(chunk, indicators):
-        _ct = _time.time()
-        async with semaphore:
-            try:
-                batch = await asyncio.to_thread(
-                    llm_provider.extract_batch, chunk.text, indicators,
-                )
-            except ExtractionError as e:
-                # Batch failed (truncation etc.) — fall back to per-indicator
-                logger.warning("batch failed, falling back per-indicator: %s", e)
-                results: list = []
-                for ind_id, spec in indicators:
-                    try:
-                        data = await asyncio.to_thread(
-                            llm_provider.extract_features, chunk.text, ind_id, spec,
-                        )
-                        results.append((ind_id, spec, data))
-                    except ExtractionError:
-                        results.append((ind_id, spec, None))
-            else:
-                # Convert batch dict → list of (ind_id, spec, data)
-                results = []
-                for ind_id, spec in indicators:
-                    data = batch.get(ind_id) if isinstance(batch, dict) else None
-                    results.append((ind_id, spec, data))
+    from pdf_reader import read_pdf
 
-            # Shared per-indicator processing
-            mapped: list[tuple] = []
-            for ind_id, spec, data in results:
-                if data is None:
-                    mapped.append((None, RejectedExtraction(
-                        reason="missing indicator in batch/fallback response",
-                        chunk_preview=chunk.text[:200],
-                    )))
-                    continue
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+    try:
+        content = await file.read()
+        tmp.write(content)
+        tmp.close()
 
-                quote = (data.get("verbatim_quote") or "").strip()
-                if not quote or not verify_quote(quote, chunk.text):
-                    mapped.append((None, RejectedExtraction(
-                        reason="verbatim_quote not found in chunk shown to LLM",
-                        chunk_preview=chunk.text[:200],
-                        raw_output=data,
-                    )))
-                    continue
+        pages = read_pdf(tmp.name)
+        text = "\n".join(pages)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+    finally:
+        os.unlink(tmp.name)
 
-                local_start, local_end = find_quote_offsets(quote, chunk.text)
-                if local_start < 0 or local_end <= local_start:
-                    mapped.append((None, RejectedExtraction(
-                        reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
-                        chunk_preview=chunk.text[:200],
-                        raw_output=data,
-                    )))
-                    continue
+    if not text.strip():
+        raise HTTPException(status_code=400, detail="No text could be extracted from the PDF.")
 
-                features = {k: data[k] for k in spec.keys() if k in data}
-                try:
-                    score, justification = score_indicator(ind_id, features)
-                except NotImplementedError:
-                    score, justification = 0.5, "Scoring rules not implemented."
+    if provider:
+        try:
+            llm_provider = get_provider(provider)
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+        except ExtractionError as e:
+            raise HTTPException(status_code=503, detail=str(e))
+    else:
+        llm_provider = _get_provider()
 
-                raw_scope = (data.get("scope") or "").strip().lower()
-                scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
-
-                mapped.append((IndicatorMapping(
-                    pillar=int(ind_id.split(".", 1)[0]),
-                    indicator=ind_id,
-                    score=score,
-                    verbatim_quote=data["verbatim_quote"],
-                    quote_start=chunk.start + local_start,
-                    quote_end=chunk.start + local_end,
-                    source_legislation=data.get("source_legislation", ""),
-                    last_update=data.get("last_update", ""),
-                    source_url=data.get("source_url", ""),
-                    scope=scope_value,
-                    features=features,
-                    impact=justification,
-                    requires_human_review=False,
-                    extraction_provider=llm_provider.name,
-                ), None))
-
-            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
-            return mapped, _time.time() - _ct
-
-    all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
-
-    logger.debug("[TIMING] total=%.1fs", _time.time()-_t0)
-
-    mappings: list[IndicatorMapping] = []
-    rejected: list[RejectedExtraction] = []
-    for chunk_results, _dur in all_results:
-        for mapping, rej in chunk_results:
-            if mapping:
-                mappings.append(mapping)
-            elif rej:
-                rejected.append(rej)
-
-    return ExtractionResponse(
-        mappings=mappings,
-        rejected=rejected,
-        provider=llm_provider.name,
-    )
+    return await _run_extraction(text, llm_provider)
 
 
 @app.post("/api/mappings/review")

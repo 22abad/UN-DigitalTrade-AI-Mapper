@@ -69,6 +69,14 @@ _INDICATOR_PHRASES = {
     "12.1": ["online sales", "e-signature", "在线销售", "电子签名"]
 }
 
+def _phrase_in_text(phrase: str, text: str) -> bool:
+    if phrase in text:
+        return True
+    words = phrase.split()
+    if len(words) > 1:
+        return all(w in text for w in words)
+    return False
+
 def classify_indicator(article_text: str) -> list[str]:
     if not article_text or not article_text.strip():
         return []
@@ -78,7 +86,7 @@ def classify_indicator(article_text: str) -> list[str]:
 
     for indicator, phrases in _INDICATOR_PHRASES.items():
         for phrase in phrases:
-            if phrase.lower() in lowered:
+            if _phrase_in_text(phrase.lower(), lowered):
                 matched.add(indicator)
                 break
 
