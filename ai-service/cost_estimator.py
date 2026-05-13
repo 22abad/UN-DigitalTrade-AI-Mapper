@@ -16,9 +16,10 @@ Assumptions for a 50-page legal document:
 
 def estimate_cost(provider_name: str, input_tokens: int, output_tokens: int) -> float:
     # Hardcoded pricing as of May 2026 for robust offline estimation without API keys
+    # Model names match the defaults in providers/gemini.py and providers/claude.py
     prices = {
-        "gemini-1.5-flash": {"in": 0.35, "out": 1.05},
-        "claude-3.5-sonnet": {"in": 3.00, "out": 15.00},
+        "gemini-3-flash-preview": {"in": 0.15, "out": 0.60},
+        "claude-sonnet-4-5-20250929": {"in": 3.00, "out": 15.00},
         "llama-3-8b-local": {"in": 0.00, "out": 0.00},
     }
     
@@ -40,7 +41,7 @@ def run_estimation():
     print(f"Assumed Output Tokens (JSON mappings):       {output_tokens:,}")
     print("-" * 55)
     
-    providers_to_test = ["gemini-1.5-flash", "claude-3.5-sonnet", "llama-3-8b-local"]
+    providers_to_test = ["gemini-3-flash-preview", "claude-sonnet-4-5-20250929", "llama-3-8b-local"]
     
     for provider in providers_to_test:
         cost = estimate_cost(provider, input_tokens, output_tokens)
