@@ -19,8 +19,6 @@ _stealth = Stealth()
 _SSL_CTX = ssl.create_default_context()
 _SSL_CTX.check_hostname = False
 _SSL_CTX.verify_mode = ssl.CERT_NONE
-
-
 async def _apply_stealth(page: Page) -> None:
     if hasattr(_stealth, 'apply_stealth_async'):
         await _stealth.apply_stealth_async(page)
@@ -401,6 +399,7 @@ async def fetch_thai_law_by_keyword(
             "source": "ocs.go.th",
         },
     }
+
 
 
 # ── Wayback Machine 回溯取证 ────────────────────────────────────────
@@ -784,13 +783,18 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                         print(f"[Fallback] {domain} 有 {len(alternatives)} 个替代来源，尝试中...")
                         for alt in alternatives:
                             if alt["type"] == "search_ocs":
+                                # ratchakitcha → OCS 替代：提取 URL 中有意义的搜索词
+                                # URL 格式: /search-result?keyword=xxx 或 /documents/xxx.pdf
                                 parsed_url = urlparse(url)
+                                
+                                # 尝试从 ratchakitcha URL 路径中提取法条关键词
                                 path_parts = [p for p in parsed_url.path.split("/") if p]
                                 if "search" in "".join(path_parts).lower():
                                     search_query = dict(p.split("=") for p in parsed_url.query.split("&") if "=" in p).get("keyword", "")
                                 else:
                                     search_query = ""
 
+                                # 如果 URL 中无法提取有意义的关键词，用文件名部分启发式推断
                                 if not search_query or len(search_query) < 3:
                                     last_part = path_parts[-1] if path_parts else ""
                                     if "pdpa" in last_part.lower():
@@ -808,7 +812,8 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                                     if result["type"] == "text":
                                         return result
                                 else:
-                                    print("[Fallback] 无法自动推断 OCS 搜索关键词。")
+                                    print("[Fallback] ratchakitcha.soc.go.th 被 Cloudflare 阻断，无法自动推断搜索关键词。")
+                                    print("建议: 直接使用 fetch_thai_law_by_keyword('ชื่อกฎหมายภาษาไทย') 从 OCS 获取。")
                             elif alt["type"] == "web":
                                 alt_url = f"https://www.{alt['source']}/"
                                 print(f"[Fallback] 尝试替代网站: {alt_url}")
