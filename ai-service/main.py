@@ -190,6 +190,19 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                 raw_scope = (data.get("scope") or "").strip().lower()
                 scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
+                # ── 三重时间戳核实 ─────────────────────────────────
+                source_url_val = data.get("source_url", "")
+                last_update_val = data.get("last_update", "")
+                ts_verification = {}
+                if source_url_val and last_update_val:
+                    try:
+                        from crawler import verify_law_timeline
+                        ts_verification = await verify_law_timeline(
+                            source_url_val, last_update_val,
+                        )
+                    except Exception:
+                        pass
+
                 mapped.append((IndicatorMapping(
                     pillar=int(ind_id.split(".", 1)[0]),
                     indicator=ind_id,
@@ -198,13 +211,14 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     quote_start=chunk.start + local_start,
                     quote_end=chunk.start + local_end,
                     source_legislation=data.get("source_legislation", ""),
-                    last_update=data.get("last_update", ""),
-                    source_url=data.get("source_url", ""),
+                    last_update=ts_verification.get("best_date") or last_update_val,
+                    source_url=source_url_val,
                     scope=scope_value,
                     features=features,
                     impact=justification,
                     requires_human_review=False,
                     extraction_provider=llm_provider.name,
+                    timestamp_verification=ts_verification,
                 ), None))
 
             logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)

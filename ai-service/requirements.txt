@@ -287,3 +287,4 @@ wheel==0.47.0
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
+aiohttp
