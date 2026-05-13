@@ -812,7 +812,8 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                                     if result["type"] == "text":
                                         return result
                                 else:
-                                    print("[Fallback] ratchakitcha.soc.go.th 被 Cloudflare 阻断，无法自动推断搜索关键词。")
+                                    print("[Fallback] 无法自动推断 OCS 搜索关键词。")
+                                    print("[Fallback] ratchakitcha.soc.go.th 可能被 Cloudflare 阻断或 URL 信息不足。")
                                     print("建议: 直接使用 fetch_thai_law_by_keyword('ชื่อกฎหมายภาษาไทย') 从 OCS 获取。")
                             elif alt["type"] == "web":
                                 alt_url = f"https://www.{alt['source']}/"
