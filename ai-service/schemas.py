@@ -81,6 +81,15 @@ class IndicatorMapping(BaseModel):
         description="LLM identifier (e.g. 'gemini-1.5-flash', 'claude-sonnet-4', 'llama-3-8b-local')",
     )
 
+    # Timestamp verification — triple-source audit of the last_update field
+    timestamp_verification: dict = Field(
+        default_factory=dict,
+        description=(
+            "Results of triple-source timestamp verification: "
+            "{verified: bool, best_date: str, verification_log: str, source_details: list}"
+        ),
+    )
+
 
 class RejectedExtraction(BaseModel):
     """A failed mapping — surfaced for debugging / audit, not shown to user."""
