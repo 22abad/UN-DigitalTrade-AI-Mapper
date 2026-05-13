@@ -322,7 +322,7 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
             text = crawl_result["text"]
         elif crawl_result["type"] == "pdf":
             try:
-                pages = read_pdf(crawl_result["pdf_path"])
+                pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
                 text = "\n".join(pages)
             except Exception as e:
                 raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
@@ -354,15 +354,15 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None)):
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
     try:
         content = await file.read()
-        tmp.write(content)
+        await asyncio.to_thread(tmp.write, content)
         tmp.close()
 
-        pages = read_pdf(tmp.name)
+        pages = await asyncio.to_thread(read_pdf, tmp.name)
         text = "\n".join(pages)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
     finally:
-        os.unlink(tmp.name)
+        await asyncio.to_thread(os.unlink, tmp.name)
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text could be extracted from the PDF.")
