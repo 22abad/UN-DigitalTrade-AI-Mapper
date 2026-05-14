@@ -15,8 +15,6 @@ from .base import ExtractionError, ExtractionUsage, LLMProvider
 # Override via env if you use a different model.
 _INPUT_USD_PER_MTOK = float(os.getenv("GEMINI_INPUT_USD_PER_MTOK", "0.075"))
 _OUTPUT_USD_PER_MTOK = float(os.getenv("GEMINI_OUTPUT_USD_PER_MTOK", "0.30"))
-
-
 class GeminiProvider(LLMProvider):
     name = "gemini"
 
@@ -31,13 +29,7 @@ class GeminiProvider(LLMProvider):
         self.name = self.model_name
         self._model = genai.GenerativeModel(self.model_name)
 
-    def extract_features(
-        self,
-        article_text: str,
-        indicator_id: str,
-        feature_spec: dict[str, dict[str, str]],
-    ) -> dict[str, Any]:
-        prompt = self.build_prompt(article_text, indicator_id, feature_spec)
+    def _call_gemini(self, prompt: str) -> tuple[str, ExtractionUsage]:
         usage = ExtractionUsage()
         t0 = time.perf_counter()
         try:
@@ -53,8 +45,7 @@ class GeminiProvider(LLMProvider):
         finally:
             usage.latency_ms = int((time.perf_counter() - t0) * 1000)
 
-        usage.raw_response = getattr(resp, "text", "") or ""
-        # Gemini exposes usage via resp.usage_metadata when available
+        raw_text = getattr(resp, "text", "") or ""
         meta = getattr(resp, "usage_metadata", None)
         if meta is not None:
             usage.input_tokens = getattr(meta, "prompt_token_count", 0) or 0
@@ -62,10 +53,41 @@ class GeminiProvider(LLMProvider):
             usage.cost_usd = self.estimate_cost_usd(
                 usage.input_tokens, usage.output_tokens
             )
-
+        usage.raw_response = raw_text
         self.last_usage = usage
+        return raw_text, usage
 
-        return self.parse_json_response(usage.raw_response)
+    def extract_features(
+        self,
+        article_text: str,
+        indicator_id: str,
+        feature_spec: dict[str, dict[str, str]],
+    ) -> dict[str, Any]:
+        prompt = self.build_prompt(article_text, indicator_id, feature_spec)
+        raw_text, usage = self._call_gemini(prompt)
+        return self.parse_json_response(raw_text)
+
+    def extract_batch(
+        self,
+        chunk_text: str,
+        indicators: list[tuple[str, dict[str, dict[str, str]]]],
+    ) -> dict[str, dict[str, Any]]:
+        import concurrent.futures
+        batch: dict[str, dict[str, Any]] = {}
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+            fut = {
+                pool.submit(self.extract_features, chunk_text, ind_id, spec): ind_id
+                for ind_id, spec in indicators
+            }
+            for f in concurrent.futures.as_completed(fut):
+                ind_id = fut[f]
+                try:
+                    data = f.result()
+                    if isinstance(data, dict):
+                        batch[ind_id] = data
+                except ExtractionError:
+                    pass
+        return batch
 
     def estimate_cost_usd(self, input_tokens: int, output_tokens: int) -> float:
         return (
