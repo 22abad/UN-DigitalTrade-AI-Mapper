@@ -123,16 +123,6 @@ numpy==1.26.4
     #   scipy
     #   sentence-transformers
     #   transformers
-nvidia-cublas-cu11==11.10.3.66
-    # via
-    #   nvidia-cudnn-cu11
-    #   torch
-nvidia-cuda-nvrtc-cu11==11.7.99
-    # via torch
-nvidia-cuda-runtime-cu11==11.7.99
-    # via torch
-nvidia-cudnn-cu11==8.5.0.96
-    # via torch
 openai==2.33.0
     # via -r requirements.in
 opencv-python-headless==4.9.0.80
@@ -238,7 +228,7 @@ threadpoolctl==3.6.0
     # via scikit-learn
 tokenizers==0.22.2
     # via transformers
-torch==1.13.1
+torch>=2.0.0
     # via sentence-transformers
 tqdm==4.67.3
     # via
