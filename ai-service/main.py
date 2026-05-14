@@ -322,9 +322,11 @@ def embed(req: TextRequest):
 async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
     """Extract RDTII indicator mappings from a block of legal text.
 
-    If text is empty but source_url is provided, it crawls the URL first.
+    Priority:
+      1. If source_url is provided → crawl URL (web page / PDF / Word doc).
+      2. If only text is provided → score text directly.
     """
-    if not text.strip() and source_url.strip():
+    if source_url.strip():
         from crawler import fetch_legal_content
         from pdf_reader import read_pdf
 
@@ -340,6 +342,8 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                 text = "\n".join(pages)
             except Exception as e:
                 raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+        elif crawl_result["type"] == "docx":
+            text = crawl_result["text"]
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")

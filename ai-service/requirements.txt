@@ -194,6 +194,8 @@ pymupdfb==1.24.1
     # via pymupdf
 pyparsing==3.3.2
     # via httplib2
+python-docx==1.1.2
+    # via -r requirements.in
 pytesseract==0.3.13
     # via -r requirements.in
 python-dotenv==1.2.2

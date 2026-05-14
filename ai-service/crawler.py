@@ -7,13 +7,17 @@ import urllib.request
 from playwright.async_api import async_playwright, Page, BrowserContext
 from typing import Dict, Optional, Any
 from urllib.parse import urljoin, urlparse, quote
-from playwright_stealth import Stealth
 from collections import deque
 
 # ── playwright-stealth 跨版本兼容 ──────────────────────────────────
 # 1.x API:  from playwright_stealth import stealth_async; await stealth_async(page)
 # 2.x API:  from playwright_stealth import Stealth; await Stealth().apply_stealth_async(page)
-_stealth = Stealth()
+try:
+    from playwright_stealth import Stealth
+    _stealth = Stealth()
+except ImportError:
+    from playwright_stealth import stealth_async
+    _stealth = type("_StealthCompat", (), {"stealth_async": staticmethod(stealth_async)})()
 
 # macOS 常有自签名证书问题，统一 SSL context
 _SSL_CTX = ssl.create_default_context()
@@ -84,35 +88,46 @@ async def _wait_for_page_load(page: Page, timeout: int) -> None:
     except Exception:
         pass
 
-async def _download_pdf(page: Page, pdf_url: str, filename: Optional[str] = None) -> Optional[str]:
+async def _download_file(page: Page, file_url: str, filename: Optional[str] = None) -> Optional[str]:
     """
-    下载 PDF 文件。
+    下载文件（PDF / Word / 任意类型）到本地。
     """
     try:
-        parsed_url = urlparse(pdf_url)
+        parsed_url = urlparse(file_url)
+        ext = os.path.splitext(parsed_url.path)[1] or ".bin"
         if not filename:
-            filename = os.path.basename(parsed_url.path) or f"downloaded_pdf_{asyncio.current_task().get_name()}.pdf"
+            filename = os.path.basename(parsed_url.path) or f"downloaded_{asyncio.current_task().get_name()}{ext}"
         local_path = os.path.join(DOWNLOADS_DIR, filename)
         
-        # Add headers to mimic browser request | 添加请求头以模拟浏览器
-        # Use the domain as referer for better compatibility | 使用域名作为 referer 以提高兼容性
         domain = f"{parsed_url.scheme}://{parsed_url.netloc}/"
         headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
             "Referer": domain,
-            "Accept": "application/pdf,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+            "Accept": "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.9",
         }
         
-        response = await page.request.get(pdf_url, headers=headers, timeout=30000)
+        response = await page.request.get(file_url, headers=headers, timeout=30000)
         if response.ok:
             with open(local_path, "wb") as f:
                 f.write(await response.body())
-            print(f"PDF 已下载到: {local_path}")
+            print(f"文件已下载到: {local_path}")
             return local_path
         return None
     except Exception as e:
-        print(f"下载 PDF 时发生错误 {pdf_url}: {e}")
+        print(f"下载文件时发生错误 {file_url}: {e}")
+        return None
+
+
+async def _read_docx(path: str) -> Optional[str]:
+    """用 python-docx 提取 .docx 文本。"""
+    try:
+        from docx import Document
+        doc = Document(path)
+        text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
+        return text if text.strip() else None
+    except Exception as e:
+        print(f"读取 docx 失败 {path}: {e}")
         return None
 
 async def _extract_html_content(page: Page) -> str:
@@ -705,12 +720,25 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                 await _apply_stealth(page)
                 page.set_default_timeout(timeout)
                 
-                # Task: Check if direct PDF URL to avoid ERR_ABORTED | 任务：检查是否为直接 PDF URL，避免导航中断
-                if url.lower().split('?')[0].endswith(".pdf"):
+                # Task: Check if direct PDF / Word URL to avoid ERR_ABORTED
+                path_lower = url.lower().split('?')[0]
+                if path_lower.endswith(".pdf"):
                     print(f"检测到直接 PDF URL: {url}")
-                    pdf_path = await _download_pdf(page, url)
+                    pdf_path = await _download_file(page, url)
                     if pdf_path:
                         return {"type": "pdf", "url": url, "pdf_path": pdf_path}
+
+                if path_lower.endswith(".docx") or path_lower.endswith(".doc"):
+                    print(f"检测到 Word 文档: {url}")
+                    doc_path = await _download_file(page, url)
+                    if doc_path:
+                        if doc_path.endswith(".docx"):
+                            doc_text = await _read_docx(doc_path)
+                        else:
+                            doc_text = None
+                        if doc_text:
+                            return {"type": "docx", "url": url, "text": doc_text}
+                        return {"type": "error", "message": f"Word 文档解析失败: {url}"}
 
                 print(f"正在访问: {url}")
                 try:
@@ -721,7 +749,7 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                     error_str = str(e).lower()
                     if "err_aborted" in error_str or "navigation was aborted" in error_str or "timeout" in error_str:
                         print(f"尝试中断/超时修复，直接尝试下载: {url}")
-                        pdf_path = await _download_pdf(page, url)
+                        pdf_path = await _download_file(page, url)
                         if pdf_path:
                             return {"type": "pdf", "url": url, "pdf_path": pdf_path}
                     raise e
@@ -737,7 +765,7 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                     except: pass
 
                 if is_pdf:
-                    pdf_path = await _download_pdf(page, page.url)
+                    pdf_path = await _download_file(page, page.url)
                     if pdf_path:
                         return {"type": "pdf", "url": url, "pdf_path": pdf_path}
                 
@@ -749,7 +777,7 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                 
                 if valid_pdf_links:
                     pdf_url = urljoin(page.url, valid_pdf_links[0])
-                    pdf_path = await _download_pdf(page, pdf_url)
+                    pdf_path = await _download_file(page, pdf_url)
                     if pdf_path:
                         return {"type": "pdf", "url": url, "pdf_path": pdf_path}
 
@@ -878,7 +906,7 @@ async def crawl_for_pdpa_pdf(start_url: str, keyword: str = "Personal Data Prote
                     title = await page.title()
                     print(f"[重新检查标题] {title}")
                 if page.url.lower().endswith('.pdf') and keyword.lower() in page.url.lower():
-                    pdf_path = await _download_pdf(page, page.url)
+                    pdf_path = await _download_file(page, page.url)
                     if pdf_path: return pdf_path
                 
                 # 2. 查找页面内所有链接
@@ -894,7 +922,7 @@ async def crawl_for_pdpa_pdf(start_url: str, keyword: str = "Personal Data Prote
                     # 如果是 PDF 且包含关键词
                     if href.lower().endswith('.pdf') and (keyword.lower() in href.lower() or keyword.lower() in text.lower()):
                         print(f"[命中] 发现 PDF: {href}")
-                        pdf_path = await _download_pdf(page, href)
+                        pdf_path = await _download_file(page, href)
                         if pdf_path: return pdf_path
                     
                     # 如果是同站链接，加入队列
