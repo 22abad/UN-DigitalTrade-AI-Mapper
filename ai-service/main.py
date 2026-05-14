@@ -324,15 +324,28 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
 
     Priority:
       1. If source_url is provided → crawl URL (web page / PDF / Word doc).
-      2. If only text is provided → score text directly.
+      2. If text looks like a Thai law search query (short Thai text) → search OCS.
+      3. If only text is provided → score text directly.
     """
-    if source_url.strip():
-        from crawler import fetch_legal_content
-        from pdf_reader import read_pdf
+    from crawler import fetch_legal_content, fetch_thai_law_by_keyword
+    from pdf_reader import read_pdf
 
+    original_text = text
+    if source_url.strip():
         crawl_result = await fetch_legal_content(source_url)
         if crawl_result["type"] == "error":
-            raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
+            # URL crawl failed — if user also provided Thai search text, try OCS
+            import re
+            thai_chars = sum(1 for c in original_text if '\u0E00' <= c <= '\u0E7F')
+            if thai_chars > 0 and len(original_text) < 200:
+                print(f"[extract] URL 爬取失败，尝试用泰语搜索词 OCS: {original_text[:60]}")
+                ocs_result = await fetch_thai_law_by_keyword(original_text.strip())
+                if ocs_result["type"] == "text":
+                    text = ocs_result["text"]
+                else:
+                    raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
+            else:
+                raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
 
         if crawl_result["type"] == "text":
             text = crawl_result["text"]
@@ -344,6 +357,18 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                 raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
         elif crawl_result["type"] == "docx":
             text = crawl_result["text"]
+
+    # If text is short and contains Thai characters, treat as OCS search query
+    if not source_url.strip() and text.strip():
+        import re
+        thai_chars = sum(1 for c in text if '\u0E00' <= c <= '\u0E7F')
+        if thai_chars > 0 and len(text) < 200:
+            print(f"[extract] 检测到泰语搜索词，尝试 OCS 搜索: {text[:60]}")
+            ocs_result = await fetch_thai_law_by_keyword(text.strip())
+            if ocs_result["type"] == "text":
+                text = ocs_result["text"]
+            else:
+                print(f"[extract] OCS 搜索未返回结果: {ocs_result.get('message', '')}")
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
