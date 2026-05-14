@@ -517,18 +517,24 @@ async def fetch_wayback_content(url: str, timeout: int = 30000) -> Dict[str, Any
         text = html_mod.unescape(text)
         text = re.sub(r'\s+', ' ', text).strip()
         if len(text) > 200:
-            print(f"[Wayback] HTTP 获取成功: {len(text)} 字符 (归档于 {snapshot['timestamp']})")
-            return {
-                "type": "text",
-                "url": archive_url,
-                "original_url": url,
-                "text": text,
-                "metadata": {
-                    "source": "wayback_machine",
-                    "archive_timestamp": snapshot["timestamp"],
-                    "archive_url": archive_url,
-                },
-            }
+            # Detect garbage (Wayback wrapper JS, block pages)
+            garbage_signals = ["window.addEventListener", "archive_analytics",
+                               "webpackJsonp", "performing security"]
+            if any(s in text[:500].lower() for s in garbage_signals):
+                print(f"[Wayback] HTTP 获取成功但内容为 Wayback 包装页面 ({len(text)} 字符)")
+            else:
+                print(f"[Wayback] HTTP 获取成功: {len(text)} 字符 (归档于 {snapshot['timestamp']})")
+                return {
+                    "type": "text",
+                    "url": archive_url,
+                    "original_url": url,
+                    "text": text,
+                    "metadata": {
+                        "source": "wayback_machine",
+                        "archive_timestamp": snapshot["timestamp"],
+                        "archive_url": archive_url,
+                    },
+                }
     except Exception as e:
         print(f"[Wayback] HTTP 获取失败: {e}")
 
