@@ -108,7 +108,7 @@ const AIChatInput = () => {
       >
         <div className="flex flex-col items-stretch w-full h-full">
           {/* Input Row */}
-          <div className="flex items-center gap-2 p-3 rounded-full bg-white max-w-3xl w-full">
+          <div className="flex items-center gap-2 p-3 w-full">
             <button className="p-3 rounded-full hover:bg-gray-100 transition" title="Attach file" type="button" tabIndex={-1}>
               <Paperclip size={20} />
             </button>

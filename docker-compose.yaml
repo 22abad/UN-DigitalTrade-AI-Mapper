@@ -26,6 +26,23 @@ services:
     volumes:
       - redis-data:/data
 
+  extract-sidecar:
+    build:
+      context: ./extract_sidecar
+      dockerfile: Dockerfile
+    container_name: rdtii-extract-sidecar
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    environment:
+      SIDECAR_ADDR: 0.0.0.0:4000
+      DATABASE_URL: postgres://rdtii_user:rdtii_password@postgres:5432/rdtii
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
   ai-service:
     build:
       context: ./ai-service
@@ -39,6 +56,12 @@ services:
       - .env
     environment:
       CORS_ALLOW_ORIGINS: http://localhost:5173,http://localhost:3000
+      EXTRACT_SIDECAR_URL: http://extract-sidecar:4000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      extract-sidecar:
+        condition: service_started
     restart: on-failure
 
   frontend:
