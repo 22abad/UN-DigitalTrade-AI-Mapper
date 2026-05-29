@@ -6,6 +6,4 @@ export const REVIEW_API_URL =
 
 export const QUOTE_TRUNCATE = 280;
 
-export const sampleText = `Article 22. Personal information processors may provide personal information outside the territory only where the conditions prescribed by law are satisfied.
-
-Article 23. Where personal information is provided outside the territory, individuals shall be informed of the overseas recipient, processing purpose, method, and rights procedures.`;
+export const sampleText = "";

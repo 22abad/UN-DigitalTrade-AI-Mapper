@@ -22,9 +22,13 @@ import logging
 import os
 from pathlib import Path
 
+import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, Form, HTTPException
+import tempfile
+
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
@@ -66,6 +70,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.exception_handler(Exception)
+async def _unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    logger.exception("Unhandled error on %s %s", request.method, request.url.path)
+    return JSONResponse(status_code=500, content={"detail": "Internal server error"})
 
 # Lazy embedding model — loaded on first /embed call so the app can boot
 # without downloading 100MB+ of weights and to keep test imports fast.
@@ -180,38 +189,68 @@ def embed(req: TextRequest):
     return {"vector": vector[0].tolist()}
 
 
-@app.post("/api/extract", response_model=ExtractionResponse)
-async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
-    """Extract RDTII indicator mappings from a block of legal text.
+_INGEST_OCR_EXTS  = {"pdf", "jpg", "jpeg", "png"}
+_INGEST_TEXT_EXTS = {"txt", "md"}
 
-    If text is empty but source_url is provided, it crawls the URL first.
-    提取法律文本中的 RDTII 指标映射。如果文本为空但提供了 URL，则先抓取。
+# ── Sidecar client ────────────────────────────────────────────────────────────
+# When EXTRACT_SIDECAR_URL is set, file extraction is delegated to the Rust
+# sidecar (POST /extract-text) which handles OCR + DB caching.
+# Falls back to the local Python pdf_reader when the env var is absent.
+
+_SIDECAR_URL = os.getenv("EXTRACT_SIDECAR_URL", "").rstrip("/")
+_SIDECAR_KEY = os.getenv("SIDECAR_API_KEY", "")
+
+
+async def _extract_via_sidecar(
+    data: bytes,
+    filename: str,
+    expires_in_days: int | None = None,
+) -> tuple[str, str]:
+    """Call the Rust extract-sidecar and return (text, doc_id).
+
+    Raises HTTPException on any failure so callers don't need to handle it.
     """
-    if not text.strip() and source_url.strip():
-        # Task 2: Backend Crawler Linkage | 任务 2：后端爬虫联动
-        # Lazy imports — see top-of-file note.
-        from crawler import fetch_legal_content
-        from pdf_reader import read_pdf
+    fields: dict = {"file": (filename, data)}
+    if expires_in_days is not None:
+        fields["expires_in_days"] = str(expires_in_days)
 
-        crawl_result = await fetch_legal_content(source_url)
-        if crawl_result["type"] == "error":
-            raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
+    timeout = httpx.Timeout(connect=10.0, read=120.0, write=120.0, pool=10.0)
+    try:
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            resp = await client.post(
+                f"{_SIDECAR_URL}/extract-text",
+                headers={"Authorization": f"Bearer {_SIDECAR_KEY}"},
+                files=fields,
+            )
+    except httpx.ReadTimeout:
+        raise HTTPException(status_code=504, detail="Extraction timed out — document may be too large.")
+    except httpx.ConnectError:
+        raise HTTPException(status_code=502, detail="Could not reach extract-sidecar.")
 
-        if crawl_result["type"] == "text":
-            text = crawl_result["text"]
-        elif crawl_result["type"] == "pdf":
-            try:
-                pages = read_pdf(crawl_result["pdf_path"])
-                text = "\n".join(pages)
-            except Exception as e:
-                raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+    if resp.status_code != 200:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Sidecar error {resp.status_code}: {resp.text[:200]}",
+        )
 
-    if not text.strip():
-        raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
+    body = resp.json()
+    return body["text"], body["doc_id"]
 
+
+def _detect_ingest_format(filename: str) -> str:
+    ext = Path(filename).suffix.lstrip(".").lower()
+    if ext in _INGEST_OCR_EXTS:
+        return "ocr"
+    if ext in _INGEST_TEXT_EXTS:
+        return "text"
+    return "unsupported"
+
+
+async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse:
+    """Core extraction pipeline — shared by /api/extract and /api/ingest/document."""
     import time as _time
     _t0 = _time.time()
-    
+
     if provider:
         try:
             llm_provider = get_provider(provider)
@@ -221,10 +260,9 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
             raise HTTPException(status_code=503, detail=str(e))
     else:
         llm_provider = _get_provider()
-        
+
     chunks = regex_legal_chunker(text)
 
-    # Group indicators by chunk — one LLM call per chunk
     chunk_groups: list[tuple] = []
     for chunk in chunks:
         indicators: list[tuple[str, dict]] = []
@@ -247,7 +285,6 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                     llm_provider.extract_batch, chunk.text, indicators,
                 )
             except ExtractionError as e:
-                # Batch failed (truncation etc.) — fall back to per-indicator
                 logger.warning("batch failed, falling back per-indicator: %s", e)
                 results: list = []
                 for ind_id, spec in indicators:
@@ -259,13 +296,11 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                     except ExtractionError:
                         results.append((ind_id, spec, None))
             else:
-                # Convert batch dict → list of (ind_id, spec, data)
                 results = []
                 for ind_id, spec in indicators:
                     data = batch.get(ind_id) if isinstance(batch, dict) else None
                     results.append((ind_id, spec, data))
 
-            # Shared per-indicator processing
             mapped: list[tuple] = []
             for ind_id, spec, data in results:
                 if data is None:
@@ -319,12 +354,12 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                     extraction_provider=llm_provider.name,
                 ), None))
 
-            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
+            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i, _ in indicators), _time.time() - _ct)
             return mapped, _time.time() - _ct
 
     all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
 
-    logger.debug("[TIMING] total=%.1fs", _time.time()-_t0)
+    logger.debug("[TIMING] total=%.1fs", _time.time() - _t0)
 
     mappings: list[IndicatorMapping] = []
     rejected: list[RejectedExtraction] = []
@@ -340,6 +375,102 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
         rejected=rejected,
         provider=llm_provider.name,
     )
+
+
+@app.post("/api/extract", response_model=ExtractionResponse)
+async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
+    """Extract RDTII indicator mappings from a block of legal text.
+
+    If text is empty but source_url is provided, it crawls the URL first.
+    提取法律文本中的 RDTII 指标映射。如果文本为空但提供了 URL，则先抓取。
+    """
+    if not text.strip() and source_url.strip():
+        from crawler import fetch_legal_content
+
+        crawl_result = await fetch_legal_content(source_url)
+        if crawl_result["type"] == "error":
+            raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result['message']}")
+
+        if crawl_result["type"] == "text":
+            text = crawl_result["text"]
+        elif crawl_result["type"] == "pdf":
+            pdf_path = crawl_result["pdf_path"]
+            try:
+                import fitz as _fitz
+                _doc = _fitz.open(pdf_path)
+                _page_count = len(_doc)
+                _native_text = "\n".join(
+                    _doc[i].get_text("text") for i in range(_page_count)
+                ).strip()
+                _doc.close()
+
+                if _native_text:
+                    text = _native_text
+                else:
+                    from pdf_reader import read_pdf
+                    try:
+                        pages = await asyncio.to_thread(read_pdf, pdf_path)
+                        text = "\n".join(pages)
+                    except Exception as e:
+                        raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+            finally:
+                Path(pdf_path).unlink(missing_ok=True)
+
+    if not text.strip():
+        raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
+
+    return await _run_extraction(text, provider)
+
+
+@app.post("/api/ingest/document", response_model=ExtractionResponse)
+async def ingest_document(
+    file: UploadFile = File(...),
+    provider: str = Form(None),
+):
+    """Extract RDTII mappings from an uploaded file.
+
+    Accepted formats: pdf, jpg, jpeg, png (OCR path) — txt, md (plain text).
+    PDF type is auto-detected: native text layer uses PyMuPDF; scanned pages
+    fall back to Tesseract → OpenAI Vision.
+    """
+    filename = file.filename or "upload"
+    fmt = _detect_ingest_format(filename)
+
+    if fmt == "unsupported":
+        ext = Path(filename).suffix or "(none)"
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type '{ext}'. Accepted: pdf, jpg, jpeg, png, txt, md.",
+        )
+
+    data = await file.read()
+
+    if _SIDECAR_URL:
+        text, _ = await _extract_via_sidecar(data, filename)
+    elif fmt == "ocr":
+        suffix = Path(filename).suffix or ".bin"
+        tmp_fd, tmp_path = tempfile.mkstemp(suffix=suffix, prefix="sentinel_ingest_")
+        try:
+            import os as _os
+            with _os.fdopen(tmp_fd, "wb") as fh:
+                fh.write(data)
+            from pdf_reader import read_pdf
+            try:
+                text = "\n".join(read_pdf(tmp_path))
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"File extraction failed: {str(e)}")
+        finally:
+            Path(tmp_path).unlink(missing_ok=True)
+    else:
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError:
+            text = data.decode("latin-1")
+
+    if not text.strip():
+        raise HTTPException(status_code=422, detail="File produced no extractable text.")
+
+    return await _run_extraction(text, provider)
 
 
 @app.post("/api/mappings/review")

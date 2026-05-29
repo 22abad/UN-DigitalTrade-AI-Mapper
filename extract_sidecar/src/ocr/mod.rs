@@ -3,6 +3,8 @@ pub mod tesseract;
 
 use anyhow::Result;
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
+use tokio::sync::Semaphore;
 
 /// Which OCR engine to use — controlled by `OCR_MODE` env var.
 /// "tesseract" | "openai" | "auto" (default: auto)
@@ -27,11 +29,20 @@ impl OcrMode {
     }
 }
 
+/// Max concurrent tesseract/vision processes — controlled by `OCR_CONCURRENCY` env var.
+/// Defaults to 4 to avoid OOM on large PDFs.
+fn ocr_concurrency() -> usize {
+    std::env::var("OCR_CONCURRENCY")
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(4)
+}
+
 /// Extract text from a PDF or image file.
 /// Returns (full_text, provider_name).
 ///
-/// PDFs are rasterised with pdftoppm (poppler) at 300 DPI before OCR.
-/// All pages run concurrently; results are joined with \n\n.
+/// PDFs are rasterised with pdftoppm (poppler) at 150 DPI before OCR.
+/// Pages are processed with bounded concurrency (OCR_CONCURRENCY, default 4).
 pub async fn extract_text_with_provider(file_path: &Path) -> Result<(String, &'static str)> {
     let mode = OcrMode::from_env();
 
@@ -41,33 +52,27 @@ pub async fn extract_text_with_provider(file_path: &Path) -> Result<(String, &'s
         vec![file_path.to_path_buf()]
     };
 
+    let sem = Arc::new(Semaphore::new(ocr_concurrency()));
+
     let handles: Vec<_> = image_paths
         .into_iter()
         .enumerate()
         .map(|(i, img)| {
+            let sem = sem.clone();
             tokio::spawn(async move {
+                let _permit = sem.acquire().await.expect("semaphore closed");
                 tracing::debug!("OCR page {} ({:?})", i + 1, mode);
-                let result: Result<(String, &'static str)> = match mode {
-                    OcrMode::Tesseract => {
-                        let t = tesseract::ocr(&img).await?;
-                        Ok((t, "tesseract"))
-                    }
-                    OcrMode::OpenAI => {
-                        let t = openai_vision::ocr(&img).await?;
-                        Ok((t, "openai_vision"))
-                    }
-                    OcrMode::Auto => {
-                        match tesseract::ocr(&img).await {
-                            Ok(t) if t.trim().len() > 50 => Ok((t, "tesseract")),
-                            Ok(_) | Err(_) => {
-                                tracing::debug!("Tesseract insufficient, falling back to OpenAI Vision");
-                                let t = openai_vision::ocr(&img).await?;
-                                Ok((t, "openai_vision"))
-                            }
+                match mode {
+                    OcrMode::Tesseract => tesseract::ocr(&img).await.map(|t| (t, "tesseract")),
+                    OcrMode::OpenAI   => openai_vision::ocr(&img).await.map(|t| (t, "openai_vision")),
+                    OcrMode::Auto     => match tesseract::ocr(&img).await {
+                        Ok(t) if t.trim().len() > 50 => Ok((t, "tesseract")),
+                        Ok(_) | Err(_) => {
+                            tracing::debug!("Tesseract insufficient, falling back to OpenAI Vision");
+                            openai_vision::ocr(&img).await.map(|t| (t, "openai_vision"))
                         }
-                    }
-                };
-                result
+                    },
+                }
             })
         })
         .collect();
@@ -89,7 +94,7 @@ fn is_pdf(path: &Path) -> bool {
     path.extension().and_then(|e| e.to_str()) == Some("pdf")
 }
 
-/// Rasterise every PDF page to PNG at 300 DPI using pdftoppm (poppler-utils).
+/// Rasterise every PDF page to PNG at 150 DPI using pdftoppm (poppler-utils).
 async fn pdf_to_images(pdf_path: &Path) -> Result<Vec<PathBuf>> {
     let tmp_dir = std::env::temp_dir()
         .join(format!("sidecar_ocr_{}", uuid::Uuid::new_v4()));
@@ -97,7 +102,7 @@ async fn pdf_to_images(pdf_path: &Path) -> Result<Vec<PathBuf>> {
 
     let prefix = tmp_dir.join("page");
     let output = tokio::process::Command::new("pdftoppm")
-        .args(["-png", "-r", "300"])
+        .args(["-png", "-r", "150"])
         .arg(pdf_path)
         .arg(&prefix)
         .output()

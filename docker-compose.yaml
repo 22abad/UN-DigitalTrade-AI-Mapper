@@ -38,6 +38,7 @@ services:
     environment:
       SIDECAR_ADDR: 0.0.0.0:4000
       DATABASE_URL: postgres://rdtii_user:rdtii_password@postgres:5432/rdtii
+      RUST_LOG: debug
     depends_on:
       postgres:
         condition: service_healthy

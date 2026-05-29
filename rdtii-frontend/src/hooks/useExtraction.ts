@@ -23,7 +23,7 @@ export function useExtraction() {
   const [selectedProvider, setSelectedProvider] = useState("gemini");
 
   useEffect(() => {
-    fetch(API_URL.replace("/api/extract", "/health"))
+    fetch(new URL("/health", API_URL).toString())
       .then((res) => res.json())
       .then((data) => {
         if (data.available_providers) setAvailableProviders(data.available_providers);

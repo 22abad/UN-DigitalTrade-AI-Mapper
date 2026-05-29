@@ -4,12 +4,15 @@ dev:
 	@echo "Starting backend, sidecar, and frontend..."
 	@trap 'kill 0' EXIT; \
 		python3 -m uvicorn main:app --reload --port 8000 --app-dir ai-service & \
-		cd extract_sidecar && cargo run --release & \
-		cd rdtii-frontend && npx vite --host 0.0.0.0 & \
+		(cd extract_sidecar && cargo run) & \
+		(cd rdtii-frontend && npx vite --host 0.0.0.0 --force) & \
 		wait
 
 dev-backend:
 	python3 -m uvicorn main:app --reload --port 8000 --app-dir ai-service
+
+dev-frontend:
+	cd rdtii-frontend && npx vite --host 0.0.0.0 --force
 
 dev-sidecar:
 	cd extract_sidecar && cargo run
@@ -31,4 +34,9 @@ test:
 	cd ai-service && python -m pytest
 
 db:
-	docker compose up postgres redis
+	docker compose up -d postgres redis
+
+restart:
+	docker compose down
+	docker compose up -d postgres redis
+	docker compose up -d
