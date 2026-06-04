@@ -105,7 +105,7 @@ export function AboutPage() {
       <div className="flex gap-6 max-w-6xl mx-auto items-stretch px-4 md:px-0">
 
         {/* Quick nav — sticky left sidebar */}
-        <nav className="hidden md:flex flex-col gap-3 sticky top-24 w-44 shrink-0 text-sm">
+        <nav className="hidden md:flex flex-col gap-3 sticky top-24 w-44 shrink-0 self-start text-sm">
           <p className="text-xs font-semibold uppercase tracking-widest opacity-40 mb-2 mt-10">On this page</p>
           {[
             { href: "#mission", label: "Mission" },

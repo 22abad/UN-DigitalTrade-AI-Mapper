@@ -18,7 +18,7 @@ const bricks = [
 
 export function Description() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white py-48 px-6 border-b border-[#e4eaee]">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

@@ -19,10 +19,17 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
 }
 
 body {
   margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 button,
@@ -35,7 +42,7 @@ textarea {
 button {
   min-height: 40px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 999px;
   padding: 0 16px;
   background: #0f766e;
   color: #ffffff;

@@ -29,6 +29,7 @@ export type ExtractionResponse = {
   mappings: IndicatorMapping[];
   rejected: RejectedExtraction[];
   provider: string;
+  source_text?: string;
 };
 
 export type ReviewDecision = "pending" | "approved" | "rejected";
