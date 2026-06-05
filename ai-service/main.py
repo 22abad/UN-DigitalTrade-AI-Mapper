@@ -20,16 +20,28 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import re as _re
 from pathlib import Path
+from urllib.parse import urlparse
 
 import httpx
 from dotenv import load_dotenv
 import tempfile
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile, Depends
+from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+import json as _json
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(levelname)-8s  %(message)s",
+    datefmt="%H:%M:%S",
+)
+# Silence noisy third-party SDK loggers
+for _noisy in ("google", "httpx", "httpcore", "urllib3", "grpc"):
+    logging.getLogger(_noisy).setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
@@ -52,8 +64,18 @@ from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
     IndicatorMapping,
+    RAGQueryRequest,
+    RAGQueryResponse,
     RejectedExtraction,
     ReviewRequest,
+)
+from auth import (
+    TokenResponse, RegisterRequest, LoginRequest, ForgotPasswordRequest, ResetPasswordRequest,
+    get_current_user,
+    register as _auth_register,
+    login as _auth_login,
+    forgot_password as _auth_forgot_password,
+    reset_password as _auth_reset_password,
 )
 from scoring import score_indicator
 from verification import find_quote_offsets, verify_quote
@@ -180,6 +202,26 @@ def providers_info():
     }
 
 
+@app.post("/auth/register", response_model=TokenResponse)
+async def auth_register(req: RegisterRequest):
+    return await _auth_register(req)
+
+
+@app.post("/auth/login", response_model=TokenResponse)
+async def auth_login(req: LoginRequest):
+    return await _auth_login(req)
+
+
+@app.post("/auth/forgot-password")
+async def auth_forgot_password(req: ForgotPasswordRequest):
+    return await _auth_forgot_password(req)
+
+
+@app.post("/auth/reset-password")
+async def auth_reset_password(req: ResetPasswordRequest):
+    return await _auth_reset_password(req)
+
+
 @app.post("/embed")
 def embed(req: TextRequest):
     from sklearn.preprocessing import normalize
@@ -187,6 +229,94 @@ def embed(req: TextRequest):
     vector = _get_embed_model().encode([req.text])
     vector = normalize(vector)
     return {"vector": vector[0].tolist()}
+
+
+def _retrieve_chunks(question: str, country_code: str = "", k: int = 5) -> list[str]:
+    """Embed question and retrieve top-k similar chunks from pgvector."""
+    from sklearn.preprocessing import normalize as sk_normalize
+    from auth import _db_connect
+
+    vec = sk_normalize(_get_embed_model().encode([question]))[0].tolist()
+    vec_str = "[" + ",".join(str(v) for v in vec) + "]"
+
+    try:
+        with _db_connect() as conn:
+            with conn.cursor() as cur:
+                if country_code:
+                    cur.execute(
+                        """
+                        SELECT dc.chunk_text
+                        FROM chunk_embeddings ce
+                        JOIN document_chunks dc ON dc.id = ce.chunk_id
+                        WHERE ce.country_code = %s
+                        ORDER BY ce.embedding <=> %s::vector
+                        LIMIT %s
+                        """,
+                        (country_code.upper(), vec_str, k),
+                    )
+                else:
+                    cur.execute(
+                        """
+                        SELECT dc.chunk_text
+                        FROM chunk_embeddings ce
+                        JOIN document_chunks dc ON dc.id = ce.chunk_id
+                        ORDER BY ce.embedding <=> %s::vector
+                        LIMIT %s
+                        """,
+                        (vec_str, k),
+                    )
+                return [row[0] for row in cur.fetchall()]
+    except Exception as e:
+        logger.warning("Vector retrieval failed, falling back to no context: %s", e)
+        return []
+
+
+@app.post("/api/rag/query", response_model=RAGQueryResponse)
+async def rag_query(req: RAGQueryRequest, _user: dict = Depends(get_current_user)):
+    """RAG query — embeds the question, retrieves top-k chunks from pgvector,
+    then answers grounded in retrieved evidence."""
+    if req.provider:
+        try:
+            from providers import get_provider as _get_named_provider
+            provider = _get_named_provider(req.provider)
+        except Exception:
+            provider = _get_provider()
+    else:
+        provider = _get_provider()
+
+    # Retrieve relevant chunks unless caller already supplied source_text
+    retrieved = []
+    if not req.source_text:
+        retrieved = _retrieve_chunks(req.question, req.country_code)
+
+    parts: list[str] = []
+    if req.role:
+        parts.append(f"Your role: {req.role}")
+    if req.context:
+        parts.append(f"Context: {req.context}")
+    if req.source_text:
+        parts.append(f'Source document:\n"""\n{req.source_text}\n"""')
+    elif retrieved:
+        joined = "\n\n---\n\n".join(retrieved)
+        parts.append(f'Relevant retrieved passages:\n"""\n{joined}\n"""')
+    parts.append(f"Question: {req.question}")
+    if req.output_format:
+        parts.append(f"Output format: {req.output_format}")
+
+    prompt = "\n\n".join(parts)
+    system = (
+        "You are a UN ESCAP digital trade policy analyst specialising in the "
+        "RDTII 2.1 framework. Answer questions about digital trade regulations "
+        "clearly, accurately, and concisely."
+    )
+
+    answer = provider.query(prompt, system)
+    return RAGQueryResponse(
+        answer=answer,
+        provider=provider.name,
+        retrieved_chunks=retrieved,
+        retrieval_count=len(retrieved),
+    )
 
 
 _INGEST_OCR_EXTS  = {"pdf", "jpg", "jpeg", "png"}
@@ -237,6 +367,23 @@ async def _extract_via_sidecar(
     return body["text"], body["doc_id"]
 
 
+def _url_to_hint(url: str) -> str:
+    """Convert a URL to a human-readable legislation title hint.
+    e.g. https://mas.gov.sg/regulation/faqs---notice-on-cyber-hygiene
+         → 'Notice On Cyber Hygiene'
+    """
+    try:
+        path = urlparse(url).path.rstrip("/")
+        slug = path.split("/")[-1] if path else ""
+        slug = slug.replace("-", " ").replace("_", " ")
+        # "gps1997" → "Gps 1997",  "PDPA2012" → "PDPA 2012"
+        slug = _re.sub(r"([a-zA-Z])(\d)", r"\1 \2", slug)
+        slug = _re.sub(r"(\d)([a-zA-Z])", r"\1 \2", slug)
+        return slug.title()
+    except Exception:
+        return ""
+
+
 def _detect_ingest_format(filename: str) -> str:
     ext = Path(filename).suffix.lstrip(".").lower()
     if ext in _INGEST_OCR_EXTS:
@@ -246,7 +393,7 @@ def _detect_ingest_format(filename: str) -> str:
     return "unsupported"
 
 
-async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse:
+async def _run_extraction(text: str, provider: str | None, doc_hint: str = "") -> ExtractionResponse:
     """Core extraction pipeline — shared by /api/extract and /api/ingest/document."""
     import time as _time
     _t0 = _time.time()
@@ -262,6 +409,7 @@ async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse
         llm_provider = _get_provider()
 
     chunks = regex_legal_chunker(text)
+    logger.info("[PIPELINE] text=%d chars → %d raw chunks", len(text), len(chunks))
 
     chunk_groups: list[tuple] = []
     for chunk in chunks:
@@ -273,19 +421,30 @@ async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse
         if indicators:
             chunk_groups.append((chunk, indicators))
 
-    logger.debug("[TIMING] %d chunks, concurrency=5", len(chunk_groups))
+    total_pairs = sum(len(inds) for _, inds in chunk_groups)
+    concurrency = min(len(chunk_groups), int(os.getenv("PIPELINE_CONCURRENCY", "10")))
+    logger.info(
+        "[PIPELINE] provider=%s  active_chunks=%d  indicator_pairs=%d  concurrency=%d",
+        llm_provider.name, len(chunk_groups), total_pairs, concurrency,
+    )
 
-    semaphore = asyncio.Semaphore(5)
+    semaphore = asyncio.Semaphore(concurrency)
+    completed = 0
 
-    async def _extract_chunk(chunk, indicators):
+    async def _extract_chunk(chunk_idx: int, chunk, indicators):
+        nonlocal completed
         _ct = _time.time()
+        ind_ids = [i for i, _ in indicators]
+        logger.info("[CHUNK %d/%d] start  indicators=%s  chars=%d",
+                    chunk_idx, len(chunk_groups), ind_ids, len(chunk.text))
         async with semaphore:
             try:
                 batch = await asyncio.to_thread(
                     llm_provider.extract_batch, chunk.text, indicators,
                 )
             except ExtractionError as e:
-                logger.warning("batch failed, falling back per-indicator: %s", e)
+                logger.warning("[CHUNK %d/%d] batch failed, falling back per-indicator: %s",
+                               chunk_idx, len(chunk_groups), e)
                 results: list = []
                 for ind_id, spec in indicators:
                     try:
@@ -344,7 +503,7 @@ async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse
                     verbatim_quote=data["verbatim_quote"],
                     quote_start=chunk.start + local_start,
                     quote_end=chunk.start + local_end,
-                    source_legislation=data.get("source_legislation", ""),
+                    source_legislation=data.get("source_legislation", "") or doc_hint,
                     last_update=data.get("last_update", ""),
                     source_url=data.get("source_url", ""),
                     scope=scope_value,
@@ -354,12 +513,28 @@ async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse
                     extraction_provider=llm_provider.name,
                 ), None))
 
-            logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i, _ in indicators), _time.time() - _ct)
-            return mapped, _time.time() - _ct
+            elapsed = _time.time() - _ct
+            n_mapped = sum(1 for m, _ in mapped if m)
+            n_rejected = sum(1 for _, r in mapped if r)
+            completed += 1
+            logger.info(
+                "[CHUNK %d/%d] done  %.1fs  mapped=%d  rejected=%d  progress=%d/%d",
+                chunk_idx, len(chunk_groups), elapsed,
+                n_mapped, n_rejected, completed, len(chunk_groups),
+            )
+            return mapped, elapsed
 
-    all_results = await asyncio.gather(*[_extract_chunk(c, inds) for c, inds in chunk_groups])
+    all_results = await asyncio.gather(*[
+        _extract_chunk(i + 1, c, inds) for i, (c, inds) in enumerate(chunk_groups)
+    ])
 
-    logger.debug("[TIMING] total=%.1fs", _time.time() - _t0)
+    total_elapsed = _time.time() - _t0
+    total_mapped = sum(sum(1 for m, _ in r if m) for r, _ in all_results)
+    total_rejected = sum(sum(1 for _, rj in r if rj) for r, _ in all_results)
+    logger.info(
+        "[PIPELINE] done  total=%.1fs  mapped=%d  rejected=%d",
+        total_elapsed, total_mapped, total_rejected,
+    )
 
     mappings: list[IndicatorMapping] = []
     rejected: list[RejectedExtraction] = []
@@ -374,6 +549,7 @@ async def _run_extraction(text: str, provider: str | None) -> ExtractionResponse
         mappings=mappings,
         rejected=rejected,
         provider=llm_provider.name,
+        source_text=text,
     )
 
 
@@ -606,12 +782,13 @@ async def _stream_extraction(text: str, provider: str | None, doc_hint: str = ""
         "elapsed": round(_time.time() - _t0, 2),
     })
 
-# StreamingResponse 
+
 @app.post("/api/extract/stream")
 async def extract_stream(
     text: str = Form(""),
     source_url: str = Form(""),
     provider: str = Form(None),
+    _user: dict = Depends(get_current_user),
 ):
     """SSE streaming extraction — emits mappings as each chunk completes."""
     crawl_warning: str | None = None
@@ -644,7 +821,7 @@ async def extract_stream(
 
 
 @app.post("/api/fetch-text")
-async def fetch_text(source_url: str = Form("")):
+async def fetch_text(source_url: str = Form(""), _user: dict = Depends(get_current_user)):
     """Crawl a URL and return the extracted raw text — no LLM pipeline."""
     if not source_url.strip():
         raise HTTPException(status_code=400, detail="source_url is required.")
@@ -655,7 +832,7 @@ async def fetch_text(source_url: str = Form("")):
 
 
 @app.post("/api/extract", response_model=ExtractionResponse)
-async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
+async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None), _user: dict = Depends(get_current_user)):
     """Extract RDTII indicator mappings from a block of legal text.
 
     If text is empty but source_url is provided, it crawls the URL first.
@@ -673,36 +850,29 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
         elif crawl_result["type"] == "pdf":
             pdf_path = crawl_result["pdf_path"]
             try:
-                import fitz as _fitz
-                _doc = _fitz.open(pdf_path)
-                _page_count = len(_doc)
-                _native_text = "\n".join(
-                    _doc[i].get_text("text") for i in range(_page_count)
-                ).strip()
-                _doc.close()
-
-                if _native_text:
-                    text = _native_text
-                else:
-                    from pdf_reader import read_pdf
-                    try:
-                        pages = await asyncio.to_thread(read_pdf, pdf_path)
-                        text = "\n".join(pages)
-                    except Exception as e:
-                        raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+                import time as _t
+                from pdf_reader import read_pdf
+                _t_pdf = _t.time()
+                try:
+                    pages = await asyncio.to_thread(read_pdf, pdf_path)
+                    text = "\n".join(pages)
+                    logger.info("[PDF] done  chars=%d  %.1fs", len(text), _t.time() - _t_pdf)
+                except Exception as e:
+                    raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
             finally:
                 Path(pdf_path).unlink(missing_ok=True)
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text provided and crawl returned no content.")
 
-    return await _run_extraction(text, provider)
+    return await _run_extraction(text, provider, doc_hint=_url_to_hint(source_url.strip()))
 
 
 @app.post("/api/ingest/document", response_model=ExtractionResponse)
 async def ingest_document(
     file: UploadFile = File(...),
     provider: str = Form(None),
+    _user: dict = Depends(get_current_user),
 ):
     """Extract RDTII mappings from an uploaded file.
 
@@ -747,29 +917,51 @@ async def ingest_document(
     if not text.strip():
         raise HTTPException(status_code=422, detail="File produced no extractable text.")
 
-    return await _run_extraction(text, provider)
+    return await _run_extraction(text, provider, doc_hint=Path(filename).stem)
+
+
+@app.get("/api/documents")
+def list_user_documents(_user: dict = Depends(get_current_user)):
+    """Return all documents the current user owns or has been granted access to."""
+    from auth import _db_connect
+    user_id = _user["user_id"]
+    with _db_connect() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT d.id, d.filename, d.source_url, d.country_code, d.status,
+                       d.created_at, uda.access_level
+                FROM documents d
+                JOIN user_document_access uda ON uda.document_id = d.id
+                WHERE uda.user_id = %s
+                ORDER BY d.created_at DESC
+                """,
+                (user_id,),
+            )
+            rows = cur.fetchall()
+    return [
+        {
+            "id": str(r[0]), "filename": r[1], "source_url": r[2],
+            "country_code": r[3], "status": r[4],
+            "created_at": r[5].isoformat() if r[5] else None,
+            "access_level": r[6],
+        }
+        for r in rows
+    ]
 
 
 @app.post("/api/mappings/review")
-def review_mapping(req: ReviewRequest):
+def review_mapping(req: ReviewRequest, _user: dict = Depends(get_current_user)):
     """Task 3: Backend Database Review Interface | 任务 3：后端数据库落盘接口
     
     Persists human review decisions into PostgreSQL across 3 tables.
     将人工审核决定持久化到 PostgreSQL 的三张表中。
     """
-    db_config = {
-        "dbname": os.getenv("POSTGRES_DB", "rdtii"),
-        "user": os.getenv("POSTGRES_USER", "rdtii_user"),
-        "password": os.getenv("POSTGRES_PASSWORD", "rdtii_password"),
-        "host": os.getenv("POSTGRES_HOST", "postgres"),
-        "port": os.getenv("POSTGRES_PORT", "5432"),
-    }
-    
-    import psycopg2  # lazy: see top-of-file note
+    from auth import _db_connect
 
     conn = None
     try:
-        conn = psycopg2.connect(**db_config)
+        conn = _db_connect()
         cur = conn.cursor()
         
         # 0. Ensure country exists | 确保国家代码存在
@@ -782,11 +974,12 @@ def review_mapping(req: ReviewRequest):
         filename = req.mapping.source_legislation or "Web Extraction"
         source_url = req.mapping.source_url or "Unknown"
         
+        user_id = _user["user_id"]
         cur.execute(
-            "INSERT INTO documents (filename, source_url, country_code, status, file_path) "
-            "VALUES (%s, %s, %s, 'processed', 'N/A') "
+            "INSERT INTO documents (filename, source_url, country_code, status, file_path, uploaded_by) "
+            "VALUES (%s, %s, %s, 'processed', 'N/A', %s) "
             "ON CONFLICT (source_url) DO NOTHING RETURNING id",
-            (filename, source_url, req.country_code)
+            (filename, source_url, req.country_code, user_id)
         )
         doc_res = cur.fetchone()
         if not doc_res:
@@ -794,6 +987,12 @@ def review_mapping(req: ReviewRequest):
             doc_id = cur.fetchone()[0]
         else:
             doc_id = doc_res[0]
+            # Register the uploader as owner in access table
+            cur.execute(
+                "INSERT INTO user_document_access (user_id, document_id, access_level, granted_by) "
+                "VALUES (%s, %s, 'owner', %s) ON CONFLICT (user_id, document_id) DO NOTHING",
+                (user_id, doc_id, user_id),
+            )
             
         cur.execute(
             "INSERT INTO document_sections (document_id, raw_text) VALUES (%s, %s) RETURNING id",

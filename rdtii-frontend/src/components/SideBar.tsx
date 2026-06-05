@@ -4,6 +4,7 @@ import { X, Plus, Minus } from "lucide-react";
 import type { Status } from "../types";
 
 type TopBarProps = {
+  variant?: "workbench" | "mapsearch";
   country: string;
   provider: string;
   status: Status;
@@ -99,6 +100,7 @@ function Section({ label, children, defaultOpen = true }: { label: string; child
 }
 
 export function SideBar({
+  variant = "workbench",
   country,
   provider,
   status,
@@ -141,50 +143,78 @@ export function SideBar({
       {/* Mode */}
       <div className="px-6 py-5 border-b border-white/10">
         <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">Mode</p>
-        <p className="text-sm font-semibold text-white">Evidence Workbench</p>
+        <p className="text-sm font-semibold text-white">{variant === "mapsearch" ? "Map Explorer" : "Evidence Workbench"}</p>
         <p className="text-[11px] text-white/40 mt-0.5">UN ESCAP DTAM</p>
       </div>
 
-      {/* Session */}
-      <Section label="Session">
-        <div className="flex justify-between items-center">
-          <span className="text-xs text-white/40">Country</span>
-          <span className="text-xs font-semibold text-white">{country}</span>
-        </div>
-        <SubSection
-          label="Provider"
-          summary={PROVIDER_LABELS[selectedProvider] ?? selectedProvider ?? provider ?? "—"}
-        >
-          {availableProviders.map((p) => (
-            <button
-              key={p}
-              onClick={() => setSelectedProvider(p)}
-              style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+      {variant === "workbench" ? (
+        <>
+          {/* Session */}
+          <Section label="Session">
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-white/40">Country</span>
+              <span className="text-xs font-semibold text-white">{country}</span>
+            </div>
+            <SubSection
+              label="Provider"
+              summary={PROVIDER_LABELS[selectedProvider] ?? selectedProvider ?? provider ?? "—"}
             >
-              <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
-                {PROVIDER_LABELS[p] ?? p}
-              </span>
-              {selectedProvider === p && (
-                <span className="text-[#10B981] text-xs">⎷</span>
-              )}
-            </button>
-          ))}
-        </SubSection>
-      </Section>
+              {availableProviders.map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setSelectedProvider(p)}
+                  style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                >
+                  <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
+                    {PROVIDER_LABELS[p] ?? p}
+                  </span>
+                  {selectedProvider === p && (
+                    <span className="text-[#10B981] text-xs">⎷</span>
+                  )}
+                </button>
+              ))}
+            </SubSection>
+          </Section>
 
-      {/* Status */}
-      <Section label="Status">
-        <span className={`inline-block text-xs font-semibold px-3 py-1.5 rounded-full border ${statusChip}`}>
-          {headerStatus}
-        </span>
-      </Section>
+          {/* Status */}
+          <Section label="Status">
+            <span className={`inline-block text-xs font-semibold px-3 py-1.5 rounded-full border ${statusChip}`}>
+              {headerStatus}
+            </span>
+          </Section>
 
-      {/* History */}
-      <Section label="History" defaultOpen={false}>
-        <span className={`inline-block text-xs font-semibold px-3 py-1.5 rounded-full border ${statusChip}`}>
-          {headerStatus}
-        </span>
-      </Section>
+          {/* History */}
+          <Section label="History" defaultOpen={false}>
+            <span className={`inline-block text-xs font-semibold px-3 py-1.5 rounded-full border ${statusChip}`}>
+              {headerStatus}
+            </span>
+          </Section>
+        </>
+      ) : (
+        <>
+          {/* Region */}
+          <Section label="Region">
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-white/40">Selected</span>
+              <span className="text-xs font-semibold text-white">{country || "—"}</span>
+            </div>
+          </Section>
+
+          {/* Controls */}
+          <Section label="Controls">
+            <p className="text-xs text-white/40 leading-relaxed">
+              Middle-click to pan · Ctrl+scroll to zoom · Pinch on mobile
+            </p>
+          </Section>
+
+          {/* About */}
+          <Section label="About" defaultOpen={false}>
+            <p className="text-xs text-white/40 leading-relaxed">
+              Explore digital trade and AI policy indicators across the Asia-Pacific region.
+            </p>
+          </Section>
+        </>
+      )}
 
       {/* Spacer */}
       <div className="flex-1" />

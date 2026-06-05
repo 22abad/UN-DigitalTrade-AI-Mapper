@@ -31,6 +31,8 @@ interface SignInPageProps {
   onGoogleSignIn?: () => void;
   onResetPassword?: () => void;
   onCreateAccount?: () => void;
+  error?: string;
+  isLoading?: boolean;
 }
 
 // --- SUB-COMPONENTS ---
@@ -55,7 +57,7 @@ const TestimonialCard = ({ testimonial, delay }: { testimonial: Testimonial, del
 // --- MAIN COMPONENT ---
 
 export const SignInPage: React.FC<SignInPageProps> = ({
-  title = <span className="font-light text-foreground tracking-tighter">Welcome back to <a href="/" className="text-[#10B981] hover:opacity-70 transition-opacity cursor-pointer">Sentinel</a></span>,
+  title = <span className="font-light text-foreground tracking-tighter">Welcome back to <a href="/" className="text-[#10B981] bg-gradient-to-r from-[#10B981] to-[#10B981] bg-[length:0%_1.5px] hover:bg-[length:100%_1.5px] bg-left-bottom bg-no-repeat transition-all duration-500 cursor-pointer">Sentinel</a></span>,
   description = "Sign in to access the AI-powered digital trade evidence workbench.",
   heroImageSrc,
   testimonials = [],
@@ -63,6 +65,8 @@ export const SignInPage: React.FC<SignInPageProps> = ({
   onGoogleSignIn,
   onResetPassword,
   onCreateAccount,
+  error,
+  isLoading,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -103,8 +107,9 @@ export const SignInPage: React.FC<SignInPageProps> = ({
                 <a href="#" onClick={(e) => { e.preventDefault(); onResetPassword?.(); }} className="hover:underline text-[#10B981] transition-colors whitespace-nowrap">Reset password</a>
               </div>
 
-              <button type="submit" className="animate-element animate-delay-600 w-full rounded-2xl bg-[#10B981] py-4 font-medium text-white hover:bg-[#0da373] transition-colors">
-                Sign In
+              {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+              <button type="submit" disabled={isLoading} className="animate-element animate-delay-600 w-full rounded-2xl bg-[#10B981] py-4 font-medium text-white hover:bg-[#0da373] disabled:opacity-50 transition-colors">
+                {isLoading ? "Signing in…" : "Sign In"}
               </button>
             </form>
 

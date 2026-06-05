@@ -63,7 +63,7 @@ export function MappingCard({
         </p>
       </div>
 
-      <blockquote className="quote">
+      <blockquote className="quote select-text">
         "{visibleQuote}"
         {quoteIsLong ? (
           <button

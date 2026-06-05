@@ -58,6 +58,7 @@ services:
     environment:
       CORS_ALLOW_ORIGINS: http://localhost:5173,http://localhost:3000
       EXTRACT_SIDECAR_URL: http://extract-sidecar:4000
+      DATABASE_URL: postgresql://rdtii_user:rdtii_password@postgres:5432/rdtii
     depends_on:
       postgres:
         condition: service_healthy

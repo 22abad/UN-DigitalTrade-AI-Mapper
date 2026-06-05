@@ -12,7 +12,7 @@ export function Label() {
       <div className="h-px w-full bg-[#10B981]/40" />
 
       {/* Label content */}
-      <div className="flex gap-6 max-w-6xl mx-auto items-start py-16 px-6">
+      <div className="flex gap-6 max-w-6xl mx-auto items-start py-48 px-6">
 
         {/* Left label */}
         <div className="hidden md:block w-44 shrink-0">

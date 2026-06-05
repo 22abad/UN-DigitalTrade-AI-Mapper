@@ -100,6 +100,7 @@ class ExtractionResponse(BaseModel):
     mappings: list[IndicatorMapping] = Field(default_factory=list)
     rejected: list[RejectedExtraction] = Field(default_factory=list)
     provider: str = Field(default="unknown")
+    source_text: str = Field(default="", description="The actual text used for extraction (may differ from input when URL was crawled or PDF was parsed).")
 
 
 class ReviewRequest(BaseModel):
@@ -116,3 +117,24 @@ class ExtractionRequest(BaseModel):
     text: str
     source_url: str = ""
     source_legislation: str = ""
+
+
+class RAGQueryRequest(BaseModel):
+    """Request schema for /api/rag/query."""
+
+    question: str
+    role: str = ""
+    context: str = ""
+    output_format: str = ""
+    source_text: str = ""
+    country_code: str = ""
+    provider: str = ""
+
+
+class RAGQueryResponse(BaseModel):
+    """Response schema for /api/rag/query."""
+
+    answer: str
+    provider: str
+    retrieved_chunks: list[str] = []
+    retrieval_count: int = 0
