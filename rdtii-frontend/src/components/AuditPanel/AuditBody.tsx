@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { mappingKey } from "../../lib/utils";
 import type { IndicatorMapping, ReviewDecision, Status } from "../../types";
 import { MappingCard } from "./MappingCard";
@@ -29,7 +30,7 @@ export function AuditBody({
     );
   }
 
-  if (status === "loading") {
+  if (status === "loading" && mappings.length === 0) {
     return <p className="empty-state">Extracting mappings…</p>;
   }
 
@@ -56,15 +57,21 @@ export function AuditBody({
       {mappings.map((m) => {
         const key = mappingKey(m);
         return (
-          <MappingCard
+          <motion.div
             key={key}
-            mapping={m}
-            mappingKeyStr={key}
-            active={key === activeKey}
-            decision={decisions[key] ?? "pending"}
-            onSelect={() => selectMapping(key)}
-            onDecision={(d) => setDecision(key, d)}
-          />
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <MappingCard
+              mapping={m}
+              mappingKeyStr={key}
+              active={key === activeKey}
+              decision={decisions[key] ?? "pending"}
+              onSelect={() => selectMapping(key)}
+              onDecision={(d) => setDecision(key, d)}
+            />
+          </motion.div>
         );
       })}
     </ul>

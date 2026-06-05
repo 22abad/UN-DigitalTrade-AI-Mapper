@@ -30,3 +30,9 @@ rdtii-frontend/public/vids
 # Draft ./
 PR_REPORT.md
 
+# Personal notes
+rdtii-frontend/obsidian_vault_rdtii/
+
+# Sidecar build artefacts
+extract_sidecar/target/
+
