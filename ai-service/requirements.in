@@ -16,7 +16,7 @@ python-multipart>=0.0.9
 
 # Crawler & PDF Extraction
 playwright>=1.40.0
-playwright-stealth>=1.0.6
+playwright-stealth>=2.0.0
 pymupdf>=1.24.0
 pdf2image>=1.17.0
 pytesseract>=0.3.13

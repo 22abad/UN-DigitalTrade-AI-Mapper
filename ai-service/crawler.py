@@ -4,7 +4,9 @@ import re
 from playwright.async_api import async_playwright, Page, BrowserContext
 from typing import Dict, Optional, Any
 from urllib.parse import urljoin, urlparse
-from playwright_stealth import stealth_async
+from playwright_stealth import Stealth
+
+_stealth = Stealth()
 from collections import deque
 
 # 定义下载目录
@@ -131,7 +133,7 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
             try:
                 context = await _initialize_browser_context(p, proxy=proxy)
                 page = await context.new_page()
-                await stealth_async(page)
+                await _stealth.apply_stealth_async(page)
                 page.set_default_timeout(timeout)
                 
                 # Task: Check if direct PDF URL to avoid ERR_ABORTED | 任务：检查是否为直接 PDF URL，避免导航中断
@@ -213,8 +215,9 @@ async def crawl_for_pdpa_pdf(start_url: str, keyword: str = "Personal Data Prote
             async with async_playwright() as p:
                 context = await _initialize_browser_context(p)
                 page = await context.new_page()
-                await stealth_async(page)
-                
+                await _stealth.apply_stealth_async(page)
+
+
                 await page.goto(url, wait_until="domcontentloaded", timeout=timeout)
                 await page.wait_for_timeout(5000) # 等待 Cloudflare 或 JS 挑战
                 

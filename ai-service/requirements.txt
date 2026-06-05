@@ -127,6 +127,20 @@ openai==2.33.0
 packaging==26.2
     # via
     #   huggingface-hub
+    #   pytesseract
+    #   transformers
+pdf2image==1.17.0
+    # via -r requirements.in
+pillow==12.2.0
+    # via
+    #   pdf2image
+    #   pytesseract
+playwright==1.40.0
+    # via
+    #   -r requirements.in
+    #   playwright-stealth
+playwright-stealth==2.0.3
+    # via -r requirements.in
 proto-plus==1.27.2
     # via
     #   google-ai-generativelanguage
