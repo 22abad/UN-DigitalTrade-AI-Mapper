@@ -26,7 +26,7 @@ import httpx
 from dotenv import load_dotenv
 import tempfile
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -612,7 +612,6 @@ async def extract_stream(
     text: str = Form(""),
     source_url: str = Form(""),
     provider: str = Form(None),
-    _user: dict = Depends(get_current_user),
 ):
     """SSE streaming extraction — emits mappings as each chunk completes."""
     crawl_warning: str | None = None
@@ -645,7 +644,7 @@ async def extract_stream(
 
 
 @app.post("/api/fetch-text")
-async def fetch_text(source_url: str = Form(""), _user: dict = Depends(get_current_user)):
+async def fetch_text(source_url: str = Form("")):
     """Crawl a URL and return the extracted raw text — no LLM pipeline."""
     if not source_url.strip():
         raise HTTPException(status_code=400, detail="source_url is required.")
