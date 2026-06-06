@@ -57,6 +57,23 @@ class Llama3LocalProvider(LLMProvider):
             verbose=False,
         )
 
+    def query(self, prompt: str, system: str = "") -> str:
+        self._ensure_loaded()
+        messages = []
+        if system:
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
+        try:
+            resp = self._llm.create_chat_completion(
+                messages=messages,
+                temperature=0.3,
+                max_tokens=2048,
+            )
+        except Exception as e:
+            raise ExtractionError(f"Llama 3 local error: {e}") from e
+        choices = resp.get("choices", []) if isinstance(resp, dict) else []
+        return choices[0].get("message", {}).get("content", "") if choices else ""
+
     def extract_features(
         self,
         article_text: str,

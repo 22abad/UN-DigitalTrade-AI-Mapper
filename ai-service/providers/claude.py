@@ -40,6 +40,23 @@ class ClaudeProvider(LLMProvider):
         )
         self.name = self.model_name
 
+    def query(self, prompt: str, system: str = "") -> str:
+        try:
+            resp = self._client.messages.create(
+                model=self.model_name,
+                max_tokens=4096,
+                temperature=0.3,
+                system=system or "You are a UN ESCAP digital trade policy analyst specialising in the RDTII 2.1 framework.",
+                messages=[{"role": "user", "content": prompt}],
+            )
+        except Exception as e:
+            raise ExtractionError(f"Claude API error: {e}") from e
+        return "".join(
+            getattr(block, "text", "")
+            for block in (getattr(resp, "content", []) or [])
+            if getattr(block, "type", None) == "text"
+        )
+
     def extract_features(
         self,
         article_text: str,

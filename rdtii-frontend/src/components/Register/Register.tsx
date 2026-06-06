@@ -21,6 +21,8 @@ interface RegisterFormProps {
   onRegister?: (event: React.FormEvent<HTMLFormElement>) => void;
   onGoogleSignUp?: () => void;
   onSignIn?: () => void;
+  error?: string;
+  isLoading?: boolean;
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -28,6 +30,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   onRegister,
   onGoogleSignUp,
   onSignIn,
+  error,
+  isLoading,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -40,7 +44,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <div className="flex flex-col gap-6">
 
             <h1 className="text-4xl md:text-5xl font-light leading-tight">
-              Join <a href="/" className="text-[#10B981] hover:opacity-70 transition-opacity cursor-pointer">Sentinel</a>
+              Join <a href="/" className="text-[#10B981] bg-gradient-to-r from-[#10B981] to-[#10B981] bg-[length:0%_1.5px] hover:bg-[length:100%_1.5px] bg-left-bottom bg-no-repeat transition-all duration-500 cursor-pointer">Sentinel</a>
             </h1>
             <p className="text-muted-foreground">
               Create your account to access the digital trade evidence workbench.
@@ -75,8 +79,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 </GlassInputWrapper>
               </div>
 
-              <button type="submit" className="w-full rounded-2xl bg-[#10B981] py-4 font-medium text-white hover:bg-[#0da373] transition-colors">
-                Create Account
+              {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+              <button type="submit" disabled={isLoading} className="w-full rounded-2xl bg-[#10B981] py-4 font-medium text-white hover:bg-[#0da373] disabled:opacity-50 transition-colors">
+                {isLoading ? "Creating account…" : "Create Account"}
               </button>
             </form>
 

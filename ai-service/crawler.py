@@ -4,6 +4,8 @@ import os
 import re
 import ssl
 import urllib.request
+import uuid
+from pathlib import Path
 from playwright.async_api import async_playwright, Page, BrowserContext
 from typing import Dict, Optional, Any
 from urllib.parse import urljoin, urlparse, quote
@@ -94,10 +96,11 @@ async def _download_file(page: Page, file_url: str, filename: Optional[str] = No
     """
     try:
         parsed_url = urlparse(file_url)
-        ext = os.path.splitext(parsed_url.path)[1] or ".bin"
-        if not filename:
-            filename = os.path.basename(parsed_url.path) or f"downloaded_{asyncio.current_task().get_name()}{ext}"
-        local_path = os.path.join(DOWNLOADS_DIR, filename)
+        filename = f"downloaded_{uuid.uuid4().hex}.bin"
+        downloads_root = Path(DOWNLOADS_DIR).resolve()
+        local_path = (downloads_root / filename).resolve()
+        if downloads_root not in local_path.parents:
+            raise ValueError("Invalid download filename")
         
         domain = f"{parsed_url.scheme}://{parsed_url.netloc}/"
         headers = {
@@ -112,7 +115,7 @@ async def _download_file(page: Page, file_url: str, filename: Optional[str] = No
             with open(local_path, "wb") as f:
                 f.write(await response.body())
             print(f"文件已下载到: {local_path}")
-            return local_path
+            return str(local_path)
         return None
     except Exception as e:
         print(f"下载文件时发生错误 {file_url}: {e}")

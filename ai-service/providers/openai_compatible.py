@@ -94,6 +94,23 @@ class OpenAICompatibleProvider(LLMProvider):
         self._input_price = _price_from_env(self.input_price_env, self.fallback_input_price)
         self._output_price = _price_from_env(self.output_price_env, self.fallback_output_price)
 
+    def query(self, prompt: str, system: str = "") -> str:
+        messages = []
+        if system:
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
+        try:
+            resp = self._client.chat.completions.create(
+                model=self.model_name,
+                messages=messages,
+                temperature=0.3,
+                max_tokens=4096,
+            )
+        except Exception as e:
+            raise ExtractionError(f"{self.model_name} API error: {e}") from e
+        choice = resp.choices[0] if getattr(resp, "choices", None) else None
+        return choice.message.content if choice else ""
+
     def extract_features(
         self,
         article_text: str,

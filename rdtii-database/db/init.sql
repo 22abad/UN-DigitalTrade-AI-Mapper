@@ -130,6 +130,21 @@ CREATE INDEX idx_chunk_embeddings_document ON chunk_embeddings(document_id);
 CREATE INDEX idx_chunk_embeddings_country ON chunk_embeddings(country_code);
 
 -- ============================================================
+-- OCR / Extraction Cache (used by extract-sidecar)
+-- ============================================================
+
+CREATE TABLE extracted_documents (
+    id           VARCHAR(36)  PRIMARY KEY,
+    content_hash VARCHAR(64)  UNIQUE NOT NULL,
+    filename     VARCHAR(500) NOT NULL,
+    source_type  VARCHAR(50),
+    ocr_provider VARCHAR(100),
+    extracted_text TEXT        NOT NULL,
+    expires_at   TIMESTAMP,
+    created_at   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ============================================================
 -- Extraction & Mapping
 -- ============================================================
 

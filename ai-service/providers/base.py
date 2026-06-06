@@ -48,6 +48,22 @@ class LLMProvider(ABC):
     last_usage: ExtractionUsage | None = None
 
     @abstractmethod
+    def query(self, prompt: str, system: str = "") -> str:
+        """Free-form text completion — used by the RAG query endpoint.
+
+        Args:
+            prompt: The user's full prompt (question + context).
+            system: Optional system instruction override.
+
+        Returns:
+            Raw text response from the LLM.
+
+        Raises:
+            ExtractionError on failure.
+        """
+        ...
+
+    @abstractmethod
     def extract_features(
         self,
         article_text: str,
@@ -166,6 +182,7 @@ Input article:
             fields = [f'    "verbatim_quote": "exact substring",']
             for fname in fnames:
                 fields.append(f'    "{fname}": ...,')
+            fields.append('    "source_legislation": "full title of the law/regulation, or empty string",')
             fields.append('    "scope": "horizontal|sectoral|unknown"')
             schema_parts.append(f'  "{indicator_id}": {{')
             schema_parts.extend(fields)
