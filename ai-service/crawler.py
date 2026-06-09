@@ -713,12 +713,69 @@ async def verify_law_timeline(
     }
 
 
+async def _precheck_url(url: str) -> str | None:
+    """Check if a URL is dead before launching Playwright.
+
+    Returns an error description string if the URL is dead
+    (HTTP 404/410, DNS failure), or None if it's alive or uncertain.
+    """
+    import urllib.error
+    _opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=_SSL_CTX))
+    _opener.addheaders = [("User-Agent", "Mozilla/5.0 (compatible; RDTII/1.0)")]
+
+    def _check_sync() -> str | None:
+        try:
+            req = urllib.request.Request(url, method="HEAD")
+            with _opener.open(req, timeout=10) as resp:
+                if resp.status in (404, 410):
+                    return f"HTTP {resp.status}"
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 410):
+                return f"HTTP {e.code}"
+            return None
+        except urllib.error.URLError as e:
+            reason = str(e.reason)
+            if any(s in reason for s in [
+                "Name or service not known", "nodename nor servname",
+                "Temporary failure", "No address associated",
+            ]):
+                return f"DNS failure: {reason}"
+            return None
+        except Exception:
+            return None
+        return None
+
+    try:
+        return await asyncio.to_thread(_check_sync)
+    except Exception:
+        return None
+
+
+async def _try_wayback_fallback(url: str, context: str = "dead link") -> dict | None:
+    """Try Wayback Machine fallback and log the attempt."""
+    print(f"[Dead Link] {url} — {context}，尝试 Internet Archive 归档...")
+    wb_result = await fetch_wayback_content(url)
+    if wb_result["type"] == "text":
+        print(f"[Wayback] 成功！归档于 {wb_result.get('metadata', {}).get('archive_timestamp', '?')}")
+        return wb_result
+    print(f"[Wayback] 未找到 '{url}' 的快照")
+    return None
+
+
 async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int = 3, proxy: Optional[dict] = None) -> Dict[str, Any]:
     """
     抓取法律内容（HTML 文本或 PDF）。
     """
     if any(re.match(pattern, url) for pattern in INVALID_URL_PATTERNS):
         return {"type": "error", "message": f"URL 无效: {url}"}
+
+    # ── Pre-check: dead link detection before launching Playwright ──
+    dead_reason = await _precheck_url(url)
+    if dead_reason:
+        wb = await _try_wayback_fallback(url, dead_reason)
+        if wb:
+            return wb
+        return {"type": "error", "message": f"Dead link ({dead_reason}), no Wayback snapshot"}
 
     for attempt in range(1, max_retries + 1):
         async with async_playwright() as p:
@@ -752,7 +809,14 @@ async def fetch_legal_content(url: str, timeout: int = 60000, max_retries: int =
                 print(f"正在访问: {url}")
                 try:
                     # Increase timeout and use wait_until="domcontentloaded" for potentially slow gov sites
-                    await page.goto(url, wait_until="domcontentloaded", timeout=timeout)
+                    response = await page.goto(url, wait_until="domcontentloaded", timeout=timeout)
+                    # Inline dead-link detection — catch 404/410 from Playwright response
+                    if response and response.status in (404, 410):
+                        print(f"[Dead Link] Playwright 返回 HTTP {response.status} — 跳过重试，尝试 Wayback")
+                        wb = await _try_wayback_fallback(url, f"HTTP {response.status}")
+                        if wb:
+                            return wb
+                        return {"type": "error", "message": f"Dead link (HTTP {response.status}), no Wayback snapshot"}
                 except Exception as e:
                     # If aborted but it's a PDF, we might still be able to download it
                     error_str = str(e).lower()
