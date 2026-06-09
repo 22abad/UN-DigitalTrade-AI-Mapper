@@ -37,6 +37,7 @@ export function WorkbenchPage() {
     showRejected, setShowRejected,
     availableProviders,
     selectedProvider, setSelectedProvider,
+    ollamaModels, selectedOllamaModel, setSelectedOllamaModel,
     foundPdfs,
     extract,
     selectMapping,
@@ -102,6 +103,9 @@ export function WorkbenchPage() {
                 availableProviders={availableProviders}
                 selectedProvider={selectedProvider}
                 setSelectedProvider={setSelectedProvider}
+                ollamaModels={ollamaModels}
+                selectedOllamaModel={selectedOllamaModel}
+                setSelectedOllamaModel={setSelectedOllamaModel}
                 onClose={() => setSidebarOpen(false)}
               />
             </motion.div>

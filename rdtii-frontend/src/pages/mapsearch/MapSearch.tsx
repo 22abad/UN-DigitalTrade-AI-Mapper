@@ -322,6 +322,9 @@ export function MapSearchPage() {
                 availableProviders={[]}
                 selectedProvider=""
                 setSelectedProvider={() => {}}
+                ollamaModels={[]}
+                selectedOllamaModel=""
+                setSelectedOllamaModel={() => {}}
                 onClose={() => setSidebarOpen(false)}
               />
             </motion.div>

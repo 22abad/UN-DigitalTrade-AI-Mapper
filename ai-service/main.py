@@ -18,14 +18,21 @@ zero hardcoded LLM logic outside `providers/`.
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import os
 import tempfile
+
+import httpx
 from pathlib import Path
+from typing import AsyncGenerator
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from fastapi import Depends
+from openai import OpenAI
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
@@ -36,9 +43,12 @@ logger = logging.getLogger(__name__)
 
 from chunker import regex_legal_chunker
 from classifier import classify_indicator
+from coverage_classifier import classify_coverage
 from features import get_feature_spec
 from providers import canonical_name, get_default_provider, list_providers, get_provider
 from providers.base import ExtractionError
+from source_validator import grade_source, require_primary_source
+from timeframe_extractor import extract_timeframe, build_timeframe_column
 
 # crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
 # Both are heavy and only needed for the URL-ingestion path, so import
@@ -49,6 +59,7 @@ from providers.base import ExtractionError
 from schemas import (
     ExtractionResponse,
     IndicatorMapping,
+    RAGQueryRequest,
     RejectedExtraction,
     ReviewRequest,
 )
@@ -190,6 +201,40 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                 raw_scope = (data.get("scope") or "").strip().lower()
                 scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
 
+                # ── Source validation ─────────────────────────────────
+                src_val = grade_source(
+                    url=data.get("source_url", ""),
+                    title=data.get("source_legislation", ""),
+                    text_snippet=chunk.text[:300],
+                )
+                features["_source_grade"] = src_val.get("grade", "unknown")
+                features["_source_grade_confidence"] = str(round(src_val.get("confidence", 0.0), 2))
+
+                # ── Coverage classification override ─────────────────
+                if scope_value == "unknown":
+                    cc = classify_coverage(
+                        provision_text=data.get("verbatim_quote", ""),
+                        source_legislation=data.get("source_legislation", ""),
+                        indicator_id=ind_id,
+                    )
+                    scope_value = cc["scope"]
+                    features["_coverage_reasons"] = "; ".join(cc.get("reasons", []))
+
+                # ── Timeframe extraction ─────────────────────────────
+                tf = extract_timeframe(
+                    text=chunk.text,
+                    source_legislation=data.get("source_legislation", ""),
+                    source_url=data.get("source_url", ""),
+                )
+                tf_column = build_timeframe_column(
+                    status=tf["status"],
+                    in_force_date=tf.get("in_force_date"),
+                    last_amended_date=tf.get("last_amended_date"),
+                    repealed_date=tf.get("repealed_date"),
+                )
+                features["_timeframe_status"] = tf["status"]
+                features["_timeframe_column"] = tf_column
+
                 # ── 三重时间戳核实 ─────────────────────────────────
                 source_url_val = data.get("source_url", "")
                 last_update_val = data.get("last_update", "")
@@ -309,6 +354,33 @@ def providers_info():
     }
 
 
+import httpx
+
+@app.get("/providers/ollama-models")
+def ollama_models():
+    """List models available on the local Ollama instance.
+
+    Queries the Ollama HTTP API at ``OLLAMA_BASE_URL`` (default
+    http://localhost:11434/v1) and returns model names suitable for
+    ``OLLAMA_MODEL``.
+
+    Returns ``{"models": ["gemma4:12b", ...], "error": null}`` on
+    success, or ``{"models": [], "error": "…"}`` when Ollama is
+    unreachable.
+    """
+    base = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+    api_base = base.rstrip("/v1").rstrip("/")  # Ollama /api/tags is outside /v1
+    url = f"{api_base}/api/tags"
+    try:
+        resp = httpx.get(url, timeout=5.0)
+        resp.raise_for_status()
+        data = resp.json()
+        models = [m["name"] for m in data.get("models", [])]
+        return {"models": sorted(models), "error": None}
+    except Exception as exc:
+        return {"models": [], "error": str(exc)}
+
+
 @app.post("/embed")
 def embed(req: TextRequest):
     from sklearn.preprocessing import normalize
@@ -316,6 +388,87 @@ def embed(req: TextRequest):
     vector = _get_embed_model().encode([req.text])
     vector = normalize(vector)
     return {"vector": vector[0].tolist()}
+
+
+# ── RAG / Chat with local Ollama ──────────────────────────────────────
+
+_OLLAMA_BASE = os.getenv("OLLAMA_BASE_URL", "http://host.docker.internal:11434/v1")
+_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen3.6")
+
+_RDTII_SYSTEM_PROMPT = """You are a UN ESCAP digital trade policy analyst specializing in the Regional Digital Trade Integration Index (RDTII) 2.1 framework.
+
+Your role is to help researchers and policymakers evaluate a country's digital trade policies using the RDTII 2.1 methodology.
+
+CORE KNOWLEDGE:
+- RDTII covers 12 pillars: Tariffs, Public Procurement, FDI, Intellectual Property Rights, Telecom Regulations, Cross-border Data Policies, Data Protection & Privacy, Intermediary Liability, Content Access, Non-technical NTMs, Standards & Procedures, Online Sales & Transactions.
+- Each pillar contains multiple indicators scored {0, 0.25, 0.5, 0.75, 1.0} where 0 = most open / least restrictive and 1 = most restrictive.
+- Scoring follows deterministic rules (e.g. a comprehensive data protection law → score 0 for indicator 7.1; no law → score 1).
+- The LLM extracts structured features from legal text; scores are computed by deterministic Python code.
+
+RESPONSE GUIDELINES:
+- Be precise and reference specific RDTII pillars/indicators when relevant.
+- Ground your analysis in the legal text provided in the context.
+- Explain which provisions of the law map to which indicators.
+- If asked about scoring, describe the criteria but do NOT output a final score (that is the system's job).
+- Keep answers concise and actionable for a policy audience.
+- If the context includes specific legal text, quote relevant clauses before analyzing them."""
+
+
+@app.post("/api/rag/query")
+async def chat_query(req: RAGQueryRequest):
+    """RAG-style LLM query with streaming SSE response.
+
+    Calls a local Ollama instance (qwen3.6) via the OpenAI-compatible API.
+    Configure via env vars:
+        OLLAMA_BASE_URL  (default: http://host.docker.internal:11434/v1)
+        OLLAMA_MODEL     (default: qwen3.6)
+    """
+    parts = [f"Question: {req.question}"]
+    if req.role:
+        parts.insert(0, f"Your role: {req.role}")
+    if req.context:
+        parts.append(f"Additional context: {req.context}")
+    if req.country_code:
+        parts.append(f"Country / Economy under review: {req.country_code}")
+    if req.source_text:
+        parts.append(f"Legal text being analyzed:\n\"\"\"\n{req.source_text}\n\"\"\"")
+    user_prompt = "\n\n".join(parts)
+
+    client = OpenAI(base_url=_OLLAMA_BASE, api_key="ollama")
+
+    async def _stream():
+        try:
+            stream = client.chat.completions.create(
+                model=_OLLAMA_MODEL,
+                messages=[
+                    {"role": "system", "content": _RDTII_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                stream=True,
+                temperature=0.3,
+            )
+            full_answer = ""
+            for chunk in stream:
+                content = chunk.choices[0].delta.content or ""
+                if content:
+                    full_answer += content
+                    yield f"event: token\ndata: {json.dumps(content)}\n\n"
+
+            yield (
+                f"event: done\ndata: "
+                f"{json.dumps({'answer': full_answer, 'provider': f'ollama/{_OLLAMA_MODEL}'})}\n\n"
+            )
+        except Exception as e:
+            yield f"event: error\ndata: {json.dumps({'detail': str(e)})}\n\n"
+
+    return StreamingResponse(
+        _stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 def _is_thai_query(t: str) -> bool:
@@ -338,7 +491,7 @@ def _is_garbage_content(t: str) -> bool:
 
 
 @app.post("/api/extract", response_model=ExtractionResponse)
-async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None)):
+async def extract(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None), model: str = Form(None)):
     """Extract RDTII indicator mappings from a block of legal text.
 
     Priority:
@@ -399,7 +552,11 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
 
     if provider:
         try:
-            llm_provider = get_provider(provider)
+            if provider == "ollama" and model:
+                from providers.ollama import OllamaProvider
+                llm_provider = OllamaProvider(model=model)
+            else:
+                llm_provider = get_provider(provider)
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
         except ExtractionError as e:
@@ -410,8 +567,277 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     return await _run_extraction(text, llm_provider)
 
 
+# ── SSE streaming extraction (used by frontend) ────────────
+
+
+async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, None]:
+    """Run extraction and yield SSE events progressively.
+
+    Events:
+      event: started  {source_text}
+      event: mapping  {IndicatorMapping}
+      event: rejected {RejectedExtraction}
+      event: warning  {message}
+      event: done     {}
+      event: error    {detail}
+    """
+    from chunker import regex_legal_chunker
+    from classifier import classify_indicator
+    from coverage_classifier import classify_coverage
+    from features import get_feature_spec
+    from source_validator import grade_source
+    from timeframe_extractor import extract_timeframe, build_timeframe_column
+    from verification import find_quote_offsets, verify_quote
+
+    import time as _time
+
+    def _sse(event: str, payload: object) -> str:
+        return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
+
+    yield _sse("started", {"source_text": text})
+
+    chunks = regex_legal_chunker(text)
+    chunk_groups: list[tuple] = []
+    for chunk in chunks:
+        indicators: list[tuple[str, dict]] = []
+        for indicator_id in classify_indicator(chunk.text):
+            spec = get_feature_spec(indicator_id)
+            if spec:
+                indicators.append((indicator_id, spec))
+        if indicators:
+            chunk_groups.append((chunk, indicators))
+
+    mapping_count = 0
+    rejected_count = 0
+
+    for chunk, indicators in chunk_groups:
+        try:
+            batch = await asyncio.to_thread(
+                llm_provider.extract_batch, chunk.text, indicators,
+            )
+        except ExtractionError as e:
+            logger.warning("stream batch failed, per-indicator fallback: %s", e)
+            for ind_id, spec in indicators:
+                try:
+                    data = await asyncio.to_thread(
+                        llm_provider.extract_features, chunk.text, ind_id, spec,
+                    )
+                except ExtractionError:
+                    yield _sse("rejected", RejectedExtraction(
+                        reason="LLM extraction failed",
+                        chunk_preview=chunk.text[:200],
+                    ).model_dump())
+                    rejected_count += 1
+                    continue
+                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name):
+                    yield _ev
+                mapping_count += 1
+        else:
+            for ind_id, spec in indicators:
+                data = batch.get(ind_id) if isinstance(batch, dict) else None
+                if data is None:
+                    yield _sse("rejected", RejectedExtraction(
+                        reason="missing indicator in batch response",
+                        chunk_preview=chunk.text[:200],
+                    ).model_dump())
+                    rejected_count += 1
+                    continue
+                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name):
+                    yield _ev
+                mapping_count += 1
+
+    yield _sse("done", {
+        "mappings_count": mapping_count,
+        "rejected_count": rejected_count,
+        "provider": llm_provider.name,
+    })
+
+
+def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown"):
+    """Process one LLM extraction result — yield 0 or 1 SSE events for it."""
+    from coverage_classifier import classify_coverage
+    from source_validator import grade_source
+    from timeframe_extractor import extract_timeframe, build_timeframe_column
+    from verification import find_quote_offsets, verify_quote
+    from scoring import score_indicator
+    from schemas import IndicatorMapping, RejectedExtraction
+
+    def _sse(event, payload):
+        return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
+
+    quote = (data.get("verbatim_quote") or "").strip()
+    if not quote or not verify_quote(quote, chunk.text):
+        yield _sse("rejected", RejectedExtraction(
+            reason="verbatim_quote not found in chunk shown to LLM",
+            chunk_preview=chunk.text[:200],
+            raw_output=data,
+        ).model_dump())
+        return
+
+    local_start, local_end = find_quote_offsets(quote, chunk.text)
+    if local_start < 0 or local_end <= local_start:
+        yield _sse("rejected", RejectedExtraction(
+            reason="verbatim_quote matched fuzzily but exact offsets unrecoverable",
+            chunk_preview=chunk.text[:200],
+            raw_output=data,
+        ).model_dump())
+        return
+
+    features = {k: data[k] for k in spec.keys() if k in data}
+    try:
+        score, justification = score_indicator(ind_id, features)
+    except NotImplementedError:
+        score, justification = 0.5, "Scoring rules not implemented."
+
+    raw_scope = (data.get("scope") or "").strip().lower()
+    scope_value = raw_scope if raw_scope in {"horizontal", "sectoral"} else "unknown"
+
+    src_val = grade_source(
+        url=data.get("source_url", ""),
+        title=data.get("source_legislation", ""),
+        text_snippet=chunk.text[:300],
+    )
+    features["_source_grade"] = src_val.get("grade", "unknown")
+    features["_source_grade_confidence"] = str(round(src_val.get("confidence", 0.0), 2))
+
+    if scope_value == "unknown":
+        cc = classify_coverage(
+            provision_text=data.get("verbatim_quote", ""),
+            source_legislation=data.get("source_legislation", ""),
+            indicator_id=ind_id,
+        )
+        scope_value = cc["scope"]
+        features["_coverage_reasons"] = "; ".join(cc.get("reasons", []))
+
+    tf = extract_timeframe(
+        text=chunk.text,
+        source_legislation=data.get("source_legislation", ""),
+        source_url=data.get("source_url", ""),
+    )
+    tf_column = build_timeframe_column(
+        status=tf["status"],
+        in_force_date=tf.get("in_force_date"),
+        last_amended_date=tf.get("last_amended_date"),
+        repealed_date=tf.get("repealed_date"),
+    )
+    features["_timeframe_status"] = tf["status"]
+    features["_timeframe_column"] = tf_column
+
+    source_url_val = data.get("source_url", "")
+    last_update_val = data.get("last_update", "")
+    ts_verification = {}
+
+    mapping = IndicatorMapping(
+        pillar=int(ind_id.split(".", 1)[0]),
+        indicator=ind_id,
+        score=score,
+        verbatim_quote=data["verbatim_quote"],
+        quote_start=chunk.start + local_start,
+        quote_end=chunk.start + local_end,
+        source_legislation=data.get("source_legislation", ""),
+        last_update=ts_verification.get("best_date") or last_update_val,
+        source_url=source_url_val,
+        scope=scope_value,
+        features=features,
+        impact=justification,
+        requires_human_review=False,
+        extraction_provider=provider_name,
+        timestamp_verification=ts_verification,
+    )
+    yield _sse("mapping", mapping.model_dump())
+
+
+@app.post("/api/extract/stream")
+async def extract_stream(text: str = Form(""), source_url: str = Form(""), provider: str = Form(None), model: str = Form(None)):
+    """Stream RDTII extraction results via Server-Sent Events.
+
+    Same pipeline as /api/extract but emits each mapping as an SSE event
+    for progressive rendering in the frontend.
+    """
+    from crawler import fetch_legal_content, fetch_thai_law_by_keyword
+    from pdf_reader import read_pdf
+
+    def _sse(event, payload):
+        return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
+
+    original_text = text
+    source_text = ""
+
+    if source_url.strip():
+        crawl_result = await fetch_legal_content(source_url)
+        if crawl_result["type"] == "text":
+            text = crawl_result["text"]
+            source_text = text
+            if _is_garbage_content(text) and _is_thai_query(original_text):
+                ocs_result = await fetch_thai_law_by_keyword(original_text.strip())
+                if ocs_result["type"] == "text":
+                    text = ocs_result["text"]
+                    source_text = text
+        elif crawl_result["type"] == "pdf":
+            try:
+                pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
+                text = "\n".join(pages)
+                source_text = text
+            except Exception as e:
+                async def _error():
+                    yield _sse("error", {"detail": f"PDF parsing failed: {str(e)}"})
+                return StreamingResponse(_error(), media_type="text/event-stream")
+        elif crawl_result["type"] == "docx":
+            text = crawl_result["text"]
+            source_text = text
+        else:
+            if _is_thai_query(original_text):
+                ocs_result = await fetch_thai_law_by_keyword(original_text.strip())
+                if ocs_result["type"] == "text":
+                    text = ocs_result["text"]
+                    source_text = text
+                else:
+                    async def _err():
+                        yield _sse("error", {"detail": f"Crawl failed: {crawl_result['message']}"})
+                    return StreamingResponse(_err(), media_type="text/event-stream")
+            else:
+                async def _err():
+                    yield _sse("error", {"detail": f"Crawl failed: {crawl_result['message']}"})
+                return StreamingResponse(_err(), media_type="text/event-stream")
+    else:
+        if _is_thai_query(text):
+            ocs_result = await fetch_thai_law_by_keyword(text.strip())
+            if ocs_result["type"] == "text":
+                text = ocs_result["text"]
+                source_text = text
+
+    if not text.strip():
+        async def _empty():
+            yield _sse("error", {"detail": "No text provided and crawl returned no content."})
+        return StreamingResponse(_empty(), media_type="text/event-stream")
+
+    try:
+        if provider:
+            if provider == "ollama" and model:
+                from providers.ollama import OllamaProvider
+                llm_provider = OllamaProvider(model=model)
+            else:
+                llm_provider = get_provider(provider)
+        else:
+            llm_provider = _get_provider()
+    except (ValueError, ExtractionError) as e:
+        async def _bad_provider():
+            yield _sse("error", {"detail": str(e)})
+        return StreamingResponse(_bad_provider(), media_type="text/event-stream")
+
+    stream = _stream_extraction(text, llm_provider)
+    return StreamingResponse(
+        stream,
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
 @app.post("/api/upload", response_model=ExtractionResponse)
-async def upload(file: UploadFile = File(...), provider: str = Form(None)):
+async def upload(file: UploadFile = File(...), provider: str = Form(None), model: str = Form(None)):
     """Upload a PDF file and extract RDTII indicator mappings from it."""
     if not file.filename or not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
@@ -436,7 +862,11 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None)):
 
     if provider:
         try:
-            llm_provider = get_provider(provider)
+            if provider == "ollama" and model:
+                from providers.ollama import OllamaProvider
+                llm_provider = OllamaProvider(model=model)
+            else:
+                llm_provider = get_provider(provider)
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
         except ExtractionError as e:
@@ -445,6 +875,101 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None)):
         llm_provider = _get_provider()
 
     return await _run_extraction(text, llm_provider)
+
+
+# ── Alias: /api/ingest/document → upload ────────────────
+
+
+@app.post("/api/ingest/document", response_model=ExtractionResponse)
+async def ingest_document(file: UploadFile = File(...), provider: str = Form(None), model: str = Form(None)):
+    """Alias for /api/upload — used by frontend INGEST_API_URL."""
+    return await upload(file, provider, model)
+
+
+# ── /api/fetch-text — crawl a URL and return raw text ────
+
+
+class FetchTextRequest(BaseModel):
+    source_url: str = ""
+
+
+class FetchTextResponse(BaseModel):
+    text: str = ""
+
+
+@app.post("/api/fetch-text")
+async def fetch_text(req: FetchTextRequest):
+    """Crawl a URL and return extracted plain text without LLM extraction."""
+    from crawler import fetch_legal_content
+    from pdf_reader import read_pdf
+
+    if not req.source_url.strip():
+        raise HTTPException(status_code=400, detail="source_url is required.")
+
+    crawl_result = await fetch_legal_content(req.source_url)
+    if crawl_result["type"] == "text":
+        return FetchTextResponse(text=crawl_result["text"])
+    elif crawl_result["type"] == "pdf":
+        try:
+            pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
+            return FetchTextResponse(text="\n".join(pages))
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
+    elif crawl_result["type"] == "docx":
+        return FetchTextResponse(text=crawl_result["text"])
+    else:
+        raise HTTPException(status_code=400, detail=f"Crawl failed: {crawl_result.get('message', 'unknown error')}")
+
+
+# ── Auth (register routes from auth.py) ────────────────────
+
+
+from auth import (
+    ForgotPasswordRequest,
+    LoginRequest,
+    RegisterRequest,
+    ResetPasswordRequest,
+    TokenResponse,
+    _bearer,
+    forgot_password,
+    get_current_user,
+    login,
+    register,
+    reset_password,
+)
+
+
+class LoginRequestOut(BaseModel):
+    email: str
+    password: str
+
+
+@app.post("/auth/register")
+async def auth_register(req: RegisterRequest):
+    return await register(req)
+
+
+@app.post("/auth/login")
+async def auth_login(req: LoginRequest):
+    return await login(req)
+
+
+@app.post("/auth/forgot-password")
+async def auth_forgot_password(req: ForgotPasswordRequest):
+    return await forgot_password(req)
+
+
+@app.post("/auth/reset-password")
+async def auth_reset_password(req: ResetPasswordRequest):
+    return await reset_password(req)
+
+
+@app.get("/auth/me")
+async def auth_me(current_user: dict = Depends(get_current_user)):
+    return current_user
+
+
+# ── Database-backed review ──────────────────────────────
 
 
 @app.post("/api/mappings/review")
@@ -540,3 +1065,129 @@ def review_mapping(req: ReviewRequest):
     finally:
         if conn:
             conn.close()
+
+
+# ── Excel export ──────────────────────────────────────────
+
+
+class ExcelExportRequest(BaseModel):
+    """Request for Excel export of indicator mappings."""
+    country: str = "unknown"
+    mappings: list[IndicatorMapping] = []
+    filename: str = "rdtii_mappings.xlsx"
+
+
+@app.post("/api/excel/export")
+async def export_excel(req: ExcelExportRequest):
+    """Export indicator mappings to Excel (.xlsx) format.
+    
+    Returns the Excel file as a download attachment.
+    Follows RDTII 2.1 data collection practice format.
+    """
+    from excel_exporter import create_excel_response, mappings_to_excel
+
+    try:
+        return create_excel_response(
+            mappings=req.mappings,
+            country=req.country,
+            filename=req.filename,
+        )
+    except ImportError as e:
+        raise HTTPException(status_code=500, detail=f"Excel export unavailable: {e}. Install openpyxl.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Excel export failed: {str(e)}")
+
+
+# ── Source validation ──────────────────────────────────────
+
+
+class SourceValidationRequest(BaseModel):
+    url: str = ""
+    title: str = ""
+    text_snippet: str = ""
+
+
+class SourceValidationResponse(BaseModel):
+    grade: str
+    confidence: float
+    reasons: list[str]
+    is_primary: bool
+    warning: str = ""
+
+
+@app.post("/api/validate/source")
+def validate_source(req: SourceValidationRequest):
+    """Validate whether a source is a primary/official legal instrument.
+    
+    Primary sources: official legal instruments with legal effect.
+    Secondary sources: news, commentaries, academic publications.
+    """
+    from source_validator import require_primary_source
+
+    result = require_primary_source(
+        url=req.url,
+        title=req.title,
+        text_snippet=req.text_snippet,
+    )
+    return SourceValidationResponse(
+        grade=result["grade"],
+        confidence=result["confidence"],
+        reasons=result["reasons"],
+        is_primary=result["is_primary"],
+        warning=result.get("warning", ""),
+    )
+
+
+# ── Timestamp verification (existing, documented) ────────
+
+
+class TimestampVerificationRequest(BaseModel):
+    url: str = ""
+    last_update: str = ""
+
+
+class TimestampVerificationResponse(BaseModel):
+    verified: bool
+    best_date: str
+    verification_log: str
+    source_details: list = []
+
+
+@app.post("/api/verify/timestamp")
+async def verify_timestamp(req: TimestampVerificationRequest):
+    """Three-source timestamp verification for a legal source URL."""
+    try:
+        from crawler import verify_law_timeline
+        result = await verify_law_timeline(req.url, req.last_update)
+        return TimestampVerificationResponse(
+            verified=result.get("verified", False),
+            best_date=result.get("best_date", ""),
+            verification_log=result.get("verification_log", ""),
+            source_details=result.get("source_details", []),
+        )
+    except ImportError:
+        raise HTTPException(status_code=503, detail="crawler module not available")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Timestamp verification failed: {str(e)}")
+
+
+# ── Coverage classification ─────────────────────────────
+
+
+class CoverageRequest(BaseModel):
+    provision_text: str = ""
+    source_legislation: str = ""
+    indicator_id: str = ""
+
+
+@app.post("/api/classify/coverage")
+def classify_coverage_api(req: CoverageRequest):
+    """Classify a legal measure as horizontal or sectoral."""
+    from coverage_classifier import classify_coverage
+
+    result = classify_coverage(
+        provision_text=req.provision_text,
+        source_legislation=req.source_legislation,
+        indicator_id=req.indicator_id,
+    )
+    return result

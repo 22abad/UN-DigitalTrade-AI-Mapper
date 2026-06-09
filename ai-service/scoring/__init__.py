@@ -41,7 +41,9 @@ def score_indicator(indicator_id: str, features: dict) -> tuple[Score, str]:
         if indicator_id.startswith("4."):
             return 0.5, "Pillar 4 logic stub."
         if indicator_id.startswith("5."):
-            return 0.5, "Pillar 5 logic stub."
+            from . import pillar_5 as _p5
+
+            return _p5.score(indicator_id, features)
         if indicator_id.startswith("6."):
             from . import pillar_6 as _p6
 

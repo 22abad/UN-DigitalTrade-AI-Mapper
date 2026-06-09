@@ -16,11 +16,19 @@ _INDICATOR_PHRASES = {
     ],
     "4.1": ["intellectual property", "patent", "copyright", "知识产权", "专利", "著作权"],
     "5.1": ["telecom", "broadband", "frequency", "电信", "宽带"],
+    "5.3": [
+        "government equity", "government ownership", "state-owned",
+        "majority stake", "government share", "public sector",
+        "telecom", "operator", "telecommunication service provider",
+        "政府持股", "国有", "国有控股", "控股",
+    ],
     "6.1": [
         "transfer abroad", "transferred abroad", "transferring abroad", "transferring data abroad", "ban on transfer",
         "process locally", "data localization", "data localisation",
         "xử lý tại chỗ", "pemrosesan", "proses", "ห้ามโอนย้ายไปต่างประเทศ",
-        "出境", "境外", "境内处理", "禁止传输", "本地处理"
+        "出境", "境外", "境内处理", "禁止传输", "本地处理",
+        "transfer personal data", "transfer of personal data", "restrict transfer",
+        "prohibition of transfer", "no transfer", "shall not transfer"
     ],
     "6.2": [
         "store data within", "local storage", "stored locally",
@@ -34,7 +42,9 @@ _INDICATOR_PHRASES = {
     ],
     "6.4": [
         "consent", "adequacy", "standard contract", "prior authorization", "security assessment",
-        "同意", "充分性", "标准合同", "安全评估"
+        " согласие", "充分性", "标准合同", "安全评估",
+        "data exporter", "data importer", "binding corporate", "adequate level of protection",
+        "appropriate safeguard", "contractual clause", "transfer mechanism"
     ],
     "6.5": [
         "trade agreement", "depa", "cptpp", "rcep", "free flow of data",
@@ -56,11 +66,17 @@ _INDICATOR_PHRASES = {
     ],
     "7.4": [
         "data protection officer", "dpo", "dpia", "impact assessment",
-        "数据保护官", "影响评估"
+        "数据保护官", "影响评估",
+        "compliance officer", "privacy officer", "registration with",
+        "data controller", "data processor", "register of processing",
+        "annual audit", "data audit", "compliance audit"
     ],
     "7.5": [
         "law enforcement access", "without warrant", "surveillance",
-        "执法", "国家安全", "监视"
+        "执法", "国家安全", "监视",
+        "public interest", "public authority access", "government access",
+        "national security", "public order", "disclosure to law enforcement",
+        "obligation to notify", "competent authority", "regulatory authority"
     ],
     "8.1": ["intermediary liability", "safe harbor", "互联网平台责任", "责任承担"],
     "9.1": ["online content", "illegal content", "在线内容", "违法内容"],

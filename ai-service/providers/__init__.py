@@ -37,6 +37,8 @@ _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
     "gemini": (".gemini", "GeminiProvider"),
     "claude": (".claude", "ClaudeProvider"),
     "llama-3-local": (".llama_local", "Llama3LocalProvider"),
+    # Ollama — local model server with OpenAI-compatible API
+    "ollama": (".ollama", "OllamaProvider"),
     # OpenAI-compatible (single SDK, many vendors via base_url)
     "openai": (".openai_compatible", "OpenAIProvider"),
     "deepseek": (".openai_compatible", "DeepSeekProvider"),

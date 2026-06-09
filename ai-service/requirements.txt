@@ -266,6 +266,8 @@ uvicorn==0.49.0
     # via -r /app/requirements.in
 websockets==16.0
     # via google-genai
+openpyxl==3.1.5
+    # via -r /app/requirements.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

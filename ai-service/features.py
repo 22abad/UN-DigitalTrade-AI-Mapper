@@ -23,6 +23,36 @@ INDICATOR_FEATURES: dict[str, dict[str, dict[str, str]]] = {
     "3.1": {"foreign_equity_limit": {"type": "float", "description": "FDI equity limit"}},
     "4.1": {"ip_protection_level": {"type": "str", "description": "IP protection level"}},
     "5.1": {"telecom_competition": {"type": "bool", "description": "Telecom market competition"}},
+    "5.3": {
+        "government_equity_percentage": {
+            "type": "float",
+            "description": "Percentage of government equity/ownership in a domestic telecom operator (0–100).",
+        },
+        "has_government_owned_operator": {
+            "type": "bool",
+            "description": "Does the government hold any equity stake in a domestic telecom operator?",
+        },
+        "government_has_majority_stake": {
+            "type": "bool",
+            "description": "Does the government hold >50% equity stake in at least one telecom operator?",
+        },
+        "stake_percentage_raw": {
+            "type": "str",
+            "description": "Raw text describing government stake percentage or source reference.",
+        },
+        "partial_stake_desc": {
+            "type": "str",
+            "description": "Description of government stake if it is partial/not majority.",
+        },
+        "has_state_enterprise_role": {
+            "type": "bool",
+            "description": "Does a state-owned enterprise operate in the telecom sector?",
+        },
+        "operator_names": {
+            "type": "str",
+            "description": "Comma-separated names of telecom operators with government holdings.",
+        },
+    },
     "6.1": {
         "personal_data": {
             "type": "bool",

@@ -38,7 +38,8 @@ rapidfuzz>=3.0
 # UAX #29 Unicode text segmentation (chunker)
 uniseg>=0.7
 
-# Auth
+# Excel export
+openpyxl>=3.0
 python-jose[cryptography]>=3.3
 bcrypt>=4.0
 pydantic[email]>=2.0

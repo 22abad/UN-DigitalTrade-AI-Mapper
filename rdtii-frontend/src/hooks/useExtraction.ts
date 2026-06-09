@@ -24,6 +24,8 @@ export function useExtraction() {
   const [showRejected, setShowRejected] = useState(false);
   const [availableProviders, setAvailableProviders] = useState<string[]>([]);
   const [selectedProvider, setSelectedProvider] = useState("gemini");
+  const [ollamaModels, setOllamaModels] = useState<string[]>([]);
+  const [selectedOllamaModel, setSelectedOllamaModel] = useState("gemma4:12b");
   const [foundPdfs, setFoundPdfs] = useState<string[]>([]);
 
   useEffect(() => {
@@ -32,6 +34,17 @@ export function useExtraction() {
       .then((data) => {
         if (data.available_providers) setAvailableProviders(data.available_providers);
         if (data.active_provider) setSelectedProvider(data.active_provider);
+      })
+      .catch(() => {});
+    fetch("/providers/ollama-models")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.models && data.models.length > 0) {
+          setOllamaModels(data.models);
+          if (!data.models.includes("gemma4:12b")) {
+            setSelectedOllamaModel(data.models[0]);
+          }
+        }
       })
       .catch(() => {});
   }, []);
@@ -82,6 +95,9 @@ export function useExtraction() {
     form.append("text", text);
     if (sourceUrl.trim()) form.append("source_url", sourceUrl.trim());
     form.append("provider", selectedProvider);
+    if (selectedProvider === "ollama") {
+      form.append("model", selectedOllamaModel);
+    }
 
     try {
       const res = await fetch(STREAM_API_URL, {
@@ -179,6 +195,9 @@ export function useExtraction() {
       const form = new FormData();
       form.append("file", file);
       form.append("provider", selectedProvider);
+      if (selectedProvider === "ollama") {
+        form.append("model", selectedOllamaModel);
+      }
 
       const res = await fetch(INGEST_API_URL, {
         method: "POST",
@@ -297,6 +316,7 @@ export function useExtraction() {
     showRejected, setShowRejected,
     availableProviders,
     selectedProvider, setSelectedProvider,
+    ollamaModels, selectedOllamaModel, setSelectedOllamaModel,
     foundPdfs,
     extract,
     ingestFile,

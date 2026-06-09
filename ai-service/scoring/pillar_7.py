@@ -36,13 +36,64 @@ def score_7_2(features: dict) -> tuple[Score, str]:
 
 # ── 7.3 Minimum period of data retention requirements ──────────────────────
 def score_7_3(features: dict) -> tuple[Score, str]:
+    """Distinguish I7.3 (minimum retention) from data minimisation rules.
+
+    RDTII 2.1: Score 1 only when a law mandates that electronic transaction /
+    commercial records MUST be retained for a SPECIFIED MINIMUM PERIOD
+    (e.g. 'not less than 5 years', 'at least 3 years').
+
+    Do NOT score 1 for mere data minimisation provisions like
+    "do not retain longer than necessary" — those are scoring-irrelevant for I7.3.
+    
+    Heuristic rules:
+      - "minimum period", "not less than X [years/months/days]",
+        "at least X", "shall be kept for at least" → has_minimum_retention_period=True
+      - "as long as necessary", "do not retain longer", "不得过长保留",
+        "数据最小化", "data minimisation" → retention_type="minimisation" (NOT I7.3)
+      - explicit "must retain" with time → retention_type="minimum"
+    """
     if _excluded_if_gov_only(features):
         return 0.0, "Score 0: Excluded because measure applies only to government data."
-        
-    if bool(features.get("has_minimum_retention_period")):
-        return 1.0, "Score 1: A minimum period of data retention is mandated."
-        
-    return 0.0, "Score 0: No retention requirement, or requirement does not specify a minimum period (e.g., 'as long as necessary')."
+
+    # Explicit feature flag from LLM features (preferred signal)
+    has_min_period = bool(features.get("has_minimum_retention_period"))
+    retention_type = (features.get("retention_type") or "").strip().lower()
+
+    # If LLM flagged explicit minimum → score 1
+    if has_min_period:
+        min_val = features.get("min_retention_value")
+        unit = features.get("min_retention_unit", "")
+        unit_label = f" ({min_val} {unit})" if (min_val and unit) else ""
+        return 1.0, f"Score 1: A minimum period of data retention is mandated{unit_label}."
+
+    # If LLM says retention_type is "minimisation" → it's NOT a minimum retention rule
+    if retention_type == "minimisation":
+        return 0.0, ("Score 0: Provision is a data minimisation / 'do not retain longer than necessary' "
+                      "rule, not a minimum retention mandate.")
+
+    # Heuristic fallback: check text snippets for distinguishing signals
+    text_snippets = features.get("text_snippets", "") or ""
+    has_min_signals = any(kw in text_snippets.lower() for kw in [
+        "not less than", "at least", "shall keep", "must retain",
+        "不得低于", "不少于", "至少保存", "保留期限不少于",
+    ])
+    has_min_unit = bool(features.get("min_retention_value")) and bool(features.get("min_retention_unit"))
+
+    if has_min_signals or has_min_unit:
+        ret_desc = f"{features['min_retention_value']} {features['min_retention_unit']}" if has_min_unit else "specified minimum period"
+        return 1.0, f"Score 1: Text contains signals of a minimum retention mandate ({ret_desc})."
+
+    # Check for data minimisation signals in text
+    has_minimisation_signals = any(kw in text_snippets.lower() for kw in [
+        "as long as necessary", "necessary for a period",
+        "不得保存过长期限", "保留期限不得超过", "数据最小化原则",
+        "do not retain longer than", "may be retained only",
+    ])
+    if has_minimisation_signals:
+        return 0.0, ("Score 0: Only data minimisation / time-limiting provision found "
+                      "('retain no longer than...'), not a mandatory minimum retention period.")
+
+    return 0.0, "Score 0: No minimum retention requirement identified; any retention rule is either absent or does not specify a mandated minimum."
 
 
 # ── 7.4 DPIA / DPO requirements ────────────────────────────────────────────

@@ -14,6 +14,9 @@ type TopBarProps = {
   availableProviders: string[];
   selectedProvider: string;
   setSelectedProvider: (v: string) => void;
+  ollamaModels: string[];
+  selectedOllamaModel: string;
+  setSelectedOllamaModel: (v: string) => void;
   onClose: () => void;
 };
 
@@ -28,6 +31,8 @@ const PROVIDER_LABELS: Record<string, string> = {
   openrouter: "OpenRouter",
   "llama-3-local": "Llama 3 (Local)",
 };
+
+const LOCAL_PROVIDERS = ["ollama", "llama-3-local"];
 
 function SubSection({ label, summary, children }: { label: string; summary?: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -110,6 +115,9 @@ export function SideBar({
   availableProviders,
   selectedProvider,
   setSelectedProvider,
+  ollamaModels,
+  selectedOllamaModel,
+  setSelectedOllamaModel,
   onClose,
 }: TopBarProps) {
   const headerStatus =
@@ -157,22 +165,70 @@ export function SideBar({
             </div>
             <SubSection
               label="Provider"
-              summary={PROVIDER_LABELS[selectedProvider] ?? selectedProvider ?? provider ?? "—"}
+              summary={
+                LOCAL_PROVIDERS.includes(selectedProvider)
+                  ? "Local"
+                  : PROVIDER_LABELS[selectedProvider] ?? selectedProvider ?? provider ?? "—"
+              }
             >
-              {availableProviders.map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setSelectedProvider(p)}
-                  style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
-                >
-                  <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
-                    {PROVIDER_LABELS[p] ?? p}
-                  </span>
-                  {selectedProvider === p && (
-                    <span className="text-[#10B981] text-xs">⎷</span>
+              {/* Cloud providers */}
+              {availableProviders
+                .filter((p) => !LOCAL_PROVIDERS.includes(p))
+                .map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setSelectedProvider(p)}
+                    style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
+                      {PROVIDER_LABELS[p] ?? p}
+                    </span>
+                    {selectedProvider === p && (
+                      <span className="text-[#10B981] text-xs">⎷</span>
+                    )}
+                  </button>
+                ))}
+              {/* Local providers — merged under one heading */}
+              {availableProviders.filter((p) => LOCAL_PROVIDERS.includes(p)).length > 0 && (
+                <div className="mt-2 pt-2 border-t border-white/10">
+                  <span className="block text-[10px] text-white/30 uppercase tracking-widest mb-1">Local</span>
+                  {availableProviders
+                    .filter((p) => LOCAL_PROVIDERS.includes(p))
+                    .map((p) => (
+                      <button
+                        key={p}
+                        onClick={() => setSelectedProvider(p)}
+                        style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "2px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                      >
+                        <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/40"}`}>
+                          {PROVIDER_LABELS[p] ?? p}
+                        </span>
+                        {selectedProvider === p && (
+                          <span className="text-[#10B981] text-xs">⎷</span>
+                        )}
+                      </button>
+                    ))}
+                  {/* Ollama model sub-selector */}
+                  {selectedProvider === "ollama" && ollamaModels.length > 0 && (
+                    <div className="mt-1 pl-2 border-l border-white/10">
+                      {ollamaModels.map((m) => (
+                        <button
+                          key={m}
+                          onClick={() => setSelectedOllamaModel(m)}
+                          style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "1px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                        >
+                          <span className={`text-[11px] ${selectedOllamaModel === m ? "text-[#10B981] font-semibold" : "text-white/30"}`}>
+                            {m}
+                          </span>
+                          {selectedOllamaModel === m && (
+                            <span className="text-[#10B981] text-[10px]">⎷</span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   )}
-                </button>
-              ))}
+                </div>
+              )}
             </SubSection>
           </Section>
 
