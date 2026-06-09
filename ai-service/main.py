@@ -47,6 +47,7 @@ from coverage_classifier import classify_coverage
 from features import get_feature_spec
 from providers import canonical_name, get_default_provider, list_providers, get_provider
 from providers.base import ExtractionError
+from country_detector import detect_country
 from source_validator import grade_source, require_primary_source
 from staleness_checker import check_staleness
 from timeframe_extractor import extract_timeframe, build_timeframe_column
@@ -1290,5 +1291,25 @@ def classify_coverage_api(req: CoverageRequest):
         provision_text=req.provision_text,
         source_legislation=req.source_legislation,
         indicator_id=req.indicator_id,
+    )
+    return result
+
+
+# ── Country detection ──────────────────────────────────
+
+
+class CountryDetectRequest(BaseModel):
+    text: str = ""
+    source_url: str = ""
+    source_legislation: str = ""
+
+
+@app.post("/api/detect/country")
+def detect_country_api(req: CountryDetectRequest):
+    """Auto-detect the country/jurisdiction from text, URL, or legislation name."""
+    result = detect_country(
+        text=req.text,
+        source_url=req.source_url,
+        source_legislation=req.source_legislation,
     )
     return result
