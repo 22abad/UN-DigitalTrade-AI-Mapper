@@ -63,6 +63,15 @@ export function MappingCard({
         </p>
       </div>
 
+      <div className="taxonomy-row">
+        {mapping.cluster ? <span className="taxonomy-chip cluster">{mapping.cluster}</span> : null}
+        {mapping.name ? <span className="taxonomy-chip name">{mapping.name}</span> : null}
+        {mapping.policy_description ? <span className="taxonomy-chip policy">{mapping.policy_description}</span> : null}
+        {mapping.cov_name ? <span className="taxonomy-chip cov">{mapping.cov_name}</span> : null}
+        {mapping.region ? <span className="taxonomy-chip region">{mapping.region}</span> : null}
+        {mapping.coverage ? <span className="taxonomy-chip coverage">{mapping.coverage}</span> : null}
+      </div>
+
       <blockquote className="quote select-text">
         "{visibleQuote}"
         {quoteIsLong ? (

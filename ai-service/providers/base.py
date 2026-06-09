@@ -135,6 +135,10 @@ class LLMProvider(ABC):
             "source_legislation",
             "last_update",
             "scope",
+            "coverage",
+            "cluster",
+            "name",
+            "policy_description",
         ]
         schema_lines = ",\n".join(f'  "{k}": ...' for k in schema_keys)
 
@@ -152,6 +156,10 @@ ABSOLUTE RULES:
   - FOR NON-ENGLISH TEXTS: Copy the text character-for-character including all spaces and special characters. DO NOT attempt to normalize or reformat.
 - If a feature cannot be determined from the text, set it to its type's default (false / 0 / "").
 - "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
+- "coverage": detailed description of the measure's coverage (e.g. 'ICT products', 'Telecommunication equipments', 'Cross-cutting').
+- "cluster": high-level policy cluster — one of "Traditional trade policies", "Digital governance policies", or "Other domestic policies".
+- "name": mid-level policy category (e.g. "Tariffs & trade defence", "Non-technical NTMs", "Standards & procedures", "Online sales & transactions", "Public procurement", "Foreign direct investment", "Intellectual property rights").
+- "policy_description": most specific policy type (e.g. "Trade defence measures", "Import bans", "Local content requirements", "Self-certification limitations").
 - Do NOT include a score or any RDTII pillar/indicator number — only features.
 
 JSON schema (all keys required):
@@ -183,7 +191,11 @@ Input article:
             for fname in fnames:
                 fields.append(f'    "{fname}": ...,')
             fields.append('    "source_legislation": "full title of the law/regulation, or empty string",')
-            fields.append('    "scope": "horizontal|sectoral|unknown"')
+            fields.append('    "scope": "horizontal|sectoral|unknown",')
+            fields.append('    "coverage": "detailed coverage description (e.g. ICT products)",')
+            fields.append('    "cluster": "Traditional trade policies|Digital governance policies|Other domestic policies",')
+            fields.append('    "name": "mid-level policy category (e.g. Tariffs & trade defence)",')
+            fields.append('    "policy_description": "specific policy type (e.g. Trade defence measures)"')
             schema_parts.append(f'  "{indicator_id}": {{')
             schema_parts.extend(fields)
             schema_parts.append('  }')
@@ -200,6 +212,10 @@ ABSOLUTE RULES:
 - Each indicator MUST have a "verbatim_quote" that is an EXACT substring of the input — do NOT paraphrase.
 - If a feature cannot be determined, set to its type default (false / 0 / "").
 - "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
+- "coverage": detailed coverage description.
+- "cluster": high-level policy cluster — "Traditional trade policies", "Digital governance policies", or "Other domestic policies".
+- "name": mid-level policy category.
+- "policy_description": specific policy type.
 - Do NOT include scores — only features.
 
 Return JSON:
