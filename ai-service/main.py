@@ -48,6 +48,7 @@ from features import get_feature_spec
 from providers import canonical_name, get_default_provider, list_providers, get_provider
 from providers.base import ExtractionError
 from source_validator import grade_source, require_primary_source
+from staleness_checker import check_staleness
 from timeframe_extractor import extract_timeframe, build_timeframe_column
 
 # crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
@@ -252,6 +253,16 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                         )
                     except Exception:
                         pass
+
+                # ── Staleness / outdated-law detection ──────────────
+                stale = check_staleness(
+                    last_update=last_update_val,
+                    timeframe_status=tf["status"],
+                    source_url=source_url_val,
+                    source_legislation=data.get("source_legislation", ""),
+                )
+                features["_staleness_reasons"] = "; ".join(stale["staleness_reasons"])
+                features["_staleness_severity"] = stale["stale_severity"]
 
                 from validation import validate_mapping
 
@@ -692,6 +703,7 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
     """Process one LLM extraction result — yield 0 or 1 SSE events for it."""
     from coverage_classifier import classify_coverage
     from source_validator import grade_source
+    from staleness_checker import check_staleness
     from timeframe_extractor import extract_timeframe, build_timeframe_column
     from verification import find_quote_offsets, verify_quote
     from scoring import score_indicator
@@ -764,6 +776,16 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
     source_url_val = data.get("source_url", "")
     last_update_val = data.get("last_update", "")
     ts_verification = {}
+
+    # ── Staleness / outdated-law detection ──────────────────────────
+    stale = check_staleness(
+        last_update=last_update_val,
+        timeframe_status=tf["status"],
+        source_url=source_url_val,
+        source_legislation=data.get("source_legislation", ""),
+    )
+    features["_staleness_reasons"] = "; ".join(stale["staleness_reasons"])
+    features["_staleness_severity"] = stale["stale_severity"]
 
     mapping = IndicatorMapping(
         pillar=int(ind_id.split(".", 1)[0]),
