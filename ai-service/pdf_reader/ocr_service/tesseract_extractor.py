@@ -23,12 +23,18 @@ _SLOW_PAGE_THRESHOLD = float(os.getenv("OCR_SLOW_PAGE_S", "5.0"))
 
 # ── Low-level OCR helpers ─────────────────────────────────────────────────────
 
-def _ocr_array(img_array: np.ndarray, langs: str = _TESSERACT_LANGS) -> str:
-    """Preprocess a RGB numpy array and run Tesseract OCR."""
+def _ocr_array_with_conf(img_array: np.ndarray, langs: str = _TESSERACT_LANGS) -> tuple[str, float]:
+    """Preprocess a RGB numpy array and run Tesseract OCR, returning (text, mean_confidence)."""
     gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     denoised = cv2.fastNlMeansDenoising(thresh)
-    return pytesseract.image_to_string(denoised, lang=langs, config="--psm 3").strip()
+    data = pytesseract.image_to_data(denoised, lang=langs, config="--psm 3", output_type=pytesseract.Output.DICT)
+    words = [w.strip() for w in data["text"]]
+    confs = data["conf"]
+    valid_conf = [c for w, c in zip(words, confs) if w and c >= 0]
+    mean_conf = float(np.mean(valid_conf)) / 100.0 if valid_conf else 0.0
+    full_text = " ".join(w for w in words if w).strip()
+    return full_text, mean_conf
 
 
 
@@ -36,15 +42,18 @@ def _ocr_array_with_fallback(
     img_array: np.ndarray,
     min_chars: int = 50,
     langs: str = _TESSERACT_LANGS,
-) -> tuple[str, str]:
-    """Tesseract first (local, free); OpenAI Vision fallback if result too short."""
-    text = _ocr_array(img_array, langs=langs)
+) -> tuple[str, str, float]:
+    """Tesseract first (local, free); OpenAI Vision fallback if result too short.
+
+    Returns (text, source, confidence) where confidence is 0.0–1.0.
+    """
+    text, conf = _ocr_array_with_conf(img_array, langs=langs)
     if len(text) >= min_chars:
-        return text, "tesseract"
+        return text, "tesseract", conf
     vision_text = ocr_vision(img_array)
     if vision_text and len(vision_text) >= min_chars:
-        return vision_text, "openai"
-    return "", "none"
+        return vision_text, "openai", 0.5  # lower confidence for LLM-based OCR
+    return "", "none", 0.0
 
 
 def _timed_ocr_page(
@@ -54,15 +63,18 @@ def _timed_ocr_page(
     min_chars: int,
     langs: str,
     pipeline_t0: float,
-) -> tuple[str, str]:
-    """OCR one page and emit a per-page INFO log line as soon as it completes."""
+) -> tuple[str, str, float]:
+    """OCR one page and emit a per-page INFO log line as soon as it completes.
+
+    Returns (text, source, confidence) where confidence is 0.0–1.0.
+    """
     t_page = time.perf_counter()
-    text, source = _ocr_array_with_fallback(img_array, min_chars, langs)
+    text, source, conf = _ocr_array_with_fallback(img_array, min_chars, langs)
     page_s = time.perf_counter() - t_page
     total_s = time.perf_counter() - pipeline_t0
 
     tag = f"[OCR] page {page_num + 1:>3}/{n_pages}"
-    detail = f"src={source:<10}  chars={len(text):<5d}  page={page_s:5.1f}s  elapsed={total_s:6.1f}s"
+    detail = f"src={source:<10}  conf={conf:.2f}  chars={len(text):<5d}  page={page_s:5.1f}s  elapsed={total_s:6.1f}s"
 
     if source == "openai":
         logger.info("%s  %s  (tesseract returned too little)", tag, detail)
@@ -71,7 +83,7 @@ def _timed_ocr_page(
     else:
         logger.info("%s  %s", tag, detail)
 
-    return text, source
+    return text, source, conf
 
 
 # ── fitz page renderer ────────────────────────────────────────────────────────
@@ -118,8 +130,8 @@ def extract_text_ocr(filepath: str, langs: str = _TESSERACT_LANGS) -> list[str]:
     # Collect in page order — _timed_ocr_page already logged each page as it finished.
     results = [f.result() for f in futures]
 
-    pages = [text for text, _ in results]
-    sources = [src for _, src in results]
+    pages = [text for text, _, _ in results]
+    sources = [src for _, src, _ in results]
     none_count = sources.count("none")
     openai_count = sources.count("openai")
     tesseract_count = sources.count("tesseract")
@@ -159,9 +171,9 @@ def extract_sections_ocr(
 
     sections = []
     for i, fut in futures:
-        text, source = fut.result()
+        text, source, conf = fut.result()
         if len(text) >= min_section_chars:
-            sections.append({"page": i + 1, "text": text, "source": source})
+            sections.append({"page": i + 1, "text": text, "source": source, "ocr_confidence": conf})
 
     logger.info("[OCR] sections done  kept=%d/%d  total=%.1fs",
                 len(sections), n_pages, time.perf_counter() - t0)
@@ -192,7 +204,8 @@ def preprocess_image(image_path, langs: str = _TESSERACT_LANGS) -> str:
     """Kept for backward compatibility."""
     import cv2 as _cv2
     img = _cv2.imread(str(image_path))
-    return _ocr_array(_cv2.cvtColor(img, _cv2.COLOR_BGR2RGB), langs)
+    text, _ = _ocr_array_with_conf(_cv2.cvtColor(img, _cv2.COLOR_BGR2RGB), langs)
+    return text
 
 
 def ocr_with_fallback(image_path, min_chars: int = 50, langs: str = _TESSERACT_LANGS):

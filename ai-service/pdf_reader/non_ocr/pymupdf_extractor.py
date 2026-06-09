@@ -124,7 +124,45 @@ def is_garbled(text: str) -> bool:
     return (known / len(words)) < 0.05
 
 
-# ── Public API ────────────────────────────────────────────────────────────────
+# ── Text-page confidence scoring ───────────────────────────────────────────────
+# For pages extracted via PyMuPDF text layer, we compute a confidence score
+# based on garbled-character ratio and known-word density.
+
+_LATIN_START = ord("A")
+_LATIN_END = ord("z")
+_DIGIT_START = ord("0")
+_DIGIT_END = ord("9")
+
+
+def text_confidence(text: str) -> float:
+    """Return 0.0–1.0 confidence that a text-layer page has clean content.
+
+    Uses two signals:
+    - Garbled char ratio: non-ASCII/non-Latin printable chars.
+    - Known-word rate: proportion of words that look like real language.
+    Returns 0.5 as baseline for short/empty pages.
+    """
+    if not text.strip():
+        return 0.0
+    words = [w for w in text.split() if len(w) >= 2]
+    if not words:
+        return 0.3
+
+    # Signal 1: printable ASCII ratio (low = garbled)
+    total_chars = sum(1 for c in text if c.isprintable())
+    ascii_chars = sum(1 for c in text if c.isprintable() and ord(c) <= 0x7F)
+    ascii_ratio = ascii_chars / total_chars if total_chars else 0.0
+
+    # Signal 2: known-word rate (lower = more likely garbled)
+    known = sum(1 for w in words if w.lower() in _COMMON_EN)
+    known_rate = known / len(words)
+
+    # Signal 3: average word length (extremely long = garbled)
+    avg_len = sum(len(w) for w in words) / len(words)
+    len_score = 1.0 - min(1.0, max(0.0, (avg_len - 9) / 15))
+
+    conf = 0.4 * ascii_ratio + 0.35 * known_rate + 0.25 * len_score
+    return max(0.0, min(1.0, conf))
 
 def extract_text_pure(filepath: str) -> list[str]:
     """Extract text from a native-text PDF, filtering watermarks."""
