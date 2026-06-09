@@ -17,7 +17,7 @@ from .base import LLMProvider
 class OllamaProvider(LLMProvider):
     """OpenAI-compatible client targeted at a local Ollama instance."""
 
-    default_model = "qwen2.5:7b"           # fallback if nothing is set
+    default_model = "qwen2.5-coder:7b"     # fallback if nothing is set
     api_key_env = "OLLAMA_API_KEY"         # Ollama doesn't require one by default
 
     def __init__(self, model: str | None = None, base_url: str | None = None):

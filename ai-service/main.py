@@ -122,6 +122,9 @@ class TextRequest(BaseModel):
 
 
 async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
+    from validation import reset_quote_registry
+    reset_quote_registry()
+
     import time as _time
     _t0 = _time.time()
 
@@ -248,7 +251,9 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     except Exception:
                         pass
 
-                mapped.append((IndicatorMapping(
+                from validation import validate_mapping
+
+                mapping_obj = IndicatorMapping(
                     pillar=int(ind_id.split(".", 1)[0]),
                     indicator=ind_id,
                     score=score,
@@ -264,7 +269,26 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     requires_human_review=False,
                     extraction_provider=llm_provider.name,
                     timestamp_verification=ts_verification,
-                ), None))
+                )
+
+                vr = validate_mapping(
+                    mapping_obj,
+                    quote=mapping_obj.verbatim_quote,
+                    chunk_text=chunk.text,
+                    indicator_id=ind_id,
+                    features=features,
+                )
+                if vr.level == "reject":
+                    mapped.append((None, RejectedExtraction(
+                        reason="; ".join(vr.reasons),
+                        chunk_preview=chunk.text[:200],
+                    )))
+                    continue
+                if vr.level == "flag":
+                    mapping_obj.requires_human_review = True
+                    mapping_obj.flag_reasons = vr.reasons
+
+                mapped.append((mapping_obj, None))
 
             logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
             return mapped, _time.time() - _ct
@@ -581,6 +605,9 @@ async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, Non
       event: done     {}
       event: error    {detail}
     """
+    from validation import reset_quote_registry
+    reset_quote_registry()
+
     from chunker import regex_legal_chunker
     from classifier import classify_indicator
     from coverage_classifier import classify_coverage
@@ -661,6 +688,7 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
     from verification import find_quote_offsets, verify_quote
     from scoring import score_indicator
     from schemas import IndicatorMapping, RejectedExtraction
+    from validation import validate_mapping
 
     def _sse(event, payload):
         return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
@@ -744,6 +772,25 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         extraction_provider=provider_name,
         timestamp_verification=ts_verification,
     )
+
+    # ── Anti-hallucination validation ──────────────────────────
+    vr = validate_mapping(
+        mapping,
+        quote=mapping.verbatim_quote,
+        chunk_text=chunk.text,
+        indicator_id=ind_id,
+        features=features,
+    )
+    if vr.level == "reject":
+        yield _sse("rejected", RejectedExtraction(
+            reason="; ".join(vr.reasons),
+            chunk_preview=chunk.text[:200],
+        ).model_dump())
+        return
+    if vr.level == "flag":
+        mapping.requires_human_review = True
+        mapping.flag_reasons = vr.reasons
+
     yield _sse("mapping", mapping.model_dump())
 
 
