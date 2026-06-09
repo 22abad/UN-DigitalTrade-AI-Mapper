@@ -44,7 +44,7 @@ services:
       # Ollama on host — Docker Desktop auto-resolves host.docker.internal
       # On Linux, the extra_hosts entry provides the same mapping.
       RDTII_LLM_PROVIDER: ollama
-      OLLAMA_MODEL: gemma4:12b
+      OLLAMA_MODEL: qwen2.5-coder:7b
       OLLAMA_BASE_URL: http://host.docker.internal:11434/v1
     extra_hosts:
       - "host.docker.internal:host-gateway"

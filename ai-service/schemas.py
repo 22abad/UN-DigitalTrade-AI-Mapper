@@ -76,6 +76,10 @@ class IndicatorMapping(BaseModel):
 
     # Audit metadata
     requires_human_review: bool = False
+    flag_reasons: list[str] = Field(
+        default_factory=list,
+        description="Reasons this mapping was flagged by the anti-hallucination validation layer.",
+    )
     extraction_provider: str = Field(
         default="unknown",
         description="LLM identifier (e.g. 'gemini-1.5-flash', 'claude-sonnet-4', 'llama-3-8b-local')",

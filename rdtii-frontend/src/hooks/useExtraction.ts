@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { INGEST_API_URL, REVIEW_API_URL, STREAM_API_URL, sampleText } from "../lib/constants";
 import { getStoredToken } from "./useAuth";
 import { mappingKey } from "../lib/utils";
@@ -27,6 +27,46 @@ export function useExtraction() {
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const [selectedOllamaModel, setSelectedOllamaModel] = useState("gemma4:12b");
   const [foundPdfs, setFoundPdfs] = useState<string[]>([]);
+
+  // ── Country auto-detection ──────────────────────────────────────
+  const [detectedCountry, setDetectedCountry] = useState<{ code: string; name: string; detected: boolean } | null>(null);
+  const detectTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function triggerCountryDetect(srcUrl: string, srcText: string) {
+    if (detectTimer.current) clearTimeout(detectTimer.current);
+    const hasUrl = srcUrl.trim().length > 0;
+    const hasText = srcText.trim().length > 80;
+    if (!hasUrl && !hasText) return;
+
+    detectTimer.current = setTimeout(async () => {
+      try {
+        const body = hasUrl
+          ? JSON.stringify({ source_url: srcUrl, text: srcText.slice(0, 500) })
+          : JSON.stringify({ text: srcText.slice(0, 500) });
+        const res = await fetch("/api/detect/country", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.detected && data.code) {
+          setDetectedCountry({ code: data.code, name: data.name, detected: true });
+          setCountry(data.code);
+        } else if (!detectedCountry) {
+          // Only clear if user hasn't manually selected
+          setDetectedCountry({ code: "", name: "", detected: false });
+        }
+      } catch { /* network errors — ignore */ }
+    }, hasUrl ? 300 : 800);
+  }
+
+  // Trigger on initial text
+  useEffect(() => {
+    if (text.trim().length > 80) {
+      triggerCountryDetect(sourceUrl, text);
+    }
+  }, []);
 
   useEffect(() => {
     fetch("/health")
@@ -242,6 +282,7 @@ export function useExtraction() {
 
   function onTextChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setText(e.target.value);
+    triggerCountryDetect(sourceUrl, e.target.value);
     if (response) {
       setResponse(null);
       setActiveKey(null);
@@ -251,6 +292,7 @@ export function useExtraction() {
 
   function handleSetSourceUrl(v: string) {
     setSourceUrl(v);
+    triggerCountryDetect(v, text);
     // If the user points to a new URL, clear any previously crawled text so the
     // backend's "crawl if text is empty" path triggers correctly on the next run.
     if (v.trim()) {
@@ -299,6 +341,7 @@ export function useExtraction() {
 
   return {
     country, setCountry,
+    detectedCountry,
     warning,
     pillarFilter, setPillarFilter,
     sourceUrl, setSourceUrl: handleSetSourceUrl,

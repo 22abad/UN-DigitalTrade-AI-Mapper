@@ -24,6 +24,7 @@ type SourcePanelProps = {
   sourceRef: React.RefObject<HTMLDivElement>;
   country: string;
   setCountry: (v: string) => void;
+  detectedCountry?: { code: string; name: string; detected: boolean } | null;
   pillarFilter: string;
   setPillarFilter: (v: string) => void;
   sourceUrl: string;
@@ -49,6 +50,7 @@ export function SourcePanel({
   sourceRef,
   country,
   setCountry,
+  detectedCountry,
   pillarFilter,
   setPillarFilter,
   sourceUrl,
@@ -140,17 +142,33 @@ export function SourcePanel({
       <div className="control-grid">
         <label>
           Country
-          <Select value={country} onValueChange={setCountry}>
-            <SelectTrigger><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="CHN">China</SelectItem>
-              <SelectItem value="IND">India</SelectItem>
-              <SelectItem value="SGP">Singapore</SelectItem>
-              <SelectItem value="THA">Thailand</SelectItem>
-              <SelectItem value="AUS">Australia</SelectItem>
-              <SelectItem value="PHL">Philippines</SelectItem>
-            </SelectContent>
-          </Select>
+          {detectedCountry?.detected ? (
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 text-sm font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                {detectedCountry.name}
+                <span className="text-emerald-400 text-xs">({detectedCountry.code})</span>
+              </span>
+              <small
+                className="text-xs text-gray-400 cursor-pointer hover:text-gray-600 underline underline-offset-2"
+                onClick={() => setCountry("")}
+              >
+                Change
+              </small>
+            </div>
+          ) : (
+            <Select value={country} onValueChange={setCountry}>
+              <SelectTrigger><SelectValue placeholder="Auto-detect…" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="CHN">China</SelectItem>
+                <SelectItem value="IND">India</SelectItem>
+                <SelectItem value="SGP">Singapore</SelectItem>
+                <SelectItem value="THA">Thailand</SelectItem>
+                <SelectItem value="AUS">Australia</SelectItem>
+                <SelectItem value="PHL">Philippines</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
         </label>
         <label>
           Filter

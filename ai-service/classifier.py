@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from terminology import expand_phrases
+
 # Unified dictionary for all 12 supported RDTII indicators
-_INDICATOR_PHRASES = {
+_BASE_PHRASES = {
     "1.1": ["tariff", "customs duty", "tax", "关税", "贸易防御"],
     "2.1": [
         "public procurement", "government tender", 
@@ -83,6 +85,11 @@ _INDICATOR_PHRASES = {
     "10.1": ["non-tariff measure", "trade restriction", "非关税措施", "贸易限制"],
     "11.1": ["standards", "conformity assessment", "技术标准", "合格评定"],
     "12.1": ["online sales", "e-signature", "在线销售", "电子签名"]
+}
+
+# Build expanded phrases at load time — original phrases + jurisdiction synonyms
+_INDICATOR_PHRASES = {
+    k: expand_phrases(v) for k, v in _BASE_PHRASES.items()
 }
 
 def _phrase_in_text(phrase: str, text: str) -> bool:

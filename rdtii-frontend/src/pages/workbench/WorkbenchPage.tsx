@@ -20,6 +20,7 @@ export function WorkbenchPage() {
   const [fetchingPdf, setFetchingPdf] = useState(false);
   const {
     country, setCountry,
+    detectedCountry,
     pillarFilter, setPillarFilter,
     sourceUrl, setSourceUrl,
     text, onTextChange,
@@ -218,6 +219,7 @@ export function WorkbenchPage() {
               sourceRef={sourceRef}
               country={country}
               setCountry={setCountry}
+              detectedCountry={detectedCountry}
               pillarFilter={pillarFilter}
               setPillarFilter={setPillarFilter}
               sourceUrl={sourceUrl}

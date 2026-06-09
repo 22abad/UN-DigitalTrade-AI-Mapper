@@ -10,6 +10,7 @@ every page individually rather than routing the whole document at once.
 
 import logging
 import os
+from dataclasses import dataclass
 from pathlib import Path
 
 import fitz
@@ -20,6 +21,7 @@ from .non_ocr.pymupdf_extractor import (
     extract_sections_pure,
     is_pure_text_pdf,
     is_garbled,
+    text_confidence,
 )
 from .ocr_service.tesseract_extractor import (
     _DPI,
@@ -37,15 +39,36 @@ logger = logging.getLogger(__name__)
 _PAGE_TEXT_MIN = int(os.getenv("PDF_PAGE_TEXT_MIN", "80"))
 
 
-def read_pdf(filepath: str, langs: str = _TESSERACT_LANGS) -> list[str]:
-    """Extract text from a PDF with per-page routing.
+@dataclass
+class PdfResult:
+    """Result of a PDF extraction with per-page confidence metadata.
+
+    Attributes:
+        pages: Extracted text for each page.
+        ocr_ratio:  0.0–1.0 — fraction of pages that needed OCR.
+        mean_conf:  0.0–1.0 — average confidence across ALL pages.
+        total_pages:  Total number of pages in the PDF.
+        ocr_pages:   Number of pages processed via OCR.
+        text_pages:  Number of pages extracted via direct text layer.
+        page_confs:  Per-page confidence scores (0.0–1.0).
+    """
+    pages: list[str]
+    ocr_ratio: float
+    mean_conf: float
+    total_pages: int
+    ocr_pages: int
+    text_pages: int
+    page_confs: list[float]
+
+
+def read_pdf(filepath: str, langs: str = _TESSERACT_LANGS) -> PdfResult:
+    """Extract text from a PDF with per-page routing and confidence tracking.
 
     Each page is checked individually:
     - If PyMuPDF yields >= PDF_PAGE_TEXT_MIN chars after watermark filtering → use it.
     - Otherwise → OCR that page with Tesseract.
 
-    This handles mixed PDFs (text cover + scanned body) and scanned PDFs
-    with text-layer watermarks correctly.
+    Returns a PdfResult with per-page confidence scores.
     """
     import time
     from concurrent.futures import ThreadPoolExecutor, Future
@@ -81,13 +104,15 @@ def read_pdf(filepath: str, langs: str = _TESSERACT_LANGS) -> list[str]:
                 text_count, len(needs_ocr), sum(has_images),
                 sum(1 for i in range(n_pages) if is_garbled(pymupdf_pages[i])))
 
-    if not needs_ocr:
-        # All pages have good text — skip OCR entirely.
-        doc.close()
-        return _strip_repeated_lines(pymupdf_pages)
+    # Text page confidence — use text_confidence() for quality of text layer
+    text_page_confs: dict[int, float] = {}
+    for i in range(n_pages):
+        if i not in needs_ocr:
+            text_page_confs[i] = text_confidence(pymupdf_pages[i])
 
     # Second pass: OCR only the pages that need it.
     ocr_results: dict[int, str] = {}
+    ocr_page_confs: dict[int, float] = {}
     if needs_ocr:
         pipeline_t0 = time.perf_counter()
         futures: list[tuple[int, Future]] = []
@@ -97,29 +122,44 @@ def read_pdf(filepath: str, langs: str = _TESSERACT_LANGS) -> list[str]:
                 fut = pool.submit(_timed_ocr_page, i, n_pages, arr, 50, langs, pipeline_t0)
                 futures.append((i, fut))
         for i, fut in futures:
-            text, _ = fut.result()
+            text, source, conf = fut.result()
             ocr_results[i] = text
+            ocr_page_confs[i] = conf if source != "none" else 0.0
 
     doc.close()
 
     # Merge: for image pages, combine PyMuPDF text layer + OCR so neither
     # loses content (e.g. title in text layer + body in scanned image).
     merged = []
+    page_confs: list[float] = []
     for i in range(n_pages):
         if i not in ocr_results:
             merged.append(pymupdf_pages[i])
+            page_confs.append(text_page_confs.get(i, 0.5))
         else:
             ocr_text = ocr_results[i]
             pdf_text = pymupdf_pages[i].strip()
-            # Prepend text-layer content only if it adds something OCR missed
             if pdf_text and pdf_text not in ocr_text:
                 merged.append(pdf_text + "\n" + ocr_text)
             else:
                 merged.append(ocr_text)
+            page_confs.append(ocr_page_confs.get(i, 0.0))
 
+    mean_conf = sum(page_confs) / len(page_confs) if page_confs else 0.0
+    ocr_ratio = len(needs_ocr) / n_pages if n_pages else 0.0
     elapsed = time.perf_counter() - t0
-    logger.info("[PDF] done  pymupdf=%d  ocr=%d  total=%.1fs", text_count, len(needs_ocr), elapsed)
-    return _strip_repeated_lines(merged)
+    logger.info("[PDF] done  pymupdf=%d  ocr=%d  mean_conf=%.2f  total=%.1fs",
+                text_count, len(needs_ocr), mean_conf, elapsed)
+
+    return PdfResult(
+        pages=_strip_repeated_lines(merged),
+        ocr_ratio=ocr_ratio,
+        mean_conf=mean_conf,
+        total_pages=n_pages,
+        ocr_pages=len(needs_ocr),
+        text_pages=text_count,
+        page_confs=page_confs,
+    )
 
 
 def extract_sections(filepath: str, min_section_chars: int = 100) -> list[dict]:

@@ -47,7 +47,9 @@ from coverage_classifier import classify_coverage
 from features import get_feature_spec
 from providers import canonical_name, get_default_provider, list_providers, get_provider
 from providers.base import ExtractionError
+from country_detector import detect_country
 from source_validator import grade_source, require_primary_source
+from staleness_checker import check_staleness
 from timeframe_extractor import extract_timeframe, build_timeframe_column
 
 # crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
@@ -121,7 +123,10 @@ class TextRequest(BaseModel):
 # ── Shared extraction pipeline (used by /api/extract and /api/upload) ────
 
 
-async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
+async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = None) -> ExtractionResponse:
+    from validation import reset_quote_registry
+    reset_quote_registry()
+
     import time as _time
     _t0 = _time.time()
 
@@ -193,6 +198,8 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     continue
 
                 features = {k: data[k] for k in spec.keys() if k in data}
+                if pdf_metadata:
+                    features.update(pdf_metadata)
                 try:
                     score, justification = score_indicator(ind_id, features)
                 except NotImplementedError:
@@ -248,7 +255,19 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     except Exception:
                         pass
 
-                mapped.append((IndicatorMapping(
+                # ── Staleness / outdated-law detection ──────────────
+                stale = check_staleness(
+                    last_update=last_update_val,
+                    timeframe_status=tf["status"],
+                    source_url=source_url_val,
+                    source_legislation=data.get("source_legislation", ""),
+                )
+                features["_staleness_reasons"] = "; ".join(stale["staleness_reasons"])
+                features["_staleness_severity"] = stale["stale_severity"]
+
+                from validation import validate_mapping
+
+                mapping_obj = IndicatorMapping(
                     pillar=int(ind_id.split(".", 1)[0]),
                     indicator=ind_id,
                     score=score,
@@ -264,7 +283,26 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
                     requires_human_review=False,
                     extraction_provider=llm_provider.name,
                     timestamp_verification=ts_verification,
-                ), None))
+                )
+
+                vr = validate_mapping(
+                    mapping_obj,
+                    quote=mapping_obj.verbatim_quote,
+                    chunk_text=chunk.text,
+                    indicator_id=ind_id,
+                    features=features,
+                )
+                if vr.level == "reject":
+                    mapped.append((None, RejectedExtraction(
+                        reason="; ".join(vr.reasons),
+                        chunk_preview=chunk.text[:200],
+                    )))
+                    continue
+                if vr.level == "flag":
+                    mapping_obj.requires_human_review = True
+                    mapping_obj.flag_reasons = vr.reasons
+
+                mapped.append((mapping_obj, None))
 
             logger.debug("[TIMING] chunk [%s] %.1fs", ','.join(i for i,_ in indicators), _time.time()-_ct)
             return mapped, _time.time() - _ct
@@ -504,6 +542,7 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     from pdf_reader import read_pdf
 
     original_text = text
+    pdf_meta = None
 
     # ── Path A: URL provided → crawl ──
     if source_url.strip():
@@ -519,8 +558,13 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
                     text = ocs_result["text"]
         elif crawl_result["type"] == "pdf":
             try:
-                pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
-                text = "\n".join(pages)
+                pdf_result = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
+                text = "\n".join(pdf_result.pages)
+                pdf_meta = {
+                    "_ocr_mean_confidence": round(pdf_result.mean_conf, 3),
+                    "_ocr_ratio": round(pdf_result.ocr_ratio, 3),
+                    "_pdf_type": "scanned" if pdf_result.ocr_ratio > 0.5 else "mixed" if pdf_result.ocr_ratio > 0 else "pure_text",
+                }
             except Exception as e:
                 raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
         elif crawl_result["type"] == "docx":
@@ -564,13 +608,13 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     else:
         llm_provider = _get_provider()
 
-    return await _run_extraction(text, llm_provider)
+    return await _run_extraction(text, llm_provider, pdf_metadata=pdf_meta)
 
 
 # ── SSE streaming extraction (used by frontend) ────────────
 
 
-async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, None]:
+async def _stream_extraction(text: str, llm_provider, pdf_metadata: dict | None = None) -> AsyncGenerator[str, None]:
     """Run extraction and yield SSE events progressively.
 
     Events:
@@ -581,6 +625,9 @@ async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, Non
       event: done     {}
       event: error    {detail}
     """
+    from validation import reset_quote_registry
+    reset_quote_registry()
+
     from chunker import regex_legal_chunker
     from classifier import classify_indicator
     from coverage_classifier import classify_coverage
@@ -629,7 +676,7 @@ async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, Non
                     ).model_dump())
                     rejected_count += 1
                     continue
-                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name):
+                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name, pdf_metadata):
                     yield _ev
                 mapping_count += 1
         else:
@@ -642,7 +689,7 @@ async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, Non
                     ).model_dump())
                     rejected_count += 1
                     continue
-                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name):
+                for _ev in _process_single(chunk, ind_id, spec, data, text, llm_provider.name, pdf_metadata):
                     yield _ev
                 mapping_count += 1
 
@@ -653,14 +700,16 @@ async def _stream_extraction(text: str, llm_provider) -> AsyncGenerator[str, Non
     })
 
 
-def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown"):
+def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown", pdf_metadata=None):
     """Process one LLM extraction result — yield 0 or 1 SSE events for it."""
     from coverage_classifier import classify_coverage
     from source_validator import grade_source
+    from staleness_checker import check_staleness
     from timeframe_extractor import extract_timeframe, build_timeframe_column
     from verification import find_quote_offsets, verify_quote
     from scoring import score_indicator
     from schemas import IndicatorMapping, RejectedExtraction
+    from validation import validate_mapping
 
     def _sse(event, payload):
         return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
@@ -684,6 +733,8 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         return
 
     features = {k: data[k] for k in spec.keys() if k in data}
+    if pdf_metadata:
+        features.update(pdf_metadata)
     try:
         score, justification = score_indicator(ind_id, features)
     except NotImplementedError:
@@ -727,6 +778,16 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
     last_update_val = data.get("last_update", "")
     ts_verification = {}
 
+    # ── Staleness / outdated-law detection ──────────────────────────
+    stale = check_staleness(
+        last_update=last_update_val,
+        timeframe_status=tf["status"],
+        source_url=source_url_val,
+        source_legislation=data.get("source_legislation", ""),
+    )
+    features["_staleness_reasons"] = "; ".join(stale["staleness_reasons"])
+    features["_staleness_severity"] = stale["stale_severity"]
+
     mapping = IndicatorMapping(
         pillar=int(ind_id.split(".", 1)[0]),
         indicator=ind_id,
@@ -744,6 +805,25 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         extraction_provider=provider_name,
         timestamp_verification=ts_verification,
     )
+
+    # ── Anti-hallucination validation ──────────────────────────
+    vr = validate_mapping(
+        mapping,
+        quote=mapping.verbatim_quote,
+        chunk_text=chunk.text,
+        indicator_id=ind_id,
+        features=features,
+    )
+    if vr.level == "reject":
+        yield _sse("rejected", RejectedExtraction(
+            reason="; ".join(vr.reasons),
+            chunk_preview=chunk.text[:200],
+        ).model_dump())
+        return
+    if vr.level == "flag":
+        mapping.requires_human_review = True
+        mapping.flag_reasons = vr.reasons
+
     yield _sse("mapping", mapping.model_dump())
 
 
@@ -762,6 +842,7 @@ async def extract_stream(text: str = Form(""), source_url: str = Form(""), provi
 
     original_text = text
     source_text = ""
+    pdf_meta = None
 
     if source_url.strip():
         crawl_result = await fetch_legal_content(source_url)
@@ -775,9 +856,14 @@ async def extract_stream(text: str = Form(""), source_url: str = Form(""), provi
                     source_text = text
         elif crawl_result["type"] == "pdf":
             try:
-                pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
-                text = "\n".join(pages)
+                pdf_result = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
+                text = "\n".join(pdf_result.pages)
                 source_text = text
+                pdf_meta = {
+                    "_ocr_mean_confidence": round(pdf_result.mean_conf, 3),
+                    "_ocr_ratio": round(pdf_result.ocr_ratio, 3),
+                    "_pdf_type": "scanned" if pdf_result.ocr_ratio > 0.5 else "mixed" if pdf_result.ocr_ratio > 0 else "pure_text",
+                }
             except Exception as e:
                 async def _error():
                     yield _sse("error", {"detail": f"PDF parsing failed: {str(e)}"})
@@ -825,7 +911,7 @@ async def extract_stream(text: str = Form(""), source_url: str = Form(""), provi
             yield _sse("error", {"detail": str(e)})
         return StreamingResponse(_bad_provider(), media_type="text/event-stream")
 
-    stream = _stream_extraction(text, llm_provider)
+    stream = _stream_extraction(text, llm_provider, pdf_metadata=pdf_meta)
     return StreamingResponse(
         stream,
         media_type="text/event-stream",
@@ -842,7 +928,7 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None), model
     if not file.filename or not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
-    from pdf_reader import read_pdf
+    from pdf_reader import read_pdf, PdfResult
 
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
     try:
@@ -850,8 +936,13 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None), model
         await asyncio.to_thread(tmp.write, content)
         tmp.close()
 
-        pages = await asyncio.to_thread(read_pdf, tmp.name)
-        text = "\n".join(pages)
+        pdf_result = await asyncio.to_thread(read_pdf, tmp.name)
+        text = "\n".join(pdf_result.pages)
+        pdf_meta = {
+            "_ocr_mean_confidence": round(pdf_result.mean_conf, 3),
+            "_ocr_ratio": round(pdf_result.ocr_ratio, 3),
+            "_pdf_type": "scanned" if pdf_result.ocr_ratio > 0.5 else "mixed" if pdf_result.ocr_ratio > 0 else "pure_text",
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
     finally:
@@ -874,7 +965,7 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None), model
     else:
         llm_provider = _get_provider()
 
-    return await _run_extraction(text, llm_provider)
+    return await _run_extraction(text, llm_provider, pdf_metadata=pdf_meta)
 
 
 # ── Alias: /api/ingest/document → upload ────────────────
@@ -895,6 +986,7 @@ class FetchTextRequest(BaseModel):
 
 class FetchTextResponse(BaseModel):
     text: str = ""
+    pdf_metadata: dict | None = None
 
 
 @app.post("/api/fetch-text")
@@ -911,8 +1003,18 @@ async def fetch_text(req: FetchTextRequest):
         return FetchTextResponse(text=crawl_result["text"])
     elif crawl_result["type"] == "pdf":
         try:
-            pages = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
-            return FetchTextResponse(text="\n".join(pages))
+            pdf_result = await asyncio.to_thread(read_pdf, crawl_result["pdf_path"])
+            return {
+                "text": "\n".join(pdf_result.pages),
+                "pdf_metadata": {
+                    "mean_confidence": round(pdf_result.mean_conf, 3),
+                    "ocr_ratio": round(pdf_result.ocr_ratio, 3),
+                    "pdf_type": "scanned" if pdf_result.ocr_ratio > 0.5 else "mixed" if pdf_result.ocr_ratio > 0 else "pure_text",
+                    "total_pages": pdf_result.total_pages,
+                    "ocr_pages": pdf_result.ocr_pages,
+                    "text_pages": pdf_result.text_pages,
+                },
+            }
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"PDF parsing failed: {str(e)}")
     elif crawl_result["type"] == "docx":
@@ -1189,5 +1291,25 @@ def classify_coverage_api(req: CoverageRequest):
         provision_text=req.provision_text,
         source_legislation=req.source_legislation,
         indicator_id=req.indicator_id,
+    )
+    return result
+
+
+# ── Country detection ──────────────────────────────────
+
+
+class CountryDetectRequest(BaseModel):
+    text: str = ""
+    source_url: str = ""
+    source_legislation: str = ""
+
+
+@app.post("/api/detect/country")
+def detect_country_api(req: CountryDetectRequest):
+    """Auto-detect the country/jurisdiction from text, URL, or legislation name."""
+    result = detect_country(
+        text=req.text,
+        source_url=req.source_url,
+        source_legislation=req.source_legislation,
     )
     return result
