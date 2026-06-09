@@ -85,6 +85,32 @@ class IndicatorMapping(BaseModel):
         description="LLM identifier (e.g. 'gemini-1.5-flash', 'claude-sonnet-4', 'llama-3-8b-local')",
     )
 
+    # Legal Inventory taxonomy (the 6 fields from the Target Schema Template)
+    coverage: str = Field(
+        default="",
+        description="Detailed coverage description of the measure (e.g. 'ICT products', 'Telecommunication equipments')",
+    )
+    cluster: str = Field(
+        default="",
+        description="High-level policy cluster (e.g. 'Traditional trade policies', 'Digital governance policies', 'Other domestic policies')",
+    )
+    region: str = Field(
+        default="",
+        description="Geographic region (e.g. 'South-East Asia', 'Pacific'). Derived from economy client-side if empty.",
+    )
+    cov_name: str = Field(
+        default="",
+        description="Coverage name derived from scope: 'Cross-cutting' (horizontal) or 'Sectoral' (sectoral)",
+    )
+    name: str = Field(
+        default="",
+        description="Mid-level policy category (e.g. 'Tariffs & trade defence', 'Non-technical NTMs', 'Online sales & transactions')",
+    )
+    policy_description: str = Field(
+        default="",
+        description="Specific policy type (e.g. 'Trade defence measures', 'Import bans', 'Local content requirements')",
+    )
+
     # Timestamp verification — triple-source audit of the last_update field
     timestamp_verification: dict = Field(
         default_factory=dict,

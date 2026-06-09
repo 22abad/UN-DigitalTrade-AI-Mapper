@@ -419,6 +419,58 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+.taxonomy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.taxonomy-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid;
+  letter-spacing: 0.01em;
+}
+
+.taxonomy-chip.cluster {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+  color: #3730a3;
+}
+
+.taxonomy-chip.name {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.taxonomy-chip.policy {
+  background: #fff7ed;
+  border-color: #fdba74;
+  color: #9a3412;
+}
+
+.taxonomy-chip.cov {
+  background: #f0f9ff;
+  border-color: #7dd3fc;
+  color: #075985;
+}
+
+.taxonomy-chip.region {
+  background: #faf5ff;
+  border-color: #c4b5fd;
+  color: #5b21b6;
+}
+
+.taxonomy-chip.coverage {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
 .muted {
   color: #667085;
   font-size: 0.85rem;
