@@ -21,6 +21,8 @@ export function useExtraction() {
   const [showRejected, setShowRejected] = useState(false);
   const [availableProviders, setAvailableProviders] = useState<string[]>([]);
   const [selectedProvider, setSelectedProvider] = useState("gemini");
+  const [foundPdfs, setFoundPdfs] = useState<string[]>([]);
+  const [ocrMode, setOcrMode] = useState<"tesseract" | "openai">("tesseract");
 
   useEffect(() => {
     fetch(API_URL.replace("/api/extract", "/health"))
@@ -48,12 +50,23 @@ export function useExtraction() {
   async function extract() {
     setStatus("loading");
     setError("");
+    setWarning("");
+    setResponse(null);
+    setFoundPdfs([]);
+    setActiveKey(null);
+    setDecisions({});
 
+    const form = new FormData();
+    form.append("text", text);
+    if (sourceUrl.trim()) form.append("source_url", sourceUrl.trim());
+    form.append("provider", selectedProvider);
+    form.append("ocr_mode", ocrMode);
     try {
       const form = new FormData();
       form.append("text", text);
       if (sourceUrl.trim()) form.append("source_url", sourceUrl.trim());
       form.append("provider", selectedProvider);
+      form.append("ocr_mode", ocrMode);
 
       const res = await fetch(API_URL, { method: "POST", body: form });
 
@@ -155,6 +168,8 @@ export function useExtraction() {
     showRejected, setShowRejected,
     availableProviders,
     selectedProvider, setSelectedProvider,
+    foundPdfs,
+    ocrMode, setOcrMode,    
     extract,
     selectMapping,
     setDecision,

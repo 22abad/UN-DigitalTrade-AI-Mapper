@@ -38,6 +38,8 @@ type SourcePanelProps = {
   availableProviders: string[];
   selectedProvider: string;
   setSelectedProvider: (v: string) => void;
+  ocrMode: "tesseract" | "openai";
+  setOcrMode: (v: "tesseract" | "openai") => void;
 };
 
 export function SourcePanel({
@@ -58,6 +60,8 @@ export function SourcePanel({
   availableProviders,
   selectedProvider,
   setSelectedProvider,
+  ocrMode,
+  setOcrMode,
 }: SourcePanelProps) {
   const URL_PLACEHOLDERS = [
     "https://www.pdpc.gov.sg/Overview-of-PDPA/The-Legislation/Personal-Data-Protection-Act",
@@ -190,6 +194,47 @@ export function SourcePanel({
           </label>
         </div>
       )}
+
+      <div className="stacked">
+        <label style={{ display: "block" }}>
+          OCR Engine
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6 }}>
+            <span style={{ fontSize: "0.82rem", color: ocrMode === "tesseract" ? "inherit" : "#9ca3af" }}>Tesseract</span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={ocrMode === "openai"}
+              onClick={() => setOcrMode(ocrMode === "tesseract" ? "openai" : "tesseract")}
+              style={{
+                position: "relative",
+                width: 44,
+                height: 24,
+                borderRadius: 9999,
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                background: ocrMode === "openai" ? "#10B981" : "#374151",
+                transition: "background 0.2s",
+                flexShrink: 0,
+              }}
+            >
+              <span
+                style={{
+                  position: "absolute",
+                  top: 3,
+                  left: ocrMode === "openai" ? 23 : 3,
+                  width: 18,
+                  height: 18,
+                  borderRadius: "50%",
+                  background: "#fff",
+                  transition: "left 0.2s",
+                }}
+              />
+            </button>
+            <span style={{ fontSize: "0.82rem", color: ocrMode === "openai" ? "inherit" : "#9ca3af" }}>OpenAI Vision</span>
+          </div>
+        </label>
+      </div>
 
       <label className="stacked">
         Source URL

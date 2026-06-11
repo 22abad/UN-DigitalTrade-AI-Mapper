@@ -54,6 +54,102 @@ async def _initialize_browser_context(playwright_instance: Any, proxy: Optional[
             "--ignore-certifcate-errors-spki-list",
         ]
     }
+    ts = lambda: datetime.now().strftime("%H:%M:%S")
+    try:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            context = await browser.new_context(
+                user_agent=_HTTPX_HEADERS["User-Agent"],
+                accept_downloads=True,
+            )
+            page = await context.new_page()
+            print(f"{ts()}  [pw-component] navigating → {download_url}")
+            await page.goto(download_url, wait_until="domcontentloaded", timeout=20000)
+
+            page_text = (await page.evaluate("document.body.innerText") or "").strip()
+            print(f"{ts()}  [pw-component] page says: {page_text[:120]!r}")
+
+            # Auth wall — surface immediately, no point trying further
+            lower = page_text.lower()
+            if any(k in lower for k in ("log in", "login", "sign in", "access denied",
+                                         "not authorized", "permission", "register")):
+                await context.close()
+                return {
+                    "type": "error",
+                    "message": f"Authentication required to download. Server: {page_text[:120]}",
+                }
+
+            # Collect all links on the component page
+            links = await page.evaluate(
+                "Array.from(document.querySelectorAll('a[href]')).map(a => a.href)"
+            )
+            # Prioritise links that look like downloads or PDFs
+            download_links, other_links = _classify_links(links)
+            ordered = download_links + other_links
+            print(f"{ts()}  [pw-component] found {len(ordered)} links to try")
+
+            for href in ordered:
+                if any(re.match(p2, href) for p2 in INVALID_URL_PATTERNS):
+                    continue
+                if href.rstrip("/").endswith("#") or href == download_url:
+                    continue
+                print(f"{ts()}  [pw-component] trying link → {href}")
+
+                # Step A — direct HTTP request via the browser context's cookie jar.
+                # This is the right approach for signed/token URLs (format=raw, get.file, etc.)
+                # because it downloads the bytes without navigating the page.
+                try:
+                    resp = await context.request.get(href, timeout=20000)
+                    ct = resp.headers.get("content-type", "").lower()
+                    cd = resp.headers.get("content-disposition", "").lower()
+                    body = await resp.body()
+                    print(f"{ts()}  [pw-component] direct GET → {resp.status}  type={ct[:40]}  bytes={len(body):,}")
+
+                    if any(t in ct for t in _BINARY_TYPES) or "attachment" in cd:
+                        dest = os.path.join(DOWNLOADS_DIR, f"doc_{int(time.time())}.pdf")
+                        # Try to get filename from Content-Disposition
+                        fn_match = re.search(r'filename[^;=\n]*=\s*["\']?([^"\';\n]+)', cd)
+                        if fn_match:
+                            dest = os.path.join(DOWNLOADS_DIR, fn_match.group(1).strip())
+                        with open(dest, "wb") as f:
+                            f.write(body)
+                        print(f"{ts()}  [pw-component] saved → {dest}")
+                        await context.close()
+                        return {"type": "pdf", "url": download_url, "pdf_path": dest}
+                except Exception as req_err:
+                    print(f"{ts()}  [pw-component] direct GET failed: {req_err}")
+
+                # Step B — fallback: page navigation + download intercept
+                try:
+                    async with page.expect_download(timeout=12000) as dl_info:
+                        await page.goto(href, wait_until="domcontentloaded", timeout=12000)
+                    dl = await dl_info.value
+                    dest = os.path.join(
+                        DOWNLOADS_DIR,
+                        dl.suggested_filename or f"doc_{int(time.time())}.pdf",
+                    )
+                    await dl.save_as(dest)
+                    print(f"{ts()}  [pw-component] download intercepted → {dest}")
+                    await context.close()
+                    return {"type": "pdf", "url": download_url, "pdf_path": dest}
+                except Exception:
+                    try:
+                        await page.goto(download_url, wait_until="domcontentloaded", timeout=10000)
+                    except Exception:
+                        pass
+
+            await context.close()
+            return None
+
+    except Exception as exc:
+        print(f"{ts()}  [pw-component] failed ({type(exc).__name__}): {exc}")
+        return None
+
+
+# ── Layer 2: Playwright browser helpers ───────────────────────────────────────
+
+async def _initialize_browser_context(playwright_instance: Any, proxy: Optional[dict] = None) -> BrowserContext:
+    launch_args: dict = {"headless": True}
     if proxy:
         launch_args["proxy"] = proxy
     browser = await playwright_instance.chromium.launch(**launch_args)

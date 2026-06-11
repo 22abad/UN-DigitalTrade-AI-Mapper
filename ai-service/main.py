@@ -230,7 +230,128 @@ async def _run_extraction(text: str, llm_provider) -> ExtractionResponse:
     )
 
 
+
 # ── Routes ───────────────────────────────────────────────────────────────
+
+def _sse(event: str, data: dict) -> str:
+    return f"event: {event}\ndata: {_json.dumps(data)}\n\n"
+
+
+_COOKIE_WALL_SIGNALS = [
+    "cookiebot", "cookieconsent", "consent-banner", "gdpr-consent",
+    "we use cookies", "this website uses cookies", "cookie policy",
+    "allow all cookies", "accept cookies", "cookie preferences",
+    "consentdetails", "iabv2", "necessary cookies",
+]
+
+_NAV_HEAVY_SIGNALS = [
+    "skip to main content", "open menu", "close menu", "back to top",
+    "find a lawyer", "log in to registry",
+]
+
+# Signals that strongly indicate genuine legal/legislative text in HTML tables
+# or otherwise.  Three or more hits suppress the nav-dump warning.
+_LEGAL_TEXT_SIGNALS = [
+    "shall", "notwithstanding", "pursuant to", "hereby", "thereof",
+    "section", "article", "subsection", "clause", "provision",
+    "data controller", "data processor", "personal data", "personal information",
+    "obligation", "penalty", "offence", "liable", "compliance",
+    "regulation", "legislation", "act", "decree", "ordinance",
+]
+
+def _check_crawl_quality(text: str) -> str | None:
+    """Return a warning message if the crawled text looks like a cookie wall or nav dump, else None."""
+    lower = text.lower()
+    cookie_hits = sum(1 for s in _COOKIE_WALL_SIGNALS if s in lower)
+    nav_hits = sum(1 for s in _NAV_HEAVY_SIGNALS if s in lower)
+    legal_hits = sum(1 for s in _LEGAL_TEXT_SIGNALS if s in lower)
+    word_count = len(text.split())
+
+    if cookie_hits >= 3:
+        return (
+            "The page appears to be blocked by a cookie consent wall. "
+            "Try linking directly to a specific legislation page or PDF instead of the homepage."
+        )
+    # Suppress the nav-dump warning when enough legal vocabulary is present —
+    # HTML table legislation pages have short word counts but genuine legal content.
+    if legal_hits >= 4:
+        return None
+    if word_count < 300 or (nav_hits >= 3 and word_count < 800):
+        return (
+            "The crawled content looks like navigation menus rather than legal text. "
+            "Try a direct URL to a specific law, regulation, or PDF document."
+        )
+    return None
+
+
+async def _crawl_to_text(source_url: str, ocr_mode: str = "tesseract") -> tuple[str, str, str | None, list[str]]:
+    """Crawl a URL and return (text, error_detail, warning, all_pdf_links)."""
+    from crawler import fetch_legal_content
+    crawl_result = await fetch_legal_content(source_url)
+    if crawl_result["type"] == "error":
+        return "", f"Crawl failed: {crawl_result['message']}", None, []
+    if crawl_result["type"] == "text":
+        text = crawl_result["text"]
+        return text, "", _check_crawl_quality(text), []
+    if crawl_result["type"] == "pdf":
+        pdf_path = crawl_result["pdf_path"]
+        all_pdf_links = crawl_result.get("all_pdf_links", [source_url])
+        try:
+            from pdf_reader import read_pdf
+            pages = await asyncio.to_thread(read_pdf, pdf_path, ocr_mode=ocr_mode)
+            text = "\n".join(pages)
+            return text, "", None, all_pdf_links
+        except Exception as e:
+            return "", f"PDF parsing failed: {e}", None, []
+        finally:
+            Path(pdf_path).unlink(missing_ok=True)
+    return "", "Crawl returned no content.", None, []
+
+
+async def _stream_extraction(text: str, provider: str | None, doc_hint: str = ""):
+    """
+    Async generator that yields SSE strings as each mapping completes.
+
+    Events emitted:
+      started   — {provider, chunk_count, source_text}
+      mapping   — serialised IndicatorMapping
+      rejected  — serialised RejectedExtraction
+      done      — {total_mapped, total_rejected, elapsed}
+      error     — {detail}
+    """
+    import time as _time
+    _t0 = _time.time()
+
+    if provider:
+        try:
+            llm_provider = get_provider(provider)
+        except (ValueError, ExtractionError) as e:
+            yield _sse("error", {"detail": str(e)})
+            return
+    else:
+        llm_provider = _get_provider()
+
+    chunks = regex_legal_chunker(text)
+    chunk_groups: list[tuple] = []
+    for chunk in chunks:
+        indicators: list[tuple[str, dict]] = []
+        for indicator_id in classify_indicator(chunk.text):
+            spec = get_feature_spec(indicator_id)
+            if spec:
+                indicators.append((indicator_id, spec))
+        if indicators:
+            chunk_groups.append((chunk, indicators))
+
+    yield _sse("started", {
+        "provider": llm_provider.name,
+        "chunk_count": len(chunk_groups),
+        "source_text": text,
+    })
+
+    queue: asyncio.Queue = asyncio.Queue()
+    concurrency = min(max(len(chunk_groups), 1), int(os.getenv("PIPELINE_CONCURRENCY", "10")))
+    semaphore = asyncio.Semaphore(concurrency)
+
 
 
 def _active_provider_name() -> tuple[str, str | None]:
@@ -272,6 +393,7 @@ def providers_info():
     is null and `active_alias` carries the raw value so operators can see
     what was misconfigured.
 
+
     The `name_recognised` field reports ONLY whether the configured name
     is in the registry. It is deliberately not called "valid" or "ready"
     because we don't dry-run instantiation — a recognised name with a
@@ -293,6 +415,51 @@ def providers_info():
         "name_recognised": True,
         "available": list_providers(),
     }
+
+    while chunks_done < len(chunk_groups):
+        try:
+            kind, payload = await asyncio.wait_for(queue.get(), timeout=25.0)
+        except asyncio.TimeoutError:
+            # Send a heartbeat comment to keep the connection alive
+            yield ": heartbeat\n\n"
+            continue
+
+        if kind == "chunk_done":
+            chunks_done += 1
+        elif kind == "mapping":
+            total_mapped += 1
+            yield _sse("mapping", payload.model_dump())
+        elif kind == "rejected":
+            total_rejected += 1
+            yield _sse("rejected", payload.model_dump())
+
+    await asyncio.gather(*tasks, return_exceptions=True)
+
+    yield _sse("done", {
+        "total_mapped": total_mapped,
+        "total_rejected": total_rejected,
+        "elapsed": round(_time.time() - _t0, 2),
+    })
+
+
+@app.post("/api/extract/stream")
+async def extract_stream(
+    text: str = Form(""),
+    source_url: str = Form(""),
+    provider: str = Form(None),
+    ocr_mode: str = Form("tesseract"),
+    _user: dict = Depends(get_current_user),
+):
+    """SSE streaming extraction — emits mappings as each chunk completes."""
+    crawl_warning: str | None = None
+    found_pdf_links: list[str] = []
+    if not text.strip() and source_url.strip():
+        text, err, crawl_warning, found_pdf_links = await _crawl_to_text(source_url, ocr_mode=ocr_mode)
+        if err:
+            async def _err():
+                yield _sse("error", {"detail": err})
+            return StreamingResponse(_err(), media_type="text/event-stream")
+
 
 
 @app.post("/embed")
@@ -343,6 +510,16 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
     return await _run_extraction(text, llm_provider)
 
 
+@app.post("/api/ingest/document", response_model=ExtractionResponse)
+async def ingest_document(
+    file: UploadFile = File(...),
+    provider: str = Form(None),
+    ocr_mode: str = Form("tesseract"),
+    _user: dict = Depends(get_current_user),
+):
+    """Extract RDTII mappings from an uploaded file.
+    """
+
 @app.post("/api/upload", response_model=ExtractionResponse)
 async def upload(file: UploadFile = File(...), provider: str = Form(None)):
     """Upload a PDF file and extract RDTII indicator mappings from it."""
@@ -350,12 +527,6 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None)):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
     from pdf_reader import read_pdf
-
-    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    try:
-        content = await file.read()
-        await asyncio.to_thread(tmp.write, content)
-        tmp.close()
 
         pages = await asyncio.to_thread(read_pdf, tmp.name)
         text = "\n".join(pages)
@@ -378,6 +549,41 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None)):
         llm_provider = _get_provider()
 
     return await _run_extraction(text, llm_provider)
+
+@app.post("/api/upload", response_model=ExtractionResponse)
+async def upload(file: UploadFile = File(...), provider: str = Form(None)):
+    """Upload a PDF file and extract RDTII indicator mappings from it."""
+    if not file.filename or not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+
+    from pdf_reader import read_pdf
+
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+    try:
+        content = await file.read()
+        await asyncio.to_thread(tmp.write, content)
+        tmp.close()
+    if _SIDECAR_URL:
+        text, _ = await _extract_via_sidecar(data, filename)
+    elif fmt == "ocr":
+        suffix = Path(filename).suffix or ".bin"
+        tmp_fd, tmp_path = tempfile.mkstemp(suffix=suffix, prefix="sentinel_ingest_")
+        try:
+            import os as _os
+            with _os.fdopen(tmp_fd, "wb") as fh:
+                fh.write(data)
+            from pdf_reader import read_pdf
+            try:
+                text = "\n".join(read_pdf(tmp_path, ocr_mode=ocr_mode))
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"File extraction failed: {str(e)}")
+        finally:
+            Path(tmp_path).unlink(missing_ok=True)
+    else:
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError:
+            text = data.decode("latin-1")
 
 
 @app.post("/api/mappings/review")

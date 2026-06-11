@@ -29,6 +29,8 @@ export function WorkbenchPage() {
     showRejected, setShowRejected,
     availableProviders,
     selectedProvider, setSelectedProvider,
+    ocrMode, setOcrMode,
+    foundPdfs,
     extract,
     selectMapping,
     setDecision,
@@ -122,6 +124,8 @@ export function WorkbenchPage() {
               availableProviders={availableProviders}
               selectedProvider={selectedProvider}
               setSelectedProvider={setSelectedProvider}
+              ocrMode={ocrMode}
+              setOcrMode={setOcrMode}
             />
             <AIChatInput />
           </div>
