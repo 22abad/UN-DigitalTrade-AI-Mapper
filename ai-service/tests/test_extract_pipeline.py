@@ -177,6 +177,9 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
                 for ind_id, _ in indicators
             }
 
+    import chunker
+    monkeypatch.setattr(chunker, "_MIN_CHARS", 0)
+
     fake = CrossChunkLyingProvider()
     main_module._provider = fake
     monkeypatch.setattr(main_module, "_get_provider", lambda: fake)
@@ -241,6 +244,7 @@ def test_invalid_scope_is_sanitized(monkeypatch, bad_scope):
 
     _patch_provider(monkeypatch, response)
     _patch_classifier_to(monkeypatch, ["6.1"])
+    monkeypatch.setattr(main_module, "classify_coverage", lambda **kwargs: {"scope": "unknown", "reasons": []})
 
     client = TestClient(main_module.app)
     r = client.post("/api/extract", data={"text": source})
@@ -327,3 +331,67 @@ def test_providers_active_is_in_available_when_recognised(monkeypatch):
     assert body["active"] == "llama-3-local"  # resolved canonical
     assert body["active"] in body["available"]
     assert body["active_alias"] == "llama3"
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# Formatting Interceptor Tests (UN Compliance)
+# ──────────────────────────────────────────────────────────────────────────
+
+
+def test_formatting_interceptor_un_compliance(monkeypatch):
+    """Verify that formatting interceptor correctly cleans up and formats the fields
+
+    to UN ESCAP RDTII 2.1 specifications:
+      1. Strips clause/article numbers from 'Act and/or practice' (source_legislation)
+         and formats it as [Country] [Law Name] ([Abbreviation]), [Year], [Law Number].
+      2. Prepends [Article X] or [Section Y] to the front of 'Impacts or comments' (impact).
+      3. Normalizes last_update and timeframe_column to use Month Name YYYY format.
+    """
+    from fastapi.testclient import TestClient
+    import main as main_module
+
+    source = "Article 18. Personal data shall not be transferred abroad."
+    quote = "Personal data shall not be transferred abroad"
+
+    # LLM raw output with article in title, non-normalized date, etc.
+    response = {
+        "verbatim_quote": quote,
+        "article_clause": "Article 18",
+        "personal_data": True,
+        "has_ban": True,
+        "scope": "horizontal",
+        "source_legislation": "Personal Data Protection Act (PDPA) 2012 Article 18",
+        "last_update": "05/2012",  # non-normalized
+        "source_url": "https://www.sso.gov.sg/PDPA",
+    }
+
+    _patch_provider(monkeypatch, response)
+    _patch_classifier_to(monkeypatch, ["6.1"])
+
+    # Mock crawler's network requests to keep test purely local and fast
+    async def fake_fetch(url):
+        return {"type": "text", "text": source}
+    async def fake_verify_timeline(url, claimed_date):
+        return {"verified": True, "best_date": "05/2012", "verification_log": "Mocked", "source_details": []}
+    monkeypatch.setattr("crawler.fetch_legal_content", fake_fetch)
+    monkeypatch.setattr("crawler.verify_law_timeline", fake_verify_timeline)
+
+    client = TestClient(main_module.app)
+    r = client.post("/api/extract", data={"text": source, "source_url": "https://www.sso.gov.sg/PDPA"})
+    assert r.status_code == 200
+    data = r.json()
+    
+    assert len(data["mappings"]) == 1
+    m = data["mappings"][0]
+
+    # Rule 1: Clean and format source_legislation (Prepend country, strip article)
+    assert m["source_legislation"] == "Singapore Personal Data Protection Act (PDPA), 2012"
+    assert m["article_clause"] == "Article 18"
+
+    # Rule 2: Prepend article/clause to the impact column
+    assert m["impact"].startswith("[Article 18]")
+
+    # Rule 3: Timeframe dates calibrated to Month Name YYYY format
+    assert m["last_update"] == "May 2012"
+    assert "May 2012" in m["features"]["_timeframe_column"]
+

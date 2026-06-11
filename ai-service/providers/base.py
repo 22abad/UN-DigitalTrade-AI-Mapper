@@ -132,6 +132,7 @@ class LLMProvider(ABC):
 
         schema_keys = list(feature_spec.keys()) + [
             "verbatim_quote",
+            "article_clause",
             "source_legislation",
             "last_update",
             "scope",
@@ -154,6 +155,8 @@ ABSOLUTE RULES:
 - Output ONLY valid JSON. No prose, no markdown fences, no explanations.
 - "verbatim_quote" MUST be an EXACT substring of the input text.
   - FOR NON-ENGLISH TEXTS: Copy the text character-for-character including all spaces and special characters. DO NOT attempt to normalize or reformat.
+- "article_clause" MUST be the specific article, clause, or section number (e.g. "Article 18", "Section 5(2)", "Paragraph 10"). Output an empty string if not explicitly mentioned in the text.
+- "source_legislation" MUST be the official title of the law/regulation, EXCLUDING any article, section, or clause numbers. Format it exactly as: [Country/Economy Name] [Law Name] ([Optional Abbreviation]), [Year], [Law Number] (e.g., "Singapore Personal Data Protection Act (PDPA), 2012, No. 26", "Malaysia Personal Data Protection Act (PDPA), 2010, No. 709").
 - If a feature cannot be determined from the text, set it to its type's default (false / 0 / "").
 - "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
 - "coverage": detailed description of the measure's coverage (e.g. 'ICT products', 'Telecommunication equipments', 'Cross-cutting').
@@ -188,9 +191,10 @@ Input article:
 
             fnames = list(feature_spec.keys())
             fields = [f'    "verbatim_quote": "exact substring",']
+            fields.append('    "article_clause": "specific article, clause, or section number (e.g. Article 18), or empty string",')
             for fname in fnames:
                 fields.append(f'    "{fname}": ...,')
-            fields.append('    "source_legislation": "full title of the law/regulation, or empty string",')
+            fields.append('    "source_legislation": "official title of the law/regulation EXCLUDING article/clause numbers, formatted exactly as: [Country/Economy] [Law Name] ([Abbreviation]), [Year], [Law Number] (e.g. Singapore Personal Data Protection Act (PDPA), 2012, No. 26)",')
             fields.append('    "scope": "horizontal|sectoral|unknown",')
             fields.append('    "coverage": "detailed coverage description (e.g. ICT products)",')
             fields.append('    "cluster": "Traditional trade policies|Digital governance policies|Other domestic policies",')
@@ -210,6 +214,8 @@ Evaluate ALL of these indicators from the same article below:
 ABSOLUTE RULES:
 - Output ONLY valid JSON. No prose, no markdown fences, no explanations.
 - Each indicator MUST have a "verbatim_quote" that is an EXACT substring of the input — do NOT paraphrase.
+- "article_clause" MUST be the specific article, clause, or section number (e.g. "Article 18", "Section 5(2)", "Paragraph 10"). Output an empty string if not explicitly mentioned in the text.
+- "source_legislation" MUST be the official title of the law/regulation, EXCLUDING any article, section, or clause numbers. Format it exactly as: [Country/Economy Name] [Law Name] ([Optional Abbreviation]), [Year], [Law Number] (e.g., "Singapore Personal Data Protection Act (PDPA), 2012, No. 26", "Malaysia Personal Data Protection Act (PDPA), 2010, No. 709").
 - If a feature cannot be determined, set to its type default (false / 0 / "").
 - "scope" MUST be one of: "horizontal" / "sectoral" / "unknown".
 - "coverage": detailed coverage description.

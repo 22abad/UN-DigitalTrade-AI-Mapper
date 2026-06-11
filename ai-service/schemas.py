@@ -63,6 +63,7 @@ class IndicatorMapping(BaseModel):
     )
 
     # Legal-text metadata (the 6 mandatory fields from Witada PPT)
+    article_clause: str = Field(default="", description="Specific article, section, or clause number")
     source_legislation: str = Field(default="", description="Law / regulation title")
     last_update: str = Field(default="", description="Last amended / promulgation date")
     source_url: str = Field(default="", description="Authoritative source URL")
