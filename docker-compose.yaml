@@ -30,8 +30,6 @@ services:
     build:
       context: ./ai-service
       dockerfile: Dockerfile
-    volumes:
-      - ./ai-service:/app
     container_name: rdtii-ai-service
     ports:
       - "8000:8000"
@@ -46,6 +44,11 @@ services:
       RDTII_LLM_PROVIDER: ollama
       OLLAMA_MODEL: qwen2.5-coder:7b
       OLLAMA_BASE_URL: http://host.docker.internal:11434/v1
+      # Vertex AI — project + location from .env (gitignored)
+      GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp-vertex-key.json
+    volumes:
+      - ./ai-service:/app
+      - ~/.config/opencode/gcp-vertex-key.json:/etc/gcp-vertex-key.json
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:

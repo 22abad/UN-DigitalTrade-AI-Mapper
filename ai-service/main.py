@@ -292,7 +292,13 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                     continue
 
                 quote = (data.get("verbatim_quote") or "").strip()
-                if not quote or not verify_quote(quote, chunk.text):
+                # If the LLM correctly identified that this indicator is not present in the chunk,
+                # it returns an empty quote or a placeholder. This is a successful "no match"
+                # filter, not an error or hallucination. We should skip it silently.
+                if not quote or quote.lower() in {"", "n/a", "none", "null", "not found"}:
+                    continue
+
+                if not verify_quote(quote, chunk.text):
                     mapped.append((None, RejectedExtraction(
                         reason="verbatim_quote not found in chunk shown to LLM",
                         chunk_preview=chunk.text[:200],
@@ -539,6 +545,29 @@ def ollama_models():
         return {"models": [], "error": str(exc)}
 
 
+_VERTEX_MODELS = [
+    "gemini-3.5-flash-preview",
+    "gemini-3.5-flash",
+    "gemini-3.1-pro-preview",
+    "gemini-3.1-pro",
+    "gemini-3-flash-preview",
+    "gemini-3-flash",
+    "gemini-3-pro-preview",
+    "gemini-3-pro",
+    "gemini-2.5-flash",
+    "gemini-2.5-pro",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+    "gemini-1.5-pro",
+]
+
+
+@app.get("/providers/vertex-models")
+def vertex_models():
+    """List supported Vertex AI Gemini models."""
+    return {"models": _VERTEX_MODELS, "error": None}
+
+
 @app.post("/embed")
 def embed(req: TextRequest):
     from sklearn.preprocessing import normalize
@@ -719,6 +748,9 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         except ValueError as e:
@@ -835,7 +867,13 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         return f"event: {event}\ndata: {json.dumps(payload, default=str)}\n\n"
 
     quote = (data.get("verbatim_quote") or "").strip()
-    if not quote or not verify_quote(quote, chunk.text):
+    # If the LLM correctly identified that this indicator is not present in the chunk,
+    # it returns an empty quote or a placeholder. This is a successful "no match"
+    # filter, not an error or hallucination. We should skip it silently.
+    if not quote or quote.lower() in {"", "n/a", "none", "null", "not found"}:
+        return
+
+    if not verify_quote(quote, chunk.text):
         yield _sse("rejected", RejectedExtraction(
             reason="verbatim_quote not found in chunk shown to LLM",
             chunk_preview=chunk.text[:200],
@@ -1030,6 +1068,9 @@ async def extract_stream(text: str = Form(""), source_url: str = Form(""), provi
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         else:
@@ -1084,6 +1125,9 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None), model
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         except ValueError as e:

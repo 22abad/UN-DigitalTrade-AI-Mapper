@@ -40,6 +40,7 @@ def _extract_page_filtered(page: fitz.Page) -> str:
             continue
         for line in block.get("lines", []):
             line_parts: list[str] = []
+            last_text = ""
             for span in line.get("spans", []):
                 text = span.get("text", "")
                 if not text.strip():
@@ -49,7 +50,13 @@ def _extract_page_filtered(page: fitz.Page) -> str:
                     continue
                 if _is_watermark_text(text):
                     continue
+                
+                # If there's a previous span in the same line, check if a space is needed to prevent word merging
+                if line_parts and not last_text.endswith(" ") and not text.startswith(" "):
+                    line_parts.append(" ")
+                
                 line_parts.append(text)
+                last_text = text
             if line_parts:
                 parts.append("".join(line_parts))
     return "\n".join(parts)

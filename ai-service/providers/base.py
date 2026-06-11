@@ -153,6 +153,7 @@ You MUST extract the following features by reading the article below:
 
 ABSOLUTE RULES:
 - Output ONLY valid JSON. No prose, no markdown fences, no explanations.
+- If the text does NOT contain any policy or measure matching this indicator, you MUST return an empty "verbatim_quote" (i.e. "") and set all boolean features to false or default. DO NOT try to extract unrelated text, titles, or headers as a quote.
 - "verbatim_quote" MUST be an EXACT substring of the input text.
   - FOR NON-ENGLISH TEXTS: Copy the text character-for-character including all spaces and special characters. DO NOT attempt to normalize or reformat.
 - "article_clause" MUST be the specific article, clause, or section number (e.g. "Article 18", "Section 5(2)", "Paragraph 10"). Output an empty string if not explicitly mentioned in the text.
@@ -213,6 +214,7 @@ Evaluate ALL of these indicators from the same article below:
 
 ABSOLUTE RULES:
 - Output ONLY valid JSON. No prose, no markdown fences, no explanations.
+- If the text does NOT contain any policy or measure matching an indicator, you MUST return an empty "verbatim_quote" (i.e. "") and set all features to their defaults for that indicator. DO NOT extract unrelated text, titles, or headings.
 - Each indicator MUST have a "verbatim_quote" that is an EXACT substring of the input — do NOT paraphrase.
 - "article_clause" MUST be the specific article, clause, or section number (e.g. "Article 18", "Section 5(2)", "Paragraph 10"). Output an empty string if not explicitly mentioned in the text.
 - "source_legislation" MUST be the official title of the law/regulation, EXCLUDING any article, section, or clause numbers. Format it exactly as: [Country/Economy Name] [Law Name] ([Optional Abbreviation]), [Year], [Law Number] (e.g., "Singapore Personal Data Protection Act (PDPA), 2012, No. 26", "Malaysia Personal Data Protection Act (PDPA), 2010, No. 709").

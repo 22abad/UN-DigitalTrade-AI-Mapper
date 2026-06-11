@@ -28,8 +28,6 @@ button, a, input, select, textarea {
 
 body {
   margin: 0;
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 button,

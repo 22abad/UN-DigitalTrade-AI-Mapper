@@ -26,6 +26,8 @@ export function useExtraction() {
   const [selectedProvider, setSelectedProvider] = useState("gemini");
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const [selectedOllamaModel, setSelectedOllamaModel] = useState("gemma4:12b");
+  const [vertexModels, setVertexModels] = useState<string[]>([]);
+  const [selectedVertexModel, setSelectedVertexModel] = useState("gemini-2.5-flash");
   const [foundPdfs, setFoundPdfs] = useState<string[]>([]);
 
   // ── Country auto-detection ──────────────────────────────────────
@@ -87,6 +89,17 @@ export function useExtraction() {
         }
       })
       .catch(() => {});
+    fetch("/providers/vertex-models")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.models && data.models.length > 0) {
+          setVertexModels(data.models);
+          if (!data.models.includes("gemini-2.5-flash")) {
+            setSelectedVertexModel(data.models[0]);
+          }
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const mappings = response?.mappings ?? [];
@@ -137,6 +150,8 @@ export function useExtraction() {
     form.append("provider", selectedProvider);
     if (selectedProvider === "ollama") {
       form.append("model", selectedOllamaModel);
+    } else if (selectedProvider === "vertex-ai") {
+      form.append("model", selectedVertexModel);
     }
 
     try {
@@ -237,6 +252,8 @@ export function useExtraction() {
       form.append("provider", selectedProvider);
       if (selectedProvider === "ollama") {
         form.append("model", selectedOllamaModel);
+      } else if (selectedProvider === "vertex-ai") {
+        form.append("model", selectedVertexModel);
       }
 
       const res = await fetch(INGEST_API_URL, {
@@ -360,6 +377,7 @@ export function useExtraction() {
     availableProviders,
     selectedProvider, setSelectedProvider,
     ollamaModels, selectedOllamaModel, setSelectedOllamaModel,
+    vertexModels, selectedVertexModel, setSelectedVertexModel,
     foundPdfs,
     extract,
     ingestFile,
