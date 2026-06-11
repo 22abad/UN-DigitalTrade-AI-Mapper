@@ -26,6 +26,8 @@ export function useExtraction() {
   const [selectedProvider, setSelectedProvider] = useState("gemini");
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const [selectedOllamaModel, setSelectedOllamaModel] = useState("gemma4:12b");
+  const [vertexModels, setVertexModels] = useState<string[]>([]);
+  const [selectedVertexModel, setSelectedVertexModel] = useState("gemini-2.5-flash");
   const [foundPdfs, setFoundPdfs] = useState<string[]>([]);
 
   // ── Country auto-detection ──────────────────────────────────────
@@ -87,6 +89,17 @@ export function useExtraction() {
         }
       })
       .catch(() => {});
+    fetch("/providers/vertex-models")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.models && data.models.length > 0) {
+          setVertexModels(data.models);
+          if (!data.models.includes("gemini-2.5-flash")) {
+            setSelectedVertexModel(data.models[0]);
+          }
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const mappings = response?.mappings ?? [];
@@ -137,6 +150,8 @@ export function useExtraction() {
     form.append("provider", selectedProvider);
     if (selectedProvider === "ollama") {
       form.append("model", selectedOllamaModel);
+    } else if (selectedProvider === "vertex-ai") {
+      form.append("model", selectedVertexModel);
     }
 
     try {
@@ -237,6 +252,8 @@ export function useExtraction() {
       form.append("provider", selectedProvider);
       if (selectedProvider === "ollama") {
         form.append("model", selectedOllamaModel);
+      } else if (selectedProvider === "vertex-ai") {
+        form.append("model", selectedVertexModel);
       }
 
       const res = await fetch(INGEST_API_URL, {
@@ -313,6 +330,44 @@ export function useExtraction() {
     const mapping = mappings.find((m) => mappingKey(m) === key);
     if (!mapping) return;
 
+    // Prompt for review notes/feedback if approving or rejecting (optional)
+    let reviewerNotes = "";
+    if (d === "approved" || d === "rejected") {
+      if (d === "approved") {
+        const notes = window.prompt("Enter optional approval notes or compliance context to save to audit log:");
+        if (notes === null) return; // user cancelled the action
+        reviewerNotes = notes.trim();
+      } else {
+        // Rejection quick-select templates (saves time and standardizes agent fine-tuning feedback)
+        const promptMsg = 
+          "Select a Rejection Reason by typing its NUMBER (1-5), or type your own custom comment:\n\n" +
+          "1. [Catalog/Title] This is just a title, section heading, or table of contents, not a substantive policy.\n" +
+          "2. [Irrelevant] The extracted quote has no relevance to the selected indicator.\n" +
+          "3. [Gov Data] The measure applies only to government/public data, which is excluded under RDTII.\n" +
+          "4. [Hallucination] The quote contains hallucinatory, scrambled, or badly translated text.\n" +
+          "5. [Outdated] The policy is outdated, repealed, or replaced by a newer regulation.\n\n" +
+          "Type number (1-5) or type custom comments:";
+          
+        const notes = window.prompt(promptMsg);
+        if (notes === null) return; // user cancelled the action
+        
+        const trimmed = notes.trim();
+        if (trimmed === "1") {
+          reviewerNotes = "This quote is just a title, section heading, or table of contents, not a substantive policy. Do not extract headers or catalog lists.";
+        } else if (trimmed === "2") {
+          reviewerNotes = "The extracted quote is not relevant to the selected indicator. Only extract provisions directly regulating this specific policy indicator.";
+        } else if (trimmed === "3") {
+          reviewerNotes = "The measure applies only to government or public data, which is excluded under RDTII guidelines. Do not map public sector internal storage or retention.";
+        } else if (trimmed === "4") {
+          reviewerNotes = "The quote contains hallucinatory, scrambled, or badly translated text. Please verify exact wording.";
+        } else if (trimmed === "5") {
+          reviewerNotes = "The policy is outdated, repealed, or has been replaced by a newer regulation. Check for more recent notices.";
+        } else {
+          reviewerNotes = trimmed; // User's custom comments
+        }
+      }
+    }
+
     setDecisions((prev) => ({ ...prev, [key]: d }));
 
     if (d === "pending") return;
@@ -324,7 +379,7 @@ export function useExtraction() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getStoredToken()}`,
         },
-        body: JSON.stringify({ decision: d, country_code: country, mapping }),
+        body: JSON.stringify({ decision: d, country_code: country, mapping, reviewer_notes: reviewerNotes }),
       });
 
       if (!res.ok) {
@@ -360,6 +415,7 @@ export function useExtraction() {
     availableProviders,
     selectedProvider, setSelectedProvider,
     ollamaModels, selectedOllamaModel, setSelectedOllamaModel,
+    vertexModels, selectedVertexModel, setSelectedVertexModel,
     foundPdfs,
     extract,
     ingestFile,

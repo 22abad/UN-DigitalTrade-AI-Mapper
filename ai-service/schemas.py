@@ -183,6 +183,7 @@ class ReviewRequest(BaseModel):
     decision: Literal["approved", "rejected"]
     country_code: str
     mapping: IndicatorMapping
+    reviewer_notes: str | None = Field(default=None, description="Optional human review notes/feedback for fine-tuning")
 
 
 class ExtractionRequest(BaseModel):

@@ -113,6 +113,54 @@ class LLMProvider(ABC):
     # ── Shared helpers (used by concrete providers) ──────────────────
 
     @staticmethod
+    def _get_recent_corrections() -> str:
+        """Fetch the latest 5 rejected extractions with reviewer notes to use as negative few-shot examples."""
+        import os
+        import psycopg2
+        db_config = {
+            "dbname": os.getenv("POSTGRES_DB", "rdtii"),
+            "user": os.getenv("POSTGRES_USER", "rdtii_user"),
+            "password": os.getenv("POSTGRES_PASSWORD", "rdtii_password"),
+            "host": os.getenv("POSTGRES_HOST", "postgres"),
+            "port": os.getenv("POSTGRES_PORT", "5432"),
+        }
+        conn = None
+        try:
+            conn = psycopg2.connect(**db_config)
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT ds.raw_text, rm.compliance_status, at.reviewer_notes "
+                "FROM audit_trail at "
+                "JOIN regulation_mappings rm ON at.mapping_id = rm.id "
+                "JOIN document_sections ds ON at.source_section_id = ds.id "
+                "WHERE at.reviewer_notes IS NOT NULL AND at.reviewer_notes != '' AND rm.compliance_status = 'non-compliant' "
+                "ORDER BY at.created_at DESC LIMIT 5"
+            )
+            rows = cur.fetchall()
+            cur.close()
+            conn.close()
+            if not rows:
+                return ""
+                
+            parts = ["\n=== IMPORTANT: RECENT HUMAN AUDITOR CORRECTIONS (DO NOT MAKE THESE ERRORS) ==="]
+            for i, (text, status, notes) in enumerate(rows, 1):
+                text_preview = text.strip().replace("\n", " ")[:200]
+                parts.append(
+                    f"Correction {i}:\n"
+                    f"  - Extracted Text: \"{text_preview}...\"\n"
+                    f"  - Human Feedback: \"{notes}\"\n"
+                    f"  - Action required: Do NOT extract or map this type of content as valid policy."
+                )
+            return "\n".join(parts) + "\n=================================================================\n"
+        except Exception:
+            if conn:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+            return ""
+
+    @staticmethod
     def build_prompt(
         article_text: str,
         indicator_id: str,
@@ -169,6 +217,8 @@ JSON schema (all keys required):
 {{
 {schema_lines}
 }}
+
+{LLMProvider._get_recent_corrections()}
 
 Input article:
 \"\"\"
@@ -228,6 +278,8 @@ Return JSON:
 {{
 {chr(10).join(schema_parts)}
 }}
+
+{LLMProvider._get_recent_corrections()}
 
 Input article:
 \"\"\"

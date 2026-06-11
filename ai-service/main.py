@@ -333,6 +333,29 @@ def ollama_models():
         return {"models": [], "error": str(exc)}
 
 
+_VERTEX_MODELS = [
+    "gemini-3.5-flash-preview",
+    "gemini-3.5-flash",
+    "gemini-3.1-pro-preview",
+    "gemini-3.1-pro",
+    "gemini-3-flash-preview",
+    "gemini-3-flash",
+    "gemini-3-pro-preview",
+    "gemini-3-pro",
+    "gemini-2.5-flash",
+    "gemini-2.5-pro",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+    "gemini-1.5-pro",
+]
+
+
+@app.get("/providers/vertex-models")
+def vertex_models():
+    """List supported Vertex AI Gemini models."""
+    return {"models": _VERTEX_MODELS, "error": None}
+
+
 @app.post("/embed")
 def embed(req: TextRequest):
     from sklearn.preprocessing import normalize
@@ -513,6 +536,9 @@ async def extract(text: str = Form(""), source_url: str = Form(""), provider: st
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         except ValueError as e:
@@ -824,6 +850,9 @@ async def extract_stream(text: str = Form(""), source_url: str = Form(""), provi
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         else:
@@ -878,6 +907,9 @@ async def upload(file: UploadFile = File(...), provider: str = Form(None), model
             if provider == "ollama" and model:
                 from providers.ollama import OllamaProvider
                 llm_provider = OllamaProvider(model=model)
+            elif provider == "vertex-ai" and model:
+                from providers.vertex_ai import VertexAIProvider
+                llm_provider = VertexAIProvider(model_name=model)
             else:
                 llm_provider = get_provider(provider)
         except ValueError as e:
@@ -1074,9 +1106,9 @@ def review_mapping(req: ReviewRequest):
         mapping_id = cur.fetchone()[0]
 
         cur.execute(
-            "INSERT INTO audit_trail (mapping_id, source_section_id, highlight_start, highlight_end) "
-            "VALUES (%s, %s, %s, %s)",
-            (mapping_id, section_id, req.mapping.quote_start, req.mapping.quote_end)
+            "INSERT INTO audit_trail (mapping_id, source_section_id, highlight_start, highlight_end, reviewer_notes) "
+            "VALUES (%s, %s, %s, %s, %s)",
+            (mapping_id, section_id, req.mapping.quote_start, req.mapping.quote_end, req.reviewer_notes)
         )
 
         conn.commit()

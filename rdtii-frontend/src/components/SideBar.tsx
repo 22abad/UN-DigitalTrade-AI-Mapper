@@ -17,6 +17,9 @@ type TopBarProps = {
   ollamaModels: string[];
   selectedOllamaModel: string;
   setSelectedOllamaModel: (v: string) => void;
+  vertexModels: string[];
+  selectedVertexModel: string;
+  setSelectedVertexModel: (v: string) => void;
   onClose: () => void;
 };
 
@@ -30,6 +33,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   together: "Together AI",
   openrouter: "OpenRouter",
   "llama-3-local": "Llama 3 (Local)",
+  "vertex-ai": "Vertex AI",
 };
 
 const LOCAL_PROVIDERS = ["ollama", "llama-3-local"];
@@ -118,6 +122,9 @@ export function SideBar({
   ollamaModels,
   selectedOllamaModel,
   setSelectedOllamaModel,
+  vertexModels,
+  selectedVertexModel,
+  setSelectedVertexModel,
   onClose,
 }: TopBarProps) {
   const headerStatus =
@@ -175,18 +182,38 @@ export function SideBar({
               {availableProviders
                 .filter((p) => !LOCAL_PROVIDERS.includes(p))
                 .map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => setSelectedProvider(p)}
-                    style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
-                  >
-                    <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
-                      {PROVIDER_LABELS[p] ?? p}
-                    </span>
-                    {selectedProvider === p && (
-                      <span className="text-[#10B981] text-xs">⎷</span>
+                  <div key={p}>
+                    <button
+                      onClick={() => setSelectedProvider(p)}
+                      style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "4px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                    >
+                      <span className={`text-xs ${selectedProvider === p ? "text-[#10B981] font-semibold" : "text-white/50"}`}>
+                        {PROVIDER_LABELS[p] ?? p}
+                      </span>
+                      {selectedProvider === p && (
+                        <span className="text-[#10B981] text-xs">⎷</span>
+                      )}
+                    </button>
+                    {/* Render sub-selector inline if this provider is selected */}
+                    {p === "vertex-ai" && selectedProvider === "vertex-ai" && vertexModels.length > 0 && (
+                      <div className="mt-1 pl-2 border-l border-white/10 mb-2">
+                        {vertexModels.map((m) => (
+                          <button
+                            key={m}
+                            onClick={() => setSelectedVertexModel(m)}
+                            style={{ background: "transparent", border: "none", minHeight: 0, cursor: "pointer", width: "100%", padding: "1px 0", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                          >
+                            <span className={`text-[11px] ${selectedVertexModel === m ? "text-[#10B981] font-semibold" : "text-white/30"}`}>
+                              {m}
+                            </span>
+                            {selectedVertexModel === m && (
+                              <span className="text-[#10B981] text-[10px]">⎷</span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
                     )}
-                  </button>
+                  </div>
                 ))}
               {/* Local providers — merged under one heading */}
               {availableProviders.filter((p) => LOCAL_PROVIDERS.includes(p)).length > 0 && (

@@ -37,6 +37,8 @@ _LAZY_REGISTRY: dict[str, tuple[str, str]] = {
     "gemini": (".gemini", "GeminiProvider"),
     "claude": (".claude", "ClaudeProvider"),
     "llama-3-local": (".llama_local", "Llama3LocalProvider"),
+    # Vertex AI — Google Cloud Vertex AI with service account
+    "vertex-ai": (".vertex_ai", "VertexAIProvider"),
     # Ollama — local model server with OpenAI-compatible API
     "ollama": (".ollama", "OllamaProvider"),
     # OpenAI-compatible (single SDK, many vendors via base_url)
@@ -56,6 +58,8 @@ _ALIASES: dict[str, str] = {
     "llama3": "llama-3-local",
     "llama3-local": "llama-3-local",
     "llama-3": "llama-3-local",
+    "vertex": "vertex-ai",
+    "vertexai": "vertex-ai",
 }
 
 

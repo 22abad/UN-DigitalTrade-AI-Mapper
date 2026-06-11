@@ -39,6 +39,7 @@ export function WorkbenchPage() {
     availableProviders,
     selectedProvider, setSelectedProvider,
     ollamaModels, selectedOllamaModel, setSelectedOllamaModel,
+    vertexModels, selectedVertexModel, setSelectedVertexModel,
     foundPdfs,
     extract,
     selectMapping,
@@ -107,6 +108,9 @@ export function WorkbenchPage() {
                 ollamaModels={ollamaModels}
                 selectedOllamaModel={selectedOllamaModel}
                 setSelectedOllamaModel={setSelectedOllamaModel}
+                vertexModels={vertexModels}
+                selectedVertexModel={selectedVertexModel}
+                setSelectedVertexModel={setSelectedVertexModel}
                 onClose={() => setSidebarOpen(false)}
               />
             </motion.div>

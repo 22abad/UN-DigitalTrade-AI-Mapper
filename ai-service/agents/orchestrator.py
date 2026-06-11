@@ -100,6 +100,12 @@ class MASOrchestrator:
 
                     # 1. Critic Agent — Verbatim quote verification
                     quote = (data.get("verbatim_quote") or "").strip()
+                    # If the LLM correctly identified that this indicator is not present in the chunk,
+                    # it returns an empty quote or a placeholder. This is a successful "no match"
+                    # filter, not an error or hallucination. We should skip it silently.
+                    if not quote or quote.lower() in {"", "n/a", "none", "null", "not found"}:
+                        continue
+
                     is_valid, local_start, local_end, reject_reason = self.critic.verify(quote, chunk.text)
                     if not is_valid:
                         results_list.append((None, RejectedExtraction(

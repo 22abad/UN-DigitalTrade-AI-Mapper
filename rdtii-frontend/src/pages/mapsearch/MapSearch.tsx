@@ -325,6 +325,9 @@ export function MapSearchPage() {
                 ollamaModels={[]}
                 selectedOllamaModel=""
                 setSelectedOllamaModel={() => {}}
+                vertexModels={[]}
+                selectedVertexModel=""
+                setSelectedVertexModel={() => {}}
                 onClose={() => setSidebarOpen(false)}
               />
             </motion.div>
