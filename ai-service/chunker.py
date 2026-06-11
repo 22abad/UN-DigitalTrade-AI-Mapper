@@ -59,7 +59,7 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
     up to CHUNK_CHAR_BUDGET chars. Structural headings act as preferred
     break points so each article starts a fresh chunk where possible.
     """
-    if not text:
+    if not text or not text.strip():
         return []
 
     sents = list(_uax29_sentences(text))
