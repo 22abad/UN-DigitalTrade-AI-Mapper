@@ -92,21 +92,39 @@ def _source_legislation_display(mapping: IndicatorMapping) -> str:
 def _impact_comment(mapping: IndicatorMapping) -> str:
     """Format the 'Impacts or comments' column with provision + interpretation."""
     parts = []
+    prefix = f"[{mapping.article_clause}] " if mapping.article_clause else ""
+    if mapping.impact:
+        # Prepend prefix directly to the first line (Interpretation)
+        parts.append(f"{prefix}Interpretation: {mapping.impact}")
+    else:
+        parts.append(f"{prefix}Interpretation: Mapping for indicator {mapping.indicator}")
+        
     if mapping.verbatim_quote:
         parts.append(f"Provision: {mapping.verbatim_quote[:200]}")
-    if mapping.impact:
-        parts.append(f"Interpretation: {mapping.impact}")
     return "\n".join(parts)
 
 
 def _timeframe_display(mapping: IndicatorMapping) -> str:
     """Extract/format the Timeframe from mapping metadata."""
+    features = mapping.features or {}
+    if features.get("_timeframe_column"):
+        return features.get("_timeframe_column")
+
     ts = mapping.timestamp_verification or {}
     if ts.get("verified"):
         best = ts.get("best_date", "")
-        return f"In force since {best}" if best else "In force (verified via source)"
+        if best:
+            from timeframe_extractor import format_to_month_year
+            best_my = format_to_month_year(best)
+            return f"Since {best_my}" if best_my else f"Since {best}"
+
     last_upd = mapping.last_update or ""
-    return last_upd if last_upd else "In force (date unknown)"
+    if last_upd:
+        from timeframe_extractor import format_to_month_year
+        last_upd_my = format_to_month_year(last_upd)
+        if last_upd_my:
+            return f"Since {last_upd_my}"
+    return "In force (date unknown)"
 
 
 def _coverage_display(mapping: IndicatorMapping) -> str:
@@ -124,7 +142,9 @@ def _source_validation_display(mapping: IndicatorMapping) -> str:
 
 
 def _provision_article_display(mapping: IndicatorMapping) -> str:
-    """Extract article/provision reference from verbatim quote context."""
+    """Extract article/provision reference from mapping metadata."""
+    if mapping.article_clause:
+        return mapping.article_clause
     quote = mapping.verbatim_quote or ""
     return quote[:80] if quote else ""
 

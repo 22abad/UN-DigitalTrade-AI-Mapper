@@ -50,7 +50,7 @@ from providers.base import ExtractionError
 from country_detector import detect_country
 from source_validator import grade_source, require_primary_source
 from staleness_checker import check_staleness
-from timeframe_extractor import extract_timeframe, build_timeframe_column
+from timeframe_extractor import extract_timeframe, build_timeframe_column, format_to_month_year
 
 # crawler.py pulls in playwright; pdf_reader pulls in pymupdf / tesseract.
 # Both are heavy and only needed for the URL-ingestion path, so import
@@ -71,6 +71,118 @@ from verification import find_quote_offsets, verify_quote
 _env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(_env_path)  # prefer root .env regardless of CWD
 load_dotenv(override=True)           # CWD .env overrides root for local dev
+
+
+def format_and_clean_mapping(mapping: IndicatorMapping, raw_data: dict, chunk_text: str):
+    """Post-processing interceptor to clean and format extracted fields to UN standards."""
+    import re
+    # 1. Capture article_clause
+    article_clause = (raw_data.get("article_clause") or "").strip()
+    
+    # Heuristically extract article_clause if empty
+    if not article_clause:
+        # A. Try to extract from source_legislation if it contains Article/Section
+        leg_title = (raw_data.get("source_legislation") or "").strip()
+        m = re.search(
+            r"\b(?:Article|Section|Sec|Clause|Paragraph|Para|Ch|Part)\.?\s*(\d+(?:\s*(?:\([^)]+\)|[a-zA-Z]))?)\b",
+            leg_title,
+            re.IGNORECASE
+        )
+        if m:
+            article_clause = m.group(0).strip()
+        else:
+            # B. Try to extract from the beginning of verbatim_quote
+            quote = (raw_data.get("verbatim_quote") or "").strip()
+            m = re.match(
+                r"^\s*(?:Article|Section|Sec|Clause|Paragraph|Para)\.?\s*(\d+(?:\s*(?:\([^)]+\)|[a-zA-Z]))?)\b",
+                quote,
+                re.IGNORECASE
+            )
+            if m:
+                article_clause = m.group(0).strip()
+            else:
+                # C. Try a loose pattern: "Article/Section \d" in the quote
+                m = re.search(
+                    r"\b(?:Article|Section|Sec|Clause|Paragraph|Para)\.?\s*(\d+(?:\s*(?:\([^)]+\)|[a-zA-Z]))?)\b",
+                    quote,
+                    re.IGNORECASE
+                )
+                if m:
+                    article_clause = m.group(0).strip()
+
+    # Clean double spaces or trailing periods from article_clause
+    if article_clause:
+        article_clause = re.sub(r"\s+", " ", article_clause).strip()
+        article_clause = article_clause.rstrip(".,-:")
+        # Capitalize first letter
+        article_clause = article_clause[0].upper() + article_clause[1:] if len(article_clause) > 1 else article_clause.upper()
+    mapping.article_clause = article_clause
+
+    # 2. Clean and format source_legislation
+    source_leg = (raw_data.get("source_legislation") or "").strip()
+    if source_leg:
+        # Strip out any Article/Section mention from the legislation title
+        source_leg = re.sub(
+            r"(?i)\s*(?:[-–—:|]|\bof\b)?\s*\b(?:Article|Section|Sec|Clause|Paragraph|Para|Part|Ch)\b\.?\s*\d+.*$",
+            "",
+            source_leg
+        ).strip()
+        
+        # Strip trailing hyphens, brackets, colons, spaces
+        source_leg = source_leg.rstrip("-,.:;—– \t")
+        
+        # Detect country
+        cd = detect_country(chunk_text, mapping.source_url, source_leg)
+        country_name = cd.get("name") or ""
+        
+        # Check if country name is in source_legislation
+        has_country = False
+        if country_name:
+            adj_map = {
+                "Thailand": ["thai"],
+                "Malaysia": ["malaysia", "malaysian"],
+                "Singapore": ["singapore", "singaporean"],
+                "China": ["china", "chinese"],
+                "Australia": ["australia", "australian"],
+                "India": ["india", "indian"],
+                "Philippines": ["philippines", "philippine"],
+            }
+            search_terms = [country_name.lower()] + adj_map.get(country_name, [])
+            if any(term in source_leg.lower() for term in search_terms):
+                has_country = True
+                
+        # Format: [Country] [Law Name]
+        if country_name and not has_country:
+            if not any(c.lower() in source_leg.lower() for c in ["thailand", "singapore", "malaysia", "australia", "china", "india"]):
+                source_leg = f"{country_name} {source_leg}"
+                
+        # Ensure correct formatting of comma and year
+        m_year = re.search(r"\b(\d{4})\b", source_leg)
+        if m_year:
+            year = m_year.group(1)
+            idx = source_leg.find(year)
+            if idx > 1:
+                before = source_leg[:idx].rstrip()
+                if not before.endswith(","):
+                    source_leg = f"{before}, {year}" + source_leg[idx+4:]
+        
+        source_leg = re.sub(r"\s+", " ", source_leg).strip()
+        source_leg = source_leg.rstrip("-, \t")
+        
+    mapping.source_legislation = source_leg
+
+    # 3. Prepend article/clause to the impact column if available
+    if mapping.article_clause and mapping.impact:
+        prefix = f"[{mapping.article_clause}] "
+        if not mapping.impact.startswith(prefix):
+            mapping.impact = f"{prefix}{mapping.impact}"
+
+    # 4. Calibrate the last_update date to Month Name YYYY
+    if mapping.last_update:
+        formatted_date = format_to_month_year(mapping.last_update)
+        if formatted_date:
+            mapping.last_update = formatted_date
+
 
 app = FastAPI(title="RDTII AI Mapper", version="0.2.0")
 app.add_middleware(
@@ -197,6 +309,9 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                     )))
                     continue
 
+                source_url_val = data.get("source_url", "")
+                last_update_val = data.get("last_update", "")
+
                 features = {k: data[k] for k in spec.keys() if k in data}
                 if pdf_metadata:
                     features.update(pdf_metadata)
@@ -235,7 +350,7 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                 )
                 tf_column = build_timeframe_column(
                     status=tf["status"],
-                    in_force_date=tf.get("in_force_date"),
+                    in_force_date=tf.get("in_force_date") or last_update_val,
                     last_amended_date=tf.get("last_amended_date"),
                     repealed_date=tf.get("repealed_date"),
                 )
@@ -243,8 +358,6 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                 features["_timeframe_column"] = tf_column
 
                 # ── 三重时间戳核实 ─────────────────────────────────
-                source_url_val = data.get("source_url", "")
-                last_update_val = data.get("last_update", "")
                 ts_verification = {}
                 if source_url_val and last_update_val:
                     try:
@@ -289,6 +402,8 @@ async def _run_extraction(text: str, llm_provider, pdf_metadata: dict | None = N
                     extraction_provider=llm_provider.name,
                     timestamp_verification=ts_verification,
                 )
+
+                format_and_clean_mapping(mapping_obj, data, chunk.text)
 
                 vr = validate_mapping(
                     mapping_obj,
@@ -765,6 +880,9 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         scope_value = cc["scope"]
         features["_coverage_reasons"] = "; ".join(cc.get("reasons", []))
 
+    source_url_val = data.get("source_url", "")
+    last_update_val = data.get("last_update", "")
+
     tf = extract_timeframe(
         text=chunk.text,
         source_legislation=data.get("source_legislation", ""),
@@ -772,15 +890,13 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
     )
     tf_column = build_timeframe_column(
         status=tf["status"],
-        in_force_date=tf.get("in_force_date"),
+        in_force_date=tf.get("in_force_date") or last_update_val,
         last_amended_date=tf.get("last_amended_date"),
         repealed_date=tf.get("repealed_date"),
     )
     features["_timeframe_status"] = tf["status"]
     features["_timeframe_column"] = tf_column
 
-    source_url_val = data.get("source_url", "")
-    last_update_val = data.get("last_update", "")
     ts_verification = {}
 
     # ── Staleness / outdated-law detection ──────────────────────────
@@ -815,6 +931,8 @@ def _process_single(chunk, ind_id, spec, data, full_text, provider_name="unknown
         extraction_provider=provider_name,
         timestamp_verification=ts_verification,
     )
+
+    format_and_clean_mapping(mapping, data, chunk.text)
 
     # ── Anti-hallucination validation ──────────────────────────
     vr = validate_mapping(

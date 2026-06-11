@@ -240,6 +240,52 @@ def extract_timeframe(
     return result
 
 
+def format_to_month_year(date_str: str | None) -> str | None:
+    """Convert MM/YYYY or other date strings to 'Month Name YYYY' format."""
+    if not date_str:
+        return None
+        
+    date_str = date_str.strip()
+    
+    # If already formatted like 'January 2013' or 'May 2011', return it
+    m = re.match(
+        r"^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})$",
+        date_str,
+        re.IGNORECASE
+    )
+    if m:
+        return date_str.title()
+        
+    # Try parsing MM/YYYY
+    m = re.match(r"^(\d{1,2})/(\d{4})$", date_str)
+    if m:
+        month_num = int(m.group(1))
+        year = m.group(2)
+        months = [
+            "", "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+        if 1 <= month_num <= 12:
+            return f"{months[month_num]} {year}"
+            
+    # Try finding any 4 digit year and try to see if any month is there
+    for month_name, m_num in MONTH_NAMES.items():
+        if month_name in date_str.lower():
+            year_match = re.search(r"\b(\d{4})\b", date_str)
+            if year_match:
+                months = [
+                    "", "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ]
+                return f"{months[m_num]} {year_match.group(1)}"
+
+    year_match = re.search(r"\b(\d{4})\b", date_str)
+    if year_match:
+        return year_match.group(1)
+        
+    return date_str
+
+
 def build_timeframe_column(
     status: TimeframeStatus,
     in_force_date: str | None,
@@ -247,26 +293,38 @@ def build_timeframe_column(
     repealed_date: str | None = None,
 ) -> str:
     """Build the RDTII-format Timeframe column value."""
-    parts = []
+    # Convert dates to Month Year
+    in_force_my = format_to_month_year(in_force_date)
+    last_amended_my = format_to_month_year(last_amended_date)
+    repealed_my = format_to_month_year(repealed_date)
+
     if status == "draft":
         return "Draft / Not yet in force"
     if status == "not_yet_effective":
-        return f"Not yet effective (signed {in_force_date or 'date unknown'})"
+        if in_force_my:
+            return f"Not yet effective (signed {in_force_my})"
+        return "Not yet effective"
     if status == "repealed":
-        return f"Repealed (was in force until {repealed_date or 'unknown'})"
+        if repealed_my:
+            return f"Repealed (was in force until {repealed_my})"
+        return "Repealed"
 
-    if in_force_date:
-        parts.append(f"In force since {in_force_date}")
+    parts = []
+    if in_force_my:
+        parts.append(f"Since {in_force_my}")
     else:
         parts.append("In force")
 
-    if status == "amended" and last_amended_date:
-        parts.append(f"last amended {last_amended_date}")
+    if status == "amended" and last_amended_my:
+        parts.append(f"last amended in {last_amended_my}")
+    elif last_amended_my:
+        parts.append(f"last amended in {last_amended_my}")
 
     if status == "transitional":
         parts.append("transitional provisions apply")
 
+    # Semicolon separator
     return "; ".join(parts) if parts else "In force (date unknown)"
 
 
-__all__ = ["extract_timeframe", "build_timeframe_column", "TimeframeStatus"]
+__all__ = ["extract_timeframe", "build_timeframe_column", "TimeframeStatus", "format_to_month_year"]
