@@ -91,6 +91,10 @@ class IndicatorMapping(BaseModel):
         default="",
         description="Detailed coverage description of the measure (e.g. 'ICT products', 'Telecommunication equipments')",
     )
+    Coverage: str = Field(
+        default="",
+        description="Detailed coverage description of the measure (e.g. 'ICT products', 'Telecommunication equipments')",
+    )
     cluster: str = Field(
         default="",
         description="High-level policy cluster (e.g. 'Traditional trade policies', 'Digital governance policies', 'Other domestic policies')",
@@ -120,6 +124,36 @@ class IndicatorMapping(BaseModel):
             "{verified: bool, best_date: str, verification_log: str, source_details: list}"
         ),
     )
+
+    # RDTII 2.1 — 10 Fields (and their aliases for compatibility)
+    Pillar_ID: str = Field(default="", description="Pillar ID, e.g. '6.0'")
+    pillar_id: str = Field(default="", description="Pillar ID alias, e.g. '6.0'")
+    
+    Indicator_ID: str = Field(default="", description="Indicator ID, e.g. '6.1'")
+    indicator_id: str = Field(default="", description="Indicator ID alias, e.g. '6.1'")
+    
+    Cat_Score: float = Field(default=0.0, description="Sum of raw scores, capped at 1")
+    cat_score: float = Field(default=0.0, description="Sum of raw scores, capped at 1")
+    
+    Raw_Score: float = Field(default=0.0, description="0 / 0.5 / 1 per exact scoring criteria")
+    raw_score: float = Field(default=0.0, description="0 / 0.5 / 1 per exact scoring criteria")
+    
+    Act_and_or_practice: str = Field(default="", description="Title of the regulation/law")
+    act_and_or_practice: str = Field(default="", description="Title of the regulation/law")
+    act_title: str = Field(default="", description="Act title alias")
+    
+    Impact_or_comments: str = Field(default="", description="Multi-paragraph legal analysis explaining the score")
+    impact_or_comments: str = Field(default="", description="Multi-paragraph legal analysis explaining the score")
+    impact_comments: str = Field(default="", description="Impact comments alias")
+    
+    Timeframe: str = Field(default="", description="Enactment + amendment dates")
+    timeframe: str = Field(default="", description="Enactment + amendment dates")
+    
+    References: str = Field(default="", description="Primary source URLs (official gov) + secondary sources")
+    references: str = Field(default="", description="Primary source URLs (official gov) + secondary sources")
+    
+    Note: str = Field(default="", description="Internal researcher notes")
+    note: str = Field(default="", description="Internal researcher notes")
 
 
 class RejectedExtraction(BaseModel):
