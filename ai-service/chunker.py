@@ -92,7 +92,7 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
     for sent in sents:
         is_heading = bool(_HEADING_RE.match(sent))
         over_budget = (buf_chars + len(sent) > _BUDGET) and (buf_chars >= _MIN_CHARS)
-        at_heading  = is_heading and (buf_chars >= _MIN_CHARS)
+        at_heading = is_heading
 
         if buf and (over_budget or at_heading):
             _flush()
@@ -106,4 +106,10 @@ def regex_legal_chunker(text: str) -> list[Chunk]:
 
     _flush()
 
-    return chunks or [Chunk(text=text.strip(), start=0, end=len(text))]
+    if chunks:
+        return chunks
+    stripped = text.strip()
+    if not stripped:
+        return []
+    lead = text.index(stripped)
+    return [Chunk(text=stripped, start=lead, end=lead + len(stripped))]

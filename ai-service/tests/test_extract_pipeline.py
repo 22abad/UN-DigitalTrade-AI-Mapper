@@ -63,14 +63,21 @@ def _patch_classifier_to(monkeypatch, indicator_ids: list[str]) -> None:
     monkeypatch.setattr(main_module, "classify_indicator", lambda _t: indicator_ids)
 
 
+def _make_test_client(main_module):
+    from fastapi.testclient import TestClient
+
+    main_module.app.dependency_overrides[main_module.get_current_user] = (
+        lambda: {"user_id": "test-user", "role": "tester", "username": "tester"}
+    )
+    return TestClient(main_module.app)
+
+
 # ──────────────────────────────────────────────────────────────────────────
 # #3 — Quote offsets unrecoverable must reject the mapping.
 # ──────────────────────────────────────────────────────────────────────────
 
 
 def test_fuzzy_match_with_unrecoverable_offsets_is_rejected(monkeypatch):
-    from fastapi.testclient import TestClient
-
     import main as main_module
 
     # Quote shares enough characters with source for partial_ratio >= 90,
@@ -94,7 +101,7 @@ def test_fuzzy_match_with_unrecoverable_offsets_is_rejected(monkeypatch):
     twisted_quote = "The quick brown FOX jumps over the lazy DOG"  # case mismatch
     response["verbatim_quote"] = twisted_quote
 
-    client = TestClient(main_module.app)
+    client = _make_test_client(main_module)
     r = client.post("/api/extract", data={"text": source})
     assert r.status_code == 200
     data = r.json()
@@ -132,8 +139,6 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
     refactor accidentally drops that translation, the absolute offset
     assertion below will fail, because chunk 2 starts well after byte 0.
     """
-    from fastapi.testclient import TestClient
-
     import main as main_module
 
     # Order matters: article 2 contains the quote the liar will return.
@@ -182,7 +187,7 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
     monkeypatch.setattr(main_module, "_get_provider", lambda: fake)
     _patch_classifier_to(monkeypatch, ["6.1"])
 
-    client = TestClient(main_module.app)
+    client = _make_test_client(main_module)
     r = client.post("/api/extract", data={"text": source})
     assert r.status_code == 200
     data = r.json()
@@ -224,8 +229,6 @@ def test_quote_outside_chunk_is_rejected_even_if_in_full_document(monkeypatch):
     ["global", "regional", "national", "", None, "Sectoral ", "HORIZONTAL"],
 )
 def test_invalid_scope_is_sanitized(monkeypatch, bad_scope):
-    from fastapi.testclient import TestClient
-
     import main as main_module
 
     source = "Article 1. Personal data shall not be transferred abroad."
@@ -242,7 +245,7 @@ def test_invalid_scope_is_sanitized(monkeypatch, bad_scope):
     _patch_provider(monkeypatch, response)
     _patch_classifier_to(monkeypatch, ["6.1"])
 
-    client = TestClient(main_module.app)
+    client = _make_test_client(main_module)
     r = client.post("/api/extract", data={"text": source})
     assert r.status_code == 200, f"crashed on scope={bad_scope!r}: {r.text}"
     data = r.json()
